@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-00T09:41:00Z" product-name="slub_forms">
+		<header/>
+		<body>
+
+			<trans-unit id="sender_name.description">
+				<source>senderName</source>
+			</trans-unit>
+			<trans-unit id="sender_email.description">
+				<source>senderEmail</source>
+			</trans-unit>
+			<trans-unit id="content.description">
+				<source>content</source>
+			</trans-unit>
+			<trans-unit id="form.description">
+				<source>form</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

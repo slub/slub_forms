@@ -1,0 +1,55 @@
+.hide { display: none; }
+
+/*
+input[type="radio"] + label {
+    display:inline-block;
+    margin:-2px;
+    padding: 4px 12px;
+    background-color: #e7e7e7;
+    border-color: #ddd;
+}
+*/
+/*
+ Change background color for label next to checked radio button
+ to make it look like highlighted button
+*/
+input[type="radio"]:checked + label {
+   background-image: none;
+    background-color:#d0d0d0;
+}
+
+
+/* form view */
+/*
+.slub-form-tree { position: relative; width: 570px; height: 380px; margin: 20px 0; display: block; }
+
+.slub-form-tree ul>li { position: relative; display: block; border-bottom: 1px dotted #ccc; padding: 6px 10px; }
+.slub-form-tree ul>li>ul  { display: none; font-size: 11px; }
+.slub-form-tree ul>li input[type="radio"] { display:none; margin: 10px; padding: 2px; }
+.slub-form-tree ul>li>ul li { padding: 2px 5px; }
+.slub-form-tree ul>li>ul li input[type="radio"] { display:none; margin: 10px; padding: 2px; }
+.slub-form-tree ul>li:last-child { border-bottom: 0 transparent none; }
+
+.slub-form-tree ul>li:hover,
+.slub-form-tree ul>li input[type="radio"] + label:hover,
+.slub-form-tree ul>li:hover>input[type="radio"] {
+	background: #09a; color: #fff;
+}
+.slub-form-tree ul { list-style-image: none; list-style-type: none; margin: 0; padding: 0; }
+.slub-form-tree ul>li input[type=radio] + label { color: #078; text-decoration: none; font-weight: bold; }
+*/
+
+#leftcol .slub-form-tree  ul { list-style-image: none; list-style-type: none; margin: 0; padding: 0; }
+
+.slub-form-tree { position: relative; width: 570px; height: 380px; margin: 20px 0; display: block; }
+.slub-form-tree ul>li { position: relative; display: block; }
+
+/* ### Global Settings >>> colors, borders and images  ### */
+.slub-form-tree 	{ border: 0; border-left: 2px solid #09a; }
+.slub-form-tree ul { list-style-type: none; list-style-image: none;}
+.slub-form-tree ul li input[type="radio"] { display:none;  }
+.slub-form-tree ul li input[type="radio"] + label { display: inline-block; padding: 10px;  }
+
+.slub-form-tree ul>li>input[type="radio"]+label:hover {
+	background: #09a; color: #fff;
+}

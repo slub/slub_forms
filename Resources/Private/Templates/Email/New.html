@@ -1,0 +1,53 @@
+<f:layout name="Default" />
+
+This template displays a NEW form for the current domain object.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        New.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+<f:section name="categoryTree">
+	<ul>
+		<f:for each="{categories}" key="id" as="category">
+				<li><f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" />
+					<label for="slub-form-select-{id}">{category.item.title}</label>
+					<f:if condition="{category.children}">
+						<f:render section="categoryTree" arguments="{categories: category.children, categoriesSelected: categoriesSelected}" />
+					</f:if>
+			    </li>
+		</f:for>
+	</ul>
+</f:section>
+
+<f:section name="main">
+
+<f:flashMessages />
+
+<f:render partial="FormErrors" arguments="{object:Email}"/>
+
+<f:form action="create" name="newEmail" object="{newEmail}">
+
+	<f:if condition="{forms}">
+		<div class="slub-form-tree">
+			<f:render section="categoryTree" arguments="{categories: forms}" />
+		</div>
+	</f:if>
+
+	<f:for each="{forms}" key="idform" as="form">
+		<div id="slub-forms-form-{idform}" class="slub-forms-form hide">{form.item.title}
+			<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
+				<fieldset id="slub-forms-fieldset-{fieldset.uid}" class="slub-forms-fieldset">
+					<f:for each="{fieldset.fields}" key="idfield" as="field">
+						<f:render partial="Forms/{field.type}" arguments="{field: field}" /><br />
+					</f:for>
+				</fieldset>
+			</f:for>
+		</div>
+	</f:for>
+</f:form>
+
+</f:section>

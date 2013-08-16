@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-00T09:41:00Z" product-name="slub_forms">
+		<header/>
+		<body>
+
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="type.description">
+				<source>type</source>
+			</trans-unit>
+			<trans-unit id="configuration.description">
+				<source>configuration</source>
+			</trans-unit>
+			<trans-unit id="required.description">
+				<source>required</source>
+			</trans-unit>
+			<trans-unit id="validation.description">
+				<source>validation</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

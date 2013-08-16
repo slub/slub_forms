@@ -1,0 +1,15 @@
+<label for="{field.uid}">{field.title}
+	<f:if condition="{field.required}">
+		<f:then><span class="required">*</span></f:then>
+	</f:if>
+</label>
+
+<f:if condition="{field.required}">
+	<f:then>
+		<f:form.textfield name="{field}" value="" required="required" />
+	</f:then>
+	<f:else>
+		<f:form.textfield name="{field}" value="" />
+	</f:else>
+</f:if>
+

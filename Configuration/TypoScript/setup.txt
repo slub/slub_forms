@@ -1,0 +1,43 @@
+plugin.tx_slubforms {
+	view {
+		templateRootPath = {$plugin.tx_slubforms.view.templateRootPath}
+		partialRootPath = {$plugin.tx_slubforms.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_slubforms.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_slubforms.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		rewrittenPropertyMapper = 1
+		skipDefaultArguments = 1
+	}
+}
+
+plugin.tx_slubforms._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-slub-forms table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-slub-forms table th {
+		font-weight:bold;
+	}
+
+	.tx-slub-forms table td {
+		vertical-align:top;
+	}
+)
+
+page.includeCSS.slub_forms = EXT:slub_forms/Resources/Public/Css/SlubForms.css
+page.includeJSFooter.slub_forms = EXT:slub_forms/Resources/Public/Js/FormValidation.js

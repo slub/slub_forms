@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-00T09:41:00Z" product-name="slub_forms">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_slubforms_domain_model_fieldsets">
+				<source>Fieldsets</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fieldsets.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fieldsets.fields">
+				<source>Fields</source>
+			</trans-unit>
+
+			<trans-unit id="tx_slubforms_domain_model_forms">
+				<source>Forms</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.recipient">
+				<source>Recipient</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.fieldsets">
+				<source>Fieldsets</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.parent">
+				<source>Parent</source>
+			</trans-unit>
+
+			<trans-unit id="tx_slubforms_domain_model_fields">
+				<source>Fields</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.type">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.configuration">
+				<source>Configuration</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.required">
+				<source>Required</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.validation">
+				<source>Validation</source>
+			</trans-unit>
+
+			<trans-unit id="tx_slubforms_domain_model_email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.sender_name">
+				<source>Sender Name</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.sender_email">
+				<source>Sender Email</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.content">
+				<source>Content</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.form">
+				<source>Form</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

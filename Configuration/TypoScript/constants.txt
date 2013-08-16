@@ -1,0 +1,14 @@
+plugin.tx_slubforms {
+	view {
+		# cat=plugin.tx_slubforms/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:slub_forms/Resources/Private/Templates/
+		# cat=plugin.tx_slubforms/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:slub_forms/Resources/Private/Partials/
+		# cat=plugin.tx_slubforms/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:slub_forms/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_slubforms//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}
