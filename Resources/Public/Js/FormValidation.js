@@ -1,17 +1,6 @@
 jQuery(document).ready(function() {
-	base = getBaseUrl();
-	clearFullSession();
-	if ($('form.powermail_form').length > 0) { // only if the powermail form is on the page (not for confirmation page)
-		checkConditions(0); // check if something should be changed
-	}
 
-	$("#mail").bind("change", function () {
-		if ( !$(this).val()) {
-		  $("#fh_nummer").slideDown();
-		} else {
-		  $("#fh_nummer").slideUp();
-		}
-	});
+	base = getBaseUrl();
 
 	$(function(){
 		$("input[type=radio]").click(function(){
@@ -23,53 +12,6 @@ jQuery(document).ready(function() {
 		});
 	});
 
-	$("#slub-form-2").click(function(){
-		alert('clicked: ' + $(this).val());
-	});
-
-	//~ // read values from session
-	//~ var url = base + '/index.php?eID=powermailcond_readSession&tx_powermailcond_pi1[form]=' + getFormUid();
-	//~ $.ajax({
-		//~ url: url, // send to this url
-		//~ cache: false, // disable cache (for ie)
-		//~ success: function(data) { // return values
-			//~ if (data) { // if there is a response
-				//~ var sets = data.split(';');
-				//~ for (var i=0; i < sets.length; i++) { // for each field which should be filled
-					//~ var tmp_value = sets[i].split(':');
-					//~ fieldValue(tmp_value[0], tmp_value[1]);
-				//~ }
-			//~ }
-			//~ $('form.powermail_form').fadeTo('fast', 1);
-		//~ }
-	//~ });
-//~
-	//~ // save values via ajax to session
-	//~ $('.powermail_input, .powermail_textarea, .powermail_select, .powermail_radio, .powermail_checkbox').bind('change', function() {
-		//~ $this = $(this); // caching
-		//~ var url = base + '/index.php';
-		//~ var timestamp = Number(new Date()); // timestamp is needed for a internet explorer workarround (always change a parameter)
-		//~ var value = $this.val(); // current value
-		//~ if ($(this).hasClass('powermail_checkbox') && !$(this).is(':checked')) { // clean value if checkbox was dechecked
-			//~ value = '';
-		//~ }
-		//~ var uid = $this.closest('.powermail_fieldwrap').attr('id').substr(20); // current field uid (without "uid")
-		//~ var name = $this.attr('name');
-		//~ var params = 'eID=' + 'powermailcond_saveToSession' + '&tx_powermailcond_pi1[form]=' + getFormUid() + '&tx_powermailcond_pi1[uid]=' + uid + '&tx_powermailcond_pi1[value]=' + value + '&ts=' + timestamp;
-//~
-		//~ $.ajax({
-			//~ type: 'GET', // type
-			//~ url: url, // send to this url
-			//~ data: params, // add params
-			//~ cache: false, // disable cache (for ie)
-			//~ success: function(data) { // return values
-				//~ if (data != '') { // if there is a response
-					//~ $('form.powermail_form').append('Error in powermail_cond.js in change function:' + data);
-				//~ }
-				//~ checkConditions(uid); // check if something should be changed
-			//~ }
-		//~ });
-	//~ });
 });
 
 /**
@@ -87,41 +29,6 @@ function fieldValue(fieldUid, fieldValue) {
 	})
 }
 
-/**
- * Main function to check conditions and do something (if necessary)
- *
- * @param	integer	uid: Field uid (if available)
- * @return	void
- */
-function checkConditions(uid) {
-	var url = base + '/index.php';
-	var params = '';
-	if (uid > 0) {
-		params += '&tx_powermailcond_pi1[uid]=' + uid;
-	}
-	$.ajax({
-		type: 'GET', // type
-		url: url, // send to this url
-		data: 'eID=' + 'powermailcond_getFieldStatus' + params + '&tx_powermailcond_pi1[formUid]=' + getFormUid(), // add params
-		cache: false, // disable cache (for ie)
-		success: function(data) { // return values
-			if (data != 'nochange') {
-				$('.powermail_fieldwrap select option').removeClass('hide'); // show all options at the beginning
-				$('.powermail_fieldwrap select option').removeAttr('disabled'); // enable all options at the beginning
-				if (data != '') { // if there is a response
-					if (data.length < 1000) { // stop if wrong result (maybe complete t3 page)
-						doAction(data); // hide all given fields
-					}
-				} else { // if there is no response
-					showAll(); // show all fields and fieldsets at the beginning
-				}
-			}
-		},
-		error: function() {
-			$('form.powermail_form').append('Error in PowermailCond.js in checkCondtions function by opening the given url');
-		}
-	});
-}
 
 /**
  * Do some actions (hide and/or filter)

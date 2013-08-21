@@ -13,7 +13,7 @@
 			<trans-unit id="tx_slubforms_domain_model_fieldsets.fields">
 				<source>fields</source>
 			</trans-unit>
-			
+
 			<trans-unit id="tx_slubforms_domain_model_forms">
 				<source>Forms</source>
 			</trans-unit>
@@ -29,7 +29,7 @@
 			<trans-unit id="tx_slubforms_domain_model_forms.parent">
 				<source>parent form</source>
 			</trans-unit>
-			
+
 			<trans-unit id="tx_slubforms_domain_model_fields">
 				<source>Fields</source>
 			</trans-unit>
@@ -48,7 +48,7 @@
 			<trans-unit id="tx_slubforms_domain_model_fields.validation">
 				<source>validation</source>
 			</trans-unit>
-			
+
 			<trans-unit id="tx_slubforms_domain_model_email">
 				<source>Email</source>
 			</trans-unit>
@@ -64,7 +64,20 @@
 			<trans-unit id="tx_slubforms_domain_model_email.form">
 				<source>form</source>
 			</trans-unit>
-			
+
+		<trans-unit id="validationerror_val_customerid" xml:space="preserve">
+			<source>The given customer id is not valid.</source>
+		</trans-unit>
+		<trans-unit id="validationerror_val_editcode" xml:space="preserve">
+			<source>Please start the registration from the beginning.</source>
+		</trans-unit>
+		<trans-unit id="validationerror_val_email" xml:space="preserve">
+			<source>Please enter a valid email-address.</source>
+		</trans-unit>
+		<trans-unit id="validationerror_val_name" xml:space="preserve">
+			<source>Please enter your name.</source>
+		</trans-unit>
+
 		</body>
 	</file>
 </xliff>

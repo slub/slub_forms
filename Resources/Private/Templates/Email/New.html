@@ -24,10 +24,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
 </f:section>
 
 <f:section name="main">
+{namespace sf=Tx_SlubForms_ViewHelpers}
 
 <f:flashMessages />
 
-<f:render partial="FormErrors" arguments="{object:Email}"/>
+<f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
 
 <f:form action="create" name="newEmail" object="{newEmail}">
 
@@ -40,14 +41,16 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<f:for each="{forms}" key="idform" as="form">
 		<div id="slub-forms-form-{idform}" class="slub-forms-form hide">{form.item.title}
 			<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
-				<fieldset id="slub-forms-fieldset-{fieldset.uid}" class="slub-forms-fieldset">
+				<fieldset id="slub-forms-fieldset-{idform}-{fieldset.uid}" class="slub-forms-fieldset">
 					<f:for each="{fieldset.fields}" key="idfield" as="field">
-						<f:render partial="Forms/{field.type}" arguments="{field: field}" /><br />
+						<f:render partial="Forms/{field.type}" arguments="{field: field, fieldset: fieldset}" /><br />
 					</f:for>
 				</fieldset>
 			</f:for>
 		</div>
 	</f:for>
+
+	<f:form.hidden property="editcode" value="<sf:format.editCode />"/>
 </f:form>
 
 </f:section>

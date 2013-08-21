@@ -4,7 +4,7 @@
  *  Copyright notice
  *
  *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -60,6 +60,13 @@ class Tx_SlubForms_Domain_Model_Email extends Tx_Extbase_DomainObject_AbstractEn
 	 * @var Tx_SlubForms_Domain_Model_Forms
 	 */
 	protected $form;
+
+	/**
+	 * Edit Code
+	 *
+	 * @var string
+	 */
+	protected $editcode;
 
 	/**
 	 * Returns the form
@@ -135,6 +142,25 @@ class Tx_SlubForms_Domain_Model_Email extends Tx_Extbase_DomainObject_AbstractEn
 	 */
 	public function setContent($content) {
 		$this->content = $content;
+	}
+
+	/**
+	 * Returns the editcode
+	 *
+	 * @return string $editcode
+	 */
+	public function getEditcode() {
+		return $this->editcode;
+	}
+
+	/**
+	 * Sets the editcode
+	 *
+	 * @param string $editcode
+	 * @return void
+	 */
+	public function setEditcode($editcode) {
+		$this->editcode = $editcode;
 	}
 
 }

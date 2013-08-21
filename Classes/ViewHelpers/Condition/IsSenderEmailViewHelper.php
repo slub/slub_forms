@@ -25,34 +25,41 @@
  ***************************************************************/
 
 /**
+ * Check if given link is local or not
+ *
+ * = Examples =
+ *
+ * <code title="Defaults">
+ * <f:if condition="<sf:condition.IsSenderEmail field='{field}' />">
+ * </code>
+ * <output>
+ * 1
+ * </output>
  *
  *
- * @package slub_forms
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @api
  */
-class Tx_SlubForms_Controller_FormsController extends Tx_SlubForms_Controller_AbstractController {
+
+class Tx_SlubForms_ViewHelpers_Condition_IsSenderEmailViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+
 
 	/**
-	 * action list
+	 * Check if field is senderEmail
 	 *
-	 * @return void
+	 * @param Tx_SlubForms_Domain_Model_Fields $field
+	 * @return boolean
+	 * @author Alexander Bigga <alexander.bigga@slub-dresden.de>
+	 * @api
 	 */
-	public function listAction() {
-		$forms = $this->formsRepository->findAll();
-		$this->view->assign('forms', $forms);
-	}
+	public function render($field) {
 
-	/**
-	 * action show
-	 *
-	 * @param Tx_SlubForms_Domain_Model_Forms $forms
-	 * @return void
-	 */
-	public function showAction(Tx_SlubForms_Domain_Model_Forms $forms) {
-		$this->view->assign('forms', $forms);
-	}
+		$isSenderEmail = TRUE;
 
+
+	return $isSenderEmail;
+
+
+	}
 }
-
 ?>

@@ -6,7 +6,7 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_slubforms_domain_model_fields'] = array(
 	'ctrl' => $TCA['tx_slubforms_domain_model_fields']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, type, configuration, required, validation',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, type, is_sender_email, is_sender_name, configuration, required, validation',
 	),
 	'types' => array(
 		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, type, configuration, required, validation,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
@@ -125,6 +125,23 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 				'eval' => 'trim'
 			),
 		),
+		'is_sender_email' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.is_sender_email',
+			'config' => array(
+				'type' => 'check',
+				'default' => 0
+			),
+		),
+		'is_sender_name' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.is_sender_name',
+			'config' => array(
+				'type' => 'check',
+				'default' => 0
+			),
+		),
+
 		'required' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.required',
@@ -151,7 +168,22 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
 
+$TCA['tx_slubforms_domain_model_fields']['types'] = array (
+				'1' => array('showitem' => 'sys_language_uid;;;;1-1-1,'.
+				'l10n_parent, l10n_diffsource, hidden;;1, '.
+				'title, type, '.
+				'--palette--;LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_field.configuration;configuration,'.
+				'required, validation,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+);
+$TCA['tx_slubforms_domain_model_fields']['palettes'] = array (
+		'configuration' => array(
+			'showitem' => 'is_sender_email, is_sender_name, configuration',
+			'canNotCollapse' => TRUE
+		),
+);
+
 $TCA['tx_slubforms_domain_model_fields']['columns']['type'] = array(
+
 			'exclude' => 0,
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.type',
 			'config' => array(

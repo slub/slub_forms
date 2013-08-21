@@ -1,5 +1,4 @@
 <?php
-
 /***************************************************************
  *  Copyright notice
  *
@@ -25,34 +24,45 @@
  ***************************************************************/
 
 /**
+ * Adds the Editcode to the form and to the user session
  *
- *
- * @package slub_forms
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- *
+
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
+ * @api
  */
-class Tx_SlubForms_Controller_FormsController extends Tx_SlubForms_Controller_AbstractController {
+
+class Tx_SlubForms_ViewHelpers_Format_EditCodeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 * action list
+	 * Set session data
 	 *
-	 * @return void
+	 * @param $key
+	 * @param $data
+	 * @return
 	 */
-	public function listAction() {
-		$forms = $this->formsRepository->findAll();
-		$this->view->assign('forms', $forms);
+	public function setSessionData($key, $data) {
+
+	    $GLOBALS["TSFE"]->fe_user->setKey("ses", $key, $data);
+
+	    return;
 	}
 
 	/**
-	 * action show
+	 * Render the supplied DateTime object as a formatted date.
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Forms $forms
-	 * @return void
+	 * @return int
+ 	 * @author Alexander Bigga <alexander.bigga@slub-dresden.de>
+	 * @api
 	 */
-	public function showAction(Tx_SlubForms_Domain_Model_Forms $forms) {
-		$this->view->assign('forms', $forms);
-	}
+	public function render() {
 
+		// set editcode-dummy for Spam/Form-double-sent protection
+		$editCodeDummy = hash('sha256', rand().'formEditCode'.time().'dummy');
+//		t3lib_utility_Debug::debug($setEditcode, '2setEditcode:!... ');
+		$this->setSessionData('editcode', $editCodeDummy);
+
+	    return $editCodeDummy;
+
+	}
 }
-
 ?>

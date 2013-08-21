@@ -45,6 +45,12 @@
 			<trans-unit id="tx_slubforms_domain_model_fields.required">
 				<source>Required</source>
 			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.is_sender_email">
+				<source>Field is Sender Email</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.is_sender_name">
+				<source>Field is Sender Name</source>
+			</trans-unit>
 			<trans-unit id="tx_slubforms_domain_model_fields.validation">
 				<source>Validation</source>
 			</trans-unit>

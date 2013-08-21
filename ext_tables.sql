@@ -98,6 +98,9 @@ CREATE TABLE tx_slubforms_domain_model_fields (
 	type varchar(255) DEFAULT '' NOT NULL,
 	configuration text NOT NULL,
 	required tinyint(1) unsigned DEFAULT '0' NOT NULL,
+	is_sender_email tinyint(1) unsigned DEFAULT '0' NOT NULL,
+	is_sender_name tinyint(1) unsigned DEFAULT '0' NOT NULL,
+	required tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	validation int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -142,6 +145,7 @@ CREATE TABLE tx_slubforms_domain_model_email (
 	sender_name varchar(255) DEFAULT '' NOT NULL,
 	sender_email varchar(255) DEFAULT '' NOT NULL,
 	content text NOT NULL,
+	editcode varchar(255) DEFAULT '' NOT NULL,
 	form int(11) unsigned DEFAULT '0',
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,

@@ -1,0 +1,19 @@
+{namespace se=Tx_SlubEvents_ViewHelpers}
+<p>Sehr geehrte(r) {email.senderName},</p>
+
+<p><b>{form.title}</b></p>
+
+<ul>
+		<li>Name: {email.senderName}</li>
+		<li>Email-Adresse: {email.senderEmail}</li>
+<f:for each="{content}" key="fieldname" as="line">
+		<li>{fieldname}: {line}</li>
+</f:for>
+</ul>
+
+<p>Mit freundlichen Grüßen</p>
+
+<p>&nbsp;</p>
+
+<p>SLUB Dresden</p>
+

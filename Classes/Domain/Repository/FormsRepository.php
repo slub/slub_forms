@@ -40,18 +40,39 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 	 * @return array The found Category Objects
 	 */
 	public function findAllByUids($formIds) {
-		
+
 								$query = $this->createQuery();
-		
+
 								$constraints = array();
 								$constraints[] = $query->in('uid', $formIds);
-		
+
 								if (count($constraints)) {
 									$query->matching($query->logicalAnd($constraints));
 								}
-		
+
 								return $query->execute();
 	}
+
+	/**
+	 * Finds all datasets by MM relation categories
+	 *
+	 * @param string formIds separated by comma
+	 * @return array The found Category Objects
+	 */
+	public function findAllById($formId) {
+
+		$query = $this->createQuery();
+
+		$constraints = array();
+		$constraints[] = $query->equals('uid', $formId);
+
+		if (count($constraints)) {
+			$query->matching($query->logicalAnd($constraints));
+		}
+
+		return $query->execute();
+	}
+
 
 	/**
 	 * Finds all datasets and return in tree order
@@ -60,9 +81,9 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 	 * @return array The found Event Objects
 	 */
 	public function findAllByUidsTree($formIds) {
-		
+
 								$categories = $this->findAllByUids($formIds);
-		
+
 								$flatCategories = array();
 								foreach ($categories as $category) {
 									$flatCategories[$category->getUid()] = Array(
@@ -70,7 +91,7 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 										'parent' => ($category->getParent()->current()) ? $category->getParent()->current()->getUid() : NULL
 									);
 								}
-		
+
 								$tree = array();
 								foreach ($flatCategories as $id => &$node) {
 									if ($node['parent'] === NULL) {

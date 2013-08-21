@@ -73,15 +73,81 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$this->view->assign('forms', $forms);
 	}
 
+	//~ public function initializeCreateAction() {
+		//~ t3lib_utility_Debug::debug($newEmail, 'initializeNewAction: ... ');
+//~
+	//~ }
 	/**
 	 * action create
+	 * // gets validated automatically if name is like this: ...Tx_SlubForms_Domain_Validator_EmailValidator
 	 *
 	 * @param Tx_SlubForms_Domain_Model_Email $newEmail
 	 * @return void
 	 */
 	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail) {
+		//~
+
+
+		$field = $this->getParametersSafely('field');
+
+		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
+
+		// should be usually only one fieldset
+		foreach($field as $getfieldset => $getfields) {
+
+			$fieldset = $this->fieldsetsRepository->findByUid($getfieldset);
+			$allfields = $fieldset->getFields();
+			//~ $allfields = $allfields->current();
+			foreach($allfields as $id => $field) {
+				t3lib_utility_Debug::debug($field->getTitle().' '.$field->getUid(), 'createAction: ... ');
+				if (!empty($getfields[$field->getUid()]))
+					$content[$field->getTitle()] = $getfields[$field->getUid()];
+			}
+
+			t3lib_utility_Debug::debug($getfields, 'createAction: getfields ... ');
+
+			$newEmail->setContent(implode($content));
+		}
+
+		t3lib_utility_Debug::debug($form->getTitle(), 'createAction: ... ');
+
+		// email to customer
+		if ($this->settings['sendConfirmationEmailToCustomer']) {
+			$this->sendTemplateEmail(
+				array($newEmail->getSenderEmail() => $newSubscriber->getSenderName()),
+				array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('tx_slubforms.be.senderEmailAddress', 'slub_forms') . ' - noreply'),
+				'Ihre Nachricht: ' . $form->getTitle(),
+				'ConfirmEmail',
+				array(	'email' => $newEmail,
+						'form' => $form,
+						'content' => $content,
+						'settings' => $this->settings,
+				)
+			);
+		}
+
+		t3lib_utility_Debug::debug($content, 'createAction: content... ');
+
+		// email to event owner
+		$this->sendTemplateEmail(
+			array($form->getRecipient() => ''),
+			array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('tx_slubevents.be.eventmanagement', 'slub_events') . ' - noreply'),
+			'Formular: ' . $form->getTitle(),
+			'FormEmail',
+			array(	'email' => $newEmail,
+					'form' => $form,
+					'content' => $content,
+					'settings' => $this->settings,
+			)
+		);
+
+
 		$this->emailRepository->add($newEmail);
-		$this->redirect('list');
+
+		// reset session data
+		$this->setSessionData('editcode', '');
+
+		$this->view->assign('email', $newEmail);
 	}
 
 	/**
@@ -94,6 +160,128 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$this->emailRepository->remove($email);
 		$this->redirect('list');
 	}
+
+	/**
+	 * Set session data
+	 *
+	 * @param $key
+	 * @param $data
+	 * @return
+	 */
+	public function setSessionData($key, $data) {
+
+		$GLOBALS["TSFE"]->fe_user->setKey("ses", $key, $data);
+
+		return;
+	}
+
+	/**
+	 * Get session data
+	 *
+	 * @param $key
+	 * @return
+	 */
+	public function getSessionData($key) {
+
+		return $GLOBALS["TSFE"]->fe_user->getKey("ses", $key);
+	}
+
+	/**
+	 * sendTemplateEmail
+	 *
+	 * @param array $recipient recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
+	 * @param array $sender sender of the email in the format array('sender@domain.tld' => 'Sender Name')
+	 * @param string $subject subject of the email
+	 * @param string $templateName template name (UpperCamelCase)
+	 * @param array $variables variables to be passed to the Fluid view
+	 * @return boolean TRUE on success, otherwise false
+	 */
+	protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array()) {
+
+		if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) <  '6000000') {
+			// TYPO3 4.7
+			$emailViewHTML = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
+		} else {
+			// TYPO3 6.x
+			/** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailViewHTML */
+			$emailViewHTML = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
+		}
+
+		$emailViewHTML->getRequest()->setControllerExtensionName($this->extensionName);
+		$emailViewHTML->setFormat('html');
+		$emailViewHTML->assignMultiple($variables);
+
+		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+		$templateRootPath = t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
+		$partialRootPath = t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['partialRootPath']);
+
+		$emailViewHTML->setTemplatePathAndFilename($templateRootPath . 'Email/' . $templateName . '.html');
+		$emailViewHTML->setPartialRootPath($partialRootPath);
+
+
+		if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) <  '6000000') {
+			// TYPO3 4.7
+			$message = t3lib_div::makeInstance('t3lib_mail_Message');
+		} else {
+			// TYPO3 6.x
+			/** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
+			$message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
+		}
+
+		$message->setTo($recipient)
+				->setFrom($sender)
+				->setCharset('utf-8')
+				->setSubject($subject);
+
+
+		// Plain text example
+		$emailTextHTML = $emailViewHTML->render();
+		$message->setBody($this->html2rest($emailTextHTML), 'text/plain');
+
+		// HTML Email
+		$message->addPart($emailTextHTML, 'text/html');
+
+		$message->send();
+
+		return $message->isSent();
+	}
+
+	/**
+	 * html2rest
+	 *
+	 * this converts the HTML email to something Rest-Style like text form
+	 *
+	 * @param $htmlString
+	 * @return
+	 */
+	public function html2rest($text) {
+
+		$text = strip_tags( html_entity_decode($text, ENT_COMPAT, 'UTF-8'), '<br>,<p>,<b>,<h1>,<h2>,<h3>,<h4>,<h5>,<a>,<li>');
+		// header is getting **
+		$text = preg_replace('/<h[1-5]>|<\/h[1-5]>/', "**", $text);
+		// bold is getting * ([[\w\ \d:\/~\.\?\=&%\"]+])
+		$text = preg_replace('/<b>|<\/b>/', "*", $text);
+		// get away links but preserve href with class slub-event-link
+		$text = preg_replace('/(<a[\ \w\=\"]{0,})(class=\"slub-event-link\" href\=\")([\w\d:\-\/~\.\?\=&%]+)([\"])([\"]{0,1}>)([\ \w\d\p{P}]+)(<\/a>)/', "$6\n$3", $text);
+		// Remove separator characters (like non-breaking spaces...)
+		$text = preg_replace( '/\p{Z}/u', ' ', $text );
+		$text = str_replace('<br />', "\n", $text);
+		// get away paragraphs including class, title etc.
+		$text = preg_replace('/<p[\s\w\=\"]*>(?s)(.*?)<\/p>/u', "$1\n", $text);
+		$text = str_replace('<li>', "- ", $text);
+		$text = str_replace('</li>', "\n", $text);
+		// remove multiple spaces
+		$text = preg_replace('/[\ ]{2,}/', '', $text);
+		// remove multiple tabs
+		$text = preg_replace('/[\t]{1,}/', '', $text);
+		// remove more than one empty line
+		$text = preg_replace('/[\n]{3,}/', "\n\n", $text);
+		// remove all remaining html tags
+		$text = strip_tags($text);
+
+		return $text;
+	}
+
 
 }
 

@@ -1,3 +1,5 @@
+{namespace sf=Tx_SlubForms_ViewHelpers}
+
 <label for="{field.uid}">{field.title}
 	<f:if condition="{field.required}">
 		<f:then><span class="required">*</span></f:then>
@@ -6,10 +8,24 @@
 
 <f:if condition="{field.required}">
 	<f:then>
-		<f:form.textfield name="{field}" value="" required="required" />
+		<f:if condition="{field.isSenderEmail}">
+			<f:then>
+				<f:form.textfield property="senderEmail" required="required" />
+			</f:then>
+			<f:else>
+				<f:if condition="{field.isSenderName}">
+					<f:then>
+						<f:form.textfield property="senderName" required="required" />
+					</f:then>
+					<f:else>
+						<f:form.textfield name="field[{fieldset.uid}][{field.uid}]"  required="required" />
+					</f:else>
+				</f:if>
+			</f:else>
+		</f:if>
 	</f:then>
 	<f:else>
-		<f:form.textfield name="{field}" value="" />
+		<f:form.textfield name="field[{fieldset.uid}][{field.uid}]" />
 	</f:else>
 </f:if>
 

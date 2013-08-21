@@ -44,7 +44,7 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	/**
 	 * type
 	 *
-	 * @var integer
+	 * @var string
 	 */
 	protected $type;
 
@@ -61,6 +61,22 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	 * @var boolean
 	 */
 	protected $required = FALSE;
+
+	/**
+	 * isSenderEmail
+	 *
+	 * @var boolean
+	 */
+	protected $isSenderEmail = FALSE;
+
+
+	/**
+	 * isSenderName
+	 *
+	 * @var boolean
+	 */
+	protected $isSenderName = FALSE;
+
 
 	/**
 	 * validation
@@ -143,6 +159,44 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	 */
 	public function setRequired($required) {
 		$this->required = $required;
+	}
+
+	/**
+	 * Returns the isSenderEmail
+	 *
+	 * @return boolean isSenderEmail
+	 */
+	public function getIsSenderEmail() {
+		return $this->isSenderEmail;
+	}
+
+	/**
+	 * Sets the isSenderEmail
+	 *
+	 * @param boolean $isSenderEmail
+	 * @return boolean isSenderEmail
+	 */
+	public function setIsSenderEmail($isSenderEmail) {
+		$this->isSenderEmail = $isSenderEmail;
+	}
+
+	/**
+	 * Returns the isSenderName
+	 *
+	 * @return boolean isSenderName
+	 */
+	public function getIsSenderName() {
+		return $this->isSenderName;
+	}
+
+	/**
+	 * Sets the isSenderName
+	 *
+	 * @param boolean $isSenderName
+	 * @return boolean isSenderName
+	 */
+	public function setIsSenderName($isSenderName) {
+		$this->required = $isSenderName;
 	}
 
 	/**
