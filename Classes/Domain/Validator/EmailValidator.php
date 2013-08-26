@@ -87,7 +87,7 @@ class Tx_SlubForms_Domain_Validator_EmailValidator extends Tx_Extbase_Validation
 		}
 		if (!t3lib_div::validEmail($newEmail->getSenderEmail())) {
 			$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1100);
-			$this->result->forProperty('email')->addError($error);
+			$this->result->forProperty('senderEmail')->addError($error);
 //			$this->addError('val_email', 1100);
 
 			$this->isValid = false;

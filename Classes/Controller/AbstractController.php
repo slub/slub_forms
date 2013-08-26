@@ -58,6 +58,20 @@ class Tx_SlubForms_Controller_AbstractController extends Tx_Extbase_MVC_Controll
 	protected $fieldsetsRepository;
 
 	/**
+	 * injectConfigurationManager
+	 *
+	 * @param Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager
+	 * @return void
+	*/
+	public function injectConfigurationManager(Tx_Extbase_Configuration_ConfigurationManagerInterface $configurationManager) {
+		$this->configurationManager = $configurationManager;
+
+		$this->contentObj = $this->configurationManager->getContentObject();
+		$this->settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+	}
+
+
+	/**
 	 * Safely gets Parameters from request
 	 * if they exist
 	 *
