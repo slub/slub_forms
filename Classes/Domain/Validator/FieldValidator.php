@@ -30,15 +30,15 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Domain_Validator_EmailValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
+class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
 
 	/**
 	 * emailRepository
 	 *
-	 * @var Tx_SlubForms_Domain_Repository_EmailRepository
+	 * @var Tx_SlubForms_Domain_Repository_FieldsetsRepository
 	 * @inject
 	 */
-	protected $emailRepository;
+	protected $fieldsetsRepository;
 
 	/**
 	 * Object Manager
@@ -70,11 +70,39 @@ class Tx_SlubForms_Domain_Validator_EmailValidator extends Tx_Extbase_Validation
         /**
 	 * Validation of given Params
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Email $newEmail
+	 * @param array $field
 	 * @return bool
 	 */
-	public function isValid($newEmail) {
-return true;
+	public function isValid($field) {
+		//~ t3lib_utility_Debug::debug($field, 'isValid:... ');
+		// should be usually only one fieldset
+		foreach($field as $getfieldset => $getfields) {
+
+			// get fieldset
+			$fieldset = $this->fieldsetsRepository->findByUid($getfieldset);
+			// get all (possible) fields of fieldset
+			$allfields = $fieldset->getFields();
+
+			// step through all possible fields and compare with submitted values
+			foreach($allfields as $id => $singleField) {
+				//~ t3lib_utility_Debug::debug($singleField->getTitle().' '.$singleField->getUid(), 'isValid: ... ');
+
+				// check for senderEmail
+				if ($singleField->getIsSenderEmail()) {
+					if (!t3lib_div::validEmail($getfields[$singleField->getUid()])) {
+						// seems to be no valid email address
+						$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1100);
+						$this->result->forProperty('senderEmail')->addError($error);
+						$this->isValid = false;
+					}
+				}
+
+			}
+
+			t3lib_utility_Debug::debug($getfields, 'isValid: getfields ... ');
+
+		}
+
 //			t3lib_utility_Debug::debug($newSubscriber->getEditcode(), 'getEditcode:... ');
 		//~ if (strlen($newEmail->getSenderName())<3) {
 			//~ $error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_name', 1000);
@@ -92,13 +120,13 @@ return true;
 //~
 			//~ $this->isValid = false;
 		//~ }
-		if ($newEmail->getEditcode() != $this->getSessionData('editcode')) {
-//~ t3lib_utility_Debug::debug($newEmail->getEditcode(), '$getEditcode is empty:... ');
-			$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_editcode', 1140);
-			$this->result->forProperty('editcode')->addError($error);
-//			$this->addError('val_editcode', 1140);
-			$this->isValid = false;
-		}
+		//~ if ($newEmail->getEditcode() != $this->getSessionData('editcode')) {
+			//~ $error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_editcode', 1140);
+			//~ $this->result->forProperty('editcode')->addError($error);
+//~ //			$this->addError('val_editcode', 1140);
+			//~ $this->isValid = false;
+		//~ }
+//~ return true;
 
 		return $this->isValid;
   	}

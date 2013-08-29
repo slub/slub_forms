@@ -14,8 +14,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<ul>
 		<f:for each="{categories}" key="id" as="category">
 				<li>
-					<f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" checked="<sf:form.formId /> == {category.item.uid}" />
-					<label for="slub-form-select-{id}">{category.item.uid}:{id}:{formId}:{category.item.title}</label>
+					<f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" checked="<sf:form.formId form='{category.item}' /> == {category.item.uid}" />
+					<label for="slub-form-select-{id}">{category.item.title}</label>
 					<f:if condition="{category.children}">
 						<f:render section="categoryTree" arguments="{categories: category.children, categoriesSelected: categoriesSelected}" />
 					</f:if>
@@ -30,18 +30,19 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:flashMessages />
 
 <f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
+<f:render partial="FormErrors" arguments="{obj: 'field'}" />
 
 <f:form action="create" name="newEmail" object="{newEmail}" >
 
 
 	<f:if condition="{forms}">
 		<div class="slub-form-tree">
-			<f:render section="categoryTree" arguments="{categories: forms, formId: formId}" />
+			<f:render section="categoryTree" arguments="{categories: forms}" />
 		</div>
 	</f:if>
 
 	<f:for each="{forms}" key="idform" as="form">
-		<f:if condition="<sf:form.formId /> == {idform}">
+		<f:if condition="<sf:form.formId form='{form.item}' /> == {idform}">
 			<f:then>
 				<div id="slub-forms-form-{idform}" class="slub-forms-form">
 			</f:then>
@@ -50,11 +51,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
 			</f:else>
 		</f:if>
 			{form.item.title}
-			<f:form.hidden name="formId" value="{idform}" />
 			<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
 				<fieldset id="slub-forms-fieldset-{idform}-{fieldset.uid}" class="slub-forms-fieldset">
 					<f:for each="{fieldset.fields}" key="idfield" as="field">
-						<f:render partial="Forms/{field.type}" arguments="{field: field, fieldset: fieldset}" /><br />
+						<f:render partial="Forms/{field.type}" arguments="{form: form.item, fieldset: fieldset, field: field}" /><br />
 					</f:for>
 				</fieldset>
 			</f:for>

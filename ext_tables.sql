@@ -51,6 +51,7 @@ CREATE TABLE tx_slubforms_domain_model_forms (
 	forms int(11) unsigned DEFAULT '0' NOT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
+	shortname varchar(255) DEFAULT '' NOT NULL,
 	recipient varchar(255) DEFAULT '' NOT NULL,
 	fieldsets int(11) unsigned DEFAULT '0' NOT NULL,
 	parent int(11) unsigned DEFAULT '0' NOT NULL,
@@ -95,6 +96,7 @@ CREATE TABLE tx_slubforms_domain_model_fields (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
+	shortname varchar(255) DEFAULT '' NOT NULL,
 	type varchar(255) DEFAULT '' NOT NULL,
 	configuration text NOT NULL,
 	required tinyint(1) unsigned DEFAULT '0' NOT NULL,

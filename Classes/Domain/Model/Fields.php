@@ -42,6 +42,13 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	protected $title;
 
 	/**
+	 * shortname
+	 *
+	 * @var string
+	 */
+	protected $shortname;
+
+	/**
 	 * type
 	 *
 	 * @var string
@@ -102,6 +109,25 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
+	}
+
+	/**
+	 * Returns the shortname
+	 *
+	 * @return string $shortname
+	 */
+	public function getShortname() {
+		return $this->shortname;
+	}
+
+	/**
+	 * Sets the shortname
+	 *
+	 * @param string $shortname
+	 * @return void
+	 */
+	public function setShortname($shortname) {
+		$this->shortname = $shortname;
 	}
 
 	/**

@@ -8,11 +8,18 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, type, is_sender_email, is_sender_name, configuration, required, validation',
 	),
-	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, type, configuration, required, validation,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+	'types' => array (
+				'1' => array('showitem' => 'sys_language_uid;;;;1-1-1,'.
+				'l10n_parent, l10n_diffsource, hidden;;1, '.
+				'title, shortname, type, '.
+				'--palette--;LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_field.configuration;configuration,'.
+				'required, validation,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
-	'palettes' => array(
-		'1' => array('showitem' => ''),
+	'palettes' => array (
+		'configuration' => array(
+			'showitem' => 'is_sender_email, is_sender_name, configuration',
+			'canNotCollapse' => TRUE
+		),
 	),
 	'columns' => array(
 		'sys_language_uid' => array(
@@ -102,13 +109,28 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 				'eval' => 'trim,required'
 			),
 		),
+		'shortname' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.shortname',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim,lower'
+			),
+		),
 		'type' => array(
+
 			'exclude' => 0,
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.type',
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
-					array('-- Label --', 0),
+					array('-- please choose --', '--div--'),
+					array('Textfield', 'Textfield'),
+					array('Textarea', 'Textarea'),
+					array('Checkbox', 'Checkbox'),
+					array('Radio', 'Radio'),
+					array('Submit', 'Submit'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -156,57 +178,6 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
-					array('-- Label --', 0),
-				),
-				'size' => 1,
-				'maxitems' => 1,
-				'eval' => ''
-			),
-		),
-	),
-);
-
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
-
-$TCA['tx_slubforms_domain_model_fields']['types'] = array (
-				'1' => array('showitem' => 'sys_language_uid;;;;1-1-1,'.
-				'l10n_parent, l10n_diffsource, hidden;;1, '.
-				'title, type, '.
-				'--palette--;LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_field.configuration;configuration,'.
-				'required, validation,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
-);
-$TCA['tx_slubforms_domain_model_fields']['palettes'] = array (
-		'configuration' => array(
-			'showitem' => 'is_sender_email, is_sender_name, configuration',
-			'canNotCollapse' => TRUE
-		),
-);
-
-$TCA['tx_slubforms_domain_model_fields']['columns']['type'] = array(
-
-			'exclude' => 0,
-			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.type',
-			'config' => array(
-				'type' => 'select',
-				'items' => array(
-					array('-- please choose --', '--div--'),
-					array('Textfield', 'Textfield'),
-					array('Textarea', 'Textarea'),
-					array('Checkbox', 'Checkbox'),
-					array('Radio', 'Radio'),
-					array('Submit', 'Submit'),
-				),
-				'size' => 1,
-				'maxitems' => 1,
-				'eval' => ''
-			),
-);
-$TCA['tx_slubforms_domain_model_fields']['columns']['validation'] = array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.validation',
-			'config' => array(
-				'type' => 'select',
-				'items' => array(
 					array('no validation', 0),
 					array('Email', 1),
 					array('Telephone', 2),
@@ -217,5 +188,10 @@ $TCA['tx_slubforms_domain_model_fields']['columns']['validation'] = array(
 				'maxitems' => 1,
 				'eval' => ''
 			),
+		)
+	),
 );
+
+## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+
 ?>

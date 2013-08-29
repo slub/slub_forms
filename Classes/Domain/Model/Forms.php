@@ -4,7 +4,7 @@
  *  Copyright notice
  *
  *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -40,6 +40,13 @@ class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEn
 	 * @validate NotEmpty
 	 */
 	protected $title;
+
+	/**
+	 * shortname
+	 *
+	 * @var string
+	 */
+	protected $shortname;
 
 	/**
 	 * Email of Recipient
@@ -86,7 +93,7 @@ class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEn
 		 * You may modify the constructor of this class instead
 		 */
 		$this->fieldsets = new Tx_Extbase_Persistence_ObjectStorage();
-		
+
 		$this->parent = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 
@@ -107,6 +114,25 @@ class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEn
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
+	}
+
+	/**
+	 * Returns the shortname
+	 *
+	 * @return string $shortname
+	 */
+	public function getShortname() {
+		return $this->shortname;
+	}
+
+	/**
+	 * Sets the shortname
+	 *
+	 * @param string $shortname
+	 * @return void
+	 */
+	public function setShortname($shortname) {
+		$this->shortname = $shortname;
 	}
 
 	/**

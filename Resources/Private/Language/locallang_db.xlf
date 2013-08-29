@@ -20,6 +20,9 @@
 			<trans-unit id="tx_slubforms_domain_model_forms.title">
 				<source>Title</source>
 			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.shortname">
+				<source>Short Name</source>
+			</trans-unit>
 			<trans-unit id="tx_slubforms_domain_model_forms.recipient">
 				<source>Recipient</source>
 			</trans-unit>
@@ -35,6 +38,9 @@
 			</trans-unit>
 			<trans-unit id="tx_slubforms_domain_model_fields.title">
 				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.shortname">
+				<source>Short Name</source>
 			</trans-unit>
 			<trans-unit id="tx_slubforms_domain_model_fields.type">
 				<source>Type</source>

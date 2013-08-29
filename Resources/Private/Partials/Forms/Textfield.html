@@ -8,24 +8,10 @@
 
 <f:if condition="{field.required}">
 	<f:then>
-		<f:if condition="{field.isSenderEmail}">
-			<f:then>
-				<f:form.textfield property="senderEmail" required="required" />
-			</f:then>
-			<f:else>
-				<f:if condition="{field.isSenderName}">
-					<f:then>
-						<f:form.textfield property="senderName" required="required" />
-					</f:then>
-					<f:else>
-						<f:form.textfield name="field[{fieldset.uid}][{field.uid}]"  required="required" />
-					</f:else>
-				</f:if>
-			</f:else>
-		</f:if>
+		<f:form.textfield name="field[{fieldset.uid}][{field.uid}]" value="<sf:form.fieldHasValue field='{field}' />" required="required" />
 	</f:then>
 	<f:else>
-		<f:form.textfield name="field[{fieldset.uid}][{field.uid}]" />
+		<f:form.textfield name="field[{fieldset.uid}][{field.uid}]" value="<sf:form.fieldHasValue field='{field}' />" />
 	</f:else>
 </f:if>
 

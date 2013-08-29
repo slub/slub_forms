@@ -1,70 +1,73 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-00T09:41:00Z" product-name="slub_forms">
-		<header/>
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-29T11:09:03Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
 		<body>
-
-			<trans-unit id="tx_slubforms_domain_model_fieldsets">
-				<source>Fieldsets</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_fieldsets.title">
-				<source>title</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_fieldsets.fields">
-				<source>fields</source>
-			</trans-unit>
-
-			<trans-unit id="tx_slubforms_domain_model_forms">
-				<source>Forms</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_forms.title">
-				<source>title</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_forms.recipient">
-				<source>Email of Recipient</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_forms.fieldsets">
-				<source>fieldsets</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_forms.parent">
-				<source>parent form</source>
-			</trans-unit>
-
-			<trans-unit id="tx_slubforms_domain_model_fields">
-				<source>Fields</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_fields.title">
-				<source>title</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_fields.type">
-				<source>type</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_fields.configuration">
-				<source>configuration</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_fields.required">
-				<source>required</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_fields.validation">
-				<source>validation</source>
-			</trans-unit>
-
-			<trans-unit id="tx_slubforms_domain_model_email">
-				<source>Email</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_email.sender_name">
-				<source>senderName</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_email.sender_email">
-				<source>senderEmail</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_email.content">
-				<source>content</source>
-			</trans-unit>
-			<trans-unit id="tx_slubforms_domain_model_email.form">
-				<source>form</source>
-			</trans-unit>
-
+		<trans-unit id="tx_slubforms_domain_model_email" xml:space="preserve">
+			<source>Email</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.content" xml:space="preserve">
+			<source>content</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.form" xml:space="preserve">
+			<source>form</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.sender_email" xml:space="preserve">
+			<source>senderEmail</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.sender_name" xml:space="preserve">
+			<source>senderName</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields" xml:space="preserve">
+			<source>Fields</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.configuration" xml:space="preserve">
+			<source>configuration</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.required" xml:space="preserve">
+			<source>required</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.shortname" xml:space="preserve">
+			<source>title</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.title" xml:space="preserve">
+			<source>title</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.type" xml:space="preserve">
+			<source>type</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.validation" xml:space="preserve">
+			<source>validation</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fieldsets" xml:space="preserve">
+			<source>Fieldsets</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fieldsets.fields" xml:space="preserve">
+			<source>fields</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fieldsets.title" xml:space="preserve">
+			<source>title</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms" xml:space="preserve">
+			<source>Forms</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.fieldsets" xml:space="preserve">
+			<source>fieldsets</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.parent" xml:space="preserve">
+			<source>parent form</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.recipient" xml:space="preserve">
+			<source>Email of Recipient</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.shortname" xml:space="preserve">
+			<source>title</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.title" xml:space="preserve">
+			<source>title</source>
+		</trans-unit>
 		<trans-unit id="validationerror_val_customerid" xml:space="preserve">
 			<source>The given customer id is not valid.</source>
 		</trans-unit>
@@ -77,7 +80,6 @@
 		<trans-unit id="validationerror_val_name" xml:space="preserve">
 			<source>Please enter your name.</source>
 		</trans-unit>
-
 		</body>
 	</file>
 </xliff>

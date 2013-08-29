@@ -57,15 +57,13 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 * action new
 	 *
 	 * @param Tx_SlubForms_Domain_Model_Email $newEmail
-	 * @param integer $formid
 	 * @ignorevalidation $newEmail
-	 * @ignorevalidation $formId
 	 * @return void
 	 */
-	public function newAction(Tx_SlubForms_Domain_Model_Email $newEmail = NULL, $formId = 1) {
+	public function newAction(Tx_SlubForms_Domain_Model_Email $newEmail = NULL) {
 
-		$formId = $this->getParametersSafely('formId');
-			t3lib_utility_Debug::debug($formId, 'newAction: ... ');
+		//~ $formId = $this->getParametersSafely('formId');
+			//~ t3lib_utility_Debug::debug($formId, 'newAction: ... ');
 
 		//~ $newEmail['form'] = $formId;
 
@@ -85,40 +83,41 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 *
 	 * @return void
 	 */
-	public function initializeNewAction() {
+	//~ public function initializeNewAction() {
 		//~ $formId = $this->getParametersSafely('formId');
 		//~ t3lib_utility_Debug::debug($formId, 'initializeNewAction: ... ');
 		//~ $this->view->assign('formid', $formid);
-	}
+	//~ }
 	/**
 	 * action initializeCreate
 	 *
 	 *
 	 * @return void
 	 */
-	public function initializeCreateAction() {
+	//~ public function initializeCreateAction() {
 		//~ $formId = $this->getParametersSafely('formId');
 		//~ t3lib_utility_Debug::debug($formId , 'initializeCreateAction: ... ');
-		$requestArguments = $this->request->getArguments();
+		//~ $requestArguments = $this->request->getArguments();
 		//~ $this->forward('new', 'Email', 'SlubForms', $requestArguments);
-	}
+	//~ }
 
 	/**
 	 * action create
 	 * // gets validated automatically if name is like this: ...Tx_SlubForms_Domain_Validator_EmailValidator
+	 * // ..
 	 *
 	 * @param Tx_SlubForms_Domain_Model_Email $newEmail
-	 * @param integer $formId
+	 * @param array $field Field Values
+	 * @validate $field Tx_SlubForms_Domain_Validator_FieldValidator
 	 * @return void
 	 */
-	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail, $formId) {
-		//~
-		//~ $formid = $this->getParametersSafely('formid');
-		t3lib_utility_Debug::debug($formId, 'createAction: ... ');
+	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail, array $field = array()) {
 
-
-		$field = $this->getParametersSafely('field');
+		//~ $field = $this->getParametersSafely('field');
+	//~ t3lib_utility_Debug::debug($field, '$createAction field:... ');
 		//~ $formId = $this->getParametersSafely('formId');
+
+		$senderEmail = $this->getParametersSafely('senderEmail');
 
 		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
 
@@ -131,10 +130,10 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			foreach($allfields as $id => $field) {
 				t3lib_utility_Debug::debug($field->getTitle().' '.$field->getUid(), 'createAction: ... ');
 				if (!empty($getfields[$field->getUid()]))
-					$content[$field->getTitle()] = $getfields[$field->getUid()];
+					$content[$field->getTitle()] = $field->getUid().':'.$getfields[$field->getUid()];
 			}
 
-			t3lib_utility_Debug::debug($getfields, 'createAction: getfields ... ');
+			//~ t3lib_utility_Debug::debug($getfields, 'createAction: getfields ... ');
 
 			$newEmail->setContent(implode($content));
 		}
