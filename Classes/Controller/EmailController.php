@@ -128,9 +128,9 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			$allfields = $fieldset->getFields();
 			//~ $allfields = $allfields->current();
 			foreach($allfields as $id => $field) {
-				t3lib_utility_Debug::debug($field->getTitle().' '.$field->getUid(), 'createAction: ... ');
+				//~ t3lib_utility_Debug::debug($field->getTitle().' '.$field->getUid(), 'createAction: ... ');
 				if (!empty($getfields[$field->getUid()]))
-					$content[$field->getTitle()] = $field->getUid().':'.$getfields[$field->getUid()];
+					$content[$field->getTitle()] = $getfields[$field->getUid()];
 			}
 
 			//~ t3lib_utility_Debug::debug($getfields, 'createAction: getfields ... ');
@@ -138,7 +138,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			$newEmail->setContent(implode($content));
 		}
 
-		t3lib_utility_Debug::debug($form->getTitle(), 'createAction: ... ');
+		//~ t3lib_utility_Debug::debug($form->getTitle(), 'createAction: ... ');
 
 		// email to customer
 		if ($this->settings['sendConfirmationEmailToCustomer']) {
