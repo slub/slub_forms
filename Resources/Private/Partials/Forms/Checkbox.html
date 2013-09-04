@@ -1,0 +1,5 @@
+{namespace sf=Tx_SlubForms_ViewHelpers}
+
+<label for="{field.uid}">{field.title}</label>
+<f:form.checkbox name="field[{fieldset.uid}][{field.uid}]" value="1" checked="<sf:form.fieldHasValue field='{field}' /> == 1"  />
+

@@ -61,12 +61,18 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 		$config = $this->configToArray($field->getConfiguration());
 		if (!empty($config['prefill'])) {
 			// e.g. fe_users:username
-			// first value is database table... forget it ;-)
+			// first value is database "value" or "fe_users"
 			$settingPair = explode(":", $config['prefill']);
-			if (!empty($GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ])) {
-
-				return $GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ];
-
+			switch (trim($settingPair[0])) {
+				case 'fe_users':
+					if (!empty($GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ])) {
+						return $GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ];
+					}
+					break;
+				case 'value':
+					if (!empty($settingPair[1]))
+						return trim($settingPair[1]);
+					break;
 			}
 		}
 

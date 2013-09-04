@@ -1,0 +1,5 @@
+{namespace sf=Tx_SlubForms_ViewHelpers}
+
+<label for="{field.uid}">{field.title}</label>
+<f:form.textarea name="field[{fieldset.uid}][{field.uid}]" value="<sf:form.fieldHasValue field='{field}' />" rows="5" cols="60" />
+
