@@ -1,55 +1,146 @@
 .hide { display: none; }
 
-/*
-input[type="radio"] + label {
-    display:inline-block;
-    margin:-2px;
-    padding: 4px 12px;
-    background-color: #e7e7e7;
-    border-color: #ddd;
+.tx-slub-forms fieldset {
+	border: none;
 }
-*/
-/*
- Change background color for label next to checked radio button
- to make it look like highlighted button
-*/
-input[type="radio"]:checked + label {
-   background-image: none;
-    background-color:#d0d0d0;
+/* submit button */
+.tx-slub-forms .submit {
+	width: 60%;
+	float: right;
 }
 
-
-/* form view */
-/*
-.slub-form-tree { position: relative; width: 570px; height: 380px; margin: 20px 0; display: block; }
-
-.slub-form-tree ul>li { position: relative; display: block; border-bottom: 1px dotted #ccc; padding: 6px 10px; }
-.slub-form-tree ul>li>ul  { display: none; font-size: 11px; }
-.slub-form-tree ul>li input[type="radio"] { display:none; margin: 10px; padding: 2px; }
-.slub-form-tree ul>li>ul li { padding: 2px 5px; }
-.slub-form-tree ul>li>ul li input[type="radio"] { display:none; margin: 10px; padding: 2px; }
-.slub-form-tree ul>li:last-child { border-bottom: 0 transparent none; }
-
-.slub-form-tree ul>li:hover,
-.slub-form-tree ul>li input[type="radio"] + label:hover,
-.slub-form-tree ul>li:hover>input[type="radio"] {
-	background: #09a; color: #fff;
+#leftcol ul {
+	list-style: none;
+	margin: 0;
 }
-.slub-form-tree ul { list-style-image: none; list-style-type: none; margin: 0; padding: 0; }
-.slub-form-tree ul>li input[type=radio] + label { color: #078; text-decoration: none; font-weight: bold; }
-*/
+#leftcol p {
+	margin: 0;
+}
 
-#leftcol .slub-form-tree  ul { list-style-image: none; list-style-type: none; margin: 0; padding: 0; }
+#leftcol form label {
+}
 
-.slub-form-tree { position: relative; width: 570px; height: 380px; margin: 20px 0; display: block; }
-.slub-form-tree ul>li { position: relative; display: block; }
+/* width of input labels */
+#leftcol .tx-slub-forms form label  {
+	width: 30%;
+}
+
+/* width of label in form selection above */
+#leftcol .tx-slub-forms form .cats label  {
+	width: 380px;
+	margin: 0;
+}
+
+.slub-form-tree {
+	display: block;
+
+	font-size: 20px;
+	line-height: 49px;
+	padding: 0 20px;
+	text-decoration: none;
+
+    width = 100%;
+
+	line-height: 100%;
+}
+
+.slub-form-tree .cats p {
+	padding: 20px;
+	cursor: pointer;
+	background: #fefefe;
+	background: -moz-linear-gradient(top, #fefefe 0%, #ececec 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(100%, #ececec));
+	background: -webkit-linear-gradient(top, #fefefe 0%, #ececec 100%);
+	background: -o-linear-gradient(top, #fefefe 0%, #ececec 100%);
+	background: -ms-linear-gradient(top, #fefefe 0%, #ececec 100%);
+	background: linear-gradient(top, #fefefe 0%, #ececec 100%);
+}
+
+.slub-form-tree ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	z-index: 1000;
+
+	-o-box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+	-webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+	box-shadow: 0 3px 8px rgba(0,0,0,0.4); border-left: 1px solid #256;
+	-moz-transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
+	-o-transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
+	transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
+}
+
+
+.slub-form-tree:after,
+.slub-form-tree ul:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
 
 /* ### Global Settings >>> colors, borders and images  ### */
-.slub-form-tree 	{ border: 0; border-left: 2px solid #09a; }
-.slub-form-tree ul { list-style-type: none; list-style-image: none;}
-.slub-form-tree ul li input[type="radio"] { display:none;  }
-.slub-form-tree ul li input[type="radio"] + label { display: inline-block; padding: 10px;  }
 
-.slub-form-tree ul>li>input[type="radio"]+label:hover {
-	background: #09a; color: #fff;
+.slub-form-tree .cats ul {
+	display: none;
+	background-color: #fff;
+	position: absolute;
+	top: 16px;
+	left: 230px;
 }
+.slub-form-tree .cats:hover > ul {
+	display: block;
+}
+
+.slub-form-tree .cats ul li {
+	position: relative;
+	cursor: pointer;
+
+	list-style: none;
+}
+#leftcol .slub-form-tree .cats ul li > ul {
+	display: none;
+	position: absolute;
+}
+
+#leftcol .slub-form-tree .cats ul li:hover > ul {
+	display: block;
+}
+.slub-form-tree .cats ul:before {
+    content: ' ';
+    position: absolute;
+    top: 10px;
+    left: -10px;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #256 transparent transparent;
+}
+
+/* remove radio bullets */
+.slub-form-tree .cats ul li input[type="radio"] {
+    display:none;
+}
+
+/* main level link*/
+.slub-form-tree .cats ul li input[type="radio"] + label {
+	  border-bottom: 1px dotted #ccc;
+	  filter: none;
+	  display: block;
+	  line-height: 120%;
+	  padding: 10px;
+	  margin: 0;
+	  width: 360px;
+	  color: #09a;
+	  cursor: pointer;
+
+}
+
+/* sub levels link hover */
+.slub-form-tree .cats li input[type="radio"] + label:hover {
+  color: #fff;
+  background: #09a;
+}
+

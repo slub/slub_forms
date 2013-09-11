@@ -62,11 +62,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 */
 	public function newAction(Tx_SlubForms_Domain_Model_Email $newEmail = NULL) {
 
-		//~ $formId = $this->getParametersSafely('formId');
-			//~ t3lib_utility_Debug::debug($formId, 'newAction: ... ');
-
-		//~ $newEmail['form'] = $formId;
-
 		if (!empty($this->settings['formsSelection']))
 			$forms = $this->formsRepository->findAllByUidsTree(t3lib_div::intExplode(',', $this->settings['formsSelection'], TRUE));
 		else
@@ -129,8 +124,32 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			//~ $allfields = $allfields->current();
 			foreach($allfields as $id => $field) {
 				//~ t3lib_utility_Debug::debug($field->getTitle().' '.$field->getUid(), 'createAction: ... ');
-				if (!empty($getfields[$field->getUid()]))
-					$content[$field->getTitle()] = $getfields[$field->getUid()];
+				if (!empty($getfields[$field->getUid()])) {
+					// checkbox-value is only transmitted if checked but should be always in email content
+					// the value (1/0) may be converted in a configured string (value = TRUE : FALSE)
+					if ($field->getType() == 'checkbox') {
+						$config = $this->configToArray($field->getConfiguration());
+						if (!empty($config['value'])) {
+							$settingPair = explode(":", $config['value']);
+							$content[$field->getTitle()] = $settingPair[0];
+						}
+						else
+							$content[$field->getTitle()] = $getfields[$field->getUid()];
+					}
+					else
+						$content[$field->getTitle()] = $getfields[$field->getUid()];
+				}
+				else
+					if ($field->getType() == 'checkbox') {
+						$config = $this->configToArray($field->getConfiguration());
+						if (!empty($config['value']))
+							$settingPair = explode(":", $config['value']);
+							$content[$field->getTitle()] = $settingPair[1];
+						else
+							$content[$field->getTitle()] = $getfields[$field->getUid()];
+					}
+					else
+						$content[$field->getTitle()] = '-';
 			}
 
 			//~ t3lib_utility_Debug::debug($getfields, 'createAction: getfields ... ');

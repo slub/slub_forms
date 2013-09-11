@@ -24,6 +24,36 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</ul>
 </f:section>
 
+<f:section name="subForms">
+
+		<f:for each="{forms}" key="formid" as="form">
+
+			<f:if condition="<sf:form.formId form='{form.item}' /> == {formid}">
+				<f:then>
+					<div id="slub-forms-form-{formid}" class="slub-forms-form">
+				</f:then>
+				<f:else>
+					<div id="slub-forms-form-{formid}" class="slub-forms-form hide">
+				</f:else>
+			</f:if>
+			<h3 class="formtitle">{form.item.title}</h3>
+			<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
+				<fieldset id="slub-forms-fieldset-{formid}-{fieldset.uid}" class="slub-forms-fieldset">
+					<f:for each="{fieldset.fields}" key="idfield" as="field">
+						<f:render partial="Forms/{field.type}" arguments="{form: form.item, fieldset: fieldset, field: field}" /><br />
+					</f:for>
+				</fieldset>
+			</f:for>
+
+			</div>
+
+			<f:if condition="{form.children}">
+				<f:render section="subForms" arguments="{forms: form.children}" />
+			</f:if>
+		</f:for>
+
+</f:section>
+
 <f:section name="main">
 {namespace sf=Tx_SlubForms_ViewHelpers}
 
@@ -37,29 +67,14 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 	<f:if condition="{forms}">
 		<div class="slub-form-tree">
+			<div class="cats"><p>Schreiben Sie uns...</p>
 			<f:render section="categoryTree" arguments="{categories: forms}" />
+			</div>
 		</div>
+		<f:render section="subForms" arguments="{forms: forms}" />
 	</f:if>
 
-	<f:for each="{forms}" key="idform" as="form">
-		<f:if condition="<sf:form.formId form='{form.item}' /> == {idform}">
-			<f:then>
-				<div id="slub-forms-form-{idform}" class="slub-forms-form">
-			</f:then>
-			<f:else>
-				<div id="slub-forms-form-{idform}" class="slub-forms-form hide">
-			</f:else>
-		</f:if>
-			{form.item.title}
-			<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
-				<fieldset id="slub-forms-fieldset-{idform}-{fieldset.uid}" class="slub-forms-fieldset">
-					<f:for each="{fieldset.fields}" key="idfield" as="field">
-						<f:render partial="Forms/{field.type}" arguments="{form: form.item, fieldset: fieldset, field: field}" /><br />
-					</f:for>
-				</fieldset>
-			</f:for>
-		</div>
-	</f:for>
+
 
 	<f:form.hidden property="editcode" value="<sf:format.editCode />"/>
 </f:form>
