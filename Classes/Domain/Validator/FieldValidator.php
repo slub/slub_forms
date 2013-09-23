@@ -99,7 +99,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 
 			}
 
-			t3lib_utility_Debug::debug($getfields, 'isValid: getfields ... ');
+			//~ t3lib_utility_Debug::debug($getfields, 'isValid: getfields ... ');
 
 		}
 

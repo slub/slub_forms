@@ -46,11 +46,11 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 		// return already posted values e.g. in case of validation errors
 		if ($this->controllerContext->getRequest()->getOriginalRequest()) {
 			$postedArguments = $this->controllerContext->getRequest()->getOriginalRequest()->getArguments();
-
 			// should be usually only one fieldset
 			foreach($postedArguments['field'] as $fieldsetid => $postedFields) {
 
-				return $postedFields[$field->getUid()];
+				if (!empty($postedFields[$field->getUid()]))
+					return $postedFields[$field->getUid()];
 
 			}
 

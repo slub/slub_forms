@@ -1,6 +1,6 @@
 {namespace sf=Tx_SlubForms_ViewHelpers}
 
-<label for="{field.uid}">{field.title}
+<label for="tx_slubforms_sf[field][{fieldset.uid}][{field.uid}]">{field.title}
 	<f:if condition="{field.required}">
 		<f:then><span class="required">*</span></f:then>
 	</f:if>

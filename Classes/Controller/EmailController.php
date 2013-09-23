@@ -79,8 +79,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 * @return void
 	 */
 	//~ public function initializeNewAction() {
-		//~ $formId = $this->getParametersSafely('formId');
-		//~ t3lib_utility_Debug::debug($formId, 'initializeNewAction: ... ');
+		//~ $formId = $this->getParametersSafely('field');
+		//~ t3lib_utility_Debug::debug($field, 'initializeNewAction: ... ');
 		//~ $this->view->assign('formid', $formid);
 	//~ }
 	/**
@@ -90,9 +90,10 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 * @return void
 	 */
 	//~ public function initializeCreateAction() {
-		//~ $formId = $this->getParametersSafely('formId');
-		//~ t3lib_utility_Debug::debug($formId , 'initializeCreateAction: ... ');
+		//~ $formId = $this->getParametersSafely('field');
+		//~ t3lib_utility_Debug::debug($field , 'initializeCreateAction: ... ');
 		//~ $requestArguments = $this->request->getArguments();
+		//~ t3lib_utility_Debug::debug($requestArguments , 'initializeCreateAction: ... ');
 		//~ $this->forward('new', 'Email', 'SlubForms', $requestArguments);
 	//~ }
 
@@ -108,7 +109,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 */
 	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail, array $field = array()) {
 
-		//~ $field = $this->getParametersSafely('field');
+		$field = $this->getParametersSafely('field');
 	//~ t3lib_utility_Debug::debug($field, '$createAction field:... ');
 		//~ $formId = $this->getParametersSafely('formId');
 
@@ -121,13 +122,11 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 			$fieldset = $this->fieldsetsRepository->findByUid($getfieldset);
 			$allfields = $fieldset->getFields();
-			//~ $allfields = $allfields->current();
 			foreach($allfields as $id => $field) {
-				//~ t3lib_utility_Debug::debug($field->getTitle().' '.$field->getUid(), 'createAction: ... ');
 				if (!empty($getfields[$field->getUid()])) {
 					// checkbox-value is only transmitted if checked but should be always in email content
 					// the value (1/0) may be converted in a configured string (value = TRUE : FALSE)
-					if ($field->getType() == 'checkbox') {
+					if ($field->getType() == 'Checkbox') {
 						$config = $this->configToArray($field->getConfiguration());
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
@@ -138,13 +137,20 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 					}
 					else
 						$content[$field->getTitle()] = $getfields[$field->getUid()];
+
+					if ($field->getIsSenderEmail())
+						$senderEmail = $getfields[$field->getUid()];
+					else if ($field->getIsSenderName())
+						$senderName = $getfields[$field->getUid()];
+
 				}
 				else
-					if ($field->getType() == 'checkbox') {
+					if ($field->getType() == 'Checkbox') {
 						$config = $this->configToArray($field->getConfiguration());
-						if (!empty($config['value']))
+						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
 							$content[$field->getTitle()] = $settingPair[1];
+						}
 						else
 							$content[$field->getTitle()] = $getfields[$field->getUid()];
 					}
@@ -155,6 +161,11 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			//~ t3lib_utility_Debug::debug($getfields, 'createAction: getfields ... ');
 
 			$newEmail->setContent(implode($content));
+			if (!empty($senderEmail) && !empty($senderName)) {
+				$newEmail->setSenderName($senderName);
+				$newEmail->setSenderEmail($senderEmail);
+			}
+
 		}
 
 		//~ t3lib_utility_Debug::debug($form->getTitle(), 'createAction: ... ');
@@ -162,7 +173,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		// email to customer
 		if ($this->settings['sendConfirmationEmailToCustomer']) {
 			$this->sendTemplateEmail(
-				array($newEmail->getSenderEmail() => $newSubscriber->getSenderName()),
+				array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
 				array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('tx_slubforms.be.senderEmailAddress', 'slub_forms') . ' - noreply'),
 				'Ihre Nachricht: ' . $form->getTitle(),
 				'ConfirmEmail',
@@ -174,7 +185,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			);
 		}
 
-		t3lib_utility_Debug::debug($content, 'createAction: content... ');
+		//~ t3lib_utility_Debug::debug($content, 'createAction: content... ');
 
 		// email to event owner
 		$this->sendTemplateEmail(
@@ -330,6 +341,22 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		return $text;
 	}
 
+	/**
+	 *
+	 * @param string $config
+	 *
+	 * @return array configuration
+	 *
+	 */
+	private function configToArray($config) {
+
+		$configSplit = explode("\n", $config);
+		foreach ($configSplit as $id => $configLine) {
+			$settingPair = explode("=", $configLine);
+			$configArray[trim($settingPair[0])] = trim($settingPair[1]);
+		}
+		return $configArray;
+	}
 
 }
 

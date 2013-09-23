@@ -2,6 +2,7 @@ jQuery(document).ready(function() {
 
 	base = getBaseUrl();
 
+	disableAllHiddenForms();
 	$(function(){
 		$("input[type=radio]").click(function(){
 			var formid = $(this).val();
@@ -93,7 +94,16 @@ function showAllForms() {
  */
 function hideAllForms() {
 	$('.slub-forms-form').addClass('hide'); // show all fields and fieldsets
-	$('.slub-forms-form, .slub-forms-fieldsets').find('input').attr('disabled','disabled'); // XXXab
+	$('.slub-forms-fieldset').find('input').attr('disabled','disabled'); // XXXab
+}
+
+/**
+ * Hide all forms
+ *
+ * @return void
+ */
+function disableAllHiddenForms() {
+	$('.slub-forms-form.hide .slub-forms-fieldset').find('input').attr('disabled','disabled'); // XXXab
 }
 
 /**
@@ -103,8 +113,6 @@ function hideAllForms() {
  * @return	void
  */
 function showForm(uid) {
-//~ alert('clicked showForm: ' + uid);
-	//~ $('#slub-forms-form-' + uid).slideUp();
 	$('#slub-forms-form-' + uid).removeClass('hide'); // hide current field
 	$('#slub-forms-form-' + uid).find('input').removeAttr('disabled'); // XXab
 }
@@ -117,6 +125,7 @@ function showForm(uid) {
  */
 function hideForm(uid) {
 	$('.slub-forms-form-' + uid).addClass('hide'); // hide current field
+	$('.slub-forms-form-' + uid).find('input').attr('disabled','disabled'); // XXXab
 }
 
 /**
