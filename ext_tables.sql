@@ -99,6 +99,7 @@ CREATE TABLE tx_slubforms_domain_model_fields (
 	shortname varchar(255) DEFAULT '' NOT NULL,
 	type varchar(255) DEFAULT '' NOT NULL,
 	configuration text NOT NULL,
+	description text NOT NULL,
 	required tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	is_sender_email tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	is_sender_name tinyint(1) unsigned DEFAULT '0' NOT NULL,

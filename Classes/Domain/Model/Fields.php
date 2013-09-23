@@ -63,6 +63,13 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	protected $configuration;
 
 	/**
+	 * description
+	 *
+	 * @var string
+	 */
+	protected $description;
+
+	/**
 	 * required
 	 *
 	 * @var boolean
@@ -166,6 +173,25 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	 */
 	public function setConfiguration($configuration) {
 		$this->configuration = $configuration;
+	}
+
+	/**
+	 * Returns the description
+	 *
+	 * @return string $description
+	 */
+	public function getDescription() {
+		return $this->description;
+	}
+
+	/**
+	 * Sets the description
+	 *
+	 * @param string $description
+	 * @return void
+	 */
+	public function setDescription($description) {
+		$this->description = $description;
 	}
 
 	/**

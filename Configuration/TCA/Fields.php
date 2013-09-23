@@ -6,12 +6,12 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_slubforms_domain_model_fields'] = array(
 	'ctrl' => $TCA['tx_slubforms_domain_model_fields']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, type, is_sender_email, is_sender_name, configuration, required, validation',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, type, is_sender_email, is_sender_name, description, configuration, required, validation',
 	),
 	'types' => array (
 				'1' => array('showitem' => 'sys_language_uid;;;;1-1-1,'.
 				'l10n_parent, l10n_diffsource, hidden;;1, '.
-				'title, shortname, type, '.
+				'title, shortname, type, description, '.
 				'--palette--;LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_field.configuration;configuration,'.
 				'required, validation,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
@@ -125,13 +125,15 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
-					array('-- please choose --', '--div--'),
+					array('-- please choose form field--', '--div--'),
 					array('Textfield', 'Textfield'),
 					array('Textarea', 'Textarea'),
 					array('Checkbox', 'Checkbox'),
 					array('Radio', 'Radio'),
 					array('Hidden', 'Hidden'),
 					array('Submit', 'Submit'),
+					array('-- special fields --', '--div--'),
+					array('Description', 'Description'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -148,7 +150,30 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 				'eval' => 'trim'
 			),
 		),
+		'description' => array(
+			'displayCond' => 'FIELD:type:=:Description',
+			'exclude' => 0,
+			'label' => 'LLL:EXT:slub_events/Resources/Private/Language/locallang_db.xlf:tx_slubevents_domain_model_event.description',
+			'config' => array(
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15,
+				'eval' => 'trim',
+				'wizards' => array(
+					'RTE' => array(
+						'icon' => 'wizard_rte2.gif',
+						'notNewRecords'=> 1,
+						'RTEonly' => 1,
+						'script' => 'wizard_rte.php',
+						'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
+						'type' => 'script'
+					)
+				)
+			),
+			'defaultExtras' => 'richtext[]',
+		),
 		'is_sender_email' => array(
+			'displayCond' => 'FIELD:type:=:Textfield',
 			'exclude' => 0,
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.is_sender_email',
 			'config' => array(
@@ -157,6 +182,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 			),
 		),
 		'is_sender_name' => array(
+			'displayCond' => 'FIELD:type:=:Textfield',
 			'exclude' => 0,
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.is_sender_name',
 			'config' => array(

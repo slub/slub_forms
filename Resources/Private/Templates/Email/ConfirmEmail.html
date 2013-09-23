@@ -3,9 +3,11 @@
 
 <p><b>{form.title}</b></p>
 
-<f:for each="{content}" as="line">
-		<li>{line}</li>
+<ul>
+<f:for each="{content}" key="fieldname" as="line">
+	<li>{fieldname}: <b>{line}</b></li>
 </f:for>
+</ul>
 
 <p>Mit freundlichen Grüßen</p>
 

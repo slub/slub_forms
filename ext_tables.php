@@ -67,6 +67,7 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
+		'requestUpdate' => 'sys_language_uid',
 		'searchFields' => 'title,recipient,fieldsets,parent,',
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Forms.php',
 		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_forms.gif'
@@ -96,6 +97,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
+		'requestUpdate' => 'type',
 		'searchFields' => 'title,type,configuration,required,validation,',
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Fields.php',
 		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_fields.gif'

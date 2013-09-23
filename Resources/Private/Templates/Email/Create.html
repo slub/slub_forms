@@ -13,17 +13,34 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 
 <f:section name="main">
-<f:flashMessages />
 
-Vielen Dank für Ihre Mitteilung.
+<div class="confirmation">
+<p>Sehr geehrte(r) {email.senderName},</p>
 
-<div class="slub-form-tree">
-	{email.senderName} <br />
-	{email.senderEmail} <br />
-	{email.customerId} <br />
-	{email.content} <br />
+<p>&nbsp;</p>
+<p>Vielen Dank für Ihre Mitteilung.</p>
+
+<p>&nbsp;</p>
+
+<p>Folgende Daten haben wir von Ihnen erhalten:</p>
+
+<p>&nbsp;</p>
+
+<p><b>{form.title}</b></p>
+
+<ul>
+<f:for each="{content}" key="fieldname" as="line">
+	<li>{fieldname}: <b>{line}</b></li>
+</f:for>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>Mit freundlichen Grüßen</p>
+
+<p>&nbsp;</p>
+
+<p>SLUB Dresden</p>
 </div>
-
-
 
 </f:section>

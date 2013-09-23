@@ -69,7 +69,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 		$this->view->assign('newEmail', $newEmail);
 		$this->view->assign('forms', $forms);
-		$this->view->assign('formId', $formId);
+		//~ $this->view->assign('formId', $formId);
 	}
 
 	/**
@@ -122,6 +122,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 			$fieldset = $this->fieldsetsRepository->findByUid($getfieldset);
 			$allfields = $fieldset->getFields();
+
 			foreach($allfields as $id => $field) {
 				if (!empty($getfields[$field->getUid()])) {
 					// checkbox-value is only transmitted if checked but should be always in email content
@@ -130,6 +131,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 						$config = $this->configToArray($field->getConfiguration());
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
+							// take true value
 							$content[$field->getTitle()] = $settingPair[0];
 						}
 						else
@@ -149,12 +151,14 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 						$config = $this->configToArray($field->getConfiguration());
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
+							// take false value
 							$content[$field->getTitle()] = $settingPair[1];
 						}
 						else
 							$content[$field->getTitle()] = $getfields[$field->getUid()];
-					}
-					else
+					} else if ($field->getType() == 'Description') {
+						continue;
+					} else
 						$content[$field->getTitle()] = '-';
 			}
 
@@ -171,6 +175,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		//~ t3lib_utility_Debug::debug($form->getTitle(), 'createAction: ... ');
 
 		// email to customer
+		// send only if "sendConfirmationEmailToCustomer" TS setting is true
 		if ($this->settings['sendConfirmationEmailToCustomer']) {
 			$this->sendTemplateEmail(
 				array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
@@ -206,6 +211,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		// reset session data
 		$this->setSessionData('editcode', '');
 
+		$this->view->assign('content', $content);
+		$this->view->assign('form', $form);
 		$this->view->assign('email', $newEmail);
 	}
 
