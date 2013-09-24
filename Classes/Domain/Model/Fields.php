@@ -95,7 +95,7 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	/**
 	 * validation
 	 *
-	 * @var integer
+	 * @var string
 	 */
 	protected $validation;
 
@@ -254,7 +254,7 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	/**
 	 * Returns the validation
 	 *
-	 * @return integer $validation
+	 * @return string $validation
 	 */
 	public function getValidation() {
 		return $this->validation;
@@ -263,7 +263,7 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	/**
 	 * Sets the validation
 	 *
-	 * @param integer $validation
+	 * @param string $validation
 	 * @return void
 	 */
 	public function setValidation($validation) {

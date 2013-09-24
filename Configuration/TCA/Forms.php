@@ -103,8 +103,8 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 			),
 		),
 		'shortname' => array(
-			'displayCond' => 'FIELD:sys_language_uid:=:0',
 			'exclude' => 0,
+			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_forms.shortname',
 			'config' => array(
 				'type' => 'input',
@@ -113,8 +113,8 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 			),
 		),
 		'recipient' => array(
-			'displayCond' => 'FIELD:sys_language_uid:=:0',
 			'exclude' => 0,
+			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_forms.recipient',
 			'config' => array(
 				'type' => 'input',
@@ -123,8 +123,8 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 			),
 		),
 		'fieldsets' => array(
-			'displayCond' => 'FIELD:sys_language_uid:=:0',
 			'exclude' => 0,
+			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_forms.fieldsets',
 			'config' => array(
 				'type' => 'select',
@@ -160,10 +160,8 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 			),
 		),
 		'parent' => array(
-			'displayCond' => 'FIELD:sys_language_uid:=:0',
 			'exclude' => 0,
-			'displayCond' => 'FIELD:sys_language_uid:=:0',
-			'l10n_mode' => 'mergeIfNotBlank',
+			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:slub_events/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_forms.parent',
 			'config' => array(
 				'type' => 'select',
@@ -183,7 +181,7 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 				),
 				'size' => 10,
 				'autoSizeMax' => 30,
-				'maxitems'      => 2,
+				'maxitems'     => 2,
 			),
 		),
 		'forms' => array(

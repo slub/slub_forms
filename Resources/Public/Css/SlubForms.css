@@ -24,11 +24,32 @@
 #leftcol .tx-slub-forms form label  {
 	width: 30%;
 }
+#leftcol .tx-slub-forms form label.error  {
+	width: 60%;
+}
 
 /* width of label in form selection above */
 #leftcol .tx-slub-forms form .cats label  {
 	width: 380px;
 	margin: 0;
+}
+
+#leftcol .tx-slub-forms form input[type],
+#leftcol .tx-slub-forms form input[type="text"],
+#leftcol .tx-slub-forms form input[type="email"],
+#leftcol .tx-slub-forms form input[type="number"]
+ {
+	position: relative;
+	border: none;
+	border-bottom: 1px solid #333;
+	padding: 3px;
+	width: 220px;
+}
+/* remove up/down buttons */
+.tx-slub-forms form input[type=number]::-webkit-inner-spin-button,
+.tx-slub-forms form input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .slub-form-tree {
@@ -144,3 +165,7 @@
   background: #09a;
 }
 
+
+.tx-slub-forms .error {
+	color: red;
+}

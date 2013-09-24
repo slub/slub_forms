@@ -111,6 +111,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 		),
 		'shortname' => array(
 			'exclude' => 0,
+			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.shortname',
 			'config' => array(
 				'type' => 'input',
@@ -119,13 +120,14 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 			),
 		),
 		'type' => array(
-
 			'exclude' => 0,
+			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.type',
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
 					array('-- please choose form field--', '--div--'),
+					array('', ''),
 					array('Textfield', 'Textfield'),
 					array('Textarea', 'Textarea'),
 					array('Checkbox', 'Checkbox'),
@@ -137,11 +139,11 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 				),
 				'size' => 1,
 				'maxitems' => 1,
-				'eval' => ''
 			),
 		),
 		'configuration' => array(
 			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.configuration',
 			'config' => array(
 				'type' => 'text',
@@ -153,6 +155,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 		'description' => array(
 			'displayCond' => 'FIELD:type:=:Description',
 			'exclude' => 0,
+			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:slub_events/Resources/Private/Language/locallang_db.xlf:tx_slubevents_domain_model_event.description',
 			'config' => array(
 				'type' => 'text',
@@ -175,6 +178,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 		'is_sender_email' => array(
 			'displayCond' => 'FIELD:type:=:Textfield',
 			'exclude' => 0,
+			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.is_sender_email',
 			'config' => array(
 				'type' => 'check',
@@ -184,6 +188,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 		'is_sender_name' => array(
 			'displayCond' => 'FIELD:type:=:Textfield',
 			'exclude' => 0,
+			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.is_sender_name',
 			'config' => array(
 				'type' => 'check',
@@ -193,6 +198,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 
 		'required' => array(
 			'exclude' => 0,
+			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.required',
 			'config' => array(
 				'type' => 'check',
@@ -201,19 +207,20 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 		),
 		'validation' => array(
 			'exclude' => 0,
+			'l10n_mode' => 'exclude',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.validation',
 			'config' => array(
 				'type' => 'select',
 				'items' => array(
-					array('no validation', 0),
-					array('Email', 1),
-					array('Telephone', 2),
-					array('Number', 3),
-					array('...', 4),
+					array('no validation', ''),
+					array('Text', 'text'),
+					array('Email', 'email'),
+					array('Telephone', 'tel'),
+					array('Number', 'number'),
+					array('Url', 'url'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
-				'eval' => ''
 			),
 		)
 	),

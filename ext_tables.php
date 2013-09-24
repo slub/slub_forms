@@ -97,7 +97,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'requestUpdate' => 'type',
+		'requestUpdate' => 'sys_language_uid,type',
 		'searchFields' => 'title,type,configuration,required,validation,',
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Fields.php',
 		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_fields.gif'

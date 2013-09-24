@@ -104,7 +104,7 @@ CREATE TABLE tx_slubforms_domain_model_fields (
 	is_sender_email tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	is_sender_name tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	required tinyint(1) unsigned DEFAULT '0' NOT NULL,
-	validation int(11) DEFAULT '0' NOT NULL,
+	validation varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

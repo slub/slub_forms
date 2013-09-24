@@ -1,10 +1,94 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-08-29T11:09:03Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-09-24T11:31:20Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
 		<body>
+		<trans-unit id="slub-forms.error_email" approved="yes" xml:space="preserve">
+			<source>Please enter a valid email address.</source>
+			<target>Bitte geben Sie eine gültige Email-Adresse an.</target>
+		</trans-unit>
+		<trans-unit id="slub-forms.error_number" approved="yes" xml:space="preserve">
+			<source>Please enter a valid SLUB user ID.</source>
+			<target>Bitte geben Sie eine gültige SLUB Benutzernummer ein.</target>
+		</trans-unit>
+		<trans-unit id="slub-forms.error_text" approved="yes" xml:space="preserve">
+			<source>Please fill out the field.</source>
+			<target>Bitte füllen Sie dieses Feld aus.</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email" approved="yes" xml:space="preserve">
+			<source>Email</source>
+			<target>Email</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.closing" approved="yes" xml:space="preserve">
+			<source>Best regards</source>
+			<target>Mit freundlichen Grüßen</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.content" approved="yes" xml:space="preserve">
+			<source>content</source>
+			<target>Inhalt</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.form" approved="yes" xml:space="preserve">
+			<source>form</source>
+			<target>Formular</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.salutation" approved="yes" xml:space="preserve">
+			<source>Dear</source>
+			<target>Sehr geehrte(r)</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.sender_email" approved="yes" xml:space="preserve">
+			<source>senderEmail</source>
+			<target>Absender Email-Adresse</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.sender_name" approved="yes" xml:space="preserve">
+			<source>senderName</source>
+			<target>Absender Name</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields" approved="yes" xml:space="preserve">
+			<source>Fields</source>
+			<target>Felder</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.configuration" approved="yes" xml:space="preserve">
+			<source>configuration</source>
+			<target>Konfiguration</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.required" approved="yes" xml:space="preserve">
+			<source>required</source>
+			<target>Pflichtfeld</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.shortname" approved="yes" xml:space="preserve">
+			<source>title</source>
+			<target>Titel</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.title" approved="yes" xml:space="preserve">
+			<source>title</source>
+			<target>Titel</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.type" approved="yes" xml:space="preserve">
+			<source>type</source>
+			<target>Feldtyp</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.validation" approved="yes" xml:space="preserve">
+			<source>validation</source>
+			<target>Validierung</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fieldsets.fields" approved="yes" xml:space="preserve">
+			<source>fields</source>
+			<target>FEld</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fieldsets.title" approved="yes" xml:space="preserve">
+			<source>title</source>
+			<target>Titel</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms" approved="yes" xml:space="preserve">
+			<source>Forms</source>
+			<target>Formular</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.recipient" approved="yes" xml:space="preserve">
+			<source>Email of Recipient</source>
+			<target>Empfänger Email-Adresse</target>
+		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_forms.shortname" approved="yes" xml:space="preserve">
 			<source>title</source>
 			<target>Kurzname</target>
@@ -12,6 +96,22 @@
 		<trans-unit id="tx_slubforms_domain_model_forms.title" approved="yes" xml:space="preserve">
 			<source>title</source>
 			<target>Titel</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_customerid" approved="yes" xml:space="preserve">
+			<source>The given customer id is not valid.</source>
+			<target>Die Benutzernummer ist nicht gültig</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_editcode" approved="yes" xml:space="preserve">
+			<source>Please start the registration from the beginning.</source>
+			<target>Bitte startend Sie die Formulareingabe erneut.</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_email" approved="yes" xml:space="preserve">
+			<source>Please enter a valid email-address.</source>
+			<target>Bitte geben Sie eine gültige Email-Adresse ein.</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_name" approved="yes" xml:space="preserve">
+			<source>Please enter your name.</source>
+			<target>Bitte geben Sie Ihren Namen ein.</target>
 		</trans-unit>
 		</body>
 	</file>

@@ -1,5 +1,7 @@
 {namespace se=Tx_SlubEvents_ViewHelpers}
-<p>Sehr geehrte(r) {email.senderName},</p>
+<p>Liebe Kolleginnen und Kollegen,</p>
+
+<p>folgendes Formular wurde von <f:link.email email="{email.senderEmail}">{email.senderName}</f:link.email> ausgefüllt:</p>
 
 <p><b>{form.title}</b></p>
 
@@ -8,6 +10,7 @@
 	<li>{fieldname}: <b>{line}</b></li>
 </f:for>
 </ul>
+
 
 <p>Mit freundlichen Grüßen</p>
 

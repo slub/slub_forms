@@ -116,6 +116,9 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$senderEmail = $this->getParametersSafely('senderEmail');
 
 		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
+	//~ t3lib_utility_Debug::debug($form->getUid(), '$createAction form id:... ');
+	//~ t3lib_utility_Debug::debug($form->getShortname(), '$createAction form getShortname:... ');
+	//~ t3lib_utility_Debug::debug($form->getRecipient(), '$createAction form getRecpient:... ');
 
 		// should be usually only one fieldset
 		foreach($field as $getfieldset => $getfields) {
@@ -163,8 +166,13 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			}
 
 			//~ t3lib_utility_Debug::debug($getfields, 'createAction: getfields ... ');
+			$contentText = '<ul>';
+			foreach ($content as $field => $value)
+				$contentText .= '<li>'.$field . ': <b>'. $value.'</b></li>';
+			$contentText .= '</ul>';
 
-			$newEmail->setContent(implode($content));
+			$newEmail->setContent(trim($contentText));
+
 			if (!empty($senderEmail) && !empty($senderName)) {
 				$newEmail->setSenderName($senderName);
 				$newEmail->setSenderEmail($senderEmail);
@@ -172,7 +180,9 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 		}
 
-		//~ t3lib_utility_Debug::debug($form->getTitle(), 'createAction: ... ');
+		//~ t3lib_utility_Debug::debug($form->getTitle(), 'createAction: getTitle... ');
+		//~ t3lib_utility_Debug::debug($form->getRecipient(), 'createAction: getRecipient... ');
+		//~ t3lib_utility_Debug::debug($content, 'createAction: content... ');
 
 		// email to customer
 		// send only if "sendConfirmationEmailToCustomer" TS setting is true
@@ -196,7 +206,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$this->sendTemplateEmail(
 			array($form->getRecipient() => ''),
 			array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('tx_slubevents.be.eventmanagement', 'slub_events') . ' - noreply'),
-			'Formular: ' . $form->getTitle(),
+			'Formular: ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
 			'FormEmail',
 			array(	'email' => $newEmail,
 					'form' => $form,

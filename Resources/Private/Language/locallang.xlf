@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-29T11:09:03Z">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-24T11:31:20Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
 		<body>
+		<trans-unit id="slub-forms.error_email" xml:space="preserve">
+			<source>Please enter a valid email address.</source>
+		</trans-unit>
+		<trans-unit id="slub-forms.error_number" xml:space="preserve">
+			<source>Please enter a valid SLUB user ID.</source>
+		</trans-unit>
+		<trans-unit id="slub-forms.error_text" xml:space="preserve">
+			<source>Please fill out the field.</source>
+		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email" xml:space="preserve">
 			<source>Email</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.closing" xml:space="preserve">
+			<source>Best regards</source>
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email.content" xml:space="preserve">
 			<source>content</source>
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email.form" xml:space="preserve">
 			<source>form</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.salutation" xml:space="preserve">
+			<source>Dear</source>
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email.sender_email" xml:space="preserve">
 			<source>senderEmail</source>

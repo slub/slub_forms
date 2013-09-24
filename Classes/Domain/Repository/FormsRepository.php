@@ -41,16 +41,16 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 	 */
 	public function findAllByUids($formIds) {
 
-								$query = $this->createQuery();
+		$query = $this->createQuery();
 
-								$constraints = array();
-								$constraints[] = $query->in('uid', $formIds);
+		$constraints = array();
+		$constraints[] = $query->in('uid', $formIds);
 
-								if (count($constraints)) {
-									$query->matching($query->logicalAnd($constraints));
-								}
+		if (count($constraints)) {
+			$query->matching($query->logicalAnd($constraints));
+		}
 
-								return $query->execute();
+		return $query->execute();
 	}
 
 	/**
