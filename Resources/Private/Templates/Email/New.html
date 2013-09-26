@@ -58,27 +58,21 @@ Otherwise your changes will be overwritten the next time you save the extension 
 {namespace sf=Tx_SlubForms_ViewHelpers}
 
 
-<f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
-<f:render partial="FormErrors" arguments="{obj: 'field'}" />
-
-
-<f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" >
-
-
-
-	<f:if condition="{forms}">
+<f:if condition="{forms}">
+	<f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" >
 		<div class="slub-form-tree">
 			<div class="cats"><p>Schreiben Sie uns...</p>
 			<f:render section="categoryTree" arguments="{categories: forms}" />
 			</div>
 		</div>
+
+		<f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
+		<f:render partial="FormErrors" arguments="{obj: 'field'}" />
+
 		<f:render section="subForms" arguments="{forms: forms}" />
-	</f:if>
-
-
 
 	<f:form.hidden property="editcode" value="<sf:format.editCode />"/>
-</f:form>
+	</f:form>
 
 <script>
 $( "#slubForm" ).validate();
@@ -89,5 +83,8 @@ $.validator.addMethod('filesize', function(value, element, param) {
     return this.optional(element) || (element.files[0].size <= param)
 });
 </script>
+
+	</f:if>
+
 
 </f:section>

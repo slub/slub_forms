@@ -166,6 +166,7 @@
 }
 
 
-.tx-slub-forms .error {
+.tx-slub-forms .error,
+.tx-slub-forms .slub-form-error {
 	color: red;
 }

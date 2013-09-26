@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-09-24T11:31:20Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-09-26T12:44:39Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
@@ -16,6 +16,14 @@
 		<trans-unit id="slub-forms.error_text" approved="yes" xml:space="preserve">
 			<source>Please fill out the field.</source>
 			<target>Bitte füllen Sie dieses Feld aus.</target>
+		</trans-unit>
+		<trans-unit id="slub-forms.file-accept-info" approved="yes" xml:space="preserve">
+			<source>We accept files with the following format: </source>
+			<target>Folgende Formate werden akzeptiert:</target>
+		</trans-unit>
+		<trans-unit id="slub-forms.file-accept-size" approved="yes" xml:space="preserve">
+			<source>MB</source>
+			<target>MB</target>
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email" approved="yes" xml:space="preserve">
 			<source>Email</source>
@@ -108,6 +116,14 @@
 		<trans-unit id="validationerror_val_email" approved="yes" xml:space="preserve">
 			<source>Please enter a valid email-address.</source>
 			<target>Bitte geben Sie eine gültige Email-Adresse ein.</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_file_mimetype" approved="yes" xml:space="preserve">
+			<source>Unsupported file type.</source>
+			<target>Dieses Dateiformat wird nicht unterstützt.</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_file_size" approved="yes" xml:space="preserve">
+			<source>File is too big.</source>
+			<target>Die Datei ist zu groß.</target>
 		</trans-unit>
 		<trans-unit id="validationerror_val_name" approved="yes" xml:space="preserve">
 			<source>Please enter your name.</source>

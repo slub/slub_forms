@@ -97,8 +97,6 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 					}
 				}
 
-				//~ t3lib_utility_Debug::debug($singleField->getType(), 'isValid: getType... ');
-
 				// check for file upload
 				if ($singleField->getType() == 'File') {
 
@@ -110,38 +108,39 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 						if ($config['file-accept-size'] < $_FILES['tx_slubforms_sf']['size'][$getfieldset][$singleField->getUid()]) {
 							// seems to be no valid email address
 							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_size', 1200);
-							$this->result->forProperty('file')->addError($error);
+							$this->result->forProperty('content')->addError($error);
 							$this->isValid = false;
 						}
 
-						//~ if (!empty($config['file-accept-mimetypes'])) {
-							//~ // e.g. file-mimetypes = audio/*, image/*, application/
-							//~ $config['file-accept-size'];
-						//~ }
+						// do it on the command line because there is no clean way to do it with PHP...
+						exec("file --mime-type " . $_FILES['tx_slubforms_sf']['tmp_name']['field'][$getfieldset][$singleField->getUid()] . " | cut -f 2 -d ':'", $found_mimetype);
+						$found_mimetype = explode("/", trim($found_mimetype[0]));
 
-						//~ $fileName = $basicFileFunctions->getUniqueName (
-							//~ $_FILES['tx_slubforms_sf']['name']['field']['5']['13'],
-							//~ t3lib_div::getFileAbsFileName('uploads/tx_slubforms/')
-						//~ );
-						//~ t3lib_utility_Debug::debug($fileName, '$createAction 1 $fileName:... ');
-//~
-						//~ t3lib_div::upload_copy_move (
-							//~ $_FILES['tx_slubforms_sf']['tmp_name']['field']['5']['13'],
-							//~ $fileName
-						//~ );
-						//~ t3lib_utility_Debug::debug($fileName, '$createAction 2 $fileName:... ');
-//~
-					//~ // check for file attachement
-					//~ if ($fileSize > 102400) {
-							//~ die ('File is too big!');
-					//~ }
+						$configmimetypes =  explode(",", $config['file-accept-mimetypes'] );
+						foreach ($configmimetypes as $id => $type) {
+							$splittype = explode("/", trim($type));
+							$allowedtypes[$splittype[0]][] = $splittype[1];
+						}
+
+						// check, if the found mime-type is in the list of allowed mime-types.
+						// allowed mime-types may have a wildcard like image/* for all image formats
+						//
+						// eg
+						// $found_mimetype = array('application', 'pdf')
+						// $allowedtypes['application'] = array('pdf', 'msword', ...)
+
+						if (!is_array($allowedtypes[$found_mimetype[0]]) || (in_array($found_mimetype[1], $allowedtypes[$found_mimetype[0]], TRUE) === FALSE &&
+								in_array('*', $allowedtypes[$found_mimetype[0]], TRUE) === FALSE)) {
+							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_mimetype', 1300);
+							$this->result->forProperty('content')->addError($error);
+							$this->isValid = false;
+						}
+
 					}
 
 				}
 
 			}
-
-			//~ t3lib_utility_Debug::debug($getfields, 'isValid: getfields ... ');
 
 		}
 

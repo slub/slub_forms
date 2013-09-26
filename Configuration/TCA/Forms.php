@@ -38,7 +38,7 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 					array('', 0),
 				),
 				'foreign_table' => 'tx_slubforms_domain_model_forms',
-				'foreign_table_where' => 'AND tx_slubforms_domain_model_forms.pid=###CURRENT_PID### AND tx_slubforms_domain_model_forms.sys_language_uid IN (-1,0)',
+				'foreign_table_where' => 'AND tx_slubforms_domain_model_forms.pid=###CURRENT_PID### AND tx_slubforms_domain_model_forms.sys_language_uid IN (-1,0) ORDER BY tx_slubforms_domain_model_forms.title',
 			),
 		),
 		'l10n_diffsource' => array(
