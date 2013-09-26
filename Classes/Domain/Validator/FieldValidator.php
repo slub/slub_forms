@@ -97,6 +97,48 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 					}
 				}
 
+				//~ t3lib_utility_Debug::debug($singleField->getType(), 'isValid: getType... ');
+
+				// check for file upload
+				if ($singleField->getType() == 'File') {
+
+					if (isset($_FILES['tx_slubforms_sf'])) {
+						// get field configuration
+						$config = $this->configToArray($singleField->getConfiguration());
+						//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf']['size'], 'isValid: size... ');
+						//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()], 'isValid: ... ');
+						if ($config['file-accept-size'] < $_FILES['tx_slubforms_sf']['size'][$getfieldset][$singleField->getUid()]) {
+							// seems to be no valid email address
+							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_size', 1200);
+							$this->result->forProperty('file')->addError($error);
+							$this->isValid = false;
+						}
+
+						//~ if (!empty($config['file-accept-mimetypes'])) {
+							//~ // e.g. file-mimetypes = audio/*, image/*, application/
+							//~ $config['file-accept-size'];
+						//~ }
+
+						//~ $fileName = $basicFileFunctions->getUniqueName (
+							//~ $_FILES['tx_slubforms_sf']['name']['field']['5']['13'],
+							//~ t3lib_div::getFileAbsFileName('uploads/tx_slubforms/')
+						//~ );
+						//~ t3lib_utility_Debug::debug($fileName, '$createAction 1 $fileName:... ');
+//~
+						//~ t3lib_div::upload_copy_move (
+							//~ $_FILES['tx_slubforms_sf']['tmp_name']['field']['5']['13'],
+							//~ $fileName
+						//~ );
+						//~ t3lib_utility_Debug::debug($fileName, '$createAction 2 $fileName:... ');
+//~
+					//~ // check for file attachement
+					//~ if ($fileSize > 102400) {
+							//~ die ('File is too big!');
+					//~ }
+					}
+
+				}
+
 			}
 
 			//~ t3lib_utility_Debug::debug($getfields, 'isValid: getfields ... ');
@@ -130,5 +172,22 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 
 		return $this->isValid;
   	}
+
+	/**
+	 *
+	 * @param string $config
+	 *
+	 * @return array configuration
+	 *
+	 */
+	private function configToArray($config) {
+
+		$configSplit = explode("\n", $config);
+		foreach ($configSplit as $id => $configLine) {
+			$settingPair = explode("=", $configLine);
+			$configArray[trim($settingPair[0])] = trim($settingPair[1]);
+		}
+		return $configArray;
+	}
 }
 ?>

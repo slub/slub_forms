@@ -61,7 +61,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
 <f:render partial="FormErrors" arguments="{obj: 'field'}" />
 
-<f:form action="create" id="commentForm" name="newEmail" object="{newEmail}" >
+
+<f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" >
+
 
 
 	<f:if condition="{forms}">
@@ -77,18 +79,15 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 	<f:form.hidden property="editcode" value="<sf:format.editCode />"/>
 </f:form>
+
 <script>
-jQuery.validator.setDefaults({
-  debug: true,
-  success: "valid"
-});
-$( "#commentForm" ).validate({
-  rules: {
-    number: {
-      required: true,
-      number: true
-    }
-  }
+$( "#slubForm" ).validate();
+$.validator.addMethod('filesize', function(value, element, param) {
+    // value = file name
+    // element = element to validate (<input>)
+    // param = size (en bytes)
+    return this.optional(element) || (element.files[0].size <= param)
 });
 </script>
+
 </f:section>

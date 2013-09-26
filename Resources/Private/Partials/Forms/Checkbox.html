@@ -1,5 +1,5 @@
 {namespace sf=Tx_SlubForms_ViewHelpers}
 
-<label for="tx_slubforms_sf[field][{fieldset.uid}][{field.uid}]">{field.title}</label>
-<f:form.checkbox name="field[{fieldset.uid}][{field.uid}]" value="1" checked="<sf:form.fieldHasValue field='{field}' /> == 1"  />
+<label for="tx_slubforms_sf-field-{fieldset.uid}-{field.uid}">{field.title}</label>
+<f:form.checkbox id="tx_slubforms_sf-field-{fieldset.uid}-{field.uid}" name="field[{fieldset.uid}][{field.uid}]" value="1" checked="<sf:form.fieldHasValue field='{field}' /> == 1"  />
 

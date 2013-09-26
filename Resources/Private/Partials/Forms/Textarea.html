@@ -1,5 +1,5 @@
 {namespace sf=Tx_SlubForms_ViewHelpers}
 
-<label for="tx_slubforms_sf[field][{fieldset.uid}][{field.uid}]">{field.title}</label>
-<f:form.textarea name="field[{fieldset.uid}][{field.uid}]" value="<sf:form.fieldHasValue field='{field}' />" rows="5" cols="60" />
+<label for="tx_slubforms_sf-field-{fieldset.uid}-{field.uid}">{field.title}</label>
+<f:form.textarea id="tx_slubforms_sf-field-{fieldset.uid}-{field.uid}" name="field[{fieldset.uid}][{field.uid}]" value="<sf:form.fieldHasValue field='{field}' />" rows="5" cols="60" />
 

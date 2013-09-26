@@ -120,6 +120,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	//~ t3lib_utility_Debug::debug($form->getShortname(), '$createAction form getShortname:... ');
 	//~ t3lib_utility_Debug::debug($form->getRecipient(), '$createAction form getRecpient:... ');
 
+			//~ t3lib_utility_Debug::debug($_FILES, '$createAction 1 $_FILES:... ');
+
 		// should be usually only one fieldset
 		foreach($field as $getfieldset => $getfields) {
 
@@ -147,6 +149,26 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 						$senderEmail = $getfields[$field->getUid()];
 					else if ($field->getIsSenderName())
 						$senderName = $getfields[$field->getUid()];
+					else if ($field->getType() == 'File') {
+						if (isset($_FILES['tx_slubforms_sf']) && ($_FILES['tx_slubforms_sf']['error']['field'][$getfieldset][$field->getUid()] == UPLOAD_ERR_OK)) {
+							//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf'], '$createAction 1 $$_FILES:... ');
+							$content[$field->getTitle()] = $_FILES['tx_slubforms_sf']['name']['field'][$getfieldset][$field->getUid()];
+
+							$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions');
+							// get filename
+							$fileName = $basicFileFunctions->getUniqueName (
+								$_FILES['tx_slubforms_sf']['name']['field'][$getfieldset][$field->getUid()],
+								t3lib_div::getFileAbsFileName('uploads/tx_slubforms/')
+							);
+
+							// copy temp file to uploads
+							t3lib_div::upload_copy_move (
+								$_FILES['tx_slubforms_sf']['tmp_name']['field'][$getfieldset][$field->getUid()],
+								$fileName
+							);
+						} else
+							$content[$field->getTitle()] = '-';
+					}
 
 				}
 				else
@@ -211,6 +233,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			array(	'email' => $newEmail,
 					'form' => $form,
 					'content' => $content,
+					'filename' => $fileName,
 					'settings' => $this->settings,
 			)
 		);
@@ -316,6 +339,9 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 		// HTML Email
 		$message->addPart($emailTextHTML, 'text/html');
+
+		if (!empty($variables['filename']))
+		$message->attach(Swift_Attachment::fromPath($variables['filename']));
 
 		$message->send();
 

@@ -30,63 +30,25 @@
  * @api
  * @scope prototype
  */
-class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SlubForms_ViewHelpers_Form_FileValidationAcceptInfoViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 * Check for Prefill/Post values and set it manually
+	 * Looks for already checked form from last request
 	 *
 	 * @param Tx_SlubForms_Domain_Model_Fields $field
-	 *
-	 * @return string Rendered string
+	 * @return string
 	 * @api
 	 */
 	public function render($field) {
 
-
-		// return already posted values e.g. in case of validation errors
-		if ($this->controllerContext->getRequest()->getOriginalRequest()) {
-			$postedArguments = $this->controllerContext->getRequest()->getOriginalRequest()->getArguments();
-			// should be usually only one fieldset
-			foreach($postedArguments['field'] as $fieldsetid => $postedFields) {
-
-				if (!empty($postedFields[$field->getUid()]))
-					return $postedFields[$field->getUid()];
-
-			}
-
-		}
-
 		// get field configuration
 		$config = $this->configToArray($field->getConfiguration());
-		if (!empty($config['prefill'])) {
-			// e.g. fe_users:username
-			// first value is database "value" or "fe_users"
-			$settingPair = explode(":", $config['prefill']);
-			switch (trim($settingPair[0])) {
-				case 'fe_users':
-					if (!empty($GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ])) {
-						return $GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ];
-					}
-					break;
-				case 'value':
-					if (!empty($settingPair[1]))
-						return trim($settingPair[1]);
-					break;
-			}
+		if (!empty($config['file-accept-info'])) {
+			$info = $config['file-accept-info'];
+			if (!empty($config['file-accept-size']))
+				$info .= ', max: ' . round(($config['file-accept-size'] / (1024*1024)), 1) . ' MB';
 		}
-
-		// check for prefill by GET parameter
-		if ($this->controllerContext->getRequest()->hasArgument('prefill')) {
-			$prefilljson = $this->controllerContext->getRequest()->getArgument('prefill');
-			$prefill = json_decode($prefilljson);
-			if (strlen($field->getShortname())>0) {
-				//~ $shortname =  trim($config['shortname']);
-				if (!empty($prefill->{$field->getShortname()}))
-					return $prefill->{$field->getShortname()};
-			}
-		}
-
-		return;
+		return $info;
 	}
 
 	/**
@@ -105,6 +67,7 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 		}
 		return $configArray;
 	}
+
 }
 
 ?>
