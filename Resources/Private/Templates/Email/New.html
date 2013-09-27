@@ -26,31 +26,31 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:section name="subForms">
 
-		<f:for each="{forms}" key="formid" as="form">
-
-			<f:if condition="<sf:form.formId form='{form.item}' /> == {formid}">
-				<f:then>
-					<div id="slub-forms-form-{formid}" class="slub-forms-form">
-				</f:then>
-				<f:else>
-					<div id="slub-forms-form-{formid}" class="slub-forms-form hide">
-				</f:else>
-			</f:if>
-			<h3 class="formtitle">{form.item.title}</h3>
-			<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
-				<fieldset id="slub-forms-fieldset-{formid}-{fieldset.uid}" class="slub-forms-fieldset">
-					<f:for each="{fieldset.fields}" key="idfield" as="field">
-						<f:render partial="Forms/{field.type}" arguments="{form: form.item, fieldset: fieldset, field: field}" /><br />
-					</f:for>
-				</fieldset>
-			</f:for>
-
-			</div>
-
-			<f:if condition="{form.children}">
-				<f:render section="subForms" arguments="{forms: form.children}" />
-			</f:if>
+	<f:for each="{forms}" key="formid" as="form">
+		<f:if condition="<sf:form.formId form='{form.item}' /> == {formid}">
+			<f:then>
+				<div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname}">
+			</f:then>
+			<f:else>
+				<div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname} hide">
+			</f:else>
+		</f:if>
+		<h3 class="formtitle">{form.item.title}</h3>
+		<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
+			<fieldset id="slub-forms-fieldset-{formid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
+					<legend>{fieldset.title}</legend>
+				<f:for each="{fieldset.fields}" key="idfield" as="field">
+					<f:render partial="Forms/{field.type}" arguments="{form: form.item, fieldset: fieldset, field: field}" /><br />
+				</f:for>
+			</fieldset>
 		</f:for>
+
+		</div>
+
+		<f:if condition="{form.children}">
+			<f:render section="subForms" arguments="{forms: form.children}" />
+		</f:if>
+	</f:for>
 
 </f:section>
 

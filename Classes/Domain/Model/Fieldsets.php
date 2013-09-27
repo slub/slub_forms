@@ -4,7 +4,7 @@
  *  Copyright notice
  *
  *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -40,6 +40,13 @@ class Tx_SlubForms_Domain_Model_Fieldsets extends Tx_Extbase_DomainObject_Abstra
 	 * @validate NotEmpty
 	 */
 	protected $title;
+
+	/**
+	 * shortname
+	 *
+	 * @var string
+	 */
+	protected $shortname;
 
 	/**
 	 * fields
@@ -128,6 +135,25 @@ class Tx_SlubForms_Domain_Model_Fieldsets extends Tx_Extbase_DomainObject_Abstra
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
+	}
+
+	/**
+	 * Returns the shortname
+	 *
+	 * @return string $shortname
+	 */
+	public function getShortname() {
+		return $this->shortname;
+	}
+
+	/**
+	 * Sets the shortname
+	 *
+	 * @param string $shortname
+	 * @return void
+	 */
+	public function setShortname($shortname) {
+		$this->shortname = $shortname;
 	}
 
 }

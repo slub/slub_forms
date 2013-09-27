@@ -9,7 +9,7 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, fields',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, fields,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, shortname, fields,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -100,6 +100,16 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim,required'
+			),
+		),
+		'shortname' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'exclude',
+			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fieldsets.shortname',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim,lower'
 			),
 		),
 		'fields' => array(

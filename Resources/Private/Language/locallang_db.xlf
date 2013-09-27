@@ -10,6 +10,9 @@
 			<trans-unit id="tx_slubforms_domain_model_fieldsets.title">
 				<source>Title</source>
 			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fieldsets.shortname">
+				<source>Short Name</source>
+			</trans-unit>
 			<trans-unit id="tx_slubforms_domain_model_fieldsets.fields">
 				<source>Fields</source>
 			</trans-unit>
@@ -63,7 +66,6 @@
 			<trans-unit id="tx_slubforms_domain_model_fields.validation">
 				<source>Validation</source>
 			</trans-unit>
-
 			<trans-unit id="tx_slubforms_domain_model_email">
 				<source>Email</source>
 			</trans-unit>
