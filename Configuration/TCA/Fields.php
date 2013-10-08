@@ -121,7 +121,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 		),
 		'type' => array(
 			'exclude' => 0,
-			'l10n_mode' => 'exclude',
+			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.type',
 			'config' => array(
 				'type' => 'select',

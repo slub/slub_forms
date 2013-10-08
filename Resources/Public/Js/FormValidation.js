@@ -1,7 +1,5 @@
 jQuery(document).ready(function() {
 
-	base = getBaseUrl();
-
 	disableAllHiddenForms();
 	$(function(){
 		$("input[type=radio]").click(function(){
@@ -21,7 +19,8 @@ jQuery(document).ready(function() {
  */
 function hideAllForms() {
 	$('.slub-forms-form').addClass('hide'); // show all fields and fieldsets
-	$('.slub-forms-fieldset').find('input').attr('disabled','disabled'); // XXXab
+	$('.slub-forms-fieldset').find('input').attr('disabled','disabled');
+	$('.slub-forms-fieldset').find('textarea').attr('disabled','disabled');
 }
 
 /**
@@ -30,7 +29,8 @@ function hideAllForms() {
  * @return void
  */
 function disableAllHiddenForms() {
-	$('.slub-forms-form.hide .slub-forms-fieldset').find('input').attr('disabled','disabled'); // XXXab
+	$('.slub-forms-form.hide .slub-forms-fieldset').find('input').attr('disabled','disabled');
+	$('.slub-forms-form.hide .slub-forms-fieldset').find('textarea').attr('disabled','disabled');
 }
 
 /**
@@ -41,7 +41,8 @@ function disableAllHiddenForms() {
  */
 function showForm(uid) {
 	$('#slub-forms-form-' + uid).removeClass('hide'); // hide current field
-	$('#slub-forms-form-' + uid).find('input').removeAttr('disabled'); // XXab
+	$('#slub-forms-form-' + uid).find('input').removeAttr('disabled');
+	$('#slub-forms-form-' + uid).find('textarea').removeAttr('disabled');
 }
 
 /**
@@ -51,20 +52,7 @@ function showForm(uid) {
  * @return	void
  */
 function hideForm(uid) {
-	$('.slub-forms-form-' + uid).addClass('hide'); // hide current field
-	$('.slub-forms-form-' + uid).find('input').attr('disabled','disabled'); // XXXab
+	$('#slub-forms-form-' + uid).addClass('hide'); // hide current field
+	$('#slub-forms-form-' + uid).find('input').attr('disabled','disabled');
+	$('#slub-forms-form-' + uid).find('textarea').attr('disabled','disabled');
 }
-
-/**
- * Read BaseUrl
- *
- * @return string	BaseUrl from Tag in DOM
- */
-function getBaseUrl() {
-	var base = $('base').attr('href');
-	if (!base || base == undefined) {
-		base = '';
-	}
-	return base;
-}
-

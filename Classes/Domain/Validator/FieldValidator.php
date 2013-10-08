@@ -100,7 +100,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 				// check for file upload
 				if ($singleField->getType() == 'File') {
 
-					if (isset($_FILES['tx_slubforms_sf'])) {
+					if (isset($_FILES['tx_slubforms_sf']) && $_FILES['tx_slubforms_sf']['size'][$getfieldset][$singleField->getUid()] > 0) {
 						// get field configuration
 						$config = $this->configToArray($singleField->getConfiguration());
 						//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf']['size'], 'isValid: size... ');

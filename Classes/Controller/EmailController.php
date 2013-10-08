@@ -110,17 +110,10 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail, array $field = array()) {
 
 		$field = $this->getParametersSafely('field');
-	//~ t3lib_utility_Debug::debug($field, '$createAction field:... ');
-		//~ $formId = $this->getParametersSafely('formId');
 
 		$senderEmail = $this->getParametersSafely('senderEmail');
 
 		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
-	//~ t3lib_utility_Debug::debug($form->getUid(), '$createAction form id:... ');
-	//~ t3lib_utility_Debug::debug($form->getShortname(), '$createAction form getShortname:... ');
-	//~ t3lib_utility_Debug::debug($form->getRecipient(), '$createAction form getRecpient:... ');
-
-			//~ t3lib_utility_Debug::debug($_FILES, '$createAction 1 $_FILES:... ');
 
 		// should be usually only one fieldset
 		foreach($field as $getfieldset => $getfields) {
@@ -211,7 +204,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		if ($this->settings['sendConfirmationEmailToCustomer']) {
 			$this->sendTemplateEmail(
 				array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
-				array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('tx_slubforms.be.senderEmailAddress', 'slub_forms') . ' - noreply'),
+				array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
 				'Ihre Nachricht: ' . $form->getTitle(),
 				'ConfirmEmail',
 				array(	'email' => $newEmail,
@@ -227,7 +220,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		// email to event owner
 		$this->sendTemplateEmail(
 			array($form->getRecipient() => ''),
-			array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('tx_slubevents.be.eventmanagement', 'slub_events') . ' - noreply'),
+			array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
 			'Formular: ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
 			'FormEmail',
 			array(	'email' => $newEmail,

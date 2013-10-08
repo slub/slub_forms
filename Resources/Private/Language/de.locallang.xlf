@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-09-26T12:44:39Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-10-08T09:27:19Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
@@ -24,6 +24,10 @@
 		<trans-unit id="slub-forms.file-accept-size" approved="yes" xml:space="preserve">
 			<source>MB</source>
 			<target>MB</target>
+		</trans-unit>
+		<trans-unit id="slub-forms.senderEmailName" approved="yes" xml:space="preserve">
+			<source>SLUB Forms</source>
+			<target>SLUB Formulare</target>
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email" approved="yes" xml:space="preserve">
 			<source>Email</source>

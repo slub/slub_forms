@@ -38,6 +38,7 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
+		'requestUpdate' => 'sys_language_uid',
 		'searchFields' => 'title,fields,',
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Fieldsets.php',
 		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_fieldsets.gif'

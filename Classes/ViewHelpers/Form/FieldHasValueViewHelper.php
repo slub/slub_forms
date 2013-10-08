@@ -79,7 +79,7 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 		if ($this->controllerContext->getRequest()->hasArgument('prefill')) {
 			$prefilljson = $this->controllerContext->getRequest()->getArgument('prefill');
 			$prefill = json_decode($prefilljson);
-			if (strlen($field->getShortname())>0) {
+			if (strlen($field->getShortname()) > 0) {
 				//~ $shortname =  trim($config['shortname']);
 				if (!empty($prefill->{$field->getShortname()}))
 					return $prefill->{$field->getShortname()};
