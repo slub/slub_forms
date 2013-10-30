@@ -3,11 +3,48 @@
 .tx-slub-forms fieldset {
 	border: none;
 }
+
 /* submit button */
+/*
 .tx-slub-forms .submit {
 	width: 60%;
 	float: right;
 }
+*/
+#leftcol .tx-slub-forms input.submit {
+  border: 0 none;
+  border-bottom: 2px solid #900;
+  background: #c00;
+  padding: 10px;
+  margin: 12px 0 0 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #fff;
+  width: 50%;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: none;
+}
+
+#leftcol .tx-slub-forms input.submit:hover {
+	background: #f00;
+	border-bottom-color: #c00;
+}
+#leftcol .tx-slub-forms input.submit:active {
+	background: #f00;
+	border-bottom: 0 none;
+	border-top: 2px solid #c00;
+}
+#leftcol .tx-slub-forms input.submit:disabled {
+	background: rgba(255, 0, 0, 0.4);
+	border-bottom: 0 none;
+	border-top: 0 none;
+	cursor: progress;
+}
+
 
 #leftcol ul {
 	list-style: none;

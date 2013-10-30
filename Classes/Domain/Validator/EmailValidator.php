@@ -67,33 +67,15 @@ class Tx_SlubForms_Domain_Validator_EmailValidator extends Tx_Extbase_Validation
 
 	}
 
-        /**
+	/**
 	 * Validation of given Params
 	 *
 	 * @param Tx_SlubForms_Domain_Model_Email $newEmail
 	 * @return bool
 	 */
 	public function isValid($newEmail) {
-return true;
-//			t3lib_utility_Debug::debug($newSubscriber->getEditcode(), 'getEditcode:... ');
-		//~ if (strlen($newEmail->getSenderName())<3) {
-			//~ $error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_name', 1000);
-			//~ $this->result->forProperty('senderName')->addError($error);
-			//~ // usually $this->addError is enough but this doesn't set the CSS errorClass in the form-viewhelper :-(
-//~ //			$this->addError('val_name', 1000);
-//~
-			//~ $this->isValid = false;
-		//~ }
-		//~ if (!t3lib_div::validEmail($newEmail->getSenderEmail())) {
-//~ t3lib_utility_Debug::debug($newEmail->getSenderEmail(), '$getSenderEmail is empty:... ');
-			//~ $error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1100);
-			//~ $this->result->forProperty('senderEmail')->addError($error);
-//~ //			$this->addError('val_email', 1100);
-//~
-			//~ $this->isValid = false;
-		//~ }
+
 		if ($newEmail->getEditcode() != $this->getSessionData('editcode')) {
-//~ t3lib_utility_Debug::debug($newEmail->getEditcode(), '$getEditcode is empty:... ');
 			$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_editcode', 1140);
 			$this->result->forProperty('editcode')->addError($error);
 //			$this->addError('val_editcode', 1140);

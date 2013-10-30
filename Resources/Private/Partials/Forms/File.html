@@ -1,7 +1,7 @@
 {namespace sf=Tx_SlubForms_ViewHelpers}
-<label for="tx_slubforms_sf-field-{fieldset.uid}-{field.uid}">{field.title}</label>
-<f:form.upload id="tx_slubforms_sf-field-{fieldset.uid}-{field.uid}" title="<f:translate key='slub-forms.file-accept-info' /> <sf:form.fileValidationAcceptInfo field='{field}' />" name="field[{fieldset.uid}][{field.uid}]" />
+<label for="tx_slubforms_sf-field-{form.uid}-{fieldset.uid}-{field.uid}">{field.title}</label>
+<f:form.upload id="tx_slubforms_sf-field-{form.uid}-{fieldset.uid}-{field.uid}" title="<f:translate key='slub-forms.file-accept-info' /> <sf:form.fileValidationAcceptInfo field='{field}' />" name="field[{fieldset.uid}][{field.uid}]" />
 <f:form.hidden name="field[{fieldset.uid}][{field.uid}]" value="{field.uid}" />
 
-<sf:form.fileValidationFooterJs field='{field}' fieldset='{fieldset}' />
+<sf:form.fileValidationFooterJs form='{form}' field='{field}' fieldset='{fieldset}' />
 

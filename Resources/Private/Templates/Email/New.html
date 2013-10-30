@@ -57,7 +57,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:section name="main">
 {namespace sf=Tx_SlubForms_ViewHelpers}
 
-
 <f:if condition="{forms}">
 	<f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" >
 		<div class="slub-form-tree">
@@ -75,7 +74,20 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</f:form>
 
 <script>
-$( "#slubForm" ).validate();
+$( "#slubForm" ).validate({
+  submitHandler: function(form) {
+
+    function updateTime() {
+        $('#slubForm input:submit').val($('#slubForm input:submit').val() + ' >');
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000); // 5 * 1000 miliseconds
+
+	$('input:submit').attr("disabled", true);
+    form.submit();
+  }
+ });
 $.validator.addMethod('filesize', function(value, element, param) {
     // value = file name
     // element = element to validate (<input>)
@@ -84,7 +96,7 @@ $.validator.addMethod('filesize', function(value, element, param) {
 });
 </script>
 
-	</f:if>
+</f:if>
 
 
 </f:section>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-10-08T09:27:19Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-10-29T13:32:49Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
@@ -10,8 +10,8 @@
 			<target>Bitte geben Sie eine gültige Email-Adresse an.</target>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_number" approved="yes" xml:space="preserve">
-			<source>Please enter a valid SLUB user ID.</source>
-			<target>Bitte geben Sie eine gültige SLUB Benutzernummer ein.</target>
+			<source>Please enter a valid number.</source>
+			<target>Bitte geben Sie eine Zahl ein.</target>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_text" approved="yes" xml:space="preserve">
 			<source>Please fill out the field.</source>
@@ -132,6 +132,10 @@
 		<trans-unit id="validationerror_val_name" approved="yes" xml:space="preserve">
 			<source>Please enter your name.</source>
 			<target>Bitte geben Sie Ihren Namen ein.</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_number" approved="yes" xml:space="preserve">
+			<source>Please enter a valid number.</source>
+			<target>Bitte geben Sie eine gültige Zahl ein.</target>
 		</trans-unit>
 		</body>
 	</file>

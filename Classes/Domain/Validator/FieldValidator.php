@@ -97,6 +97,16 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 					}
 				}
 
+				// check for senderName
+				if ($singleField->getIsSenderName()) {
+					if (empty($getfields[$singleField->getUid()])) {
+						// seems to be empty
+						$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_name', 1200);
+						$this->result->forProperty('senderName')->addError($error);
+						$this->isValid = false;
+					}
+				}
+
 				// check for file upload
 				if ($singleField->getType() == 'File') {
 
@@ -107,7 +117,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 						//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()], 'isValid: ... ');
 						if ($config['file-accept-size'] < $_FILES['tx_slubforms_sf']['size'][$getfieldset][$singleField->getUid()]) {
 							// seems to be no valid email address
-							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_size', 1200);
+							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_size', 1300);
 							$this->result->forProperty('content')->addError($error);
 							$this->isValid = false;
 						}
@@ -131,7 +141,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 
 						if (!is_array($allowedtypes[$found_mimetype[0]]) || (in_array($found_mimetype[1], $allowedtypes[$found_mimetype[0]], TRUE) === FALSE &&
 								in_array('*', $allowedtypes[$found_mimetype[0]], TRUE) === FALSE)) {
-							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_mimetype', 1300);
+							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_mimetype', 1400);
 							$this->result->forProperty('content')->addError($error);
 							$this->isValid = false;
 						}
@@ -140,34 +150,43 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 
 				}
 
+				// in case the javascript validation didn't work, we have to check it again here:
+				if ($singleField->getType() == 'Textfield') {
+
+					switch($singleField->getValidation()) {
+
+						case 'text':
+							break;
+						case 'email':
+							if (!empty($getfields[$singleField->getUid()]) && !t3lib_div::validEmail($getfields[$singleField->getUid()])) {
+								// seems to be no valid email address
+								$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1100);
+								$this->result->forProperty('senderEmail')->addError($error);
+								$this->isValid = false;
+							}
+							break;
+						case 'number':
+							if (!empty($getfields[$singleField->getUid()]) && !t3lib_utility_Math::canBeInterpretedAsInteger($getfields[$singleField->getUid()])) {
+								// seems to be no valid email address
+								$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_number', 1100);
+								$this->result->forProperty('content')->addError($error);
+								$this->isValid = false;
+							}
+							break;
+						case 'tel':
+							break;
+						case 'url':
+							break;
+						default:
+							break;
+
+					}
+
+				}
+
 			}
 
 		}
-
-//			t3lib_utility_Debug::debug($newSubscriber->getEditcode(), 'getEditcode:... ');
-		//~ if (strlen($newEmail->getSenderName())<3) {
-			//~ $error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_name', 1000);
-			//~ $this->result->forProperty('senderName')->addError($error);
-			//~ // usually $this->addError is enough but this doesn't set the CSS errorClass in the form-viewhelper :-(
-//~ //			$this->addError('val_name', 1000);
-//~
-			//~ $this->isValid = false;
-		//~ }
-		//~ if (!t3lib_div::validEmail($newEmail->getSenderEmail())) {
-//~ t3lib_utility_Debug::debug($newEmail->getSenderEmail(), '$getSenderEmail is empty:... ');
-			//~ $error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1100);
-			//~ $this->result->forProperty('senderEmail')->addError($error);
-//~ //			$this->addError('val_email', 1100);
-//~
-			//~ $this->isValid = false;
-		//~ }
-		//~ if ($newEmail->getEditcode() != $this->getSessionData('editcode')) {
-			//~ $error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_editcode', 1140);
-			//~ $this->result->forProperty('editcode')->addError($error);
-//~ //			$this->addError('val_editcode', 1140);
-			//~ $this->isValid = false;
-		//~ }
-//~ return true;
 
 		return $this->isValid;
   	}

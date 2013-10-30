@@ -62,6 +62,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 */
 	public function newAction(Tx_SlubForms_Domain_Model_Email $newEmail = NULL) {
 
+		// show only forms selected in flexform
 		if (!empty($this->settings['formsSelection']))
 			$forms = $this->formsRepository->findAllByUidsTree(t3lib_div::intExplode(',', $this->settings['formsSelection'], TRUE));
 		else
@@ -69,7 +70,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 		$this->view->assign('newEmail', $newEmail);
 		$this->view->assign('forms', $forms);
-		//~ $this->view->assign('formId', $formId);
 	}
 
 	/**
@@ -187,11 +187,21 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			$contentText .= '</ul>';
 
 			$newEmail->setContent(trim($contentText));
-
-			if (!empty($senderEmail) && !empty($senderName)) {
-				$newEmail->setSenderName($senderName);
+//~ t3lib_utility_Debug::debug($form, 'createAction: form... ');
+			// check for senderEmail (once more)
+			if (!empty($senderEmail))
 				$newEmail->setSenderEmail($senderEmail);
-			}
+			else
+				// we can't send an email without the senderEmail -->forward back to newAction
+				$this->forward('new', NULL, NULL, array('form' => $form->getUid()));
+
+			// check for senderName (once more)
+			if (!empty($senderName))
+				$newEmail->setSenderName($senderName);
+			else
+				// if nothing helps, we can send without the senderName but we have to set something.
+				$newEmail->setSenderName('-');
+
 
 		}
 

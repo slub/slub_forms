@@ -1,24 +1,27 @@
 <?php
-
-/*                                                                        *
- * This script is backported from the FLOW3 package "TYPO3.Fluid".        *
- *                                                                        *
- * It is free software; you can redistribute it and/or modify it under    *
- * the terms of the GNU Lesser General Public License, either version 3   *
- *  of the License, or (at your option) any later version.                *
- *                                                                        *
- *                                                                        *
- * This script is distributed in the hope that it will be useful, but     *
- * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHAN-    *
- * TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser       *
- * General Public License for more details.                               *
- *                                                                        *
- * You should have received a copy of the GNU Lesser General Public       *
- * License along with the script.                                         *
- * If not, see http://www.gnu.org/licenses/lgpl.html                      *
- *                                                                        *
- * The TYPO3 project - inspiring people to share!                         *
- *                                                                        */
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
+ *
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
 
 /**
  * Validation results view helper
@@ -35,19 +38,20 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 	/**
 	 * Looks for already checked form from last request
 	 *
+	 * @param Tx_SlubForms_Domain_Model_Form $form
 	 * @param Tx_SlubForms_Domain_Model_Fields $field
 	 * @param Tx_SlubForms_Domain_Model_Fieldsets $fieldset
 	 * @return string
 	 * @api
 	 */
-	public function render($field = NULL, $fieldset = NULL) {
+	public function render($form = NULL, $field = NULL, $fieldset = NULL) {
 
 		// get field configuration
 		$config = $this->configToArray($field->getConfiguration());
 		if (!empty($config['file-accept-mimetypes'])) {
 			// e.g. file-mimetypes = audio/*, image/*, application/
 			$js1 = '<script>
-					$("#tx_slubforms_sf-field-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
+					$("#tx_slubforms_sf-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
 					required: '.($field->getRequired() ? 'true' : 'false').',
 					accept: "'.$config['file-accept-mimetypes'].'"';
 					if (!empty($config['file-accept-size']))
@@ -56,11 +60,13 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 			$js1 .= '});
 			</script>
 			';
+
+			// dirty but working. Has to be called after the <form> and the jqueryvalidation validate()
+			// getPagerender() doesn't work in 4.7.x....
+			// see: http://forge.typo3.org/issues/22273
+			$GLOBALS['TSFE']->additionalFooterData['tx_slub_forms'] .= $js1;
+
 		}
-
-
-		// dirty but working. Has to be called after the <form> and the jqueryvalidation validate()
-		$GLOBALS['TSFE']->additionalFooterData['tx_slub_forms'] = $js1;
 
 	}
 
