@@ -230,7 +230,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		// email to event owner
 		$this->sendTemplateEmail(
 			array($form->getRecipient() => ''),
-			array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
+			array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
 			'Formular: ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
 			'FormEmail',
 			array(	'email' => $newEmail,
