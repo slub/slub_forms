@@ -13,7 +13,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:section name="categoryTree">
 	<ul>
 		<f:for each="{categories}" key="id" as="category">
-				<li>
+				<li class="slub-form-select-{id}">
 					<f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" checked="<sf:form.formId form='{category.item}' /> == {category.item.uid}" />
 					<label for="slub-form-select-{id}">{category.item.title}</label>
 					<f:if condition="{category.children}">
@@ -35,7 +35,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
 				<div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname} hide">
 			</f:else>
 		</f:if>
-		<h3 class="formtitle">{form.item.title}</h3>
+		<h3 class="formtitle"><span class="slub-forms-back2select" title="zurück zur Formularauswahl">&larr; <f:translate key="slub-forms.back" /></span><br>
+			{form.item.title}
+		</h3>
 		<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
 			<fieldset id="slub-forms-fieldset-{formid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
 					<legend>{fieldset.title}</legend>
@@ -60,7 +62,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:if condition="{forms}">
 	<f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" >
 		<div class="slub-form-tree">
-			<div class="cats"><p>Schreiben Sie uns...</p>
+			<div class="cats">
 			<f:render section="categoryTree" arguments="{categories: forms}" />
 			</div>
 		</div>

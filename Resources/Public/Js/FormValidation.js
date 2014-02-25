@@ -1,6 +1,26 @@
 jQuery(document).ready(function() {
 
+	$('.slub-form-tree ul ul li').click(function() {
+		$('.slub-form-tree input:radio').each(function() {
+			$(this).removeAttr('checked');
+		});
+		$(this).find('input:radio').attr('checked', 'checked');
+		$('.slub-form-tree').css({'margin-bottom':'-400px'}).fadeOut(700,function() {
+			$('.slub-form-tree').css({'margin-bottom':'20px'});
+		});
+	});
+
+	$('.slub-forms-back2select').click(function() {
+		formID = $(this).parents('.slub-forms-form').attr('id').split('-');
+		hideForm(formID[3]);
+		$('.slub-form-tree').fadeIn();
+	});
+
+	$('.slub-form-tree input:radio:checked').each(function() {
+			$('.slub-form-tree').fadeOut();
+	});
 	disableAllHiddenForms();
+
 	$(function(){
 		$("input[type=radio]").click(function(){
 			var formid = $(this).val();
@@ -29,8 +49,10 @@ function hideAllForms() {
  * @return void
  */
 function disableAllHiddenForms() {
+
 	$('.slub-forms-form.hide .slub-forms-fieldset').find('input').attr('disabled','disabled');
 	$('.slub-forms-form.hide .slub-forms-fieldset').find('textarea').attr('disabled','disabled');
+
 }
 
 /**

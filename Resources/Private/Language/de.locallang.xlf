@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-10-29T13:32:49Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-02-24T13:27:51Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
 		<body>
+		<trans-unit id="slub-forms.back" approved="yes" xml:space="preserve">
+			<source>back</source>
+			<target>zurück</target>
+		</trans-unit>
 		<trans-unit id="slub-forms.error_email" approved="yes" xml:space="preserve">
 			<source>Please enter a valid email address.</source>
 			<target>Bitte geben Sie eine gültige Email-Adresse an.</target>

@@ -1,16 +1,363 @@
-.hide { display: none; }
 
-.tx-slub-forms fieldset {
-	border: none;
-}
 
-/* submit button */
+
 /*
-.tx-slub-forms .submit {
-	width: 60%;
-	float: right;
-}
+    basic tool setup
+    -------------------------------------------------------------------------------------
 */
+
+.hide {
+  display: none;
+}
+
+.slub-forms-form {
+  float: none;
+  clear: both;
+}
+
+
+
+/*
+    categories tree
+    -------------------------------------------------------------------------------------
+*/
+
+.slub-form-tree .cats {
+  position: relative;
+  width: 570px;
+  height: 380px;
+  background: url(../Images/slub-form-tree-bg.png) no-repeat 0 0;
+  margin: 20px 0;
+  display: block;
+}
+
+#leftcol .slub-form-tree .cats ul {
+  list-style: none;
+  list-style-type: none;
+  list-style-image: none;
+  margin: 0;
+}
+
+#leftcol .slub-form-tree .cats label { width: auto; float: none; margin: 0; }
+
+
+.slub-form-tree .cats ul li input[type="radio"] {
+  display: none;
+}
+
+.slub-form-tree .cats>ul>li {
+  position: absolute;
+  font: italic bold 13px/1.6 "Trebuchet MS", Verdana, Arial, sans-serif;
+  color: #c00;
+  cursor: pointer;
+}
+
+.slub-form-tree .cats>ul>li:before {
+  position: absolute;
+  bottom: 0px;
+  width: 80px;
+  height: 80px;
+  background: url(../Images/slub-form-tree-bubbles.png) no-repeat 0 0;
+  content: " ";
+}
+
+.slub-form-tree .cats ul .slub-form-select-2 {
+  top: 95px;
+  left: 120px;
+}
+
+.slub-form-tree .cats ul .slub-form-select-2:before {
+  left: -75px;
+  background-position: 0 0;
+}
+
+.slub-form-tree .cats ul .slub-form-select-6 {
+  top: 80px;
+  right: 140px;
+}
+
+.slub-form-tree .cats ul .slub-form-select-6:before {
+  right: -75px;
+  background-position: -80px 0;
+}
+
+.slub-form-tree .cats ul .slub-form-select-14 {
+  top: 210px;
+  left: 155px;
+}
+
+.slub-form-tree .cats ul .slub-form-select-14:before {
+  left: -75px;
+  background-position: -160px 0;
+}
+
+.slub-form-tree .cats ul .slub-form-select-18 {
+  top: 190px;
+  right: 110px;
+}
+
+.slub-form-tree .cats ul .slub-form-select-18:before {
+  left: -75px;
+  background-position: -240px 0;
+}
+
+.slub-form-tree .cats ul .slub-form-select-21 {
+  top: 260px;
+  right: 70px;
+}
+
+.slub-form-tree .cats ul .slub-form-select-21:before {
+  right: -75px;
+  background-position: -320px 0;
+}
+
+.slub-form-tree .cats>ul>li>ul {
+  position: absolute;
+  background: #fff;
+  background: rgba(255,255,255,0.9);
+  top: -60px;
+  left: -80px;
+  visibility:hidden;
+  opacity:0;
+  font: normal 300 12px/1.6 Verdana, Arial, Helvetica, sans-serif;
+  color: #087;
+  z-index: 1000;
+  width: 380px;
+  -o-box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  -webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  border-left: 1px solid #256;
+   -moz-transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
+  -o-transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
+  transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
+}
+
+.slub-form-tree .cats ul ul:before {
+  content: ' ';
+  position: absolute;
+  top: 30px;
+  left: -10px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #256 transparent transparent;
+}
+
+.slub-form-tree .cats > ul > li:hover > ul,
+.slub-form-tree .cats > ul > li:active > ul {
+  left:-50px;
+  visibility:visible;
+  opacity:1;
+}
+
+.slub-form-tree .cats ul .slub-form-select-6 > ul {
+  left: 120px;
+}
+
+.slub-form-tree .cats ul .slub-form-select-6:hover > ul {
+  left: 150px;
+}
+
+.slub-form-tree .cats ul .slub-form-select-21 > ul {
+  left: 220px;
+}
+
+.slub-form-tree .cats ul .slub-form-select-21:hover > ul {
+  left: 230px;
+}
+
+
+@media only screen and (min-width : 1224px) {
+   /* ipad bug */
+  .slub-form-tree .cats>ul>li>ul {
+    -webkit-transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
+  }
+}
+
+.slub-form-tree .cats ul ul li {
+  border-bottom: 1px dotted #ccc;
+}
+
+.slub-form-tree .cats ul ul li label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  padding: 6px 10px;
+
+}
+
+.slub-form-tree .cats ul ul li:hover {
+  background: #078;
+  color: #fff;
+}
+
+.slub-forms-back2select {
+  cursor: pointer;
+  border-bottom: 1px dotted #ccc;
+  font-size: 0.6em;
+  margin-bottom: 10px;
+}
+
+.slub-forms-back2select:hover {
+  color: #f00;
+}
+
+
+
+
+
+
+
+
+
+#leftcol .tx-slub-forms fieldset {
+  border: 0 none;
+  background: #d8e9ec;
+  padding: 10px;
+  margin: 12px 0;
+  border: 1px solid #9bb;
+  border-width: 0 1px 1px 0;
+}
+
+#leftcol .tx-slub-forms fieldset.intro {
+  background: transparent;
+  padding: 0;
+  border: 0 none;
+}
+
+#leftcol .tx-slub-forms fieldset legend {
+  text-align: right;
+  background: #d8e9ec;
+  padding: 2px 10px;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: #87b4bc;
+}
+
+#leftcol .tx-slub-forms fieldset.submit legend,
+#leftcol .tx-slub-forms fieldset.intro legend,
+#leftcol .tx-slub-forms fieldset.intro .field_title,
+#leftcol .tx-slub-forms fieldset.intro > br {
+  display: none;
+}
+
+
+#leftcol .tx-slub-forms fieldset:last-child {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+}
+
+
+#leftcol .tx-slub-forms fieldset br {
+  clear: both;
+}
+
+
+#leftcol .tx-slub-forms .slub-forms-form label {
+  display: block;
+  float: left;
+  width: 30%;
+  color: #666;
+  font-size: 11px;
+  clear: both;
+  margin: 5px 0;
+}
+
+#leftcol .tx-slub-forms input[type="text"],
+#leftcol .tx-slub-forms input[type="email"],
+#leftcol .tx-slub-forms input[type="number"],
+#leftcol .tx-slub-forms textarea {
+  padding: 6px;
+  border: 1px solid #9bb;
+  border-color: #9bb transparent transparent #9bb;
+  display: block;
+  width: 60%;
+  margin: 2px 0;
+  font-size: 13px;
+  float: left;
+  text-align: left;
+  background: #fff;
+}
+
+#leftcol .tx-slub-forms input[type="text"].error,
+#leftcol .tx-slub-forms input[type="email"].error,
+#leftcol .tx-slub-forms input[type="number"].error,
+#leftcol .tx-slub-forms textarea.error {
+  border-color: #900 #f00 #f00 #900;
+}
+
+#leftcol .tx-slub-forms input[type="checkbox"]:focus + .altCheckElement,
+#leftcol .tx-slub-forms input[type="text"]:focus,
+#leftcol .tx-slub-forms input[type="email"]:focus,
+#leftcol .tx-slub-forms input[type="number"]:focus,
+#leftcol .tx-slub-forms textarea:focus {
+ color: #278;
+ border-color: #278 #49c #49c #278;
+ -webkit-box-shadow: 0 0 6px rgba(34,119,135,0.6);
+ -moz-box-shadow: 0 0 6px rgba(34,119,135,0.6);
+ -o-box-shadow: 0 0 6px rgba(34,119,135,0.6);
+ box-shadow: 0 0 6px rgba(34,119,135,0.6);
+}
+
+#leftcol .tx-slub-forms input[type="text"].valid,
+#leftcol .tx-slub-forms input[type="email"].valid,
+#leftcol .tx-slub-forms input[type="number"].valid {
+  background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHAQMAAAA77l8BAAAABlBMVEX///9Nqk1xBaSjAAAAAXRSTlMAQObYZgAAAB5JREFUeF4FwEENAAAEAMDTQAwxPAQzyY1mBcdQpAcVgQHA8g/brwAAAABJRU5ErkJggg==') no-repeat right center;
+}
+
+#leftcol .tx-slub-forms label.error {
+  float: none;
+  padding: 10px;
+  line-height: 1.4;
+  color: #fff;
+  background: #f00;
+  position: absolute;
+  right: -300px;
+  width: 300px;
+  margin: 0;
+  z-index: 1;
+}
+
+#leftcol .tx-slub-forms label.error:before {
+  position: absolute;
+  top: 50%;
+  margin-top: -5px;
+  left: -10px;
+  width: 0px;
+  height: 0px;
+  border: 5px solid #f00;
+  border-color: transparent #ff0000 transparent transparent;
+  content: "";
+}
+
+#leftcol .tx-slub-forms input[type="checkbox"] {
+  opacity: 0;
+  opacity: 1\9; /* dirty but fast ie8-hack */
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
+}
+
+#leftcol .tx-slub-forms .altCheckElement {
+  margin: 5px 0 0 -20px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid #9bb;
+  border-color: transparent #9bb #9bb transparent;
+  display: inline-block;
+  display: none\9; /* dirty but fast ie8-hack */
+}
+
+#leftcol .tx-slub-forms input[type="checkbox"]:checked + .altCheckElement {
+ background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAAr0lEQVQoz2NgIAEodZSLA/EBILZmIBUANckD8S0g/g/EX4HYA5siERyaNYD4MVQzDP8E4jBkReVA/AGI7dA0GwPxazTNMDwDpIARiDuQBL8BsQ9Usz0Qf8ShuRukF6RoKhbJX1AF33BorkJ2YiTUP/+JwH+BOBNbIHlDQxafZpCrIvFFkx00ELFp/gGyhJi4NgTil2iavxGlGckQdSB+CNWMEa3EGiIHxIeA2IiQWgDbZ8S4DZyXDwAAAABJRU5ErkJggg==') no-repeat center center;
+}
+
 #leftcol .tx-slub-forms input.submit {
   border: 0 none;
   border-bottom: 2px solid #900;
@@ -20,6 +367,7 @@
   font-size: 13px;
   text-transform: uppercase;
   color: #fff;
+
   width: 50%;
   cursor: pointer;
   -webkit-border-radius: 5px;
@@ -30,180 +378,25 @@
 }
 
 #leftcol .tx-slub-forms input.submit:hover {
-	background: #f00;
-	border-bottom-color: #c00;
+  background: #f00;
+  border-bottom-color: #c00;
 }
+
 #leftcol .tx-slub-forms input.submit:active {
-	background: #f00;
-	border-bottom: 0 none;
-	border-top: 2px solid #c00;
-}
-#leftcol .tx-slub-forms input.submit:disabled {
-	background: rgba(255, 0, 0, 0.4);
-	border-bottom: 0 none;
-	border-top: 0 none;
-	cursor: progress;
+  background: #f00;
+  border-bottom: 0 none;
+  border-top: 2px solid #c00;
 }
 
 
-#leftcol ul {
-	list-style: none;
-	margin: 0;
-}
-#leftcol p {
-	margin: 0;
+#leftcol .tx-slub-forms span.required {
+  font-weight: bold;
+  color: #9bb;
 }
 
-#leftcol form label {
-}
 
-/* width of input labels */
-#leftcol .tx-slub-forms form label  {
-	width: 30%;
-}
-#leftcol .tx-slub-forms form label.error  {
-	width: 60%;
-}
-
-/* width of label in form selection above */
-#leftcol .tx-slub-forms form .cats label  {
-	width: 380px;
-	margin: 0;
-}
-
-#leftcol .tx-slub-forms form input[type],
-#leftcol .tx-slub-forms form input[type="text"],
-#leftcol .tx-slub-forms form input[type="email"],
-#leftcol .tx-slub-forms form input[type="number"]
- {
-	position: relative;
-	border: none;
-	border-bottom: 1px solid #333;
-	padding: 3px;
-	width: 220px;
-}
-/* remove up/down buttons */
-.tx-slub-forms form input[type=number]::-webkit-inner-spin-button,
-.tx-slub-forms form input[type=number]::-webkit-outer-spin-button {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-
-.slub-form-tree {
-	display: block;
-
-	font-size: 20px;
-	line-height: 49px;
-	padding: 0 20px;
-	text-decoration: none;
-
-    width = 100%;
-
-	line-height: 100%;
-}
-
-.slub-form-tree .cats p {
-	padding: 20px;
-	cursor: pointer;
-	background: #fefefe;
-	background: -moz-linear-gradient(top, #fefefe 0%, #ececec 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fefefe), color-stop(100%, #ececec));
-	background: -webkit-linear-gradient(top, #fefefe 0%, #ececec 100%);
-	background: -o-linear-gradient(top, #fefefe 0%, #ececec 100%);
-	background: -ms-linear-gradient(top, #fefefe 0%, #ececec 100%);
-	background: linear-gradient(top, #fefefe 0%, #ececec 100%);
-}
-
-.slub-form-tree ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	z-index: 1000;
-
-	-o-box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-	-moz-box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-	-webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-	box-shadow: 0 3px 8px rgba(0,0,0,0.4); border-left: 1px solid #256;
-	-moz-transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
-	-o-transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
-	transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
-}
-
-
-.slub-form-tree:after,
-.slub-form-tree ul:after {
-  content: '';
-  display: block;
-  clear: both;
-}
-
-
-/* ### Global Settings >>> colors, borders and images  ### */
-
-.slub-form-tree .cats ul {
-	display: none;
-	background-color: #fff;
-	position: absolute;
-	top: 16px;
-	left: 230px;
-}
-.slub-form-tree .cats:hover > ul {
-	display: block;
-}
-
-.slub-form-tree .cats ul li {
-	position: relative;
-	cursor: pointer;
-
-	list-style: none;
-}
-#leftcol .slub-form-tree .cats ul li > ul {
-	display: none;
-	position: absolute;
-}
-
-#leftcol .slub-form-tree .cats ul li:hover > ul {
-	display: block;
-}
-.slub-form-tree .cats ul:before {
-    content: ' ';
-    position: absolute;
-    top: 10px;
-    left: -10px;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent #256 transparent transparent;
-}
-
-/* remove radio bullets */
-.slub-form-tree .cats ul li input[type="radio"] {
-    display:none;
-}
-
-/* main level link*/
-.slub-form-tree .cats ul li input[type="radio"] + label {
-	  border-bottom: 1px dotted #ccc;
-	  filter: none;
-	  display: block;
-	  line-height: 120%;
-	  padding: 10px;
-	  margin: 0;
-	  width: 360px;
-	  color: #09a;
-	  cursor: pointer;
-
-}
-
-/* sub levels link hover */
-.slub-form-tree .cats li input[type="radio"] + label:hover {
-  color: #fff;
-  background: #09a;
-}
-
-
-.tx-slub-forms .error,
-.tx-slub-forms .slub-form-error {
-	color: red;
 }
