@@ -15,16 +15,15 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:section name="main">
 
 <div class="confirmation">
+
+<h3 class="formtitle">{form.title}</h3>
+
 <p><f:translate key="tx_slubforms_domain_model_email.salutation" /> {email.senderName},</p>
 
 <p>&nbsp;</p>
 <p>Vielen Dank für Ihre Mitteilung.</p>
 
-<p>&nbsp;</p>
-
 <p>Folgende Daten haben wir von Ihnen erhalten:</p>
-
-<p>&nbsp;</p>
 
 <p><b>{form.title}</b></p>
 
@@ -33,8 +32,6 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<li>{fieldname}: <b>{line}</b></li>
 </f:for>
 </ul>
-
-<p>&nbsp;</p>
 
 <p><f:translate key="tx_slubforms_domain_model_email.closing" /></p>
 

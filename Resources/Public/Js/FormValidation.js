@@ -16,6 +16,14 @@ jQuery(document).ready(function() {
 		$('.slub-form-tree').fadeIn();
 	});
 
+	$('.anonymize-form').each(function() {
+		$(this).click(function() {
+			$(this).parents('.slub-forms-form').find('input[type=text]').val('anonym');
+			$(this).parents('.slub-forms-form').find('input[type=number]').val('');
+			$(this).parents('.slub-forms-form').find('input[type=email]').val('anonym@slub-dresden.de');
+		});
+	});
+
 	$('.slub-form-tree input:radio:checked').each(function() {
 			$('.slub-form-tree').fadeOut();
 	});

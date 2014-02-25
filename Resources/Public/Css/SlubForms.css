@@ -204,14 +204,6 @@
   color: #f00;
 }
 
-
-
-
-
-
-
-
-
 #leftcol .tx-slub-forms fieldset {
   border: 0 none;
   background: #d8e9ec;
@@ -358,7 +350,8 @@
  background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAAr0lEQVQoz2NgIAEodZSLA/EBILZmIBUANckD8S0g/g/EX4HYA5siERyaNYD4MVQzDP8E4jBkReVA/AGI7dA0GwPxazTNMDwDpIARiDuQBL8BsQ9Usz0Qf8ShuRukF6RoKhbJX1AF33BorkJ2YiTUP/+JwH+BOBNbIHlDQxafZpCrIvFFkx00ELFp/gGyhJi4NgTil2iavxGlGckQdSB+CNWMEa3EGiIHxIeA2IiQWgDbZ8S4DZyXDwAAAABJRU5ErkJggg==') no-repeat center center;
 }
 
-#leftcol .tx-slub-forms input.submit {
+#leftcol .tx-slub-forms input.submit,
+#leftcol .anonymize-form {
   border: 0 none;
   border-bottom: 2px solid #900;
   background: #c00;
@@ -375,7 +368,12 @@
   -o-border-radius: 5px;
   border-radius: 5px;
   text-shadow: none;
+  text-align: center;
 }
+
+#leftcol .anonymize-form { padding: 5px 10px; background: #87b4bc; border-bottom: 2px solid #6199a2; width: 30%; }
+#leftcol .anonymize-form:hover { background: #9acad2; }
+#leftcol .anonymize-form p { margin: 0; }
 
 #leftcol .tx-slub-forms input.submit:hover {
   background: #f00;
