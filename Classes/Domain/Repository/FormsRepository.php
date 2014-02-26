@@ -50,6 +50,12 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 			$query->matching($query->logicalAnd($constraints));
 		}
 
+		// order by start_date -> start_time...
+		$query->setOrderings(
+			array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING)
+		);
+
+
 		return $query->execute();
 	}
 
@@ -70,6 +76,11 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 			$query->matching($query->logicalAnd($constraints));
 		}
 
+		// order by start_date -> start_time...
+		$query->setOrderings(
+			array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING)
+		);
+
 		return $query->execute();
 	}
 
@@ -82,26 +93,26 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 	 */
 	public function findAllByUidsTree($formIds) {
 
-								$categories = $this->findAllByUids($formIds);
+		$categories = $this->findAllByUids($formIds);
 
-								$flatCategories = array();
-								foreach ($categories as $category) {
-									$flatCategories[$category->getUid()] = Array(
-										'item' =>  $category,
-										'parent' => ($category->getParent()->current()) ? $category->getParent()->current()->getUid() : NULL
-									);
-								}
+		$flatCategories = array();
+		foreach ($categories as $category) {
+			$flatCategories[$category->getUid()] = Array(
+				'item' =>  $category,
+				'parent' => ($category->getParent()->current()) ? $category->getParent()->current()->getUid() : NULL
+			);
+		}
 
-								$tree = array();
-								foreach ($flatCategories as $id => &$node) {
-									if ($node['parent'] === NULL) {
-										$tree[$id] = &$node;
-									} else {
-										$flatCategories[$node['parent']]['children'][$id] = &$node;
-									}
-								}
-				//~ t3lib_utility_Debug::debug($tree, 'findAllByUidsTree: ... ');
-								return $tree;
+		$tree = array();
+		foreach ($flatCategories as $id => &$node) {
+			if ($node['parent'] === NULL) {
+				$tree[$id] = &$node;
+			} else {
+				$flatCategories[$node['parent']]['children'][$id] = &$node;
+			}
+		}
+//~ t3lib_utility_Debug::debug($tree, 'findAllByUidsTree: ... ');
+		return $tree;
 	}
 
 }

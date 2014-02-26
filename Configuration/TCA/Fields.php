@@ -131,6 +131,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 					array('Textfield', 'Textfield'),
 					array('Textarea', 'Textarea'),
 					array('Checkbox', 'Checkbox'),
+					array('Radio', 'Radio'),
 					array('Hidden', 'Hidden'),
 					array('File', 'File'),
 					array('Submit', 'Submit'),
