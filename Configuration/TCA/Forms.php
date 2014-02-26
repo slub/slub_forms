@@ -129,6 +129,7 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_slubforms_domain_model_fieldsets',
+				'foreign_table_where' => ' AND (tx_slubforms_domain_model_fieldsets.sys_language_uid = 0) AND tx_slubforms_domain_model_fieldsets.pid = ###CURRENT_PID### ORDER BY tx_slubforms_domain_model_fieldsets.sorting',
 				'MM' => 'tx_slubforms_forms_fieldsets_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,

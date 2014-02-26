@@ -14,10 +14,14 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	<ul>
 		<f:for each="{categories}" key="id" as="category">
 				<li class="slub-form-select-{id}">
-					<f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" checked="<sf:form.formId form='{category.item}' /> == {category.item.uid}" />
+					<f:if condition="{isNotFirstLevel} == 1">
+						<f:then>
+							<f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" checked="<sf:form.formId form='{category.item}' /> == {category.item.uid}" />
+						</f:then>
+					</f:if>
 					<label for="slub-form-select-{id}">{category.item.title}</label>
 					<f:if condition="{category.children}">
-						<f:render section="categoryTree" arguments="{categories: category.children, categoriesSelected: categoriesSelected}" />
+						<f:render section="categoryTree" arguments="{categories: category.children, categoriesSelected: categoriesSelected, isNotFirstLevel: '1'}" />
 					</f:if>
 			    </li>
 		</f:for>
