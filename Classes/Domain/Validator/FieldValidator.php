@@ -168,7 +168,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 						case 'number':
 							if (!empty($getfields[$singleField->getUid()]) && !t3lib_utility_Math::canBeInterpretedAsInteger($getfields[$singleField->getUid()])) {
 								// seems to be no valid email address
-								$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_number', 1100);
+								$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_number', 1600);
 								$this->result->forProperty('content')->addError($error);
 								$this->isValid = false;
 							}
@@ -184,6 +184,15 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 
 				}
 
+				// fluid cannot add "required" on checkbox and radio buttons.
+				// so check it here:
+				if ($singleField->getType() == 'Radio' && $singleField->getRequired()) {
+					if (empty($getfields[$singleField->getUid()])) {
+						$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_radio', 1500);
+						$this->result->forProperty('content')->addError($error);
+						$this->isValid = false;
+					}
+				}
 			}
 
 		}

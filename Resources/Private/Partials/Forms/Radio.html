@@ -1,5 +1,11 @@
 {namespace sf=Tx_SlubForms_ViewHelpers}
 <label for="tx_slubforms_sf-field-{form.uid}-{fieldset.uid}-{field.uid}">{field.title}</label>
-<f:form.radio id="tx_slubforms_sf-field-{form.uid}-{fieldset.uid}-{field.uid}" name="field[{fieldset.uid}][{field.uid}]" value="1" checked="<sf:form.fieldHasValue field='{field}' /> == 1"  />
-<div class="altRadioElement"></div>
+	<div class="radiogroup <f:if condition='{field.required}'>required</f:if>">
+	<f:for each="<sf:form.fieldRadioValue field='{field}' />" key="oId" as="radioOption">
+		<f:form.radio id="tx_slubforms_sf-field-{form.uid}-{fieldset.uid}-{field.uid}" name="field[{fieldset.uid}][{field.uid}]" value="{radioOption.1}" checked="<sf:form.fieldHasValue field='{field}' /> == {radioOption.1}"  />
+		<div class="altCheckElement"></div>
+		{radioOption.0}
+		<br />
+	</f:for>
+	</div>
 

@@ -1,10 +1,20 @@
 jQuery(document).ready(function() {
 
 	$('.slub-form-tree ul ul li').click(function() {
+
 		$('.slub-form-tree input:radio').each(function() {
 			$(this).removeAttr('checked');
 		});
+
 		$(this).find('input:radio').attr('checked', 'checked');
+
+		$(this).find('input:radio').click(function(){
+			var formid = $(this).val();
+			hideAllForms();
+			showForm(formid);
+			//~ alert('clicked: ' + formid + $(this).attr('checked')) ;
+		});
+
 		$('.slub-form-tree').css({'margin-bottom':'-400px'}).fadeOut(700,function() {
 			$('.slub-form-tree').css({'margin-bottom':'20px'});
 		});
@@ -28,15 +38,6 @@ jQuery(document).ready(function() {
 			$('.slub-form-tree').fadeOut();
 	});
 	disableAllHiddenForms();
-
-	$(function(){
-		$("input[type=radio]").click(function(){
-			var formid = $(this).val();
-			hideAllForms();
-			showForm(formid);
-			//~ alert('clicked: ' + formid);
-		});
-	});
 
 });
 

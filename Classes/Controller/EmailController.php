@@ -134,6 +134,21 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 						}
 						else
 							$content[$field->getTitle()] = $getfields[$field->getUid()];
+					} else if ($field->getType() == 'Radio') {
+						$config = $this->configToArray($field->getConfiguration());
+						// radioOption = text of the value to choose : integer value
+						if (!empty($config['radioOption'])) {
+							foreach ($config['radioOption'] as $radioOption) {
+								$settingPair = explode(":", $radioOption);
+								// take true value
+								//~ t3lib_utility_Debug::debug($settingPair , 'settingPair radio: ... ');
+								if ((int)$settingPair[1] == (int)$getfields[$field->getUid()])
+									$content[$field->getTitle()] = $settingPair[0];
+								$content[$field->getTitle()] = $settingPair[0];
+							}
+						}
+						else
+							$content[$field->getTitle()] = $getfields[$field->getUid()];
 					}
 					else
 						$content[$field->getTitle()] = $getfields[$field->getUid()];
@@ -399,7 +414,13 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$configSplit = explode("\n", $config);
 		foreach ($configSplit as $id => $configLine) {
 			$settingPair = explode("=", $configLine);
-			$configArray[trim($settingPair[0])] = trim($settingPair[1]);
+			switch (trim($settingPair[0])) {
+				case 'radioOption': $configArray[trim($settingPair[0])][] = trim($settingPair[1]);
+					break;
+				case 'value':
+				default: 		$configArray[trim($settingPair[0])] = trim($settingPair[1]);
+					break;
+			}
 		}
 		return $configArray;
 	}

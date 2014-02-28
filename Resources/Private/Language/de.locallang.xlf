@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-02-25T14:50:30Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-02-27T14:52:30Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
@@ -144,6 +144,10 @@
 		<trans-unit id="validationerror_val_number" approved="yes" xml:space="preserve">
 			<source>Please enter a valid number.</source>
 			<target>Bitte geben Sie eine gültige Zahl ein.</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_radio" approved="yes" xml:space="preserve">
+			<source>Please select one of the options.</source>
+			<target>Bitte wählen Sie eine der Optionen aus.</target>
 		</trans-unit>
 		</body>
 	</file>

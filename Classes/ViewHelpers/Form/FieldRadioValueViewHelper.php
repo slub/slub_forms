@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
+ *  (c) 2014 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
  *
  *  All rights reserved
  *
@@ -33,7 +33,7 @@
  * @api
  * @scope prototype
  */
-class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SlubForms_ViewHelpers_Form_FieldRadioValueViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
 	 * Check for Prefill/Post values and set it manually
@@ -45,49 +45,13 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 	 */
 	public function render($field) {
 
-
-		// return already posted values e.g. in case of validation errors
-		if ($this->controllerContext->getRequest()->getOriginalRequest()) {
-			$postedArguments = $this->controllerContext->getRequest()->getOriginalRequest()->getArguments();
-			// should be usually only one fieldset
-			foreach($postedArguments['field'] as $fieldsetid => $postedFields) {
-
-				if (!empty($postedFields[$field->getUid()]))
-					return $postedFields[$field->getUid()];
-
-			}
-
-		}
-
 		// get field configuration
 		$config = $this->configToArray($field->getConfiguration());
-		if (!empty($config['prefill'])) {
+		if (!empty($config['radioOption'])) {
 			// e.g. fe_users:username
-			//  or  value:1
+			//  or  valueString:1
 			// first value is database "value" or "fe_users"
-			$settingPair = explode(":", $config['prefill']);
-			switch (trim($settingPair[0])) {
-				case 'fe_users':
-					if (!empty($GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ])) {
-						return $GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ];
-					}
-					break;
-				case 'value':
-					if (!empty($settingPair[1]))
-						return trim($settingPair[1]);
-					break;
-			}
-		}
-
-		// check for prefill by GET parameter
-		if ($this->controllerContext->getRequest()->hasArgument('prefill')) {
-			$prefilljson = $this->controllerContext->getRequest()->getArgument('prefill');
-			$prefill = json_decode($prefilljson);
-			if (strlen($field->getShortname()) > 0) {
-				//~ $shortname =  trim($config['shortname']);
-				if (!empty($prefill->{$field->getShortname()}))
-					return $prefill->{$field->getShortname()};
-			}
+			return $config['radioOption'];
 		}
 
 		return;
@@ -105,7 +69,8 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 		$configSplit = explode("\n", $config);
 		foreach ($configSplit as $id => $configLine) {
 			$settingPair = explode("=", $configLine);
-			$configArray[trim($settingPair[0])] = trim($settingPair[1]);
+			$optionPair = explode(":", trim($settingPair[1]));
+			$configArray[trim($settingPair[0])][] = array(0 => trim($optionPair[0]), 1 => trim($optionPair[1]));
 		}
 		return $configArray;
 	}
