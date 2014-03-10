@@ -22,7 +22,8 @@
     -------------------------------------------------------------------------------------
 */
 
-.slub-form-tree .cats {
+.slub-form-tree fieldset.cats {
+  border: 0 none;
   position: relative;
   width: 570px;
   height: 380px;
@@ -31,28 +32,28 @@
   display: block;
 }
 
-#leftcol .slub-form-tree .cats ul {
+#leftcol .slub-form-tree fieldset.cats ul {
   list-style: none;
   list-style-type: none;
   list-style-image: none;
   margin: 0;
 }
 
-#leftcol .slub-form-tree .cats label { width: auto; float: none; margin: 0; }
+#leftcol .slub-form-tree fieldset.cats label { width: auto; float: none; margin: 0; }
 
 
-.slub-form-tree .cats ul li input[type="radio"] {
+.slub-form-tree fieldset.cats ul li input[type="radio"] {
   display: none;
 }
 
-.slub-form-tree .cats>ul>li {
+.slub-form-tree fieldset.cats>ul>li {
   position: absolute;
   font: italic bold 13px/1.6 "Trebuchet MS", Verdana, Arial, sans-serif;
   color: #c00;
   cursor: pointer;
 }
 
-.slub-form-tree .cats>ul>li:before {
+.slub-form-tree fieldset.cats>ul>li:before {
   position: absolute;
   bottom: 0px;
   width: 80px;
@@ -61,57 +62,57 @@
   content: " ";
 }
 
-.slub-form-tree .cats ul .slub-form-select-2 {
+.slub-form-tree fieldset.cats ul .slub-form-select-2 {
   top: 95px;
   left: 120px;
 }
 
-.slub-form-tree .cats ul .slub-form-select-2:before {
+.slub-form-tree fieldset.cats ul .slub-form-select-2:before {
   left: -75px;
   background-position: 0 0;
 }
 
-.slub-form-tree .cats ul .slub-form-select-6 {
+.slub-form-tree fieldset.cats ul .slub-form-select-6 {
   top: 80px;
   right: 140px;
 }
 
-.slub-form-tree .cats ul .slub-form-select-6:before {
+.slub-form-tree fieldset.cats ul .slub-form-select-6:before {
   right: -75px;
   background-position: -80px 0;
 }
 
-.slub-form-tree .cats ul .slub-form-select-14 {
+.slub-form-tree fieldset.cats ul .slub-form-select-14 {
   top: 210px;
   left: 155px;
 }
 
-.slub-form-tree .cats ul .slub-form-select-14:before {
+.slub-form-tree fieldset.cats ul .slub-form-select-14:before {
   left: -75px;
   background-position: -160px 0;
 }
 
-.slub-form-tree .cats ul .slub-form-select-18 {
+.slub-form-tree fieldset.cats ul .slub-form-select-18 {
   top: 190px;
   right: 110px;
 }
 
-.slub-form-tree .cats ul .slub-form-select-18:before {
+.slub-form-tree fieldset.cats ul .slub-form-select-18:before {
   left: -75px;
   background-position: -240px 0;
 }
 
-.slub-form-tree .cats ul .slub-form-select-21 {
+.slub-form-tree fieldset.cats ul .slub-form-select-21 {
   top: 260px;
   right: 70px;
 }
 
-.slub-form-tree .cats ul .slub-form-select-21:before {
+.slub-form-tree fieldset.cats ul .slub-form-select-21:before {
   right: -75px;
   background-position: -320px 0;
 }
 
-.slub-form-tree .cats>ul>li>ul {
+.slub-form-tree fieldset.cats>ul>li>ul {
   position: absolute;
   background: #fff;
   background: rgba(255,255,255,0.9);
@@ -133,7 +134,7 @@
   transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
 }
 
-.slub-form-tree .cats ul ul:before {
+.slub-form-tree fieldset.cats ul ul:before {
   content: ' ';
   position: absolute;
   top: 30px;
@@ -145,42 +146,42 @@
   border-color: transparent #256 transparent transparent;
 }
 
-.slub-form-tree .cats > ul > li:hover > ul,
-.slub-form-tree .cats > ul > li:active > ul {
+.slub-form-tree fieldset.cats > ul > li:hover > ul,
+.slub-form-tree fieldset.cats > ul > li:active > ul {
   left:-50px;
   visibility:visible;
   opacity:1;
 }
 
-.slub-form-tree .cats ul .slub-form-select-6 > ul {
+.slub-form-tree fieldset.cats ul .slub-form-select-6 > ul {
   left: 120px;
 }
 
-.slub-form-tree .cats ul .slub-form-select-6:hover > ul {
+.slub-form-tree fieldset.cats ul .slub-form-select-6:hover > ul {
   left: 150px;
 }
 
-.slub-form-tree .cats ul .slub-form-select-21 > ul {
+.slub-form-tree fieldset.cats ul .slub-form-select-21 > ul {
   left: 220px;
 }
 
-.slub-form-tree .cats ul .slub-form-select-21:hover > ul {
+.slub-form-tree fieldset.cats ul .slub-form-select-21:hover > ul {
   left: 230px;
 }
 
 
 @media only screen and (min-width : 1224px) {
    /* ipad bug */
-  .slub-form-tree .cats>ul>li>ul {
+  .slub-form-tree fieldset.cats>ul>li>ul {
     -webkit-transition:left 0.4s ease-out, opacity 0.4s ease-out, visibility 0.4s ease-out;
   }
 }
 
-.slub-form-tree .cats ul ul li {
+.slub-form-tree fieldset.cats ul ul li {
   border-bottom: 1px dotted #ccc;
 }
 
-.slub-form-tree .cats ul ul li label {
+.slub-form-tree fieldset.cats ul ul li label {
   position: relative;
   display: block;
   cursor: pointer;
@@ -188,7 +189,7 @@
 
 }
 
-.slub-form-tree .cats ul ul li:hover {
+.slub-form-tree fieldset.cats ul ul li:hover {
   background: #078;
   color: #fff;
 }
@@ -204,7 +205,7 @@
   color: #f00;
 }
 
-#leftcol .tx-slub-forms fieldset {
+#leftcol .tx-slub-forms fieldset.slub-forms-fieldset {
   border: 0 none;
   background: #d8e9ec;
   padding: 10px;
@@ -219,7 +220,7 @@
   border: 0 none;
 }
 
-#leftcol .tx-slub-forms fieldset legend {
+#leftcol .tx-slub-forms fieldset.slub-forms-fieldset legend {
   text-align: right;
   background: #d8e9ec;
   padding: 2px 10px;
@@ -227,7 +228,10 @@
   font-size: 10px;
   color: #87b4bc;
 }
-
+#leftcol .tx-slub-forms fieldset legend.form-cats {
+	color: #fff;
+	line-height: 0%;
+}
 #leftcol .tx-slub-forms fieldset.submit legend,
 #leftcol .tx-slub-forms fieldset.intro legend,
 #leftcol .tx-slub-forms fieldset.intro .field_title,
@@ -236,7 +240,7 @@
 }
 
 
-#leftcol .tx-slub-forms fieldset:last-child {
+#leftcol .tx-slub-forms fieldset.slub-forms-fieldset:last-child {
   background: transparent;
   padding: 0;
   margin: 0;
@@ -397,16 +401,34 @@
 }
 
 #leftcol .tx-slub-forms .radiogroup {
-  padding: 6px;
-  border: 1px solid #9bb;
-  border-color: #9bb transparent transparent #9bb;
-  display: block;
-  width: 60%;
-  margin: 2px 0;
-  font-size: 13px;
-  float: left;
-  text-align: left;
-  background: #fff;
+	display: block;
+	width: 60%;
+	margin: 2px 0;
+	font-size: 11px;
+	float: left;
+}
+#leftcol .tx-slub-forms .radiogroup input[type="radio"] {
+	z-index: 1000;
+	margin: 7px 3px;
+}
+#leftcol .tx-slub-forms .radiogroup .altCheckElement {
+	margin: 0 3px -7px -20px;
+	border-color: #9bb transparent transparent #9bb;
+	position: relative;
+	border-radius: 20px;
+}
+#leftcol .tx-slub-forms .radiogroup input[type="radio"]:checked + .altCheckElement {
+	background: #fff;
+}
+#leftcol .tx-slub-forms .radiogroup input[type="radio"]:checked + .altCheckElement:after {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 11px;
+	height: 11px;
+	border-radius: 15px;
+	background: #87b4bc;
+	content: "";
 }
 
 input::-webkit-outer-spin-button,

@@ -66,9 +66,10 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:if condition="{forms}">
 	<f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" >
 		<div class="slub-form-tree">
-			<div class="cats">
+			<fieldset class="cats">
+			<legend class="form-cats">Formular Kategorien</legend>
 			<f:render section="categoryTree" arguments="{categories: forms}" />
-			</div>
+			</fieldset>
 		</div>
 
 		<f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
