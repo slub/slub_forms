@@ -8,12 +8,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	'Sf',
 	array(
 		'Email' => 'new, create',
-		
 	),
 	// non-cacheable actions
 	array(
 		'Email' => 'new, create',
-		
 	)
 );
 

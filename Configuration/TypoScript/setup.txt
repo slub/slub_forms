@@ -46,6 +46,6 @@ page.includeCSS.slub_forms = EXT:slub_forms/Resources/Public/Css/SlubForms.css
 
 page.includeJSFooter.jqueryvalidation = EXT:slub_forms/Resources/Public/Js/jquery.validate.min.js
 page.includeJSFooter.jqueryvalidation_additional = EXT:slub_forms/Resources/Public/Js/additional-methods.min.js
-page.includeJSFooter.jqueryvalidation_localization = EXT:slub_forms/Resources/Public/Js/localization/messages_de.js
-page.includeJSFooter.jqueryvalidation_localization_methods = EXT:slub_forms/Resources/Public/Js/localization/methods_de.js
+#page.includeJSFooter.jqueryvalidation_localization = EXT:slub_forms/Resources/Public/Js/localization/messages_de.js
+#page.includeJSFooter.jqueryvalidation_localization_methods = EXT:slub_forms/Resources/Public/Js/localization/methods_de.js
 page.includeJSFooter.slub_forms = EXT:slub_forms/Resources/Public/Js/FormValidation.js

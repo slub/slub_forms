@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 Tx_Extbase_Utility_Extension::registerPlugin(
 	$_EXTKEY,
 	'Sf',
-	'SLUB Forms'
+	'SLUB: Forms'
 );
 
 $pluginSignature = str_replace('_','',$_EXTKEY) . '_sf';
