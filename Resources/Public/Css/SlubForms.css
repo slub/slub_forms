@@ -260,7 +260,11 @@
   color: #666;
   font-size: 11px;
   clear: both;
-  margin: 5px 0;
+  margin: 5px 10px 0px 0px;
+}
+
+#leftcol .tx-slub-forms .slub-forms-form label[for], #leftcol .tx-slub-forms .slub-forms-form label[HTMLfor] {
+  cursor: pointer;
 }
 
 #leftcol .tx-slub-forms input[type="text"],
@@ -339,10 +343,11 @@
   height: 20px;
   background: transparent;
   cursor: pointer;
+  vertical-align: middle;
 }
 
 #leftcol .tx-slub-forms .altCheckElement {
-  margin: 5px 0 0 -24px;
+  margin: 5px 6px 0 -28px;
   width: 20px;
   height: 20px;
   background: #fff;
@@ -350,6 +355,7 @@
   border-color: transparent #9bb #9bb transparent;
   display: inline-block;
   display: none\9; /* dirty but fast ie8-hack */
+  vertical-align: middle;
 }
 
 #leftcol .tx-slub-forms input[type="checkbox"]:checked + .altCheckElement,
@@ -409,10 +415,19 @@
 }
 #leftcol .tx-slub-forms .radiogroup input[type="radio"] {
 	z-index: 1000;
-	margin: 7px 3px;
+	margin: 7px 3px 3px 3px;
+	position: relative;
+}
+#leftcol .tx-slub-forms .radiogroup label {
+	display: inline;
+	float: none;
+	clear: none;
+	width: auto;
+	margin-right: 10px;
+	vertical-align: middle;
 }
 #leftcol .tx-slub-forms .radiogroup .altCheckElement {
-	margin: 0 3px -7px -20px;
+	margin-top: 0;
 	border-color: #9bb transparent transparent #9bb;
 	position: relative;
 	border-radius: 20px;

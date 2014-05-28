@@ -158,7 +158,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 						case 'text':
 							break;
 						case 'email':
-							if (!empty($getfields[$singleField->getUid()]) && !t3lib_div::validEmail($getfields[$singleField->getUid()])) {
+							if (!$singleField->getIsSenderEmail() && !empty($getfields[$singleField->getUid()]) && !t3lib_div::validEmail($getfields[$singleField->getUid()])) {
 								// seems to be no valid email address
 								$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1100);
 								$this->result->forProperty('senderEmail')->addError($error);
