@@ -37,6 +37,10 @@
 			<source>SLUB Forms</source>
 			<target>SLUB Formulare</target>
 		</trans-unit>
+		<trans-unit id="slub-forms.senderSubject" approved="yes" xml:space="preserve">
+			<source>Your message:</source>
+			<target>Ihre Nachricht:</target>
+		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email" approved="yes" xml:space="preserve">
 			<source>Email</source>
 			<target>Email</target>
@@ -95,7 +99,7 @@
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_fieldsets.fields" approved="yes" xml:space="preserve">
 			<source>fields</source>
-			<target>FEld</target>
+			<target>Feld</target>
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_fieldsets.title" approved="yes" xml:space="preserve">
 			<source>title</source>

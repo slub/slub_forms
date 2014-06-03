@@ -29,6 +29,9 @@
 		<trans-unit id="slub-forms.senderEmailName" xml:space="preserve">
 			<source>SLUB Forms</source>
 		</trans-unit>
+		<trans-unit id="slub-forms.senderSubject" xml:space="preserve">
+			<source>Your message:</source>
+		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email" xml:space="preserve">
 			<source>Email</source>
 		</trans-unit>

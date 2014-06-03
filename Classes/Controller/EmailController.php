@@ -230,7 +230,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			$this->sendTemplateEmail(
 				array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
 				array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
-				'Ihre Nachricht: ' . $form->getTitle(),
+				Tx_Extbase_Utility_Localization::translate('slub-forms.senderSubject', 'slub_forms') . ' ' . $form->getTitle(),
 				'ConfirmEmail',
 				array(	'email' => $newEmail,
 						'form' => $form,
