@@ -1,20 +1,7 @@
 {namespace se=Tx_SlubEvents_ViewHelpers}
-<p>Liebe Kolleginnen und Kollegen,</p>
-
-<p>folgendes Formular wurde von <f:link.email email="{email.senderEmail}">{email.senderName}</f:link.email> ausgefüllt:</p>
-
 <p><b>{form.title}</b></p>
-
 <ul>
 <f:for each="{content}" key="fieldname" as="line">
 	<li>{fieldname}: <b>{line}</b></li>
 </f:for>
 </ul>
-
-
-<p>Mit freundlichen Grüßen</p>
-
-<p>&nbsp;</p>
-
-<p>SLUB Dresden</p>
-
