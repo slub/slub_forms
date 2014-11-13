@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-00T09:41:00Z" product-name="slub_forms">
-		<header/>
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-08-00T09:41:00Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
 		<body>
-
-			<trans-unit id="title.description">
-				<source>title</source>
-			</trans-unit>
-			<trans-unit id="recipient.description">
-				<source>Email of Recipient</source>
-			</trans-unit>
-			<trans-unit id="fieldsets.description">
-				<source>fieldsets</source>
-			</trans-unit>
-			<trans-unit id="parent.description">
-				<source>parent form</source>
-			</trans-unit>
+		<trans-unit id="fieldsets.description" xml:space="preserve">
+			<source>fieldsets</source>
+		</trans-unit>
+		<trans-unit id="parent.description" xml:space="preserve">
+			<source>parent form</source>
+		</trans-unit>
+		<trans-unit id="recipient.description" xml:space="preserve">
+			<source>Email of Recipient</source>
+		</trans-unit>
+		<trans-unit id="shortname.description" xml:space="preserve">
+			<source>Shortname of Form in lowercase. This shortname may be used to address the form directly by appending &quot;tx_slubforms_sf[form]=selected-shortname&quot; to the URL.</source>
+		</trans-unit>
+		<trans-unit id="title.description" xml:space="preserve">
+			<source>Title of the Form</source>
+		</trans-unit>
 		</body>
 	</file>
 </xliff>

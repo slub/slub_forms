@@ -20,6 +20,9 @@
 		<trans-unit id="slub-forms.error_text" xml:space="preserve">
 			<source>Please fill out the field.</source>
 		</trans-unit>
+		<trans-unit id="slub-forms.error_url" xml:space="preserve">
+			<source>Please enter a valid URL.</source>
+		</trans-unit>
 		<trans-unit id="slub-forms.file-accept-info" xml:space="preserve">
 			<source>We accept files with the following format: </source>
 		</trans-unit>

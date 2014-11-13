@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-08-00T09:41:00Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="fieldsets.description" approved="yes" xml:space="preserve">
+			<source>fieldsets</source>
+			<target>Feld-Gruppe</target>
+		</trans-unit>
+		<trans-unit id="parent.description" approved="yes" xml:space="preserve">
+			<source>parent form</source>
+			<target>Übergeordnetes Formular</target>
+		</trans-unit>
+		<trans-unit id="recipient.description" approved="yes" xml:space="preserve">
+			<source>Email of Recipient</source>
+			<target>Email des Formular-Empfängers</target>
+		</trans-unit>
+		<trans-unit id="shortname.description" approved="yes" xml:space="preserve">
+			<source>Shortname of Form in lowercase. This shortname may be used to address the form directly by appending &quot;tx_slubforms_sf[form]=selected-shortname&quot; to the URL.</source>
+			<target>Kurzname des Formulars (kleingeschrieben). Dieser Kurztitel kann dafür benutzt werden, das Formular direkt über die URL aufzurufen mit dem Parameter &quot;tx_slubforms_sf[form]=selected-shortname&quot; .</target>
+		</trans-unit>
+		<trans-unit id="title.description" approved="yes" xml:space="preserve">
+			<source>Title of the Form</source>
+			<target>Titel des Formulars</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

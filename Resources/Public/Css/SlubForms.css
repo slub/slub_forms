@@ -269,6 +269,7 @@
 
 #leftcol .tx-slub-forms input[type="text"],
 #leftcol .tx-slub-forms input[type="email"],
+#leftcol .tx-slub-forms input[type="url"],
 #leftcol .tx-slub-forms input[type="number"],
 #leftcol .tx-slub-forms textarea {
   padding: 6px;
@@ -285,6 +286,7 @@
 
 #leftcol .tx-slub-forms input[type="text"].error,
 #leftcol .tx-slub-forms input[type="email"].error,
+#leftcol .tx-slub-forms input[type="url"].error,
 #leftcol .tx-slub-forms input[type="number"].error,
 #leftcol .tx-slub-forms textarea.error {
   border-color: #900 #f00 #f00 #900;
@@ -293,6 +295,7 @@
 #leftcol .tx-slub-forms input[type="checkbox"]:focus + .altCheckElement,
 #leftcol .tx-slub-forms input[type="text"]:focus,
 #leftcol .tx-slub-forms input[type="email"]:focus,
+#leftcol .tx-slub-forms input[type="url"]:focus,
 #leftcol .tx-slub-forms input[type="number"]:focus,
 #leftcol .tx-slub-forms textarea:focus {
  color: #278;
@@ -305,6 +308,7 @@
 
 #leftcol .tx-slub-forms input[type="text"].valid,
 #leftcol .tx-slub-forms input[type="email"].valid,
+#leftcol .tx-slub-forms input[type="url"].valid,
 #leftcol .tx-slub-forms input[type="number"].valid {
   background: #fff url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHAQMAAAA77l8BAAAABlBMVEX///9Nqk1xBaSjAAAAAXRSTlMAQObYZgAAAB5JREFUeF4FwEENAAAEAMDTQAwxPAQzyY1mBcdQpAcVgQHA8g/brwAAAABJRU5ErkJggg==') no-repeat right center;
 }

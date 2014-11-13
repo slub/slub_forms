@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-08-00T09:41:00Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="tx_slubforms_domain_model_email" approved="yes" xml:space="preserve">
+			<source>Email</source>
+			<target>Email</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.content" approved="yes" xml:space="preserve">
+			<source>Content</source>
+			<target>Inhalt</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.form" approved="yes" xml:space="preserve">
+			<source>Form</source>
+			<target>Formular</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.sender_email" approved="yes" xml:space="preserve">
+			<source>Sender Email</source>
+			<target>Email-Adresse des Absenders</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.sender_name" approved="yes" xml:space="preserve">
+			<source>Sender Name</source>
+			<target>Name des Absenders</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields" approved="yes" xml:space="preserve">
+			<source>Fields</source>
+			<target>Felder</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.configuration" approved="yes" xml:space="preserve">
+			<source>Configuration</source>
+			<target>Konfiguration</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.description" approved="yes" xml:space="preserve">
+			<source>Description</source>
+			<target>Beschreibung</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.required" approved="yes" xml:space="preserve">
+			<source>Required</source>
+			<target>Pflichtfeld</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.shortname" approved="yes" xml:space="preserve">
+			<source>Short Name</source>
+			<target>Kurzname</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.title" approved="yes" xml:space="preserve">
+			<source>Title</source>
+			<target>Titel</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.type" approved="yes" xml:space="preserve">
+			<source>Type</source>
+			<target>Typ</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fields.validation" approved="yes" xml:space="preserve">
+			<source>Validation</source>
+			<target>Validierung</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fieldsets" approved="yes" xml:space="preserve">
+			<source>Fieldsets</source>
+			<target>Feld-Gruppe</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fieldsets.fields" approved="yes" xml:space="preserve">
+			<source>Fields</source>
+			<target>Felder</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fieldsets.shortname" approved="yes" xml:space="preserve">
+			<source>Short Name</source>
+			<target>Kurzname</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_fieldsets.title" approved="yes" xml:space="preserve">
+			<source>Title</source>
+			<target>Titel</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms" approved="yes" xml:space="preserve">
+			<source>Forms</source>
+			<target>Formulare</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.parent" approved="yes" xml:space="preserve">
+			<source>Parent Form</source>
+			<target>Übergeordnetes Formular</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.recipient" approved="yes" xml:space="preserve">
+			<source>Recipient</source>
+			<target>Empfänger</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.shortname" approved="yes" xml:space="preserve">
+			<source>Short Name</source>
+			<target>Kurzname</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.title" approved="yes" xml:space="preserve">
+			<source>Title</source>
+			<target>Titel</target>
+		</trans-unit>
+		</body>
+	</file>
+</xliff>

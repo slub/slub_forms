@@ -25,6 +25,10 @@
 			<source>Please fill out the field.</source>
 			<target>Bitte füllen Sie dieses Feld aus.</target>
 		</trans-unit>
+		<trans-unit id="slub-forms.error_url" approved="yes" xml:space="preserve">
+			<source>Please enter a valid URL.</source>
+			<target>Bitte geben Sie eine gültige URL ein.</target>
+		</trans-unit>
 		<trans-unit id="slub-forms.file-accept-info" approved="yes" xml:space="preserve">
 			<source>We accept files with the following format: </source>
 			<target>Folgende Formate werden akzeptiert:</target>
