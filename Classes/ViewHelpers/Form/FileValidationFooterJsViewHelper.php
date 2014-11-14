@@ -41,32 +41,47 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 	 * @param Tx_SlubForms_Domain_Model_Form $form
 	 * @param Tx_SlubForms_Domain_Model_Fields $field
 	 * @param Tx_SlubForms_Domain_Model_Fieldsets $fieldset
-	 * @return string
+	 * @return void
 	 * @api
 	 */
 	public function render($form = NULL, $field = NULL, $fieldset = NULL) {
 
-		// get field configuration
-		$config = $this->configToArray($field->getConfiguration());
-		if (!empty($config['file-accept-mimetypes'])) {
-			// e.g. file-mimetypes = audio/*, image/*, application/
-			$js1 = '<script>
-					$("#tx_slubforms_sf-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
-					required: '.($field->getRequired() ? 'true' : 'false').',
-					accept: "'.$config['file-accept-mimetypes'].'"';
-					if (!empty($config['file-accept-size']))
-						$js1 .= ',
-							filesize: '.$config['file-accept-size'];
-			$js1 .= '});
-			</script>
-			';
+		if ($field !== NULL) {
+			// get field configuration
+			$config = $this->configToArray($field->getConfiguration());
+			if (!empty($config['file-accept-mimetypes'])) {
+				// e.g. file-mimetypes = audio/*, image/*, application/
+				$javascriptFooter = '<script>
+						$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
+						required: '.($field->getRequired() ? 'true' : 'false').',
+						accept: "'.$config['file-accept-mimetypes'].'"';
+						if (!empty($config['file-accept-size']))
+							$js1 .= ',
+								filesize: '.$config['file-accept-size'];
+				$javascriptFooter .= '});
+				</script>
+				';
 
-			// dirty but working. Has to be called after the <form> and the jqueryvalidation validate()
-			// getPagerender() doesn't work in 4.7.x....
-			// see: http://forge.typo3.org/issues/22273
-			$GLOBALS['TSFE']->additionalFooterData['tx_slub_forms'] .= $js1;
+			}
+		} else {
+
+			if ($fieldset->getRequired()) {
+				$javascriptFooter = '<script>
+						$("#slub-forms-fieldset-'.$form->getUid().'-'.$fieldset->getUid().'").rules("add", {
+						require_from_group: [1, \'.requiregroup-'.$form->getUid().'-'.$fieldset->getUid().'\'],';
+				$javascriptFooter .= '});
+				</script>
+				';
+
+			}
+
 
 		}
+
+		// dirty but working. Has to be called after the <form> and the jqueryvalidation validate()
+		// getPagerender() doesn't work in 4.7.x....
+		// see: http://forge.typo3.org/issues/22273
+		$GLOBALS['TSFE']->additionalFooterData['tx_slub_forms'] .= $javascriptFooter;
 
 	}
 

@@ -44,10 +44,13 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		</h3>
 		<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
 			<fieldset id="slub-forms-fieldset-{formid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
-					<legend>{fieldset.title}</legend>
+				<legend>{fieldset.title}</legend>
 				<f:for each="{fieldset.fields}" key="idfield" as="field">
 					<f:render partial="Forms/{field.type}" arguments="{form: form.item, fieldset: fieldset, field: field}" /><br />
 				</f:for>
+				<f:if condition="{fieldset.required}">
+					{fieldset.uid} has required fields
+				</f:if>
 			</fieldset>
 		</f:for>
 
@@ -81,26 +84,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</f:form>
 
 <script>
-$( "#slubForm" ).validate({
-  submitHandler: function(form) {
 
-    function updateTime() {
-        $('#slubForm input:submit').val($('#slubForm input:submit').val() + ' >');
-    }
-
-    updateTime();
-    setInterval(updateTime, 1000); // 5 * 1000 miliseconds
-
-	$('input:submit').attr("disabled", true);
-    form.submit();
-  }
- });
-$.validator.addMethod('filesize', function(value, element, param) {
-    // value = file name
-    // element = element to validate (<input>)
-    // param = size (en bytes)
-    return this.optional(element) || (element.files[0].size <= param)
-});
 </script>
 
 </f:if>

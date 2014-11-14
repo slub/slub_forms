@@ -39,6 +39,7 @@ jQuery(document).ready(function() {
 	});
 	disableAllHiddenForms();
 
+
 });
 
 /**
@@ -87,3 +88,33 @@ function hideForm(uid) {
 	$('#slub-forms-form-' + uid).find('input').attr('disabled','disabled');
 	$('#slub-forms-form-' + uid).find('textarea').attr('disabled','disabled');
 }
+
+
+/**
+ * Form Validation Extras
+ *
+ */
+
+$( "#slubForm" ).validate({
+
+	submitHandler: function(form) {
+
+		function updateTime() {
+			$('#slubForm input:submit').val($('#slubForm input:submit').val() + ' >');
+		}
+
+		updateTime();
+		setInterval(updateTime, 1000); // 5 * 1000 miliseconds
+
+		$('input:submit').attr("disabled", true);
+		form.submit();
+	}
+
+});
+
+$.validator.addMethod('filesize', function(value, element, param) {
+	// value = file name
+	// element = element to validate (<input>)
+	// param = size (en bytes)
+	return this.optional(element) || (element.files[0].size <= param)
+});

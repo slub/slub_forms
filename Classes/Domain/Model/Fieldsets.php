@@ -49,6 +49,13 @@ class Tx_SlubForms_Domain_Model_Fieldsets extends Tx_Extbase_DomainObject_Abstra
 	protected $shortname;
 
 	/**
+	 * required
+	 *
+	 * @var boolean
+	 */
+	protected $required = FALSE;
+
+	/**
 	 * fields
 	 *
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SlubForms_Domain_Model_Fields>
@@ -154,6 +161,25 @@ class Tx_SlubForms_Domain_Model_Fieldsets extends Tx_Extbase_DomainObject_Abstra
 	 */
 	public function setShortname($shortname) {
 		$this->shortname = $shortname;
+	}
+
+	/**
+	 * Returns the required
+	 *
+	 * @return boolean required
+	 */
+	public function getRequired() {
+		return $this->required;
+	}
+
+	/**
+	 * Sets the required
+	 *
+	 * @param boolean $required
+	 * @return boolean required
+	 */
+	public function setRequired($required) {
+		$this->required = $required;
 	}
 
 }

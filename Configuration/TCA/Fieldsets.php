@@ -6,10 +6,12 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 	'ctrl' => $TCA['tx_slubforms_domain_model_fieldsets']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, fields',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, required, fields',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, shortname, fields,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1,
+		l10n_parent, l10n_diffsource, hidden;;1, title, shortname, required,
+		fields,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -110,6 +112,15 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 				'type' => 'input',
 				'size' => 30,
 				'eval' => 'trim,lower'
+			),
+		),
+		'required' => array(
+			'exclude' => 0,
+			'l10n_mode' => 'exclude',
+			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.required',
+			'config' => array(
+				'type' => 'check',
+				'default' => 0
 			),
 		),
 		'fields' => array(

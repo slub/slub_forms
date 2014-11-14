@@ -196,7 +196,6 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 				'default' => 0
 			),
 		),
-
 		'required' => array(
 			'exclude' => 0,
 			'l10n_mode' => 'exclude',
