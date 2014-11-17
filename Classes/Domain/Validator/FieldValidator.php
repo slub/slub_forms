@@ -67,19 +67,25 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 
 	}
 
-        /**
+	/**
 	 * Validation of given Params
 	 *
 	 * @param array $field
 	 * @return bool
 	 */
 	public function isValid($field) {
-		//~ t3lib_utility_Debug::debug($field, 'isValid:... ');
+		t3lib_utility_Debug::debug($field, 'isValid: field... ');
 		// should be usually only one fieldset
 		foreach($field as $getfieldset => $getfields) {
 
 			// get fieldset
 			$fieldset = $this->fieldsetsRepository->findByUid($getfieldset);
+
+			if ($fieldset->getRequired()) {
+				$thisFieldsetIsRequired = TRUE;
+			} else {
+				$thisFieldsetIsRequired = FALSE;
+			}
 			// get all (possible) fields of fieldset
 			$allfields = $fieldset->getFields();
 
@@ -155,29 +161,55 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 
 					switch($singleField->getValidation()) {
 
-						case 'text':
+						case 'text': if ($singleField->getRequired() || $fieldset->getRequired()) {
+										if (empty($getfields[$singleField->getUid()])) {
+											$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_text', 1500);
+											$this->result->forProperty('content')->addError($error);
+											$this->isValid = false;
+										}
+									}
 							break;
-						case 'email':
-							if (!$singleField->getIsSenderEmail() && !empty($getfields[$singleField->getUid()]) && !t3lib_div::validEmail($getfields[$singleField->getUid()])) {
-								// seems to be no valid email address
-								$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1100);
-								$this->result->forProperty('senderEmail')->addError($error);
-								$this->isValid = false;
+						case 'email': if ($singleField->getRequired() || $fieldset->getRequired()) {
+								if (!$singleField->getIsSenderEmail() && !empty($getfields[$singleField->getUid()]) && !t3lib_div::validEmail($getfields[$singleField->getUid()])) {
+									// seems to be no valid email address
+									$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1600);
+									$this->result->forProperty('senderEmail')->addError($error);
+									$this->isValid = false;
+								}
 							}
 							break;
-						case 'number':
-							if (!empty($getfields[$singleField->getUid()]) && !t3lib_utility_Math::canBeInterpretedAsInteger($getfields[$singleField->getUid()])) {
-								// seems to be no valid email address
-								$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_number', 1600);
-								$this->result->forProperty('content')->addError($error);
-								$this->isValid = false;
+						case 'number': if ($singleField->getRequired() || $fieldset->getRequired()) {
+								if (!empty($getfields[$singleField->getUid()]) && !t3lib_utility_Math::canBeInterpretedAsInteger($getfields[$singleField->getUid()])) {
+									// seems to be no valid number
+									$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_number', 1700);
+									$this->result->forProperty('content')->addError($error);
+									$this->isValid = false;
+								}
 							}
 							break;
-						case 'tel':
+						case 'tel': if ($singleField->getRequired() || $fieldset->getRequired()) {
+										if (empty($getfields[$singleField->getUid()])) {
+											$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_tel', 1800);
+											$this->result->forProperty('content')->addError($error);
+											$this->isValid = false;
+										}
+									}
 							break;
-						case 'url':
+						case 'url': if ($singleField->getRequired() || $fieldset->getRequired()) {
+										if (empty($getfields[$singleField->getUid()])) {
+											$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_url', 1900);
+											$this->result->forProperty('content')->addError($error);
+											$this->isValid = false;
+										}
+									}
 							break;
-						default:
+						default: if ($singleField->getRequired() || $fieldset->getRequired()) {
+										if (empty($getfields[$singleField->getUid()])) {
+											$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_default', 2000);
+											$this->result->forProperty('content')->addError($error);
+											$this->isValid = false;
+										}
+									}
 							break;
 
 					}
@@ -188,7 +220,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 				// so check it here:
 				if ($singleField->getType() == 'Radio' && $singleField->getRequired()) {
 					if (empty($getfields[$singleField->getUid()])) {
-						$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_radio', 1500);
+						$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_radio', 2100);
 						$this->result->forProperty('content')->addError($error);
 						$this->isValid = false;
 					}

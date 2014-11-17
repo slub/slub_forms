@@ -11,11 +11,17 @@
 		<trans-unit id="slub-forms.back_to_forms" xml:space="preserve">
 			<source>back to form overview</source>
 		</trans-unit>
+		<trans-unit id="slub-forms.error_default" xml:space="preserve">
+			<source>Please enter valid data.</source>
+		</trans-unit>
 		<trans-unit id="slub-forms.error_email" xml:space="preserve">
 			<source>Please enter a valid email address.</source>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_number" xml:space="preserve">
 			<source>Please enter a valid number.</source>
+		</trans-unit>
+		<trans-unit id="slub-forms.error_tel" xml:space="preserve">
+			<source>Please enter a valid telephone number.</source>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_text" xml:space="preserve">
 			<source>Please fill out the field.</source>

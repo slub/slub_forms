@@ -13,6 +13,10 @@
 			<source>back to form overview</source>
 			<target>zurück zur Formularübersicht</target>
 		</trans-unit>
+		<trans-unit id="slub-forms.error_default" approved="yes" xml:space="preserve">
+			<source>Please enter valid data.</source>
+			<target>Bitte überprüfen Sie Ihre Angaben.</target>
+		</trans-unit>
 		<trans-unit id="slub-forms.error_email" approved="yes" xml:space="preserve">
 			<source>Please enter a valid email address.</source>
 			<target>Bitte geben Sie eine gültige Email-Adresse an.</target>
@@ -20,6 +24,10 @@
 		<trans-unit id="slub-forms.error_number" approved="yes" xml:space="preserve">
 			<source>Please enter a valid number.</source>
 			<target>Bitte geben Sie eine Zahl ein.</target>
+		</trans-unit>
+		<trans-unit id="slub-forms.error_tel" approved="yes" xml:space="preserve">
+			<source>Please enter a valid telephone number.</source>
+			<target>Bitte geben Sie eine gültige Telefonnummer ein.</target>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_text" approved="yes" xml:space="preserve">
 			<source>Please fill out the field.</source>
