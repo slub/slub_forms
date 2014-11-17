@@ -51,12 +51,12 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 			$config = $this->configToArray($field->getConfiguration());
 			if (!empty($config['file-accept-mimetypes'])) {
 				// e.g. file-mimetypes = audio/*, image/*, application/
-				$javascriptFooter = '<script>
+				$javascriptFooter = '<script type="text/javascript">
 						$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
 						required: '.($field->getRequired() ? 'true' : 'false').',
 						accept: "'.$config['file-accept-mimetypes'].'"';
 						if (!empty($config['file-accept-size']))
-							$js1 .= ',
+							$javascriptFooter .= ',
 								filesize: '.$config['file-accept-size'];
 				$javascriptFooter .= '});
 				</script>
@@ -66,15 +66,18 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 		} else {
 
 			if ($fieldset->getRequired()) {
-				$javascriptFooter = '<script>
-						$("#slub-forms-fieldset-'.$form->getUid().'-'.$fieldset->getUid().'").rules("add", {
-						require_from_group: [1, \'.requiregroup-'.$form->getUid().'-'.$fieldset->getUid().'\'],';
-				$javascriptFooter .= '});
-				</script>
-				';
 
+				$javascriptFooter = '';
+
+				foreach($fieldset->getFields() as $field) {
+
+					$javascriptFooter .= '<script type="text/javascript">
+						$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add",
+						 {	require_from_group: [1, \'.requiregroup-'.$form->getUid().'-'.$fieldset->getUid().'\'],';
+					$javascriptFooter .= '}); </script>';
+
+				}
 			}
-
 
 		}
 

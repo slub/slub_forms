@@ -110,8 +110,10 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail, array $field = array()) {
 
 		$field = $this->getParametersSafely('field');
+t3lib_utility_Debug::debug($field, 'createAction: field... ');
 
 		$senderEmail = $this->getParametersSafely('senderEmail');
+t3lib_utility_Debug::debug($senderEmail, 'createAction: senderEmail... ');
 
 		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
 
@@ -202,7 +204,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			$contentText .= '</ul>';
 
 			$newEmail->setContent(trim($contentText));
-//~ t3lib_utility_Debug::debug($form, 'createAction: form... ');
+
 			// check for senderEmail (once more)
 			if (!empty($senderEmail))
 				$newEmail->setSenderEmail($senderEmail);

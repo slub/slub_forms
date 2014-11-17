@@ -95,7 +95,17 @@ function hideForm(uid) {
  *
  */
 
+//~ jQuery.validator.setDefaults({
+  //~ debug: true,
+  //~ success: "valid"
+//~ });
+
 $( "#slubForm" ).validate({
+
+	//~ submitHandler: function (form) { // for demo
+		//~ alert('valid form submitted'); // for demo
+		//~ return false; // for demo
+	//~ },
 
 	submitHandler: function(form) {
 
@@ -118,3 +128,4 @@ $.validator.addMethod('filesize', function(value, element, param) {
 	// param = size (en bytes)
 	return this.optional(element) || (element.files[0].size <= param)
 });
+

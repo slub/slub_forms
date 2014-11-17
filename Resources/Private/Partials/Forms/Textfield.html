@@ -7,10 +7,10 @@
 
 <f:if condition="{field.required}">
 	<f:then>
-		<f:form.textfield id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}" name="field[{fieldset.uid}][{field.uid}]" type="{field.validation}" title="<f:translate key='slub-forms.error_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" required="required" />
+		<f:form.textfield id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}" class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}" name="field[{fieldset.uid}][{field.uid}]" type="{field.validation}" title="<f:translate key='slub-forms.error_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" required="required" />
 	</f:then>
 	<f:else>
-		<f:form.textfield id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}" name="field[{fieldset.uid}][{field.uid}]" type="{field.validation}" title="<f:translate key='slub-forms.error_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" />
+		<f:form.textfield id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}" class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}" name="field[{fieldset.uid}][{field.uid}]" type="{field.validation}" title="<f:translate key='slub-forms.error_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" />
 	</f:else>
 </f:if>
 
