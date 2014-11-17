@@ -110,14 +110,11 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail, array $field = array()) {
 
 		$field = $this->getParametersSafely('field');
-t3lib_utility_Debug::debug($field, 'createAction: field... ');
-
-		$senderEmail = $this->getParametersSafely('senderEmail');
-t3lib_utility_Debug::debug($senderEmail, 'createAction: senderEmail... ');
+//~ t3lib_utility_Debug::debug($field, 'createAction: field... ');
 
 		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
 
-		// should be usually only one fieldset
+		// walk through all fieldsets
 		foreach($field as $getfieldset => $getfields) {
 
 			$fieldset = $this->fieldsetsRepository->findByUid($getfieldset);
@@ -152,8 +149,9 @@ t3lib_utility_Debug::debug($senderEmail, 'createAction: senderEmail... ');
 						else
 							$content[$field->getTitle()] = $getfields[$field->getUid()];
 					}
-					else
+					else {
 						$content[$field->getTitle()] = $getfields[$field->getUid()];
+					}
 
 					if ($field->getIsSenderEmail())
 						$senderEmail = $getfields[$field->getUid()];
@@ -205,26 +203,21 @@ t3lib_utility_Debug::debug($senderEmail, 'createAction: senderEmail... ');
 
 			$newEmail->setContent(trim($contentText));
 
-			// check for senderEmail (once more)
-			if (!empty($senderEmail))
-				$newEmail->setSenderEmail($senderEmail);
-			else
-				// we can't send an email without the senderEmail -->forward back to newAction
-				$this->forward('new', NULL, NULL, array('form' => $form->getUid()));
-
-			// check for senderName (once more)
-			if (!empty($senderName))
-				$newEmail->setSenderName($senderName);
-			else
-				// if nothing helps, we can send without the senderName but we have to set something.
-				$newEmail->setSenderName('-');
-
-
 		}
 
-		//~ t3lib_utility_Debug::debug($form->getTitle(), 'createAction: getTitle... ');
-		//~ t3lib_utility_Debug::debug($form->getRecipient(), 'createAction: getRecipient... ');
-		//~ t3lib_utility_Debug::debug($content, 'createAction: content... ');
+		// check for senderEmail
+		if (!empty($senderEmail))
+			$newEmail->setSenderEmail($senderEmail);
+		else
+			// we can't send an email without the senderEmail -->forward back to newAction
+			$this->forward('new', NULL, NULL, array('form' => $form->getUid()));
+
+		// check for senderName (once more)
+		if (!empty($senderName))
+			$newEmail->setSenderName($senderName);
+		else
+			// if nothing helps, we can send without the senderName but we have to set something.
+			$newEmail->setSenderName('-');
 
 		// email to customer
 		// send only if "sendConfirmationEmailToCustomer" TS setting is true
