@@ -62,6 +62,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 */
 	public function newAction(Tx_SlubForms_Domain_Model_Email $newEmail = NULL) {
 
+		//~ t3lib_utility_Debug::debug('da', 'newAction: getEditcode... ');
+
 		// show only forms selected in flexform
 		if (!empty($this->settings['formsSelection']))
 			$forms = $this->formsRepository->findAllByUidsTree(t3lib_div::intExplode(',', $this->settings['formsSelection'], TRUE));
@@ -99,8 +101,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 	/**
 	 * action create
-	 * // gets validated automatically if name is like this: ...Tx_SlubForms_Domain_Validator_EmailValidator
-	 * // ..
 	 *
 	 * @param Tx_SlubForms_Domain_Model_Email $newEmail
 	 * @param array $field Field Values
@@ -111,6 +111,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 		$field = $this->getParametersSafely('field');
 //~ t3lib_utility_Debug::debug($field, 'createAction: field... ');
+		t3lib_utility_Debug::debug($newEmail->getEditcode(), 'createAction: getEditcode... ');
 
 		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
 

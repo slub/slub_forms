@@ -3,7 +3,7 @@
         <ul class="slub-form-error">
 	    <f:for each="{validationResults.flattenedErrors}" key="propertyPath" as="errors">
 		<f:for each="{errors}" as="singleError">
-		    <f:if condition="{singleError.code} < 2000">
+		    <f:if condition="{singleError.code} < 3000">
 			<f:then>
 			    <li id="error_{singleError.code}_{singleError.message}"><f:translate key="validationerror_{singleError.message}" /></li>
 			</f:then>

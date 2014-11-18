@@ -11,24 +11,6 @@
 		<trans-unit id="slub-forms.back_to_forms" xml:space="preserve">
 			<source>back to form overview</source>
 		</trans-unit>
-		<trans-unit id="slub-forms.error_default" xml:space="preserve">
-			<source>Please enter valid data.</source>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_email" xml:space="preserve">
-			<source>Please enter a valid email address.</source>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_number" xml:space="preserve">
-			<source>Please enter a valid number.</source>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_tel" xml:space="preserve">
-			<source>Please enter a valid telephone number.</source>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_text" xml:space="preserve">
-			<source>Please fill out the field.</source>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_url" xml:space="preserve">
-			<source>Please enter a valid URL.</source>
-		</trans-unit>
 		<trans-unit id="slub-forms.file-accept-info" xml:space="preserve">
 			<source>We accept files with the following format: </source>
 		</trans-unit>
@@ -131,8 +113,23 @@
 		<trans-unit id="validationerror_val_number" xml:space="preserve">
 			<source>Please enter a valid number.</source>
 		</trans-unit>
+		<trans-unit id="validationerror_val_tel" xml:space="preserve">
+			<source>Please enter a valid telephone number.</source>
+		</trans-unit>
 		<trans-unit id="validationerror_val_radio" xml:space="preserve">
 			<source>Please select one of the options.</source>
+		</trans-unit>
+		<trans-unit id="validationerror_val_default" xml:space="preserve">
+			<source>Please enter valid data.</source>
+		</trans-unit>
+		<trans-unit id="validationerror_val_group" xml:space="preserve">
+			<source>Please enter at least one valid field.</source>
+		</trans-unit>
+		<trans-unit id="validationerror_val_text" xml:space="preserve">
+			<source>Please fill out the field.</source>
+		</trans-unit>
+		<trans-unit id="validationerror_val_url" xml:space="preserve">
+			<source>Please enter a valid URL.</source>
 		</trans-unit>
 		</body>
 	</file>

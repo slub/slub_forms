@@ -78,7 +78,6 @@ class Tx_SlubForms_Domain_Validator_EmailValidator extends Tx_Extbase_Validation
 		if ($newEmail->getEditcode() != $this->getSessionData('editcode')) {
 			$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_editcode', 1140);
 			$this->result->forProperty('editcode')->addError($error);
-//			$this->addError('val_editcode', 1140);
 			$this->isValid = false;
 		}
 
