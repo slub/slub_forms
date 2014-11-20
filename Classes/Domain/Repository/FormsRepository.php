@@ -37,7 +37,7 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 	 * Finds all datasets by MM relation categories
 	 *
 	 * @param string formIds separated by comma
-	 * @return array The found Category Objects
+	 * @return array The found Forms Objects
 	 */
 	public function findAllByUids($formIds) {
 
@@ -63,7 +63,7 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 	 * Finds all datasets by MM relation categories
 	 *
 	 * @param string formIds separated by comma
-	 * @return array The found Category Objects
+	 * @return array The found Forms Objects
 	 */
 	public function findAllById($formId) {
 
@@ -89,7 +89,7 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 	 * Finds all datasets and return in tree order
 	 *
 	 * @param string formIds separated by comma
-	 * @return array The found Event Objects
+	 * @return array The found Forms Objects
 	 */
 	public function findAllByUidsTree($formIds) {
 
@@ -113,6 +113,28 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 		}
 //~ t3lib_utility_Debug::debug($tree, 'findAllByUidsTree: ... ');
 		return $tree;
+	}
+
+	/**
+	 * Finds all datasets by MM relation categories
+	 *
+	 * @param string shortname of form
+	 * @return array The found Forms Objects
+	 */
+	public function findAllByShortname($shortname) {
+
+		$query = $this->createQuery();
+
+		$constraints = array();
+		$constraints[] = $query->equals('shortname', $shortname);
+
+		if (count($constraints)) {
+			$query->matching($query->logicalAnd($constraints));
+		}
+		// it's only one but...
+		$query->setLimit(1);
+
+		return $query->execute();
 	}
 
 }

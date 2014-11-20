@@ -63,12 +63,21 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	public function newAction(Tx_SlubForms_Domain_Model_Email $newEmail = NULL) {
 
 		//~ t3lib_utility_Debug::debug('da', 'newAction: getEditcode... ');
+		$singleFormShortname = $this->getParametersSafely('form');
 
-		// show only forms selected in flexform
-		if (!empty($this->settings['formsSelection']))
+		if (!empty($singleFormShortname)) {
+			// show only selected form
+			$singleForm = $this->formsRepository->findByShortname($singleFormShortname);
+			// if no form is found getFirst() will return false and that's what we want
+			$this->view->assign('singleForm', $singleForm->getFirst());
+		}
+		if (!empty($this->settings['formsSelection'])) {
+			// show only forms selected in flexform
 			$forms = $this->formsRepository->findAllByUidsTree(t3lib_div::intExplode(',', $this->settings['formsSelection'], TRUE));
-		else
+		} else {
+			// take all
 			$forms = $this->formsRepository->findAll();
+		}
 
 		$this->view->assign('newEmail', $newEmail);
 		$this->view->assign('forms', $forms);
@@ -111,7 +120,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 		$field = $this->getParametersSafely('field');
 //~ t3lib_utility_Debug::debug($field, 'createAction: field... ');
-		t3lib_utility_Debug::debug($newEmail->getEditcode(), 'createAction: getEditcode... ');
+		//~ t3lib_utility_Debug::debug($newEmail->getEditcode(), 'createAction: getEditcode... ');
 
 		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
 

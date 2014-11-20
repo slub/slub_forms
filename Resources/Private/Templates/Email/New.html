@@ -53,24 +53,53 @@
 
 </f:section>
 
+<f:section name="singleForm">
+
+	<div id="slub-forms-form-{form.uid}" class="slub-forms-form {form.shortname}">
+
+		<h3 class="formtitle">{form.title}</h3>
+
+		<f:for each="{form.fieldsets}" key="idfieldset" as="fieldset">
+			<fieldset id="slub-forms-fieldset-{form.uid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
+				<legend>{fieldset.title}</legend>
+				<f:for each="{fieldset.fields}" key="idfield" as="field">
+					<f:render partial="Forms/{field.type}" arguments="{form: form, fieldset: fieldset, field: field}" /><br />
+				</f:for>
+				<f:if condition="{fieldset.required}">
+					<sf:form.fileValidationFooterJs form='{form}' fieldset='{fieldset}' />
+				</f:if>
+			</fieldset>
+		</f:for>
+
+	</div>
+
+</f:section>
+
 <f:section name="main">
 {namespace sf=Tx_SlubForms_ViewHelpers}
 
 <f:if condition="{forms}">
 	<f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" >
-		<div class="slub-form-tree">
-			<fieldset class="cats">
-			<legend class="form-cats">Formular Kategorien</legend>
-			<f:render section="categoryTree" arguments="{categories: forms}" />
-			</fieldset>
-		</div>
 
 		<f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
 		<f:render partial="FormErrors" arguments="{obj: 'field'}" />
 
-		<f:render section="subForms" arguments="{forms: forms}" />
+		<f:if condition="{singleForm}">
+			<f:then>
+				<f:render section="singleForm" arguments="{form: singleForm}" />
+			</f:then>
+			<f:else>
+				<div class="slub-form-tree">
+					<fieldset class="cats">
+					<legend class="form-cats">Formular Kategorien</legend>
+					<f:render section="categoryTree" arguments="{categories: forms}" />
+					</fieldset>
+				</div>
+				<f:render section="subForms" arguments="{forms: forms}" />
+			</f:else>
+		</f:if>
 
-	<f:form.hidden property="editcode" value="<sf:format.editCode />"/>
+		<f:form.hidden property="editcode" value="<sf:format.editCode />"/>
 	</f:form>
 
 </f:if>
