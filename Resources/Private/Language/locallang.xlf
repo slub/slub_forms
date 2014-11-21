@@ -95,6 +95,9 @@
 		<trans-unit id="validationerror_val_customerid" xml:space="preserve">
 			<source>The given customer id is not valid.</source>
 		</trans-unit>
+		<trans-unit id="validationerror_val_default" xml:space="preserve">
+			<source>Please enter valid data.</source>
+		</trans-unit>
 		<trans-unit id="validationerror_val_editcode" xml:space="preserve">
 			<source>Please start the registration from the beginning.</source>
 		</trans-unit>
@@ -107,23 +110,20 @@
 		<trans-unit id="validationerror_val_file_size" xml:space="preserve">
 			<source>File is too big.</source>
 		</trans-unit>
+		<trans-unit id="validationerror_val_group" xml:space="preserve">
+			<source>Please enter at least one valid field.</source>
+		</trans-unit>
 		<trans-unit id="validationerror_val_name" xml:space="preserve">
 			<source>Please enter your name.</source>
 		</trans-unit>
 		<trans-unit id="validationerror_val_number" xml:space="preserve">
 			<source>Please enter a valid number.</source>
 		</trans-unit>
-		<trans-unit id="validationerror_val_tel" xml:space="preserve">
-			<source>Please enter a valid telephone number.</source>
-		</trans-unit>
 		<trans-unit id="validationerror_val_radio" xml:space="preserve">
 			<source>Please select one of the options.</source>
 		</trans-unit>
-		<trans-unit id="validationerror_val_default" xml:space="preserve">
-			<source>Please enter valid data.</source>
-		</trans-unit>
-		<trans-unit id="validationerror_val_group" xml:space="preserve">
-			<source>Please enter at least one valid field.</source>
+		<trans-unit id="validationerror_val_tel" xml:space="preserve">
+			<source>Please enter a valid telephone number.</source>
 		</trans-unit>
 		<trans-unit id="validationerror_val_text" xml:space="preserve">
 			<source>Please fill out the field.</source>

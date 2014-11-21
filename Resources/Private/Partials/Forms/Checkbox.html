@@ -1,5 +1,6 @@
 {namespace sf=Tx_SlubForms_ViewHelpers}
 <label for="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}">{field.title}</label>
-<f:form.checkbox id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}" class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}" name="field[{fieldset.uid}][{field.uid}]" value="1" checked="<sf:form.fieldHasValue field='{field}' /> == 1"  />
+<f:form.checkbox id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}" class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}" name="field[{fieldset.uid}][{field.uid}]" value="1" checked="<sf:form.fieldHasValue field='{field}' /> == 1" />
 <div class="altCheckElement"></div>
+<sf:form.CheckboxValidationFooterJs form='{form}' field='{field}' fieldset='{fieldset}' />
 

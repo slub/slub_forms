@@ -14,27 +14,27 @@
 			<target>zurück zur Formularübersicht</target>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_default" approved="yes" xml:space="preserve">
-			<source>Please enter valid data.</source>
+			<source></source>
 			<target>Bitte überprüfen Sie Ihre Angaben.</target>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_email" approved="yes" xml:space="preserve">
-			<source>Please enter a valid email address.</source>
+			<source></source>
 			<target>Bitte geben Sie eine gültige Email-Adresse an.</target>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_number" approved="yes" xml:space="preserve">
-			<source>Please enter a valid number.</source>
+			<source></source>
 			<target>Bitte geben Sie eine Zahl ein.</target>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_tel" approved="yes" xml:space="preserve">
-			<source>Please enter a valid telephone number.</source>
+			<source></source>
 			<target>Bitte geben Sie eine gültige Telefonnummer ein.</target>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_text" approved="yes" xml:space="preserve">
-			<source>Please fill out the field.</source>
+			<source></source>
 			<target>Bitte füllen Sie dieses Feld aus.</target>
 		</trans-unit>
 		<trans-unit id="slub-forms.error_url" approved="yes" xml:space="preserve">
-			<source>Please enter a valid URL.</source>
+			<source></source>
 			<target>Bitte geben Sie eine gültige URL ein.</target>
 		</trans-unit>
 		<trans-unit id="slub-forms.file-accept-info" approved="yes" xml:space="preserve">
@@ -121,6 +121,14 @@
 			<source>Forms</source>
 			<target>Formular</target>
 		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.fieldsets" approved="yes" xml:space="preserve">
+			<source>fieldsets</source>
+			<target>Feldgruppe</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_forms.parent" approved="yes" xml:space="preserve">
+			<source>parent form</source>
+			<target>Eltern-Element</target>
+		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_forms.recipient" approved="yes" xml:space="preserve">
 			<source>Email of Recipient</source>
 			<target>Empfänger Email-Adresse</target>
@@ -136,6 +144,10 @@
 		<trans-unit id="validationerror_val_customerid" approved="yes" xml:space="preserve">
 			<source>The given customer id is not valid.</source>
 			<target>Die Benutzernummer ist nicht gültig</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_default" approved="yes" xml:space="preserve">
+			<source>Please enter valid data.</source>
+			<target>Bitte geben Sie einen gültigen Wert ein.</target>
 		</trans-unit>
 		<trans-unit id="validationerror_val_editcode" approved="yes" xml:space="preserve">
 			<source>Please start the registration from the beginning.</source>
@@ -153,6 +165,10 @@
 			<source>File is too big.</source>
 			<target>Die Datei ist zu groß.</target>
 		</trans-unit>
+		<trans-unit id="validationerror_val_group" approved="yes" xml:space="preserve">
+			<source>Please enter at least one valid field.</source>
+			<target>Bitte füllen Sie mindestens eins der Felder aus.</target>
+		</trans-unit>
 		<trans-unit id="validationerror_val_name" approved="yes" xml:space="preserve">
 			<source>Please enter your name.</source>
 			<target>Bitte geben Sie Ihren Namen ein.</target>
@@ -164,6 +180,14 @@
 		<trans-unit id="validationerror_val_radio" approved="yes" xml:space="preserve">
 			<source>Please select one of the options.</source>
 			<target>Bitte wählen Sie eine der Optionen aus.</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_text" approved="yes" xml:space="preserve">
+			<source>Please fill out the field.</source>
+			<target>Bitte füllen Sie dieses Feld aus.</target>
+		</trans-unit>
+		<trans-unit id="validationerror_val_url" approved="yes" xml:space="preserve">
+			<source>Please enter a valid URL.</source>
+			<target>Bitte geben Sie eine gültige URL (inklusive http://) ein. </target>
 		</trans-unit>
 		</body>
 	</file>
