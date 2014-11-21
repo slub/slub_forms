@@ -115,12 +115,13 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 				// check for file upload
 				if ($singleField->getType() == 'File') {
 
-					if (isset($_FILES['tx_slubforms_sf']) && $_FILES['tx_slubforms_sf']['size'][$getfieldset][$singleField->getUid()] > 0) {
+					if (isset($_FILES['tx_slubforms_sf']) && $_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()] > 0) {
+
 						// get field configuration
 						$config = $this->configToArray($singleField->getConfiguration());
 						//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf']['size'], 'isValid: size... ');
 						//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()], 'isValid: ... ');
-						if ($config['file-accept-size'] < $_FILES['tx_slubforms_sf']['size'][$getfieldset][$singleField->getUid()]) {
+						if ($config['file-accept-size'] < $_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()]) {
 							// seems to be no valid email address
 							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_size', 1300);
 							$this->result->forProperty('content')->addError($error);
@@ -130,7 +131,6 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 						// do it on the command line because there is no clean way to do it with PHP...
 						exec("file --mime-type " . $_FILES['tx_slubforms_sf']['tmp_name']['field'][$getfieldset][$singleField->getUid()] . " | cut -f 2 -d ':'", $found_mimetype);
 						$found_mimetype = explode("/", trim($found_mimetype[0]));
-
 						$configmimetypes =  explode(",", $config['file-accept-mimetypes'] );
 						foreach ($configmimetypes as $id => $type) {
 							$splittype = explode("/", trim($type));
@@ -149,6 +149,8 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_mimetype', 1400);
 							$this->result->forProperty('content')->addError($error);
 							$this->isValid = false;
+						} else	if ($fieldset->getRequired()) {
+								$fieldGroupOk++;
 						}
 
 					}
