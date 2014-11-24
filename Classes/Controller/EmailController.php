@@ -119,8 +119,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail, array $field = array()) {
 
 		$field = $this->getParametersSafely('field');
-//~ t3lib_utility_Debug::debug($field, 'createAction: field... ');
-		//~ t3lib_utility_Debug::debug($newEmail->getEditcode(), 'createAction: getEditcode... ');
+		//~ t3lib_utility_Debug::debug($field, 'createAction: field... ');
 
 		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
 
@@ -131,50 +130,56 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			$allfields = $fieldset->getFields();
 
 			foreach($allfields as $id => $field) {
+
+				//~ t3lib_utility_Debug::debug($getfields, '$createAction 1 $getfields:... ');
+
 				if (!empty($getfields[$field->getUid()])) {
 					// checkbox-value is only transmitted if checked but should be always in email content
 					// the value (1/0) may be converted in a configured string (value = TRUE : FALSE)
 					if ($field->getType() == 'Checkbox') {
+
 						$config = $this->configToArray($field->getConfiguration());
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
 							// take true value
 							$content[$field->getTitle()] = $settingPair[0];
-						}
-						else
+						} else {
+
 							$content[$field->getTitle()] = $getfields[$field->getUid()];
+
+						}
 					} else if ($field->getType() == 'Radio') {
+
 						$config = $this->configToArray($field->getConfiguration());
 						// radioOption = text of the value to choose : integer value
 						if (!empty($config['radioOption'])) {
+
 							foreach ($config['radioOption'] as $radioOption) {
 								$settingPair = explode(":", $radioOption);
 								// take true value
 								//~ t3lib_utility_Debug::debug($settingPair , 'settingPair radio: ... ');
-								if ((int)$settingPair[1] == (int)$getfields[$field->getUid()])
+								if ((int)$settingPair[1] == (int)$getfields[$field->getUid()]) {
 									$content[$field->getTitle()] = $settingPair[0];
+								}
 								$content[$field->getTitle()] = $settingPair[0];
 							}
-						}
-						else
-							$content[$field->getTitle()] = $getfields[$field->getUid()];
-					}
-					else {
-						$content[$field->getTitle()] = $getfields[$field->getUid()];
-					}
 
-					if ($field->getIsSenderEmail())
-						$senderEmail = $getfields[$field->getUid()];
-					else if ($field->getIsSenderName())
-						$senderName = $getfields[$field->getUid()];
-					else if ($field->getType() == 'File') {
+						} else {
+
+							$content[$field->getTitle()] = $getfields[$field->getUid()];
+
+						}
+					} else if ($field->getType() == 'File') {
+
 						if (isset($_FILES['tx_slubforms_sf']) && ($_FILES['tx_slubforms_sf']['error']['field'][$getfieldset][$field->getUid()] == UPLOAD_ERR_OK)) {
-							//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf'], '$createAction 1 $$_FILES:... ');
+
+							//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf'], '$createAction 2 $$_FILES:... ');
+
 							$content[$field->getTitle()] = $_FILES['tx_slubforms_sf']['name']['field'][$getfieldset][$field->getUid()];
 
 							$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions');
 							// get filename
-							$fileName = $basicFileFunctions->getUniqueName (
+							$fileName = $basicFileFunctions->getUniqueName(
 								$_FILES['tx_slubforms_sf']['name']['field'][$getfieldset][$field->getUid()],
 								t3lib_div::getFileAbsFileName('uploads/tx_slubforms/')
 							);
@@ -184,13 +189,27 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 								$_FILES['tx_slubforms_sf']['tmp_name']['field'][$getfieldset][$field->getUid()],
 								$fileName
 							);
-						} else
+						} else {
 							$content[$field->getTitle()] = '-';
+						}
+					} else {
+
+						$content[$field->getTitle()] = $getfields[$field->getUid()];
+
+					}
+
+					if ($field->getIsSenderEmail()) {
+
+						$senderEmail = $getfields[$field->getUid()];
+
+					} else if ($field->getIsSenderName()) {
+
+						$senderName = $getfields[$field->getUid()];
+
 					}
 
 				}
-				else
-					if ($field->getType() == 'Checkbox') {
+				else if ($field->getType() == 'Checkbox') {
 						$config = $this->configToArray($field->getConfiguration());
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
@@ -199,10 +218,15 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 						}
 						else
 							$content[$field->getTitle()] = $getfields[$field->getUid()];
-					} else if ($field->getType() == 'Description') {
+				} else if ($field->getType() == 'Description') {
+
 						continue;
-					} else
-						$content[$field->getTitle()] = '-';
+
+				} else {
+
+					$content[$field->getTitle()] = '-';
+
+				}
 			}
 
 			//~ t3lib_utility_Debug::debug($getfields, 'createAction: getfields ... ');
