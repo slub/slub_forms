@@ -1,6 +1,3 @@
-
-
-
 /*
     basic tool setup
     -------------------------------------------------------------------------------------
@@ -14,8 +11,6 @@
   float: none;
   clear: both;
 }
-
-
 
 /*
     categories tree
@@ -455,3 +450,5 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+#lefcol .tx-slub-forms .field_description ol { list-style-type: decimal; }
