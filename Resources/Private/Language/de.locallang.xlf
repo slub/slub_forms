@@ -141,6 +141,10 @@
 			<source>title</source>
 			<target>Titel</target>
 		</trans-unit>
+		<trans-unit id="validationerror_val_checkbox" approved="yes" xml:space="preserve">
+			<source>Please check the checkbox.</source>
+			<target>Bitte wählen Sie die Option aus.</target>
+		</trans-unit>
 		<trans-unit id="validationerror_val_customerid" approved="yes" xml:space="preserve">
 			<source>The given customer id is not valid.</source>
 			<target>Die Benutzernummer ist nicht gültig</target>

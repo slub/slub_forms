@@ -92,6 +92,9 @@
 		<trans-unit id="tx_slubforms_domain_model_forms.title" xml:space="preserve">
 			<source>title</source>
 		</trans-unit>
+		<trans-unit id="validationerror_val_checkbox" xml:space="preserve">
+			<source>Please check the checkbox.</source>
+		</trans-unit>
 		<trans-unit id="validationerror_val_customerid" xml:space="preserve">
 			<source>The given customer id is not valid.</source>
 		</trans-unit>

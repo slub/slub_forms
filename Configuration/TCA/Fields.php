@@ -218,6 +218,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 					array('Telephone', 'tel'),
 					array('Number', 'number'),
 					array('Url', 'url'),
+					array('Checkbox', 'checkbox'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
