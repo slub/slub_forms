@@ -49,7 +49,7 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationAcceptInfoViewHelper extends T
 		if (!empty($config['file-accept-info'])) {
 			$info = $config['file-accept-info'];
 			if (!empty($config['file-accept-size']))
-				$info .= ', max: ' . round(($config['file-accept-size'] / (1024*1024)), 1) . ' MB';
+				$info .= ' (max. ' . round(($config['file-accept-size'] / (1024*1024)), 1) . ' MB)';
 		}
 		return $info;
 	}
