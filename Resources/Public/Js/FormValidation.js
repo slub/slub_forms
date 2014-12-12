@@ -37,8 +37,8 @@ jQuery(document).ready(function() {
 	$('.slub-form-tree input:radio:checked').each(function() {
 			$('.slub-form-tree').fadeOut();
 	});
-	disableAllHiddenForms();
 
+	disableAllHiddenForms();
 
 });
 
