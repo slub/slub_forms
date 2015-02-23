@@ -1,5 +1,10 @@
 {namespace sf=Tx_SlubForms_ViewHelpers}
-<label for="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}">{field.title}</label>
+<label for="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}">{field.title}
+    <f:if condition="{field.required}">
+       <f:then><span class="required">*</span></f:then>
+    </f:if>
+</label>
+
 <f:if condition="{field.required}">
     <f:then>
         <sf:form.textarea id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}" class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}" name="field[{fieldset.uid}][{field.uid}]" title="<f:translate key='validationerror_val_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" rows="5" cols="60" required="required" />
