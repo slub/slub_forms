@@ -7,10 +7,17 @@
 
 <f:if condition="{field.required}">
     <f:then>
-        <sf:form.textarea id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}" class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}" name="field[{fieldset.uid}][{field.uid}]" title="<f:translate key='validationerror_val_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" rows="5" cols="60" required="required" />
+        <sf:form.textarea id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
+        class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}"
+        name="field[{fieldset.uid}][{field.uid}]"
+        title="<f:translate key='validationerror_val_{field.validation}' />"
+        value="<sf:form.fieldHasValue field='{field}' />" rows="5" cols="60" required="required" />
     </f:then>
     <f:else>
-        <sf:form.textarea id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}" class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}" name="field[{fieldset.uid}][{field.uid}]" value="<sf:form.fieldHasValue field='{field}' />" rows="5" cols="60" />
+        <sf:form.textarea id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
+        class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}"
+        name="field[{fieldset.uid}][{field.uid}]"
+        value="<sf:form.fieldHasValue field='{field}' />" rows="5" cols="60" />
     </f:else>
 </f:if>
 

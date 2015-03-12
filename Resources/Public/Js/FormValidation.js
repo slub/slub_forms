@@ -28,9 +28,8 @@ jQuery(document).ready(function() {
 
 	$('.anonymize-form').each(function() {
 		$(this).click(function() {
-			$(this).parents('.slub-forms-form').find('input[type=text]').val('anonym');
-			$(this).parents('.slub-forms-form').find('input[type=number]').val('');
-			$(this).parents('.slub-forms-form').find('input[type=email]').val('anonym@slub-dresden.de');
+			$(this).parents('.slub-forms-form').find('input[type=text].sender-name').val('anonym');
+			$(this).parents('.slub-forms-form').find('input[type=email].sender-email').val('anonym@slub-dresden.de');
 		});
 	});
 
