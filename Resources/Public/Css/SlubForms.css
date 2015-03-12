@@ -143,25 +143,25 @@
 
 .slub-form-tree fieldset.cats > ul > li:hover > ul,
 .slub-form-tree fieldset.cats > ul > li:active > ul {
-  left:-50px;
+  left:-25px;
   visibility:visible;
   opacity:1;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-6 > ul {
-  left: 120px;
+.slub-form-tree fieldset.cats ul .slub-form-select-2 > ul {
+  left: 80px;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-6:hover > ul {
-  left: 150px;
+.slub-form-tree fieldset.cats ul .slub-form-select-2:hover > ul {
+  left: 110px;
 }
 
 .slub-form-tree fieldset.cats ul .slub-form-select-21 > ul {
-  left: 220px;
+  left: 120px;
 }
 
 .slub-form-tree fieldset.cats ul .slub-form-select-21:hover > ul {
-  left: 230px;
+  left: 160px;
 }
 
 
