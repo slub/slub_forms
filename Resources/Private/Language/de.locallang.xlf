@@ -185,6 +185,10 @@
 			<source>Please select one of the options.</source>
 			<target>Bitte wählen Sie eine der Optionen aus.</target>
 		</trans-unit>
+		<trans-unit id="validationerror_val_radiobutton" approved="yes" xml:space="preserve">
+			<source>Please check one of the radio buttons.</source>
+			<target>Bitte wählen Sie eine der Optionen.</target>
+		</trans-unit>
 		<trans-unit id="validationerror_val_text" approved="yes" xml:space="preserve">
 			<source>Please fill out the field.</source>
 			<target>Bitte füllen Sie dieses Feld aus.</target>

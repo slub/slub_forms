@@ -74,11 +74,12 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 					if (in_array($field->getType(), array('Textfield', 'Radio', 'Checkbox', 'File', 'Textarea') )) {
 						$javascriptFooter .= '
 							$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add",
-							 { require_from_group: [1, \'.requiregroup-'.$form->getUid().'-'.$fieldset->getUid().'\'],});';
+							 { require_from_group: [1, \'.requiregroup-'.$form->getUid().'-'.$fieldset->getUid().'\'],
+							 });';
 					}
 				}
 
-				$javascriptFooter .= '</script>';
+				$javascriptFooter .= "\n</script>\n";
 			}
 
 		}

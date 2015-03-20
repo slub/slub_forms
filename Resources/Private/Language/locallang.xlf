@@ -125,6 +125,9 @@
 		<trans-unit id="validationerror_val_radio" xml:space="preserve">
 			<source>Please select one of the options.</source>
 		</trans-unit>
+		<trans-unit id="validationerror_val_radiobutton" xml:space="preserve">
+			<source>Please check one of the radio buttons.</source>
+		</trans-unit>
 		<trans-unit id="validationerror_val_tel" xml:space="preserve">
 			<source>Please enter a valid telephone number.</source>
 		</trans-unit>
