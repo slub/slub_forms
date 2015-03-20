@@ -157,11 +157,10 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 							foreach ($config['radioOption'] as $radioOption) {
 								$settingPair = explode(":", $radioOption);
 								// take true value
-								//~ t3lib_utility_Debug::debug($settingPair , 'settingPair radio: ... ');
+//								t3lib_utility_Debug::debug($settingPair , 'settingPair radio: ... ');
 								if ((int)$settingPair[1] == (int)$getfields[$field->getUid()]) {
 									$content[$field->getTitle()] = $settingPair[0];
 								}
-								$content[$field->getTitle()] = $settingPair[0];
 							}
 
 						} else {
