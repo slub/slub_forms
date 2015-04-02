@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
 
-	$('.slub-form-tree ul ul li').click(function() {
+	$('.slub-form-tree .cats ul ul li').click(function() {
 
 		$('.slub-form-tree input:radio').each(function() {
 			$(this).removeAttr('checked');
@@ -8,11 +8,10 @@ jQuery(document).ready(function() {
 
 		$(this).find('input:radio').attr('checked', 'checked');
 
-		$(this).find('input:radio').click(function(){
+		$(this).find('input:radio').click(function() {
 			var formid = $(this).val();
 			hideAllForms();
 			showForm(formid);
-			//~ alert('clicked: ' + formid + $(this).attr('checked')) ;
 		});
 
 		$('.slub-form-tree').css({'margin-bottom':'-400px'}).fadeOut(700,function() {
@@ -31,10 +30,6 @@ jQuery(document).ready(function() {
 			$(this).parents('.slub-forms-form').find('input[type=text].sender-name').val('anonym');
 			$(this).parents('.slub-forms-form').find('input[type=email].sender-email').val('anonym@slub-dresden.de');
 		});
-	});
-
-	$('.slub-form-tree input:radio:checked').each(function() {
-			$('.slub-form-tree').fadeOut();
 	});
 
 	disableAllHiddenForms();
