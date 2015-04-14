@@ -25,12 +25,31 @@ jQuery(document).ready(function() {
 		$('.slub-form-tree').fadeIn();
 	});
 
-	$('.anonymize-form').each(function() {
-		$(this).click(function() {
-			$(this).parents('.slub-forms-form').find('input[type=text].sender-name').val('anonym');
-			$(this).parents('.slub-forms-form').find('input[type=email].sender-email').val('anonym@slub-dresden.de');
-		});
-	});
+	$('.anonymize-form').click(function() {
+
+        $(this).toggleClass('active');
+
+        if ($(this).hasClass('active')) {
+
+            $(this).parents('.slub-forms-fieldset').find('input[type=text].sender-name')
+                .val('anonym')
+                .attr('disabled','disabled');
+            $(this).parents('.slub-forms-fieldset').find('input[type=email].sender-email')
+                .val('anonym@slub-dresden.de')
+                .attr('disabled','disabled');
+            $(this).parents('.slub-forms-fieldset').find('input[type=number].userid')
+                .val('0')
+                .attr('disabled','disabled');
+
+        } else {
+
+            $(this).parents('.slub-forms-fieldset').find('input').each(function () {
+                $(this).removeAttr('disabled');
+            });
+
+        }
+
+    });
 
 	disableAllHiddenForms();
 

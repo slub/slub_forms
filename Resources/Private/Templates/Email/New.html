@@ -36,7 +36,7 @@
 			<fieldset id="slub-forms-fieldset-{formid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
 				<legend>{fieldset.title}</legend>
 				<f:for each="{fieldset.fields}" key="idfield" as="field">
-					<f:render partial="Forms/{field.type}" arguments="{form: form.item, fieldset: fieldset, field: field}" /><br />
+					<f:render partial="Forms/{field.type}" arguments="{form: form.item, fieldset: fieldset, field: field}" />
 				</f:for>
 				<f:if condition="{fieldset.required}">
 					<sf:form.fileValidationFooterJs form='{form.item}' fieldset='{fieldset}' />
@@ -65,7 +65,7 @@
 			<fieldset id="slub-forms-fieldset-{form.uid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
 				<legend>{fieldset.title}</legend>
 				<f:for each="{fieldset.fields}" key="idfield" as="field">
-					<f:render partial="Forms/{field.type}" arguments="{form: form, fieldset: fieldset, field: field}" /><br />
+					<f:render partial="Forms/{field.type}" arguments="{form: form, fieldset: fieldset, field: field}" />
 				</f:for>
 				<f:if condition="{fieldset.required}">
 					<sf:form.fileValidationFooterJs form='{form}' fieldset='{fieldset}' />
