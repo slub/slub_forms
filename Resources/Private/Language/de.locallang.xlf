@@ -155,7 +155,7 @@
 		</trans-unit>
 		<trans-unit id="validationerror_val_editcode" approved="yes" xml:space="preserve">
 			<source>Please start the registration from the beginning.</source>
-			<target>Bitte startend Sie die Formulareingabe erneut.</target>
+			<target>Bitte starten Sie die Formulareingabe erneut.</target>
 		</trans-unit>
 		<trans-unit id="validationerror_val_email" approved="yes" xml:space="preserve">
 			<source>Please enter a valid email-address.</source>
