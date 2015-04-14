@@ -239,11 +239,13 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		}
 
 		// check for senderEmail
-		if (!empty($senderEmail))
+		if (!empty($senderEmail)) {
 			$newEmail->setSenderEmail($senderEmail);
-		else
+		} else {
+			$newEmail->setSenderEmail('anonym@example.org');
+		}
 			// we can't send an email without the senderEmail -->forward back to newAction
-			$this->forward('new', NULL, NULL, array('form' => $form->getUid()));
+//			$this->forward('new', NULL, NULL, array('form' => $form->getUid()));
 
 		// check for senderName (once more)
 		if (!empty($senderName))
