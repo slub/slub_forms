@@ -43,8 +43,9 @@
 
 .slub-form-tree fieldset.cats>ul>li {
   position: absolute;
-  font: italic bold 13px/1.6 "Trebuchet MS", Verdana, Arial, sans-serif;
+  font: italic bold 15px/1.6 "Trebuchet MS", Verdana, Arial, sans-serif;
   color: #c00;
+  padding: 0 5px;
   cursor: pointer;
 }
 
