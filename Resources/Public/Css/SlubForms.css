@@ -273,11 +273,16 @@
   border-color: #9bb transparent transparent #9bb;
   display: block;
   width: 60%;
+  max-width: 60%;
   margin: 2px 0;
   font-size: 13px;
   float: left;
   text-align: left;
   background: #fff;
+}
+
+input[type="number"] {
+	-moz-appearance:textfield;
 }
 
 #leftcol .tx-slub-forms input[type="text"].error,
@@ -383,7 +388,11 @@
   text-transform: uppercase;
   color: #fff;
 
-  width: 50%;
+  width: 100%;
+  @media (min-width: 430px) {
+    width: 50%;
+  }
+
   cursor: pointer;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -403,7 +412,9 @@
     text-transform: uppercase;
     color: #fff;
 
-    width: 30%;
+    float:left;
+	clear:left;
+
     cursor: pointer;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -411,6 +422,11 @@
     border-radius: 5px;
     text-shadow: none;
     text-align: center;
+
+    width: 100%;
+    @media (min-width: 430px) {
+	    width: 50%;
+	}
 }
 #leftcol .anonymize-form:hover { background: #9acad2; }
 #leftcol .anonymize-form.active { background:  #9acad2; }
