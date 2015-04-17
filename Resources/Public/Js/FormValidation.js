@@ -17,12 +17,15 @@ jQuery(document).ready(function() {
 		$('.slub-form-tree').css({'margin-bottom':'-400px'}).fadeOut(700,function() {
 			$('.slub-form-tree').css({'margin-bottom':'20px'});
 		});
-	});
+        $('.slub-form-intro').hide();
+
+    });
 
 	$('.slub-forms-back2select').click(function() {
 		formID = $(this).parents('.slub-forms-form').attr('id').split('-');
 		hideForm(formID[3]);
 		$('.slub-form-tree').fadeIn();
+        $('.slub-form-intro').show();
 	});
 
 	$('.anonymize-form').click(function() {
