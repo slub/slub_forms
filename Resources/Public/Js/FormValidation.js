@@ -17,7 +17,8 @@ jQuery(document).ready(function() {
 		$('.slub-form-tree').css({'margin-bottom':'-400px'}).fadeOut(700,function() {
 			$('.slub-form-tree').css({'margin-bottom':'20px'});
 		});
-        $('.slub-form-intro').hide();
+
+		$('.slub-form-intro').hide();
 
     });
 
@@ -25,7 +26,8 @@ jQuery(document).ready(function() {
 		formID = $(this).parents('.slub-forms-form').attr('id').split('-');
 		hideForm(formID[3]);
 		$('.slub-form-tree').fadeIn();
-        $('.slub-form-intro').show();
+		$('.slub-form-intro').show();
+
 	});
 
 	$('.anonymize-form').click(function() {
@@ -56,6 +58,9 @@ jQuery(document).ready(function() {
 
 	disableAllHiddenForms();
 
+	if ($('.slub-forms-form').size() == 1) {
+		$('.slub-form-intro').hide();
+	}
 });
 
 /**
