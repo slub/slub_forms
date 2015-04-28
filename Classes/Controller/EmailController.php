@@ -100,13 +100,19 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 *
 	 * @return void
 	 */
-	//~ public function initializeCreateAction() {
-		//~ $formId = $this->getParametersSafely('field');
-		//~ t3lib_utility_Debug::debug($field , 'initializeCreateAction: ... ');
-		//~ $requestArguments = $this->request->getArguments();
-		//~ t3lib_utility_Debug::debug($requestArguments , 'initializeCreateAction: ... ');
-		//~ $this->forward('new', 'Email', 'SlubForms', $requestArguments);
-	//~ }
+	 public function initializeCreateAction() {
+
+		 /* Avoid exception in TYPO3 4.7 because newEmail is not set. This is checked before createAction in
+		  * the validator. Maybe this is gone in 6.2?
+		  * --> if "field" is empty there is no reason to call the createAction
+		  */
+
+		 $field = $this->getParametersSafely('field');
+
+		 if (empty($field)) {
+			 $this->forward('new', 'Email', 'SlubForms', $requestArguments);
+		 }
+	 }
 
 	/**
 	 * action create

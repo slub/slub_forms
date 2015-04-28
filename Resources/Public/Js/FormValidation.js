@@ -58,7 +58,7 @@ jQuery(document).ready(function() {
 
 	disableAllHiddenForms();
 
-	if ($('.slub-forms-form').size() == 1) {
+	if ($('.slub-forms-form').size() == 1 || $('.tx-slub-forms .confirmation').size()>0) {
 		$('.slub-form-intro').hide();
 	}
 });
