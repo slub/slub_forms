@@ -1,24 +1,18 @@
 jQuery(document).ready(function() {
 
+	var formid = getCookie('sf_form');
+
+	if (formid) {
+		showForm(formid);
+	}
+
 	$('.slub-form-tree .cats ul ul li').click(function() {
 
-		$('.slub-form-tree input:radio').each(function() {
-			$(this).removeAttr('checked');
-		});
-
-		$(this).find('input:radio').attr('checked', 'checked');
-
 		$(this).find('input:radio').click(function() {
-			var formid = $(this).val();
-			hideAllForms();
-			showForm(formid);
+			formid = $(this).val();
 		});
 
-		$('.slub-form-tree').css({'margin-bottom':'-400px'}).fadeOut(700,function() {
-			$('.slub-form-tree').css({'margin-bottom':'20px'});
-		});
-
-		$('.slub-form-intro').hide();
+		showForm(formid);
 
     });
 
@@ -27,7 +21,6 @@ jQuery(document).ready(function() {
 		hideForm(formID[3]);
 		$('.slub-form-tree').fadeIn();
 		$('.slub-form-intro').show();
-
 	});
 
 	$('.anonymize-form').click(function() {
@@ -93,9 +86,25 @@ function disableAllHiddenForms() {
  * @return	void
  */
 function showForm(uid) {
+	hideAllForms();
+
 	$('#slub-forms-form-' + uid).removeClass('hide'); // hide current field
 	$('#slub-forms-form-' + uid).find('input').removeAttr('disabled');
 	$('#slub-forms-form-' + uid).find('textarea').removeAttr('disabled');
+
+	setCookie('sf_form', uid);
+
+	$('.slub-form-tree input:radio').each(function() {
+		$(this).removeAttr('checked');
+	});
+
+	$('#slub-form-select-' + uid).attr('checked', 'checked');
+
+	$('.slub-form-tree').css({'margin-bottom':'-400px'}).fadeOut(700,function() {
+		$('.slub-form-tree').css({'margin-bottom':'20px'});
+	});
+
+	$('.slub-form-intro').hide();
 }
 
 /**
@@ -108,6 +117,37 @@ function hideForm(uid) {
 	$('#slub-forms-form-' + uid).addClass('hide'); // hide current field
 	$('#slub-forms-form-' + uid).find('input').attr('disabled','disabled');
 	$('#slub-forms-form-' + uid).find('textarea').attr('disabled','disabled');
+	setCookie('sf_form', '');
+}
+
+/**
+ * Set a cookie value
+ *
+ * @param	string	name: The key of the value
+ * @param	mixed	value: The value to save
+ *
+ * @return	void
+ */
+function setCookie(cname, cvalue) {
+	var d = new Date();
+	d.setTime(d.getTime() + (60*60*1000));
+	var expires = "expires="+d.toUTCString();
+	//alert('set cookie: ' + cname + "=" + cvalue + "; path=/; " + expires)
+	document.cookie = cname + "=" + cvalue + "; path=/; " + expires;
+};
+/**
+ * Read Cookie
+ *
+ * @params string name: cookie name
+ * @return mixed: the cookie value
+ */
+function getCookie(name) {
+	var results = document.cookie.match("(^|;) ?"+name+"=([^;]*)(;|$)");
+	if (results) {
+		return results[2];
+	} else {
+		return null;
+	}
 }
 
 
