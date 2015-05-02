@@ -55,12 +55,10 @@
 
 					if ($field->getRequired()) {
 						$javascriptFooter = '<script type="text/javascript">';
-						foreach ($config['radioOption'] as $id => $val) {
-							$javascriptFooter .= '
-								$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'-'.$id.'").rules("add", {
-									required: '.($field->getRequired() ? 'true' : 'false').'
-								 });';
-						}
+						$javascriptFooter .= '
+							$(".requiregroup-'.$form->getUid().'-'.$fieldset->getUid().'").rules("add", {
+								required: '.($field->getRequired() ? 'true' : 'false').'
+							 });';
 						$javascriptFooter .= '</script>';
 					}
 				}

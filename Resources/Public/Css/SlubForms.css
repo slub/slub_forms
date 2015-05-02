@@ -296,6 +296,7 @@ input[type="number"] {
 }
 
 #leftcol .tx-slub-forms input[type="checkbox"]:focus + .altCheckElement,
+#leftcol .tx-slub-forms input[type="radio"]:focus + .altCheckElement,
 #leftcol .tx-slub-forms input[type="text"]:focus,
 #leftcol .tx-slub-forms input[type="email"]:focus,
 #leftcol .tx-slub-forms input[type="url"]:focus,
@@ -360,7 +361,7 @@ input[type="number"] {
 */
 
 #leftcol .tx-slub-forms .altCheckElement {
-    float: left;
+  float: left;
   margin: 5px 6px 0 -28px;
   width: 20px;
   height: 20px;
@@ -480,6 +481,7 @@ input[type="number"] {
     float: left;
 	background: #fff;
 }
+#leftcol .tx-slub-forms .radiogroup input[type="radio"]:checked + label + .altCheckElement:after,
 #leftcol .tx-slub-forms .radiogroup input[type="radio"]:checked + .altCheckElement:after {
     float: left;
 	position: absolute;
