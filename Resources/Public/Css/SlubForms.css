@@ -466,8 +466,6 @@ input[type="number"] {
 	display: inline;
 	float: none;
 	clear: none;
-	width: auto;
-	margin-right: 10px;
 	vertical-align: middle;
 }
 #leftcol .tx-slub-forms .radiogroup .altCheckElement {
