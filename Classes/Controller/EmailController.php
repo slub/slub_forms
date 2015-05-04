@@ -248,7 +248,9 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		if (!empty($senderEmail)) {
 			$newEmail->setSenderEmail($senderEmail);
 		} else {
-			if ($this->settings['anonymEmails']['allow'] && $this->settings['anonymEmails']['defaultEmailAddress']) {
+			// check if extra anonymous field is set like session key editcode
+			$anonymous = $this->getParametersSafely('anonymous');
+			if ($this->settings['anonymEmails']['allow'] && $this->settings['anonymEmails']['defaultEmailAddress'] && ($anonymous === $this->getSessionData('editcode'))) {
 				$newEmail->setSenderEmail($this->settings['anonymEmails']['defaultEmailAddress']);
 			} else {
 				// we can't send an email without the senderEmail -->forward back to newAction

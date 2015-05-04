@@ -2,8 +2,6 @@ jQuery(document).ready(function() {
 
 	var formid = getCookie('sf_form');
 
-	hideAllForms();
-
 	if (formid) {
 		showForm(formid);
 	}
@@ -41,10 +39,22 @@ jQuery(document).ready(function() {
                 .val('0')
                 .attr('disabled','disabled');
 
+			var editcode =  $('input[name="tx_slubforms_sf[newEmail][editcode]"]');
+			var hiddenInput = $('<input/>',{type:'hidden',id:'anonymous',name:'tx_slubforms_sf[anonymous]',value:editcode.val()});
+			hiddenInput.appendTo($(this).parents('.slub-forms-fieldset'));
+
         } else {
 
             $(this).parents('.slub-forms-fieldset').find('input').each(function () {
+
                 $(this).removeAttr('disabled');
+
+				if (this.id == 'anonymous') {
+
+					$(this).detach();
+
+				}
+
             });
 
         }
@@ -88,7 +98,8 @@ function disableAllHiddenForms() {
  * @return	void
  */
 function showForm(uid) {
-
+	hideAllForms();
+	
 	$('#slub-forms-form-' + uid).removeClass('hide'); // hide current field
 	$('#slub-forms-form-' + uid).find('input').removeAttr('disabled');
 	$('#slub-forms-form-' + uid).find('textarea').removeAttr('disabled');

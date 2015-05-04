@@ -75,7 +75,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 	 */
 	public function isValid($field) {
 
-		//~ t3lib_utility_Debug::debug($field, 'isValid: field... ');
+//		t3lib_utility_Debug::debug($field, 'isValid: field... ');
 
 		$fieldGroupOk = 0;
 
@@ -177,9 +177,8 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 							break;
 						case 'email':
 								if ($singleField->getRequired()) {
-								t3lib_utility_Debug::debug($singleField, '$singleField.. ');
-									if ( ! ($singleField->getIsSenderEmail() && empty($getfields[$singleField->getUid()]))
-										|| !t3lib_div::validEmail($getfields[$singleField->getUid()])) {
+//								t3lib_utility_Debug::debug($singleField, '$singleField.. ');
+									if ( !t3lib_div::validEmail($getfields[$singleField->getUid()]) ) {
 										// seems to be no valid email address
 										$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1600);
 										$this->result->forProperty('senderEmail')->addError($error);
@@ -265,8 +264,6 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 						}
 					}
 				}
-
-
 			}
 
 			// if fieldset is required, check fields once more...
