@@ -176,19 +176,21 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 									}
 							break;
 						case 'email':
-							if ($singleField->getRequired()) {
-									if (!$singleField->getIsSenderEmail() && !empty($getfields[$singleField->getUid()]) && !t3lib_div::validEmail($getfields[$singleField->getUid()])) {
+								if ($singleField->getRequired()) {
+								t3lib_utility_Debug::debug($singleField, '$singleField.. ');
+									if ( ! ($singleField->getIsSenderEmail() && empty($getfields[$singleField->getUid()]))
+										|| !t3lib_div::validEmail($getfields[$singleField->getUid()])) {
 										// seems to be no valid email address
 										$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1600);
 										$this->result->forProperty('senderEmail')->addError($error);
 										$this->isValid = false;
 									}
+								}
+								if ($fieldset->getRequired()) {
+									if (!empty($getfields[$singleField->getUid()])) {
+										$fieldGroupOk++;
 									}
-									if ($fieldset->getRequired()) {
-										if (!empty($getfields[$singleField->getUid()])) {
-											$fieldGroupOk++;
-										}
-									}
+								}
 							break;
 						case 'number': if ($singleField->getRequired()) {
 											if (!empty($getfields[$singleField->getUid()]) && !t3lib_utility_Math::canBeInterpretedAsInteger($getfields[$singleField->getUid()])) {

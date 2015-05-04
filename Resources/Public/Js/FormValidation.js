@@ -2,6 +2,8 @@ jQuery(document).ready(function() {
 
 	var formid = getCookie('sf_form');
 
+	hideAllForms();
+
 	if (formid) {
 		showForm(formid);
 	}
@@ -86,7 +88,6 @@ function disableAllHiddenForms() {
  * @return	void
  */
 function showForm(uid) {
-	hideAllForms();
 
 	$('#slub-forms-form-' + uid).removeClass('hide'); // hide current field
 	$('#slub-forms-form-' + uid).find('input').removeAttr('disabled');
