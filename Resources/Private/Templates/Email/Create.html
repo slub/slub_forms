@@ -4,7 +4,10 @@
 
 <div class="confirmation">
 
-<h3 class="formtitle">{form.title}</h3>
+<h3 class="formtitle"><f:link.page>
+    <span class="slub-forms-back2select" title="<f:translate key='slub-forms.back_to_forms' />">&larr; <f:translate key="slub-forms.back" /></span>
+</f:link.page> <br />
+    {form.title}</h3>
 
 <p><f:translate key="tx_slubforms_domain_model_email.salutation" /> {email.senderName},</p>
 

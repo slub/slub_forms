@@ -137,9 +137,9 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 			foreach($allfields as $id => $field) {
 
-				//~ t3lib_utility_Debug::debug($getfields, '$createAction 1 $getfields:... ');
+//				t3lib_utility_Debug::debug($field, '$createAction 1 $field:... ');
 
-				if (!empty($getfields[$field->getUid()])) {
+				if (isset($getfields[$field->getUid()])) {
 					// checkbox-value is only transmitted if checked but should be always in email content
 					// the value (1/0) may be converted in a configured string (value = TRUE : FALSE)
 					if ($field->getType() == 'Checkbox') {
@@ -205,7 +205,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 					if ($field->getIsSenderEmail()) {
 
-						$senderEmail = $getfields[$field->getUid()];
+						$senderEmail['address'] = $getfields[$field->getUid()];
+						$senderEmail['required'] = $field->getRequired();
 
 					} else if ($field->getIsSenderName()) {
 
@@ -245,13 +246,22 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		}
 
 		// check for senderEmail
-		if (!empty($senderEmail)) {
-			$newEmail->setSenderEmail($senderEmail);
+		// It may be empty if no senderEmail-Field has been sent. This happens in case of the anonymous function which
+		// disables the input fields
+		if (!empty($senderEmail['address'])) {
+
+			$newEmail->setSenderEmail($senderEmail['address']);
+
 		} else {
+
 			// check if extra anonymous field is set like session key editcode
 			$anonymous = $this->getParametersSafely('anonymous');
-			if ($this->settings['anonymEmails']['allow'] && $this->settings['anonymEmails']['defaultEmailAddress'] && ($anonymous === $this->getSessionData('editcode'))) {
+			// if required is set, we ignore the anonymous session key anyhow. little stupid, but...
+			if ($this->settings['anonymEmails']['allow'] && $this->settings['anonymEmails']['defaultEmailAddress']
+				&& (($anonymous === $this->getSessionData('editcode')) || !$senderEmail['required'])) {
+
 				$newEmail->setSenderEmail($this->settings['anonymEmails']['defaultEmailAddress']);
+
 			} else {
 				// we can't send an email without the senderEmail -->forward back to newAction
 				$this->forward('new', NULL, NULL, array('form' => $form->getUid()));
