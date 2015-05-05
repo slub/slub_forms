@@ -137,8 +137,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 			foreach($allfields as $id => $field) {
 
-//				t3lib_utility_Debug::debug($field, '$createAction 1 $field:... ');
-
 				if (isset($getfields[$field->getUid()])) {
 					// checkbox-value is only transmitted if checked but should be always in email content
 					// the value (1/0) may be converted in a configured string (value = TRUE : FALSE)
@@ -148,7 +146,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
 							// take true value
-							$content[$field->getTitle()] = $settingPair[0];
+							$content[$field->getTitle()] = ($getfields[$field->getUid()] == 1) ? $settingPair[0] : $settingPair[1];
 						} else {
 
 							$content[$field->getTitle()] = $getfields[$field->getUid()];
@@ -163,7 +161,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 							foreach ($config['radioOption'] as $radioOption) {
 								$settingPair = explode(":", $radioOption);
 								// take true value
-//								t3lib_utility_Debug::debug($settingPair , 'settingPair radio: ... ');
 								if ((int)$settingPair[1] == (int)$getfields[$field->getUid()]) {
 									$content[$field->getTitle()] = $settingPair[0];
 								}
