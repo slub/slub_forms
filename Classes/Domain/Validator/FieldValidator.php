@@ -250,7 +250,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 				}
 				// fluid cannot add "required" on checkbox and radio buttons.
 				// so check it here:
-				if ($singleField->getType() == 'Radio') {
+				if ($singleField->getType() == 'Radio' || $singleField->getType() == 'Checkbox') {
 					if ($singleField->getRequired()) {
 						if (empty($getfields[$singleField->getUid()])) {
 							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_radio', 2100);

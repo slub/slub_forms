@@ -99,7 +99,7 @@ function disableAllHiddenForms() {
  */
 function showForm(uid) {
 	hideAllForms();
-	
+
 	$('#slub-forms-form-' + uid).removeClass('hide'); // hide current field
 	$('#slub-forms-form-' + uid).find('input').removeAttr('disabled');
 	$('#slub-forms-form-' + uid).find('textarea').removeAttr('disabled');
