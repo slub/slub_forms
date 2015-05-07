@@ -36,7 +36,7 @@
 class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 * Looks for already checked form from last request
+	 * Adds JS code for form validation to footer
 	 *
 	 * @param Tx_SlubForms_Domain_Model_Form $form
 	 * @param Tx_SlubForms_Domain_Model_Fields $field
@@ -47,6 +47,8 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 	public function render($form = NULL, $field = NULL, $fieldset = NULL) {
 
 		if ($field !== NULL) {
+			// used in File.html template
+
 			// get field configuration
 			$config = $this->configToArray($field->getConfiguration());
 			if (!empty($config['file-accept-mimetypes'])) {
@@ -63,8 +65,9 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 				';
 
 			}
-		} else {
-
+		}
+		else {
+			// used in New.html Template for fieldset required
 			if ($fieldset->getRequired()) {
 
 				$javascriptFooter .= '<script type="text/javascript">';
