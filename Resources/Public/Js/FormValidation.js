@@ -162,6 +162,35 @@ function getCookie(name) {
 	}
 }
 
+/**
+ * Delete file from input field
+ *
+ * @param	string	name: The key of the value
+ *
+ * @return	void
+ */
+function deleteFile(id) {
+
+	$('#delete-file-' + id[0].id).hide();
+
+	id.val('');
+
+};
+/**
+ * Delete file from input field
+ *
+ * @param	string	name: The key of the value
+ *
+ * @return	void
+ */
+function fileSelect(e){
+
+	//console.log(e.target.id);
+
+	$('#delete-file-'+ e.target.id).removeClass('hide')
+	$('#delete-file-'+ e.target.id).show();
+
+}
 
 /**
  * Form Validation Extras
@@ -175,21 +204,27 @@ function getCookie(name) {
 
 $( "#slubForm" ).validate({
 
-	//~ submitHandler: function (form) { // for demo
-		//~ alert('valid form submitted'); // for demo
-		//~ return false; // for demo
-	//~ },
+	 //submitHandler: function (form) { // for demo
+	 //
+		//alert('valid form submitted'); // for demo
+	 //
+		//return false; // for demo
+	 //}
 
 	submitHandler: function(form) {
 
 		function updateTime() {
-			$('#slubForm input:submit').val($('#slubForm input:submit').val() + ' >');
+
+			$('#slubForm [type="submit"]').val($('#slubForm [type="submit"]').val() + ' >');
+
 		}
 
 		updateTime();
+
 		setInterval(updateTime, 1000); // 5 * 1000 miliseconds
 
-		$('input:submit').attr("disabled", true);
+		$('[type="submit"]').attr("disabled", true);
+
 		form.submit();
 	}
 

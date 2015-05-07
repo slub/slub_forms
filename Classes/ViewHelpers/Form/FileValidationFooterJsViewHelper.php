@@ -60,6 +60,7 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 						if (!empty($config['file-accept-size']))
 							$javascriptFooter .= ',
 								filesize: '.$config['file-accept-size'];
+
 				$javascriptFooter .= '});
 				</script>
 				';
