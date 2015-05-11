@@ -32,8 +32,8 @@
 		<trans-unit id="tx_slubforms_domain_model_email.content" xml:space="preserve">
 			<source>content</source>
 		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.form" xml:space="preserve">
-			<source>form</source>
+		<trans-unit id="tx_slubforms_domain_model_email.data_received" xml:space="preserve">
+			<source>We received the following data from you:</source>
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email.salutation" xml:space="preserve">
 			<source>Dear</source>
@@ -43,6 +43,12 @@
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email.sender_name" xml:space="preserve">
 			<source>senderName</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.form" xml:space="preserve">
+			<source>Form</source>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.thank_you_message" xml:space="preserve">
+			<source>Thank you for your message.</source>
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_fields" xml:space="preserve">
 			<source>Fields</source>

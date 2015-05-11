@@ -300,7 +300,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$this->sendTemplateEmail(
 			array($form->getRecipient() => ''),
 			array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
-			'Formular: ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
+			Tx_Extbase_Utility_Localization::translate('tx_slubforms_domain_model_email.form', 'slub_forms') . ': ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
 			'FormEmail',
 			array(	'email' => $newEmail,
 					'form' => $form,
