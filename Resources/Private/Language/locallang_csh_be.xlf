@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2014-05-28T07:44:03Z" product-name="slub_forms">
+        <header/>
+        <body>
+            <trans-unit id="settings.formsSelection.description">
+                <source>Set General Record Storage to the page of your form data.</source>
+            </trans-unit>
+		<trans-unit id="settings.pageTarget.description" approved="yes" xml:space="preserve">
+			<source>Target page the user is redirected to.</source>
+		</trans-unit>
+        </body>
+    </file>
+</xliff>

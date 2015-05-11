@@ -55,7 +55,7 @@
 
 <f:section name="singleForm">
 
-	<f:form.radio id="slub-form-select-{form.uid}" property="form" value="{form.uid}" checked="checked" />
+	<f:form.radio class="hide" id="slub-form-select-{form.uid}" property="form" value="{form.uid}" checked="checked" />
 
 	<div id="slub-forms-form-{form.uid}" class="slub-forms-form {form.shortname}">
 
@@ -81,7 +81,7 @@
 {namespace sf=Tx_SlubForms_ViewHelpers}
 
 <f:if condition="{forms}">
-	<f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
+	<f:form enctype="multipart/form-data" action="create" pageUid="{settings.pageTarget}" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
 
 		<f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
 		<f:render partial="FormErrors" arguments="{obj: 'field'}" />

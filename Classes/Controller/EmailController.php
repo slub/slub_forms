@@ -71,9 +71,15 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			// if no form is found getFirst() will return false and that's what we want
 			$this->view->assign('singleForm', $singleForm->getFirst());
 		}
+
 		if (!empty($this->settings['formsSelection'])) {
 			// show only forms selected in flexform
 			$forms = $this->formsRepository->findAllByUidsTree(t3lib_div::intExplode(',', $this->settings['formsSelection'], TRUE));
+
+			if (count($forms) == 1) {
+				$this->view->assign('singleForm', $this->formsRepository->findAllByUids(t3lib_div::intExplode(',', $this->settings['formsSelection'], TRUE))->getFirst());
+			}
+
 		} else {
 			// take all
 			$forms = $this->formsRepository->findAll();

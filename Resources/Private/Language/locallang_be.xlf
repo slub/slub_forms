@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-07-18T07:52:44Z">
+		<header>
+			<generator>LFEditor</generator>
+		</header>
+		<body>
+		<trans-unit id="flexforms.page_target_sent" approved="yes" xml:space="preserve">
+			<source>Target Page of Sent Forms</source>
+		</trans-unit>
+		<trans-unit id="flexforms.page_target_sent.description" approved="yes" xml:space="preserve">
+			<source>Long description of Target Page of Sent Forms</source>
+		</trans-unit>
+		<trans-unit id="flexforms.settings.formsSelection" approved="yes" xml:space="preserve">
+			<source>Long description of settings.formsSelection Page of Sent Forms</source>
+		</trans-unit>
+
+
+		</body>
+	</file>
+</xliff>
