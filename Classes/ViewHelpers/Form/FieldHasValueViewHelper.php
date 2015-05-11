@@ -75,6 +75,11 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 						return $GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ];
 					}
 					break;
+				case 'news':
+					// e.g. news:news
+					$newsArgs = t3lib_div::_GET('tx_news_pi1');
+					return $newsArgs[$settingPair[1]];
+					break;
 				case 'value':
 					if (!empty($settingPair[1]))
 						return trim($settingPair[1]);
