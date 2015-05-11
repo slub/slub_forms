@@ -34,6 +34,12 @@
 class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_AbstractController {
 
 	/**
+	 * @var Tx_Extbase_SignalSlot_Dispatcher
+	 * @inject
+	 */
+	protected $signalSlotDispatcher;
+
+	/**
 	 * action list
 	 *
 	 * @return void
@@ -130,13 +136,13 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 */
 	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail, array $field = array()) {
 
-		$field = $this->getParametersSafely('field');
+		$fieldParameter = $this->getParametersSafely('field');
 		//~ t3lib_utility_Debug::debug($field, 'createAction: field... ');
 
 		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
 
 		// walk through all fieldsets
-		foreach($field as $getfieldset => $getfields) {
+		foreach($fieldParameter as $getfieldset => $getfields) {
 
 			$fieldset = $this->fieldsetsRepository->findByUid($getfieldset);
 			$allfields = $fieldset->getFields();
@@ -240,8 +246,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 			//~ t3lib_utility_Debug::debug($getfields, 'createAction: getfields ... ');
 			$contentText = '<ul>';
-			foreach ($content as $field => $value)
-				$contentText .= '<li>'.$field . ': <b>'. $value.'</b></li>';
+			foreach ($content as $fieldName => $value)
+				$contentText .= '<li>'.$fieldName . ': <b>'. $value.'</b></li>';
 			$contentText .= '</ul>';
 
 			$newEmail->setContent(trim($contentText));
@@ -310,6 +316,12 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			)
 		);
 
+		// add signal before sending Email
+		$this->signalSlotDispatcher->dispatch(
+			__CLASS__,
+			'beforeEmailStorage',
+			array($newEmail, $fieldParameter)
+		);
 
 		$this->emailRepository->add($newEmail);
 

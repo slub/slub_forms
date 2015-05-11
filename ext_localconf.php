@@ -24,4 +24,9 @@ if (t3lib_extMgm::isLoaded('realurl')) {
 		'EXT:' . $_EXTKEY . '/Classes/Hooks/RealUrlAutoConfiguration.php:Tx_SlubForms_Hooks_RealUrlAutoConfiguration->addFormsConfig';
 }
 
+/**
+ * provide Slots
+ */
+$signalSlotDispatcher = t3lib_div::makeInstance('Tx_Extbase_Object_Manager')->get('Tx_Extbase_SignalSlot_Dispatcher');
+
 ?>
