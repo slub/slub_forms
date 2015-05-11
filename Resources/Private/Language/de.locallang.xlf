@@ -65,8 +65,12 @@
 			<source>content</source>
 			<target>Inhalt</target>
 		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.data_received" approved="yes" xml:space="preserve">
+			<source>We received the following data from you:</source>
+			<target>Folgende Daten haben wir von Ihnen erhalten:</target>
+		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email.form" approved="yes" xml:space="preserve">
-			<source>form</source>
+			<source>Form</source>
 			<target>Formular</target>
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_email.salutation" approved="yes" xml:space="preserve">
@@ -80,6 +84,10 @@
 		<trans-unit id="tx_slubforms_domain_model_email.sender_name" approved="yes" xml:space="preserve">
 			<source>senderName</source>
 			<target>Absender Name</target>
+		</trans-unit>
+		<trans-unit id="tx_slubforms_domain_model_email.thank_you_message" approved="yes" xml:space="preserve">
+			<source>Thank you for your message.</source>
+			<target>Vielen Dank für Ihre Mitteilung.</target>
 		</trans-unit>
 		<trans-unit id="tx_slubforms_domain_model_fields" approved="yes" xml:space="preserve">
 			<source>Fields</source>
