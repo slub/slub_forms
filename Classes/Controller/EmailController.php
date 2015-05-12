@@ -62,15 +62,29 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 */
 	public function newAction(Tx_SlubForms_Domain_Model_Email $newEmail = NULL) {
 
-		//~ t3lib_utility_Debug::debug('da', 'newAction: getEditcode... ');
 		$singleFormShortname = $this->getParametersSafely('form');
+//		t3lib_utility_Debug::debug($singleFormShortname, 'newAction: $singleFormShortname... ');
 
 		if (!empty($singleFormShortname)) {
-			// show only selected form
-			$singleForm = $this->formsRepository->findByShortname($singleFormShortname);
+
+			/**
+			 * $singleFormShortname may be string or integer (via realurl)
+			 *
+			 * realurl e.g. "slubforms/userform" --> uid of form
+			 *
+			 * "tx_slubforms_sf[form]=userform" --> userform
+			 *
+			 */
+			if (t3lib_utility_Math::canBeInterpretedAsInteger($singleFormShortname)) {
+				$singleForm = $this->formsRepository->findAllById($singleFormShortname);
+			} else {
+				$singleForm = $this->formsRepository->findByShortname($singleFormShortname);
+			}
 			// if no form is found getFirst() will return false and that's what we want
 			$this->view->assign('singleForm', $singleForm->getFirst());
+
 		}
+
 		if (!empty($this->settings['formsSelection'])) {
 			// show only forms selected in flexform
 			$forms = $this->formsRepository->findAllByUidsTree(t3lib_div::intExplode(',', $this->settings['formsSelection'], TRUE));
