@@ -65,26 +65,34 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 		// get field configuration
 		$config = $this->configToArray($field->getConfiguration());
 		if (!empty($config['prefill'])) {
-			// e.g. fe_users:username
-			//  or  value:1
-			// first value is database "value" or "fe_users"
-			$settingPair = explode(":", $config['prefill']);
-			switch (trim($settingPair[0])) {
-				case 'fe_users':
-					if (!empty($GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ])) {
-						return $GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ];
-					}
-					break;
-				case 'news':
-					// e.g. news:news
-					$newsArgs = t3lib_div::_GET('tx_news_pi1');
-					return $newsArgs[$settingPair[1]];
-					break;
-				case 'value':
-					if (!empty($settingPair[1]))
-						return trim($settingPair[1]);
-					break;
+			// values may be comma separated:
+			// e.g. prefill = fe_users:username, fe_users:email, news:news
+			$serialArguments = explode(",", $config['prefill']);
+			$returnValue = array();
+
+			foreach($serialArguments as $id => $singleArgument) {
+				// e.g. fe_users:username
+				//  or  value:1
+				// first value is database "value" or "fe_users"
+				$settingPair = explode(":", $singleArgument);
+				switch (trim($settingPair[0])) {
+					case 'fe_users':
+						if (!empty($GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ])) {
+							$returnValue[] = $GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ];
+						}
+						break;
+					case 'news':
+						// e.g. news:news
+						$newsArgs = t3lib_div::_GET('tx_news_pi1');
+						$returnValue[] = $newsArgs[$settingPair[1]];
+						break;
+					case 'value':
+						if (!empty($settingPair[1]))
+							$returnValue[] = trim($settingPair[1]);
+						break;
+				}
 			}
+			return implode(',', $returnValue);
 		}
 
 		// check for prefill by GET parameter

@@ -8,11 +8,8 @@
 		<trans-unit id="flexforms.page_target_sent" approved="yes" xml:space="preserve">
 			<source>Target Page of Sent Forms</source>
 		</trans-unit>
-		<trans-unit id="flexforms.page_target_sent.description" approved="yes" xml:space="preserve">
-			<source>Long description of Target Page of Sent Forms</source>
-		</trans-unit>
-		<trans-unit id="flexforms.settings.formsSelection" approved="yes" xml:space="preserve">
-			<source>Long description of settings.formsSelection Page of Sent Forms</source>
+		<trans-unit id="flexforms.page_show_form" approved="yes" xml:space="preserve">
+			<source>Page showing all Forms</source>
 		</trans-unit>
 
 

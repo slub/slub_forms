@@ -68,8 +68,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	 */
 	public function newAction(Tx_SlubForms_Domain_Model_Email $newEmail = NULL) {
 
-		//~ t3lib_utility_Debug::debug('da', 'newAction: getEditcode... ');
 		$singleFormShortname = $this->getParametersSafely('form');
+//		t3lib_utility_Debug::debug($singleFormShortname, 'newAction: $singleFormShortname... ');
 
 		if (!empty($singleFormShortname)) {
 			// show only selected form
@@ -316,17 +316,39 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			)
 		);
 
+		$settings = array();
 		// add signal before sending Email
 		$this->signalSlotDispatcher->dispatch(
 			__CLASS__,
 			'beforeEmailStorage',
-			array($newEmail, $fieldParameter)
+			array($newEmail, $fieldParameter, &$settings)
 		);
 
 		$this->emailRepository->add($newEmail);
 
 		// reset session data
 		$this->setSessionData('editcode', '');
+
+		if (isset($this->settings['pageShowForm'])) {
+
+			$this->uriBuilder->setTargetPageUid($this->settings['pageShowForm']);
+	//		$this->uriBuilder->setNoCache(TRUE);
+			$this->uriBuilder->setUseCacheHash(FALSE);
+
+			$newsUri = $this->uriBuilder->uriFor(
+				'detail',
+				array('news' => $settings['newsid'][0],
+					'day' => $settings['newsid'][1],
+					'month' => $settings['newsid'][2],
+					'year' => $settings['newsid'][3]
+					),
+				'News',
+				'news',
+				'pi1');
+//			t3lib_utility_Debug::debug($newsUri, 'createAction: $myuri... ');
+
+			$this->redirectToURI($newsUri, 3, 303);
+		}
 
 		$this->view->assign('content', $content);
 		$this->view->assign('form', $form);
