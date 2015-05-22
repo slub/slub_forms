@@ -27,6 +27,15 @@ if (t3lib_extMgm::isLoaded('realurl')) {
 /**
  * provide Slots
  */
-$signalSlotDispatcher = t3lib_div::makeInstance('Tx_Extbase_Object_Manager')->get('Tx_Extbase_SignalSlot_Dispatcher');
+	if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) <  '6000000') {
+		// TYPO3 4.7
+		$signalSlotDispatcher = t3lib_div::makeInstance('Tx_Extbase_Object_Manager')->get('Tx_Extbase_SignalSlot_Dispatcher');
+	} else {
+		// TYPO3 6.x
+		/** @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher */
+		$signalSlotDispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager')
+			->get('TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher');
+	}
+
 
 ?>

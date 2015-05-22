@@ -297,37 +297,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			// if nothing helps, we can send without the senderName but we have to set something.
 			$newEmail->setSenderName('-');
 
-		// email to customer
-		// send only if "sendConfirmationEmailToCustomer" TS setting is true
-		if ($this->settings['sendConfirmationEmailToCustomer']) {
-			$this->sendTemplateEmail(
-				array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
-				array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
-				Tx_Extbase_Utility_Localization::translate('slub-forms.senderSubject', 'slub_forms') . ' ' . $form->getTitle(),
-				'ConfirmEmail',
-				array(	'email' => $newEmail,
-						'form' => $form,
-						'content' => $content,
-						'settings' => $this->settings,
-				)
-			);
-		}
-
 		//~ t3lib_utility_Debug::debug($content, 'createAction: content... ');
-
-		// email to event owner
-		$this->sendTemplateEmail(
-			array($form->getRecipient() => ''),
-			array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
-			Tx_Extbase_Utility_Localization::translate('tx_slubforms_domain_model_email.form', 'slub_forms') . ': ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
-			'FormEmail',
-			array(	'email' => $newEmail,
-					'form' => $form,
-					'content' => $content,
-					'filename' => $fileName,
-					'settings' => $this->settings,
-			)
-		);
 
 		$settings = array();
 		// add signal before sending Email
@@ -337,7 +307,42 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			array($newEmail, $fieldParameter, &$settings)
 		);
 
-		$this->emailRepository->add($newEmail);
+		if (! isset($settings['error'])) {
+			// if there is any error detected, we won't send and store this mail.
+
+			// email to customer
+			// send only if "sendConfirmationEmailToCustomer" TS setting is true
+			if ($this->settings['sendConfirmationEmailToCustomer']) {
+				$this->sendTemplateEmail(
+					array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
+					array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
+					Tx_Extbase_Utility_Localization::translate('slub-forms.senderSubject', 'slub_forms') . ' ' . $form->getTitle(),
+					'ConfirmEmail',
+					array(	'email' => $newEmail,
+						'form' => $form,
+						'content' => $content,
+						'settings' => $this->settings,
+					)
+				);
+			}
+
+			// email to event owner
+			$this->sendTemplateEmail(
+				array($form->getRecipient() => ''),
+				array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
+				Tx_Extbase_Utility_Localization::translate('tx_slubforms_domain_model_email.form', 'slub_forms') . ': ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
+				'FormEmail',
+				array(	'email' => $newEmail,
+					'form' => $form,
+					'content' => $content,
+					'filename' => $fileName,
+					'settings' => $this->settings,
+				)
+			);
+
+			$this->emailRepository->add($newEmail);
+
+		}
 
 		// reset session data
 		$this->setSessionData('editcode', '');
@@ -358,7 +363,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 				'News',
 				'news',
 				'pi1');
-//			t3lib_utility_Debug::debug($newsUri, 'createAction: $myuri... ');
+//			t3lib_utility_Debug::debug($newsUri, 'createAction: $newsUri... ');
+//			t3lib_utility_Debug::debug($settings, 'createAction: $settings... ');
 
 			$this->redirectToURI($newsUri, 3, 303);
 		}
@@ -450,7 +456,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 				->setFrom($sender)
 				->setCharset('utf-8')
 				->setSubject($subject);
-
 
 		// Plain text example
 		$emailTextHTML = $emailViewHTML->render();
