@@ -144,27 +144,29 @@
 
 .slub-form-tree fieldset.cats > ul > li:hover > ul,
 .slub-form-tree fieldset.cats > ul > li:active > ul {
-  left:-25px;
   visibility:visible;
   opacity:1;
 }
 
 .slub-form-tree fieldset.cats ul .slub-form-select-2 > ul {
-  left: 80px;
+  top: -28px;
+  left: 70px;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-2:hover > ul {
-  left: 110px;
+.slub-form-tree fieldset.cats ul .slub-form-select-6 > ul {
+  top: -27px;
+  left: 190px;
+}
+
+.slub-form-tree fieldset.cats ul .slub-form-select-14 > ul {
+  top: -28px;
+  left: 220px;
 }
 
 .slub-form-tree fieldset.cats ul .slub-form-select-21 > ul {
-  left: 120px;
+  top: -30px;
+  left: 145px;
 }
-
-.slub-form-tree fieldset.cats ul .slub-form-select-21:hover > ul {
-  left: 160px;
-}
-
 
 @media only screen and (min-width : 1224px) {
    /* ipad bug */
