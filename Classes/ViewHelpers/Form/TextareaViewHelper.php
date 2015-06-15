@@ -42,6 +42,7 @@ class Tx_SlubForms_ViewHelpers_Form_TextareaViewHelper extends Tx_Fluid_ViewHelp
 	public function initializeArguments() {
 		parent::initializeArguments();
 		$this->registerTagAttribute('rows', 'int', 'The number of rows of a text area', TRUE);
+		$this->registerTagAttribute('maxlength', 'int', 'The maximum number of characters', FALSE);
 		$this->registerTagAttribute('cols', 'int', 'The number of columns of a text area', TRUE);
 		$this->registerTagAttribute('disabled', 'string', 'Specifies that the input element should be disabled when the page loads');
 		$this->registerArgument('errorClass', 'string', 'CSS class to set if there are errors for this view helper', FALSE, 'f3-form-error');
@@ -51,17 +52,42 @@ class Tx_SlubForms_ViewHelpers_Form_TextareaViewHelper extends Tx_Fluid_ViewHelp
 	/**
 	 * Renders the textarea.
 	 *
+	 * @param Tx_SlubForms_Domain_Model_Fields $field
 	 * @param boolean $required If the field is required or not
 	 * @return string
 	 * @api
 	 */
-	public function render($required = NULL) {
+	public function render($field, $required = NULL) {
 		$name = $this->getName();
 		$this->registerFieldNameForFormTokenGeneration($name);
 
 		$this->tag->forceClosingTag(TRUE);
 		$this->tag->addAttribute('name', $name);
 		$this->tag->setContent(htmlspecialchars($this->getValue()));
+
+		// e.g.
+		// maxlength = 30000
+		// rows = 5
+		// cols = 60
+		$config = $this->configToArray($field->getConfiguration());
+		if (!empty($config)) {
+
+			foreach($config as $key => $value) {
+				switch ($key) {
+					case 'maxlength':
+						$this->tag->addAttribute('maxlength', (int)$value);
+						break;
+					case 'rows':
+						$this->tag->addAttribute('rows', (int)$value);
+						break;
+					case 'cols':
+						$this->tag->addAttribute('cols', (int)$value);
+						break;
+				}
+
+			}
+
+		}
 
 		if ($required !== NULL) {
 				$this->tag->addAttribute('required', 'required');
@@ -71,6 +97,24 @@ class Tx_SlubForms_ViewHelpers_Form_TextareaViewHelper extends Tx_Fluid_ViewHelp
 
 		return $this->tag->render();
 	}
+
+	/**
+	 *
+	 * @param string $config
+	 *
+	 * @return array configuration
+	 *
+	 */
+	private function configToArray($config) {
+
+		$configSplit = explode("\n", $config);
+		foreach ($configSplit as $id => $configLine) {
+			$settingPair = explode("=", $configLine);
+			$configArray[strtolower(trim($settingPair[0]))] = trim($settingPair[1]);
+		}
+		return $configArray;
+	}
+
 }
 
 ?>
