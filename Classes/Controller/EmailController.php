@@ -217,11 +217,13 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 								$fileName
 							);
 						} else {
+
 							$content[$field->getTitle()] = '-';
+
 						}
 					} else {
 
-						$content[$field->getTitle()] = $getfields[$field->getUid()];
+						$content[$field->getTitle()] = empty($getfields[$field->getUid()]) ? '-' : $getfields[$field->getUid()];
 
 					}
 
@@ -236,16 +238,19 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 					}
 
-				}
-				else if ($field->getType() == 'Checkbox') {
+				} else if ($field->getType() == 'Checkbox') {
+
 						$config = $this->configToArray($field->getConfiguration());
+
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
 							// take false value
 							$content[$field->getTitle()] = $settingPair[1];
 						}
-						else
+						else {
 							$content[$field->getTitle()] = $getfields[$field->getUid()];
+						}
+
 				} else if ($field->getType() == 'Description') {
 
 						continue;
@@ -312,7 +317,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 			// email to customer
 			// send only if "sendConfirmationEmailToCustomer" TS setting is true
-			if ($this->settings['sendConfirmationEmailToCustomer']) {
+			if ($this->settings['sendConfirmationEmailToCustomer'] && $newEmail->getSenderEmail() != $this->settings['anonymEmails']['defaultEmailAddress']) {
 				$this->sendTemplateEmail(
 					array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
 					array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
@@ -326,7 +331,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 				);
 			}
 
-			// email to event owner
+			// email to form owner
 			$this->sendTemplateEmail(
 				array($form->getRecipient() => ''),
 				array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
@@ -363,8 +368,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 				'News',
 				'news',
 				'pi1');
-//			t3lib_utility_Debug::debug($newsUri, 'createAction: $newsUri... ');
-//			t3lib_utility_Debug::debug($settings, 'createAction: $settings... ');
 
 			$this->redirectToURI($newsUri, 3, 303);
 		}
