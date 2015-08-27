@@ -352,7 +352,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		// reset session data
 		$this->setSessionData('editcode', '');
 
-		if (isset($this->settings['pageShowForm'])) {
+		if (!empty($this->settings['pageShowForm'])) {
 
 			$this->uriBuilder->setTargetPageUid($this->settings['pageShowForm']);
 	//		$this->uriBuilder->setNoCache(TRUE);
