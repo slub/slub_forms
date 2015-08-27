@@ -77,33 +77,44 @@
 
 </f:section>
 
-<f:section name="main">
-{namespace sf=Tx_SlubForms_ViewHelpers}
+<f:section name="targetSwitch">
+	<f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
+	<f:render partial="FormErrors" arguments="{obj: 'field'}" />
 
-<f:if condition="{forms}">
-	<f:form enctype="multipart/form-data" action="create" pageUid="{settings.pageTarget}" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
-
-		<f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
-		<f:render partial="FormErrors" arguments="{obj: 'field'}" />
-
-		<f:if condition="{singleForm}">
-			<f:then>
-				<f:render section="singleForm" arguments="{form: singleForm}" />
-			</f:then>
-			<f:else>
-				<div class="slub-form-tree">
-					<fieldset class="cats">
+	<f:if condition="{singleForm}">
+		<f:then>
+			<f:render section="singleForm" arguments="{form: singleForm}" />
+		</f:then>
+		<f:else>
+			<div class="slub-form-tree">
+				<fieldset class="cats">
 					<legend class="form-cats">Formular Kategorien</legend>
 					<f:render section="categoryTree" arguments="{categories: forms}" />
-					</fieldset>
-				</div>
-				<f:render section="subForms" arguments="{forms: forms}" />
+				</fieldset>
+			</div>
+			<f:render section="subForms" arguments="{forms: forms}" />
+		</f:else>
+	</f:if>
+	<f:form.hidden property="editcode" value="<sf:format.editCode />"/>
+</f:section>
+
+<f:section name="main">
+{namespace sf=Tx_SlubForms_ViewHelpers}
+<f:if condition="{forms}">
+	<f:then>
+		<f:if condition="{settings.pageTarget} > 0">
+			<f:then>
+				<f:form enctype="multipart/form-data" pageUid="{settings.pageTarget}" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
+					<f:render section="targetSwitch" arguments="{_all}" />
+				</f:form>
+			</f:then>
+			<f:else>
+				<f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
+					<f:render section="targetSwitch" arguments="{_all}" />
+				</f:form>
 			</f:else>
 		</f:if>
-
-		<f:form.hidden property="editcode" value="<sf:format.editCode />"/>
-	</f:form>
-
+	</f:then>
 </f:if>
 
 
