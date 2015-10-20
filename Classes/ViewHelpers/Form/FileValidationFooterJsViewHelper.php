@@ -53,16 +53,13 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 			$config = $this->configToArray($field->getConfiguration());
 			if (!empty($config['file-accept-mimetypes'])) {
 				// e.g. file-mimetypes = audio/*, image/*, application/
-				$javascriptFooter = '<script type="text/javascript">
-						$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
+				$javascriptFooter = '$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
 						required: '.($field->getRequired() ? 'true' : 'false').',
 						accept: "'.$config['file-accept-mimetypes'].'"';
 						if (!empty($config['file-accept-size']))
 							$javascriptFooter .= ',
 								filesize: '.$config['file-accept-size'];
-
 				$javascriptFooter .= '});
-				</script>
 				';
 
 			}
@@ -88,10 +85,7 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 
 		}
 
-		// dirty but working. Has to be called after the <form> and the jqueryvalidation validate()
-		// getPagerender() doesn't work in 4.7.x....
-		// see: http://forge.typo3.org/issues/22273
-		$GLOBALS['TSFE']->additionalFooterData['tx_slub_forms'] .= $javascriptFooter;
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('tx_slub_forms', $javascriptFooter);
 
 	}
 

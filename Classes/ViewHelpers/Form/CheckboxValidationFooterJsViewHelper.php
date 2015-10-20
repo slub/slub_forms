@@ -49,18 +49,13 @@ class Tx_SlubForms_ViewHelpers_Form_CheckboxValidationFooterJsViewHelper extends
 		if ($field !== NULL) {
 
 			if ($field->getRequired()) {
-				$javascriptFooter = '<script type="text/javascript">
-						$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
+				$javascriptFooter = '$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
 						required: '.($field->getRequired() ? 'true' : 'false').'});
-				</script>
 				';
 			}
 		}
 
-		// dirty but working. Has to be called after the <form> and the jqueryvalidation validate()
-		// getPagerender() doesn't work in 4.7.x....
-		// see: http://forge.typo3.org/issues/22273
-		$GLOBALS['TSFE']->additionalFooterData['tx_slub_forms'] .= $javascriptFooter;
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('tx_slub_forms', $javascriptFooter);
 
 	}
 

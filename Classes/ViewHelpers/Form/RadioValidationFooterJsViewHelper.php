@@ -54,20 +54,14 @@
 				if (!empty($config['radioOption'])) {
 
 					if ($field->getRequired()) {
-						$javascriptFooter = '<script type="text/javascript">';
-						$javascriptFooter .= '
-							$(".requiregroup-'.$form->getUid().'-'.$fieldset->getUid().'").rules("add", {
+						$javascriptFooter = '$(".requiregroup-'.$form->getUid().'-'.$fieldset->getUid().'").rules("add", {
 								required: '.($field->getRequired() ? 'true' : 'false').'
 							 });';
-						$javascriptFooter .= '</script>';
 					}
 				}
 			}
 
-			// dirty but working. Has to be called after the <form> and the jqueryvalidation validate()
-			// getPagerender() doesn't work in 4.7.x....
-			// see: http://forge.typo3.org/issues/22273
-			$GLOBALS['TSFE']->additionalFooterData['tx_slub_forms'] .= $javascriptFooter;
+			$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('tx_slub_forms', $javascriptFooter);
 
 		}
 

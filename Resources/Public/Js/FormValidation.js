@@ -31,13 +31,13 @@ jQuery(document).ready(function() {
 
             $(this).parents('.slub-forms-fieldset').find('input[type=text].sender-name')
                 .val('anonym')
-                .attr('disabled','disabled');
+                .prop('disabled', true);
             $(this).parents('.slub-forms-fieldset').find('input[type=email].sender-email')
                 .val('anonym@slub-dresden.de')
-                .attr('disabled','disabled');
+                .prop('disabled', true);
             $(this).parents('.slub-forms-fieldset').find('input[type=number].userid')
                 .val('0')
-                .attr('disabled','disabled');
+                .prop('disabled', true);
 
 			var editcode =  $('input[name="tx_slubforms_sf[newEmail][editcode]"]');
 			var hiddenInput = $('<input/>',{type:'hidden',id:'anonymous',name:'tx_slubforms_sf[anonymous]',value:editcode.val()});
@@ -47,7 +47,7 @@ jQuery(document).ready(function() {
 
             $(this).parents('.slub-forms-fieldset').find('input').each(function () {
 
-                $(this).removeAttr('disabled');
+                $(this).prop('disabled', false);
 
 				if (this.id == 'anonymous') {
 
@@ -75,8 +75,8 @@ jQuery(document).ready(function() {
  */
 function hideAllForms() {
 	$('.slub-forms-form').addClass('hide'); // show all fields and fieldsets
-	$('.slub-forms-fieldset').find('input').attr('disabled','disabled');
-	$('.slub-forms-fieldset').find('textarea').attr('disabled','disabled');
+	$('.slub-forms-fieldset').find('input').prop('disabled', true);
+	$('.slub-forms-fieldset').find('textarea').prop('disabled', true);
 }
 
 /**
@@ -86,8 +86,8 @@ function hideAllForms() {
  */
 function disableAllHiddenForms() {
 
-	$('.slub-forms-form.hide .slub-forms-fieldset').find('input').attr('disabled','disabled');
-	$('.slub-forms-form.hide .slub-forms-fieldset').find('textarea').attr('disabled','disabled');
+	$('.slub-forms-form.hide .slub-forms-fieldset').find('input').prop('disabled', true);
+	$('.slub-forms-form.hide .slub-forms-fieldset').find('textarea').prop('disabled', true);
 
 }
 
@@ -101,16 +101,16 @@ function showForm(uid) {
 	hideAllForms();
 
 	$('#slub-forms-form-' + uid).removeClass('hide'); // hide current field
-	$('#slub-forms-form-' + uid).find('input').removeAttr('disabled');
-	$('#slub-forms-form-' + uid).find('textarea').removeAttr('disabled');
+	$('#slub-forms-form-' + uid).find('input').prop('disabled', false);
+	$('#slub-forms-form-' + uid).find('textarea').prop('disabled', false);
 
 	setCookie('sf_form', uid);
 
 	$('.slub-form-tree input:radio').each(function() {
-		$(this).removeAttr('checked');
+		$(this).prop('checked', false);
 	});
 
-	$('#slub-form-select-' + uid).attr('checked', 'checked');
+	$('#slub-form-select-' + uid).prop('checked', true);
 
 	$('.slub-form-tree').css({'margin-bottom':'-400px'}).fadeOut(700,function() {
 		$('.slub-form-tree').css({'margin-bottom':'20px'});
@@ -127,8 +127,8 @@ function showForm(uid) {
  */
 function hideForm(uid) {
 	$('#slub-forms-form-' + uid).addClass('hide'); // hide current field
-	$('#slub-forms-form-' + uid).find('input').attr('disabled','disabled');
-	$('#slub-forms-form-' + uid).find('textarea').attr('disabled','disabled');
+	$('#slub-forms-form-' + uid).find('input').prop('disabled', true);
+	$('#slub-forms-form-' + uid).find('textarea').prop('disabled', true);
 	setCookie('sf_form', '');
 }
 
@@ -223,7 +223,7 @@ $( "#slubForm" ).validate({
 
 		setInterval(updateTime, 1000); // 5 * 1000 miliseconds
 
-		$('[type="submit"]').attr("disabled", true);
+		$('[type="submit"]').prop("disabled", true);
 
 		form.submit();
 	}

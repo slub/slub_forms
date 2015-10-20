@@ -106,6 +106,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 		$this->view->assign('newEmail', $newEmail);
 		$this->view->assign('forms', $forms);
+
 	}
 
 	/**
@@ -352,7 +353,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		// reset session data
 		$this->setSessionData('editcode', '');
 
-		if (!empty($this->settings['pageShowForm'])) {
+		if (! empty($this->settings['pageShowForm'])) {
 
 			$this->uriBuilder->setTargetPageUid($this->settings['pageShowForm']);
 	//		$this->uriBuilder->setNoCache(TRUE);

@@ -11,12 +11,15 @@
 		class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')} {f:if(condition: field.isSenderName, then: 'sender-name')} {f:if(condition: field.isSenderEmail, then: 'sender-email')} {field.shortname}"
 		name="field[{fieldset.uid}][{field.uid}]"
 		type="{field.validation}"
+		readonly="<sf:form.fieldHasValue field='{field}' show='readonly' />"
 		title="<f:translate key='validationerror_val_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" required="required" />
 	</f:then>
 	<f:else>
 		<f:form.textfield id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
 		class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')} {f:if(condition: field.isSenderName, then: 'sender-name')} {f:if(condition: field.isSenderEmail, then: 'sender-email')} {field.shortname}"
-		name="field[{fieldset.uid}][{field.uid}]" type="{field.validation}"
+		name="field[{fieldset.uid}][{field.uid}]"
+	  	type="{field.validation}"
+		readonly="<sf:form.fieldIsReadonly field='{field}' />"
 		title="<f:translate key='validationerror_val_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" />
 	</f:else>
 </f:if>

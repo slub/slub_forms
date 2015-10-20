@@ -39,11 +39,11 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 	 * Check for Prefill/Post values and set it manually
 	 *
 	 * @param Tx_SlubForms_Domain_Model_Fields $field
+	 * @param string $show
 	 *
 	 * @return string Rendered string
-	 * @api
 	 */
-	public function render($field) {
+	public function render($field, $show = NULL) {
 
 		// return already posted values e.g. in case of validation errors
 		if ($this->controllerContext->getRequest()->getOriginalRequest()) {
@@ -78,7 +78,11 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 				switch (trim($settingPair[0])) {
 					case 'fe_users':
 						if (!empty($GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ])) {
-							$returnValue[] = $GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ];
+							if ($show == 'readonly') {
+								$returnValue[] = 'readonly';
+							} else {
+								$returnValue[] = $GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ];
+							}
 						}
 						break;
 					case 'news':
@@ -92,6 +96,7 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 						break;
 				}
 			}
+
 			return implode(',', $returnValue);
 		}
 
