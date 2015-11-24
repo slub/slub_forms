@@ -43,6 +43,9 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 
 		$query = $this->createQuery();
 
+		// we ignore the sys language setting as we get formids of default language from flexform settings:
+		$query->getQuerySettings()->setRespectSysLanguage(false);
+
 		$constraints = array();
 		$constraints[] = $query->in('uid', $formIds);
 
@@ -54,7 +57,6 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 		$query->setOrderings(
 			array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING)
 		);
-
 
 		return $query->execute();
 	}
@@ -68,6 +70,9 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 	public function findAllById($formId) {
 
 		$query = $this->createQuery();
+
+		// we ignore the sys language setting as we get formids of default language from flexform settings:
+		$query->getQuerySettings()->setRespectSysLanguage(false);
 
 		$constraints = array();
 		$constraints[] = $query->equals('uid', $formId);
@@ -111,7 +116,7 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 				$flatCategories[$node['parent']]['children'][$id] = &$node;
 			}
 		}
-//~ t3lib_utility_Debug::debug($tree, 'findAllByUidsTree: ... ');
+
 		return $tree;
 	}
 

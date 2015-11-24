@@ -69,7 +69,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	public function newAction(Tx_SlubForms_Domain_Model_Email $newEmail = NULL) {
 
 		$singleFormShortname = $this->getParametersSafely('form');
-//		t3lib_utility_Debug::debug($singleFormShortname, 'newAction: $singleFormShortname... ');
 
 		if (!empty($singleFormShortname)) {
 
