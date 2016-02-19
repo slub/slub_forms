@@ -98,6 +98,13 @@ function disableAllHiddenForms() {
  * @return	void
  */
 function showForm(uid) {
+
+	// make sure the given uid exists
+	if ($('#slub-form-select-' + uid).size() != 1) {
+		setCookie('sf_form', '');
+		return;
+	}
+
 	hideAllForms();
 
 	$('#slub-forms-form-' + uid).removeClass('hide'); // hide current field
