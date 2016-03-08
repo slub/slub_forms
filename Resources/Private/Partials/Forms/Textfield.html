@@ -1,4 +1,5 @@
 {namespace sf=Tx_SlubForms_ViewHelpers}
+
 <label for="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}">{field.title}
 	<f:if condition="{field.required}">
 		<f:then><span class="required">*</span></f:then>
@@ -11,7 +12,7 @@
 		class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')} {f:if(condition: field.isSenderName, then: 'sender-name')} {f:if(condition: field.isSenderEmail, then: 'sender-email')} {field.shortname}"
 		name="field[{fieldset.uid}][{field.uid}]"
 		type="{field.validation}"
-		readonly="<sf:form.fieldHasValue field='{field}' show='readonly' />"
+		readonly="{sf:condition.isReadonlyField(field: '{field}', then: 'readonly')}"
 		title="<f:translate key='validationerror_val_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" required="required" />
 	</f:then>
 	<f:else>
@@ -19,7 +20,7 @@
 		class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')} {f:if(condition: field.isSenderName, then: 'sender-name')} {f:if(condition: field.isSenderEmail, then: 'sender-email')} {field.shortname}"
 		name="field[{fieldset.uid}][{field.uid}]"
 	  	type="{field.validation}"
-		readonly="<sf:form.fieldHasValue field='{field}' show='readonly' />"
+		readonly="{sf:condition.isReadonlyField(field: '{field}', then: 'readonly')}"
 		title="<f:translate key='validationerror_val_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" />
 	</f:else>
 </f:if>

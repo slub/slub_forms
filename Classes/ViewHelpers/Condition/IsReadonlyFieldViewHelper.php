@@ -1,8 +1,9 @@
 <?php
+
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
+ *  (c) 2016 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
  *
  *  All rights reserved
  *
@@ -24,51 +25,42 @@
  ***************************************************************/
 
 /**
- * Validation results view helper
+ * Check if given link is local or not
  *
  * = Examples =
  *
-
+ * <code title="Defaults">
+ * <f:if condition="<sf:condition.IsSenderEmail field='{field}' />">
+ * </code>
+ * <output>
+ * 1
+ * </output>
  *
+ *
+ * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @api
- * @scope prototype
  */
-class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+
+class Tx_SlubForms_ViewHelpers_Condition_IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
+
 
 	/**
-	 * Check for Prefill/Post values and set it manually
+	 * renders <f:then> child if $condition is true, otherwise renders <f:else> child.
 	 *
 	 * @param Tx_SlubForms_Domain_Model_Fields $field
-	 * @param string $show
-	 *
-	 * @return string Rendered string
+	 * @return string the rendered string
+	 * @api
 	 */
-	public function render($field, $show = NULL) {
-
-		// return already posted values e.g. in case of validation errors
-		if ($this->controllerContext->getRequest()->getOriginalRequest()) {
-
-			$postedArguments = $this->controllerContext->getRequest()->getOriginalRequest()->getArguments();
-
-			// should be usually only one fieldset
-			foreach($postedArguments['field'] as $fieldsetid => $postedFields) {
-
-				if (isset($postedFields[$field->getUid()])) {
-
-					return $postedFields[$field->getUid()];
-
-				}
-			}
-
-		}
+	public function render($field) {
 
 		// get field configuration
 		$config = $this->configToArray($field->getConfiguration());
+
 		if (!empty($config['prefill'])) {
 			// values may be comma separated:
 			// e.g. prefill = fe_users:username, fe_users:email, news:news
 			$serialArguments = explode(",", $config['prefill']);
-			$returnValue = array();
+			$condition = FALSE;
 
 			foreach($serialArguments as $id => $singleArgument) {
 				// e.g. fe_users:username
@@ -76,38 +68,28 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 				// first value is database "value" or "fe_users"
 				$settingPair = explode(":", $singleArgument);
 				switch (trim($settingPair[0])) {
+
 					case 'fe_users':
 						if (!empty($GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ])) {
-							$returnValue[] = $GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ];
+							$condition = TRUE;
 						}
 						break;
-					case 'news':
-						// e.g. news:news
-						$newsArgs = t3lib_div::_GET('tx_news_pi1');
-						$returnValue[] = $newsArgs[$settingPair[1]];
-						break;
-					case 'value':
-						if (!empty($settingPair[1]))
-							$returnValue[] = trim($settingPair[1]);
-						break;
+
 				}
+
 			}
 
-			return implode(',', $returnValue);
 		}
 
-		// check for prefill by GET parameter
-		if ($this->controllerContext->getRequest()->hasArgument('prefill')) {
-			$prefilljson = $this->controllerContext->getRequest()->getArgument('prefill');
-			$prefill = json_decode($prefilljson);
-			if (strlen($field->getShortname()) > 0) {
-				//~ $shortname =  trim($config['shortname']);
-				if (!empty($prefill->{$field->getShortname()}))
-					return $prefill->{$field->getShortname()};
-			}
-		}
+		if ($condition) {
 
-		return;
+			return $this->renderThenChild();
+
+		} else {
+
+			return $this->renderElseChild();
+
+		}
 	}
 
 	/**
@@ -126,6 +108,7 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 		}
 		return $configArray;
 	}
-}
 
+}
 ?>
+

@@ -56,9 +56,7 @@ class Tx_SlubForms_ViewHelpers_Condition_IsSenderEmailViewHelper extends Tx_Flui
 
 		$isSenderEmail = TRUE;
 
-
-	return $isSenderEmail;
-
+		return $isSenderEmail;
 
 	}
 }
