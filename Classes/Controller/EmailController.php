@@ -347,6 +347,11 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 			$this->emailRepository->add($newEmail);
 
+			// remove $filename from uploads-directory
+			if (!empty($fileName)) {
+				unlink($fileName);
+			}
+
 		}
 
 		// reset session data
@@ -445,15 +450,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$emailViewHTML->setTemplatePathAndFilename($templateRootPath . 'Email/' . $templateName . '.html');
 		$emailViewHTML->setPartialRootPath($partialRootPath);
 
-
-		if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) <  '6000000') {
-			// TYPO3 4.7
-			$message = t3lib_div::makeInstance('t3lib_mail_Message');
-		} else {
-			// TYPO3 6.x
-			/** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
-			$message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
-		}
+		/** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
+		$message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
 
 		$message->setTo($recipient)
 				->setFrom($sender)
@@ -468,7 +466,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$message->addPart($emailTextHTML, 'text/html');
 
 		if (!empty($variables['filename']))
-		$message->attach(Swift_Attachment::fromPath($variables['filename']));
+			$message->attach(Swift_Attachment::fromPath($variables['filename']));
 
 		$message->send();
 
