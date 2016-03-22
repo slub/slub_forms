@@ -361,7 +361,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 			$this->uriBuilder->setTargetPageUid($this->settings['pageShowForm']);
 	//		$this->uriBuilder->setNoCache(TRUE);
-			$this->uriBuilder->setUseCacheHash(FALSE);
+//			$this->uriBuilder->setUseCacheHash(FALSE);
 
 			$newsUri = $this->uriBuilder->uriFor(
 				'detail',
@@ -374,7 +374,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 				'news',
 				'pi1');
 
-			$this->redirectToURI($newsUri, 3, 303);
+			$this->redirectToURI($newsUri);
 		}
 
 		$this->view->assign('content', $content);
