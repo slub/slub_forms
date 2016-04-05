@@ -504,6 +504,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		// remove more than one empty line
 		$text = preg_replace('/[\n]{3,}/', "\n\n", $text);
 		// remove all remaining html tags
+		$text = preg_replace('/[\n]/', "\r\n", $text);
+		// yes, really do CRLF to let quoted printable work as expected!
 		$text = strip_tags($text);
 
 		return $text;
