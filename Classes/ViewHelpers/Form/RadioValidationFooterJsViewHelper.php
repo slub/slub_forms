@@ -48,7 +48,7 @@
 
 			if ($field !== NULL) {
 
-				$config = $this->configToArray($field->getConfiguration());
+				$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
 
 				// set all radio input fields to required
 				if (!empty($config['radioOption'])) {
@@ -61,26 +61,8 @@
 				}
 			}
 
-			$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('tx_slub_forms', $javascriptFooter);
+			$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('tx_slub_forms_radio', $javascriptFooter);
 
-		}
-
-		/**
-		 *
-		 * @param string $config
-		 *
-		 * @return array configuration
-		 *
-		 */
-		private function configToArray($config) {
-
-			$configSplit = explode("\n", $config);
-			foreach ($configSplit as $id => $configLine) {
-				$settingPair = explode("=", $configLine);
-				$optionPair = explode(":", trim($settingPair[1]));
-				$configArray[trim($settingPair[0])][] = array(0 => trim($optionPair[0]), 1 => trim($optionPair[1]));
-			}
-			return $configArray;
 		}
 
 	}

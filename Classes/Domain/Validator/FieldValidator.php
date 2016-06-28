@@ -118,7 +118,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 					if (isset($_FILES['tx_slubforms_sf']) && $_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()] > 0) {
 
 						// get field configuration
-						$config = $this->configToArray($singleField->getConfiguration());
+						$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($singleField->getConfiguration());
 						//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf']['size'], 'isValid: size... ');
 						//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()], 'isValid: ... ');
 						if ($config['file-accept-size'] < $_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()]) {
@@ -280,21 +280,5 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 		return $this->isValid;
   	}
 
-	/**
-	 *
-	 * @param string $config
-	 *
-	 * @return array configuration
-	 *
-	 */
-	private function configToArray($config) {
-
-		$configSplit = explode("\n", $config);
-		foreach ($configSplit as $id => $configLine) {
-			$settingPair = explode("=", $configLine);
-			$configArray[trim($settingPair[0])] = trim($settingPair[1]);
-		}
-		return $configArray;
-	}
 }
 ?>

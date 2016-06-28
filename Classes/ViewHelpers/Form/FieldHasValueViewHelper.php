@@ -63,7 +63,7 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 		}
 
 		// get field configuration
-		$config = $this->configToArray($field->getConfiguration());
+		$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
 		if (!empty($config['prefill'])) {
 			// values may be comma separated:
 			// e.g. prefill = fe_users:username, fe_users:email, news:news
@@ -110,22 +110,6 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 		return;
 	}
 
-	/**
-	 *
-	 * @param string $config
-	 *
-	 * @return array configuration
-	 *
-	 */
-	private function configToArray($config) {
-
-		$configSplit = explode("\n", $config);
-		foreach ($configSplit as $id => $configLine) {
-			$settingPair = explode("=", $configLine);
-			$configArray[trim($settingPair[0])] = trim($settingPair[1]);
-		}
-		return $configArray;
-	}
 }
 
 ?>

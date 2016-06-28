@@ -69,7 +69,7 @@ class Tx_SlubForms_ViewHelpers_Form_TextareaViewHelper extends Tx_Fluid_ViewHelp
 		// maxlength = 30000
 		// rows = 5
 		// cols = 60
-		$config = $this->configToArray($field->getConfiguration());
+		$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
 		if (!empty($config)) {
 
 			foreach($config as $key => $value) {
@@ -96,23 +96,6 @@ class Tx_SlubForms_ViewHelpers_Form_TextareaViewHelper extends Tx_Fluid_ViewHelp
 		$this->setErrorClassAttribute();
 
 		return $this->tag->render();
-	}
-
-	/**
-	 *
-	 * @param string $config
-	 *
-	 * @return array configuration
-	 *
-	 */
-	private function configToArray($config) {
-
-		$configSplit = explode("\n", $config);
-		foreach ($configSplit as $id => $configLine) {
-			$settingPair = explode("=", $configLine);
-			$configArray[strtolower(trim($settingPair[0]))] = trim($settingPair[1]);
-		}
-		return $configArray;
 	}
 
 }

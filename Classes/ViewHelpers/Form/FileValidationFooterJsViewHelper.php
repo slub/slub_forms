@@ -50,7 +50,7 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 			// used in File.html template
 
 			// get field configuration
-			$config = $this->configToArray($field->getConfiguration());
+			$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
 			if (!empty($config['file-accept-mimetypes'])) {
 				// e.g. file-mimetypes = audio/*, image/*, application/
 				$javascriptFooter = '$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
@@ -87,23 +87,6 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 
 		$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('tx_slub_forms', $javascriptFooter);
 
-	}
-
-	/**
-	 *
-	 * @param string $config
-	 *
-	 * @return array configuration
-	 *
-	 */
-	private function configToArray($config) {
-
-		$configSplit = explode("\n", $config);
-		foreach ($configSplit as $id => $configLine) {
-			$settingPair = explode("=", $configLine);
-			$configArray[trim($settingPair[0])] = trim($settingPair[1]);
-		}
-		return $configArray;
 	}
 
 }

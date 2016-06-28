@@ -13,7 +13,9 @@
 		name="field[{fieldset.uid}][{field.uid}]"
 		type="{field.validation}"
 		readonly="{sf:condition.isReadonlyField(field: '{field}', then: 'readonly')}"
-		title="<f:translate key='validationerror_val_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" required="required" />
+		title="<f:translate key='validationerror_val_{field.validation}' />"
+		value="<sf:form.fieldHasValue field='{field}' />"
+		required="required" />
 	</f:then>
 	<f:else>
 		<f:form.textfield id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
@@ -21,7 +23,8 @@
 		name="field[{fieldset.uid}][{field.uid}]"
 	  	type="{field.validation}"
 		readonly="{sf:condition.isReadonlyField(field: '{field}', then: 'readonly')}"
-		title="<f:translate key='validationerror_val_{field.validation}' />" value="<sf:form.fieldHasValue field='{field}' />" />
+		title="<f:translate key='validationerror_val_{field.validation}' />"
+		value="<sf:form.fieldHasValue field='{field}' />" />
 	</f:else>
 </f:if>
 

@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
+ *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
  *
  *  All rights reserved
  *
@@ -23,40 +23,47 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-/**
- * Validation results view helper
- *
- * = Examples =
- *
-
- *
- * @api
- * @scope prototype
- */
-class Tx_SlubForms_ViewHelpers_Form_FieldRadioValueViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SlubForms_Helper_ArrayHelper {
 
 	/**
-	 * Check for Prefill/Post values and set it manually
+	 * Configformat to Array conversion
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fields $field
+	 * e.g.
 	 *
-	 * @return string Rendered string
-	 * @api
+	 * prefill = value :
+	 *
+	 *
+	 *
+	 * @param string $config
+	 *
+	 * @return array configuration
+	 *
 	 */
-	public function render($field) {
+	public static function configToArray($config) {
 
-		// get field configuration
-		$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
-		if (!empty($config['radioOption'])) {
-			// e.g. fe_users:username
-			//  or  valueString:1
-			// first value is database "value" or "fe_users"
-			return $config['radioOption'];
+		$configSplit = explode("\n", $config);
+
+		foreach ($configSplit as $id => $configLine) {
+
+			$settingPair = explode("=", $configLine);
+
+			switch (trim($settingPair[0])) {
+				case 'radioOption':
+
+					$optionPair = explode(":", trim($settingPair[1]));
+
+					$configArray[trim($settingPair[0])][] = array(0 => trim($optionPair[0]), 1 => trim($optionPair[1]));
+
+					break;
+				case 'value':
+				default: $configArray[trim($settingPair[0])] = trim($settingPair[1]);
+					break;
+			}
+
+
 		}
 
-		return;
+		return $configArray;
 	}
 
 }
-
-?>

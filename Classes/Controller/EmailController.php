@@ -150,7 +150,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail, array $field = array()) {
 
 		$fieldParameter = $this->getParametersSafely('field');
-		//~ t3lib_utility_Debug::debug($field, 'createAction: field... ');
 
 		$form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
 
@@ -167,7 +166,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 					// the value (1/0) may be converted in a configured string (value = TRUE : FALSE)
 					if ($field->getType() == 'Checkbox') {
 
-						$config = $this->configToArray($field->getConfiguration());
+						$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
 							// take true value
@@ -179,15 +178,14 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 						}
 					} else if ($field->getType() == 'Radio') {
 
-						$config = $this->configToArray($field->getConfiguration());
+						$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
 						// radioOption = text of the value to choose : integer value
 						if (!empty($config['radioOption'])) {
 
 							foreach ($config['radioOption'] as $radioOption) {
-								$settingPair = explode(":", $radioOption);
 								// take true value
-								if ((int)$settingPair[1] == (int)$getfields[$field->getUid()]) {
-									$content[$field->getTitle()] = $settingPair[0];
+								if ((int)$radioOption[1] == (int)$getfields[$field->getUid()]) {
+									$content[$field->getTitle()] = $radioOption[0];
 								}
 							}
 
@@ -240,7 +238,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 				} else if ($field->getType() == 'Checkbox') {
 
-						$config = $this->configToArray($field->getConfiguration());
+						$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
 
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
@@ -503,35 +501,12 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$text = preg_replace('/[\t]{1,}/', '', $text);
 		// remove more than one empty line
 		$text = preg_replace('/[\n]{3,}/', "\n\n", $text);
-		// remove all remaining html tags
-		$text = preg_replace('/[\n]/', "\r\n", $text);
 		// yes, really do CRLF to let quoted printable work as expected!
+		$text = preg_replace('/[\n]/', "\r\n", $text);
+		// remove all remaining html tags
 		$text = strip_tags($text);
 
 		return $text;
-	}
-
-	/**
-	 *
-	 * @param string $config
-	 *
-	 * @return array configuration
-	 *
-	 */
-	private function configToArray($config) {
-
-		$configSplit = explode("\n", $config);
-		foreach ($configSplit as $id => $configLine) {
-			$settingPair = explode("=", $configLine);
-			switch (trim($settingPair[0])) {
-				case 'radioOption': $configArray[trim($settingPair[0])][] = trim($settingPair[1]);
-					break;
-				case 'value':
-				default: 		$configArray[trim($settingPair[0])] = trim($settingPair[1]);
-					break;
-			}
-		}
-		return $configArray;
 	}
 
 }

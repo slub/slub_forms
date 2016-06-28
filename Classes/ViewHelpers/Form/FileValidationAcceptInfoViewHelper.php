@@ -45,30 +45,13 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationAcceptInfoViewHelper extends T
 	public function render($field) {
 
 		// get field configuration
-		$config = $this->configToArray($field->getConfiguration());
+		$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
 		if (!empty($config['file-accept-info'])) {
 			$info = $config['file-accept-info'];
 			if (!empty($config['file-accept-size']))
 				$info .= ' (max. ' . round(($config['file-accept-size'] / (1024*1024)), 1) . ' MB)';
 		}
 		return $info;
-	}
-
-	/**
-	 *
-	 * @param string $config
-	 *
-	 * @return array configuration
-	 *
-	 */
-	private function configToArray($config) {
-
-		$configSplit = explode("\n", $config);
-		foreach ($configSplit as $id => $configLine) {
-			$settingPair = explode("=", $configLine);
-			$configArray[trim($settingPair[0])] = trim($settingPair[1]);
-		}
-		return $configArray;
 	}
 
 }
