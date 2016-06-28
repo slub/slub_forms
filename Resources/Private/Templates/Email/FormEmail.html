@@ -1,6 +1,6 @@
 {namespace se=Tx_SlubEvents_ViewHelpers}
 <ul>
 <f:for each="{content}" key="fieldname" as="line">
-	<li><b>{fieldname}</b>: {line}</li>
+	<li><b>{fieldname}</b>: <f:format.raw>{line}</f:format.raw></li>
 </f:for>
 </ul>
