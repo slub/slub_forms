@@ -61,10 +61,8 @@
 				}
 			}
 
-			$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('tx_slub_forms_radio', $javascriptFooter);
+			$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid(), $javascriptFooter);
 
 		}
 
 	}
-
-?>

@@ -55,10 +55,8 @@ class Tx_SlubForms_ViewHelpers_Form_CheckboxValidationFooterJsViewHelper extends
 			}
 		}
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('tx_slub_forms_checkbox', $javascriptFooter);
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid(), $javascriptFooter);
 
 	}
 
 }
-
-?>

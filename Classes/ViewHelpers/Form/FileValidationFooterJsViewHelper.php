@@ -68,8 +68,6 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 			// used in New.html Template for fieldset required
 			if ($fieldset->getRequired()) {
 
-				$javascriptFooter .= '<script type="text/javascript">';
-
 				foreach($fieldset->getFields() as $field) {
 
 					if (in_array($field->getType(), array('Textfield', 'Radio', 'Checkbox', 'File', 'Textarea') )) {
@@ -80,12 +78,11 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 					}
 				}
 
-				$javascriptFooter .= "\n</script>\n";
 			}
 
 		}
 
-		$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('tx_slub_forms', $javascriptFooter);
+		$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid(), $javascriptFooter);
 
 	}
 

@@ -58,5 +58,3 @@ class Tx_SlubForms_ViewHelpers_Form_FieldRadioValueViewHelper extends Tx_Fluid_C
 	}
 
 }
-
-?>

@@ -111,5 +111,3 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 	}
 
 }
-
-?>

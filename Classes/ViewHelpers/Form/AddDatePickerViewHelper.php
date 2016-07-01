@@ -2,7 +2,7 @@
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
+ *  (c) 2014 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
  *
  *  All rights reserved
  *
@@ -24,7 +24,7 @@
  ***************************************************************/
 
 /**
- * Give Placeholder Value of Field if set
+ * Add DatePicker in Footer Js
  *
  * = Examples =
  *
@@ -33,28 +33,34 @@
  * @api
  * @scope prototype
  */
-class Tx_SlubForms_ViewHelpers_Form_FieldHasPlaceholderViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SlubForms_ViewHelpers_Form_AddDatePickerViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 * Check for Prefill/Post values and set it manually
+	 * Adds Javascript for jquery-validation to the footer
 	 *
+	 * @param Tx_SlubForms_Domain_Model_Form $form
 	 * @param Tx_SlubForms_Domain_Model_Fields $field
-	 * @param string $show
-	 *
-	 * @return string Rendered string
+	 * @param Tx_SlubForms_Domain_Model_Fieldsets $fieldset
+	 * @return void
+	 * @api
 	 */
-	public function render($field) {
+	public function render($form = NULL, $field = NULL, $fieldset = NULL) {
 
-		// get field configuration
-		$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+		if ($field !== NULL) {
 
-		if (!empty($config['placeholder'])) {
+			$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
 
-			return $config['placeholder'];
+			if (!empty($config['calendar'])) {
 
-		} else {
+				$javascriptFooter = '
+					$("#slub-forms-field-' . $form->getUid() . '-' . $fieldset->getUid() . '-' . $field->getUid() . '").datepicker({
+					});
+					';
 
-			return '';
+				$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('slub-forms-field-' . $form->getUid() . '-' . $fieldset->getUid() . '-' . $field->getUid(), $javascriptFooter);
+
+			}
+
 		}
 
 	}

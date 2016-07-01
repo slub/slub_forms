@@ -80,5 +80,3 @@ class Tx_SlubForms_ViewHelpers_Form_FormIdViewHelper extends Tx_Fluid_Core_ViewH
 
 	}
 }
-
-?>

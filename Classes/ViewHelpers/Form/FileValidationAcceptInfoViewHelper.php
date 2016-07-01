@@ -55,5 +55,3 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationAcceptInfoViewHelper extends T
 	}
 
 }
-
-?>

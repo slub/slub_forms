@@ -99,5 +99,3 @@ class Tx_SlubForms_ViewHelpers_Form_TextareaViewHelper extends Tx_Fluid_ViewHelp
 	}
 
 }
-
-?>
