@@ -219,10 +219,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 							$content[$field->getTitle()] = '-';
 
 						}
-					} else if ($field->getType() == 'Textarea') {
-
-						// keep newline in Textarea
-						$content[$field->getTitle()] = empty($getfields[$field->getUid()]) ? '-' : nl2br($getfields[$field->getUid()]);
 
 					} else {
 
@@ -265,15 +261,14 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 				}
 			}
 
-			//~ t3lib_utility_Debug::debug($getfields, 'createAction: getfields ... ');
-			$contentText = '<ul>';
-			foreach ($content as $fieldName => $value)
-				$contentText .= '<li>'.$fieldName . ': <b>'. $value.'</b></li>';
-			$contentText .= '</ul>';
-
-			$newEmail->setContent(trim($contentText));
-
 		}
+
+		$contentText = '<ul>';
+		foreach ($content as $fieldName => $value)
+			$contentText .= '<li><b>'.$fieldName . '</b>: '. nl2br($value).'</li>';
+		$contentText .= '</ul>';
+
+		$newEmail->setContent(trim($contentText));
 
 		// check for senderEmail
 		// It may be empty if no senderEmail-Field has been sent. This happens in case of the anonymous function which
@@ -495,9 +490,9 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$text = str_replace('<li>', "- ", $text);
 		$text = str_replace('</li>', "\n", $text);
 		// remove multiple spaces
-		$text = preg_replace('/[\ ]{2,}/', '', $text);
+		$text = preg_replace('/[\ ]{2,}/', ' ', $text);
 		// remove multiple tabs
-		$text = preg_replace('/[\t]{1,}/', '', $text);
+		$text = preg_replace('/[\t]{1,}/', "\t", $text);
 		// remove more than one empty line
 		$text = preg_replace('/[\n]{3,}/', "\n\n", $text);
 		// yes, really do CRLF to let quoted printable work as expected!
