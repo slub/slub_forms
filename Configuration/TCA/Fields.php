@@ -1,5 +1,5 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
+if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
@@ -8,17 +8,17 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, type, is_sender_email, is_sender_name, description, configuration, required, validation',
 	),
-	'types' => array (
-				'1' => array('showitem' => 'sys_language_uid;;;;1-1-1,'.
-				'l10n_parent, l10n_diffsource, hidden;;1, '.
-				'title, shortname, type, description, '.
-				'--palette--;LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_field.configuration;configuration,'.
-				'required, validation,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+	'types' => array(
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1,' .
+			'l10n_parent, l10n_diffsource, hidden;;1, ' .
+			'title, shortname, type, description, ' .
+			'--palette--;LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_field.configuration;configuration,' .
+			'required, validation,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
-	'palettes' => array (
+	'palettes' => array(
 		'configuration' => array(
 			'showitem' => 'is_sender_email, is_sender_name, configuration',
-			'canNotCollapse' => TRUE
+			'canNotCollapse' => true
 		),
 	),
 	'columns' => array(
@@ -166,7 +166,7 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 				'wizards' => array(
 					'RTE' => array(
 						'icon' => 'wizard_rte2.gif',
-						'notNewRecords'=> 1,
+						'notNewRecords' => 1,
 						'RTEonly' => 1,
 						'script' => 'wizard_rte.php',
 						'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',

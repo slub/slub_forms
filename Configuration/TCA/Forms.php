@@ -157,6 +157,9 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 							),
 						'script' => 'wizard_add.php',
 					),
+					'suggest' => array(
+						'type' => 'suggest'
+					),
 				),
 			),
 		),
