@@ -40,6 +40,12 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	protected $signalSlotDispatcher;
 
 	/**
+	 * @var \TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface
+	 * @inject
+	 */
+	protected $persistenceManager;
+
+	/**
 	 * action list
 	 *
 	 * @return void
@@ -310,8 +316,12 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			array($newEmail, $fieldParameter, &$settings)
 		);
 
+		// if there is any error detected, we won't send and store this mail.
 		if (! isset($settings['error'])) {
-			// if there is any error detected, we won't send and store this mail.
+
+			// persist the email first, to access the uid later on in the email
+			$this->emailRepository->add($newEmail);
+			$this->persistenceManager->persistAll();
 
 			// email to customer
 			// send only if "sendConfirmationEmailToCustomer" TS setting is true
@@ -342,8 +352,6 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 					'settings' => $this->settings,
 				)
 			);
-
-			$this->emailRepository->add($newEmail);
 
 			// remove $filename from uploads-directory
 			if (!empty($fileName)) {
