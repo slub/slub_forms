@@ -68,17 +68,45 @@ class Tx_SlubForms_ViewHelpers_Condition_IsReadonlyFieldViewHelper extends \TYPO
 				// first value is database "value" or "fe_users"
 				$settingPair = explode(":", $singleArgument);
 				switch (trim($settingPair[0])) {
-
 					case 'fe_users':
 						if (!empty($GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ])) {
 							$condition = TRUE;
 						}
 						break;
-
+					case 'news':
+						// e.g. news:news
+						$newsArgs = t3lib_div::_GET('tx_news_pi1');
+						if ($newsArgs) {
+							$condition = true;
+						}
+						break;
+					case 'value':
+						if (!empty($settingPair[1]))
+							$condition = TRUE;
+						break;
 				}
 
 			}
 
+		}
+
+		// check for prefill by GET parameter
+		if ($this->controllerContext->getRequest()->hasArgument('prefill')) {
+
+			$prefilljson = $this->controllerContext->getRequest()->getArgument('prefill');
+
+			$prefilljson = stripslashes($prefilljson);
+
+			$prefill = json_decode($prefilljson, true);
+
+			if (strlen($field->getShortname()) > 0) {
+
+				if (!empty($prefill[$field->getShortname()])) {
+
+					return TRUE;
+
+				}
+			}
 		}
 
 		if ($condition) {

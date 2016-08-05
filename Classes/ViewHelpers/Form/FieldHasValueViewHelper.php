@@ -98,12 +98,20 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 
 		// check for prefill by GET parameter
 		if ($this->controllerContext->getRequest()->hasArgument('prefill')) {
+
 			$prefilljson = $this->controllerContext->getRequest()->getArgument('prefill');
-			$prefill = json_decode($prefilljson);
+
+			$prefilljson = stripslashes($prefilljson);
+
+			$prefill = json_decode($prefilljson, true);
+
 			if (strlen($field->getShortname()) > 0) {
-				//~ $shortname =  trim($config['shortname']);
-				if (!empty($prefill->{$field->getShortname()}))
-					return $prefill->{$field->getShortname()};
+
+				if (!empty($prefill[$field->getShortname()])) {
+
+					return $prefill[$field->getShortname()];
+
+				}
 			}
 		}
 
