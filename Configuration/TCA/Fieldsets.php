@@ -22,6 +22,7 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
@@ -36,6 +37,7 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('', 0),
 				),
@@ -129,6 +131,7 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fieldsets.fields',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectMultipleSideBySide',
 				'foreign_table' => 'tx_slubforms_domain_model_fields',
 				'foreign_table_where' => ' AND (tx_slubforms_domain_model_fields.sys_language_uid = 0 OR tx_slubforms_domain_model_fields.l10n_parent = 0) AND tx_slubforms_domain_model_fields.pid = ###CURRENT_PID### ORDER BY tx_slubforms_domain_model_fields.sorting',
 				'MM' => 'tx_slubforms_fieldsets_fields_mm',
@@ -142,7 +145,9 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 					'edit' => array(
 						'type' => 'popup',
 						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
+						'module' => array(
+							'name' => 'wizard_edit',
+						),
 						'icon' => 'edit2.gif',
 						'popup_onlyOpenIfSelected' => 1,
 						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
@@ -156,7 +161,9 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 							'pid' => '###CURRENT_PID###',
 							'setValue' => 'prepend'
 							),
-						'script' => 'wizard_add.php',
+							'module' => array(
+								'name' => 'wizard_add',
+							),
 					),
 					'suggest' => array(
 							'type' => 'suggest'
@@ -166,6 +173,3 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 		),
 	),
 );
-
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
-?>

@@ -20,6 +20,7 @@ $TCA['tx_slubforms_domain_model_email'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
@@ -34,6 +35,7 @@ $TCA['tx_slubforms_domain_model_email'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('', 0),
 				),
@@ -124,7 +126,9 @@ $TCA['tx_slubforms_domain_model_email'] = array(
 						'icon' => 'wizard_rte2.gif',
 						'notNewRecords'=> 1,
 						'RTEonly' => 1,
-						'script' => 'wizard_rte.php',
+						'module' => array(
+							'name' => 'wizard_rte',
+						),
 						'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
 						'type' => 'script'
 					)
@@ -144,6 +148,3 @@ $TCA['tx_slubforms_domain_model_email'] = array(
 		),
 	),
 );
-
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
-?>

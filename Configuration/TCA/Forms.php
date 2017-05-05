@@ -20,6 +20,7 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'foreign_table' => 'sys_language',
 				'foreign_table_where' => 'ORDER BY sys_language.title',
 				'items' => array(
@@ -34,6 +35,7 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectSingle',
 				'items' => array(
 					array('', 0),
 				),
@@ -128,6 +130,7 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 			'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_forms.fieldsets',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectMultipleSideBySide',
 				'foreign_table' => 'tx_slubforms_domain_model_fieldsets',
 				'foreign_table_where' => ' AND (tx_slubforms_domain_model_fieldsets.sys_language_uid = 0) AND tx_slubforms_domain_model_fieldsets.pid = ###CURRENT_PID### ORDER BY tx_slubforms_domain_model_fieldsets.sorting',
 				'MM' => 'tx_slubforms_forms_fieldsets_mm',
@@ -141,7 +144,9 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 					'edit' => array(
 						'type' => 'popup',
 						'title' => 'Edit',
-						'script' => 'wizard_edit.php',
+						'module' => array(
+							'name' => 'wizard_edit',
+						),
 						'icon' => 'edit2.gif',
 						'popup_onlyOpenIfSelected' => 1,
 						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
@@ -155,7 +160,9 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 							'pid' => '###CURRENT_PID###',
 							'setValue' => 'prepend'
 							),
-						'script' => 'wizard_add.php',
+							'module' => array(
+								'name' => 'wizard_add',
+							),
 					),
 					'suggest' => array(
 						'type' => 'suggest'
@@ -169,9 +176,9 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 			'label' => 'LLL:EXT:slub_events/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_forms.parent',
 			'config' => array(
 				'type' => 'select',
+				'renderType' => 'selectTree',
 				'foreign_table' => 'tx_slubforms_domain_model_forms',
 				'foreign_table_where' => ' AND (tx_slubforms_domain_model_forms.sys_language_uid = 0 OR tx_slubforms_domain_model_forms.l10n_parent = 0) AND tx_slubforms_domain_model_forms.pid = ###CURRENT_PID### ORDER BY tx_slubforms_domain_model_forms.sorting',
-
 				'renderMode' => 'tree',
 				'subType' => 'db',
 				'treeConfig' => array(
@@ -195,5 +202,3 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 		),
 	),
 );
-
-?>
