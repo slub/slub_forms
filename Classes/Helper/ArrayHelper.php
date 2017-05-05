@@ -1,4 +1,6 @@
 <?php
+namespace Slub\SlubForms\Helper;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -23,7 +25,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-class Tx_SlubForms_Helper_ArrayHelper {
+class ArrayHelper {
 
 	/**
 	 * Configformat to Array conversion
