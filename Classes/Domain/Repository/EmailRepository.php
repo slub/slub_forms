@@ -1,10 +1,11 @@
 <?php
+namespace Slub\SlubForms\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -31,7 +32,6 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Domain_Repository_EmailRepository extends Tx_Extbase_Persistence_Repository {
+class EmailRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 }
-?>

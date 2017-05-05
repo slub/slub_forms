@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -31,7 +32,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persistence_Repository {
+class FormsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
 	 * Finds all datasets by MM relation categories
@@ -55,7 +56,7 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 
 		// order by start_date -> start_time...
 		$query->setOrderings(
-			array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING)
+			array('sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING)
 		);
 
 		return $query->execute();
@@ -83,7 +84,7 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 
 		// order by start_date -> start_time...
 		$query->setOrderings(
-			array('sorting' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING)
+			array('sorting' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING)
 		);
 
 		return $query->execute();
@@ -143,5 +144,3 @@ class Tx_SlubForms_Domain_Repository_FormsRepository extends Tx_Extbase_Persiste
 	}
 
 }
-
-?>
