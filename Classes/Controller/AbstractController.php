@@ -39,7 +39,7 @@ class AbstractController extends ActionController {
 	/**
 	 * emailRepository
 	 *
-	 * @var Tx_SlubForms_Domain_Repository_EmailRepository
+	 * @var \Slub\SlubForms\Domain\Repository\EmailRepository
 	 * @inject
 	 */
 	protected $emailRepository;
@@ -47,7 +47,7 @@ class AbstractController extends ActionController {
 	/**
 	 * formsRepository
 	 *
-	 * @var Tx_SlubForms_Domain_Repository_FormsRepository
+	 * @var \Slub\SlubForms\Domain\Repository\FormsRepository
 	 * @inject
 	 */
 	protected $formsRepository;
@@ -55,7 +55,7 @@ class AbstractController extends ActionController {
 	/**
 	 * fieldsetsRepository
 	 *
-	 * @var Tx_SlubForms_Domain_Repository_FieldsetsRepository
+	 * @var \Slub\SlubForms\Domain\Repository\FieldsetsRepository
 	 * @inject
 	 */
 	protected $fieldsetsRepository;

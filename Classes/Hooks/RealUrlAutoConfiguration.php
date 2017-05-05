@@ -1,4 +1,6 @@
 <?php
+namespace Slub\SlubForms\Hooks;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -31,7 +33,7 @@
  *
  */
 
-class Tx_SlubForms_Hooks_RealUrlAutoConfiguration {
+class RealUrlAutoConfiguration {
 
 	/**
 	 * Generates additional RealURL configuration and merges it with provided configuration
@@ -65,8 +67,4 @@ class Tx_SlubForms_Hooks_RealUrlAutoConfiguration {
 			)
 		);
 	}
-}
-
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/slub_forms/Classes/Hooks/RealUrlAutoconf.php']) {
-	require_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/slub_forms/Classes/Hooks/RealUrlAutoconf.php']);
 }
