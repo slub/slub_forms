@@ -90,7 +90,7 @@ class EmailController extends AbstractController {
 			 * "tx_slubforms_sf[form]=userform" --> userform
 			 *
 			 */
-			if (TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($singleFormShortname)) {
+			if (\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($singleFormShortname)) {
 				$singleForm = $this->formsRepository->findAllById($singleFormShortname);
 			} else {
 				$singleForm = $this->formsRepository->findByShortname($singleFormShortname);

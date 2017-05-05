@@ -35,7 +35,7 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  * @api
  * @scope prototype
  */
-class AddDatePickerViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class AddDatePickerViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Adds Javascript for jquery-validation to the footer
@@ -50,7 +50,7 @@ class AddDatePickerViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelpe
 
 		if ($field !== NULL) {
 
-			$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+			$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 
 			if (!empty($config['calendar'])) {
 

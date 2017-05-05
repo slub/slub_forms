@@ -1,6 +1,7 @@
 <?php
 namespace Slub\SlubForms\Domain\Validator;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 /***************************************************************
  *  Copyright notice
  *
@@ -92,7 +93,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 			foreach($allfields as $id => $singleField) {
 				// check for senderEmail
 				if ($singleField->getIsSenderEmail()) {
-					if (!empty($getfields[$singleField->getUid()]) && !t3lib_div::validEmail($getfields[$singleField->getUid()])) {
+					if (!empty($getfields[$singleField->getUid()]) && !GeneralUtility::validEmail($getfields[$singleField->getUid()])) {
 						// seems to be no valid email address
 						$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1100);
 						$this->result->forProperty('senderEmail')->addError($error);
@@ -174,7 +175,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 						case 'email':
 								if ($singleField->getRequired()) {
 //								t3lib_utility_Debug::debug($singleField, '$singleField.. ');
-									if ( !t3lib_div::validEmail($getfields[$singleField->getUid()]) ) {
+									if ( !GeneralUtility::validEmail($getfields[$singleField->getUid()]) ) {
 										// seems to be no valid email address
 										$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1600);
 										$this->result->forProperty('senderEmail')->addError($error);

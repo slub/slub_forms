@@ -27,7 +27,7 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  *
  * @api
  */
-class TextareaViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class TextareaViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormFieldViewHelper {
 
 	/**
 	 * @var string

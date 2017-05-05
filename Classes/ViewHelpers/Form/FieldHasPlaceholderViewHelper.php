@@ -34,7 +34,7 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  * @api
  * @scope prototype
  */
-class Tx_SlubForms_ViewHelpers_Form_FieldHasPlaceholderViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FieldHasPlaceholderViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Check for Prefill/Post values and set it manually
