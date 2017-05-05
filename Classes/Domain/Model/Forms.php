@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -31,7 +32,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEntity {
+class Forms extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * title
@@ -59,14 +60,14 @@ class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * fieldsets
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SlubForms_Domain_Model_Fieldsets>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Fieldsets>
 	 */
 	protected $fieldsets;
 
 	/**
 	 * parent form
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SlubForms_Domain_Model_Forms>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Forms>
 	 * @lazy
 	 */
 	protected $parent;
@@ -82,7 +83,7 @@ class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage properties.
+	 * Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage properties.
 	 *
 	 * @return void
 	 */
@@ -92,9 +93,9 @@ class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEn
 		 * It will be rewritten on each save in the extension builder
 		 * You may modify the constructor of this class instead
 		 */
-		$this->fieldsets = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->fieldsets = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 
-		$this->parent = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->parent = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
@@ -138,27 +139,27 @@ class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * Adds a Fieldsets
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fieldsets $fieldset
+	 * @param \Slub\SlubForms\Domain\Model\Fieldsets $fieldset
 	 * @return void
 	 */
-	public function addFieldset(Tx_SlubForms_Domain_Model_Fieldsets $fieldset) {
+	public function addFieldset(\Slub\SlubForms\Domain\Model\Fieldsets $fieldset) {
 		$this->fieldsets->attach($fieldset);
 	}
 
 	/**
 	 * Removes a Fieldsets
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fieldsets $fieldsetToRemove The Fieldsets to be removed
+	 * @param \Slub\SlubForms\Domain\Model\Fieldsets $fieldsetToRemove The Fieldsets to be removed
 	 * @return void
 	 */
-	public function removeFieldset(Tx_SlubForms_Domain_Model_Fieldsets $fieldsetToRemove) {
+	public function removeFieldset(\Slub\SlubForms\Domain\Model\Fieldsets $fieldsetToRemove) {
 		$this->fieldsets->detach($fieldsetToRemove);
 	}
 
 	/**
 	 * Returns the fieldsets
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_SlubForms_Domain_Model_Fieldsets> $fieldsets
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Fieldsets> $fieldsets
 	 */
 	public function getFieldsets() {
 		return $this->fieldsets;
@@ -167,10 +168,10 @@ class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * Sets the fieldsets
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_SlubForms_Domain_Model_Fieldsets> $fieldsets
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Fieldsets> $fieldsets
 	 * @return void
 	 */
-	public function setFieldsets(Tx_Extbase_Persistence_ObjectStorage $fieldsets) {
+	public function setFieldsets(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $fieldsets) {
 		$this->fieldsets = $fieldsets;
 	}
 
@@ -196,27 +197,27 @@ class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * Adds a Forms
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Forms $parent
+	 * @param \Slub\SlubForms\Domain\Model\Forms $parent
 	 * @return void
 	 */
-	public function addParent(Tx_SlubForms_Domain_Model_Forms $parent) {
+	public function addParent(\Slub\SlubForms\Domain\Model\Forms $parent) {
 		$this->parent->attach($parent);
 	}
 
 	/**
 	 * Removes a Forms
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Forms $parentToRemove The Forms to be removed
+	 * @param \Slub\SlubForms\Domain\Model\Forms $parentToRemove The Forms to be removed
 	 * @return void
 	 */
-	public function removeParent(Tx_SlubForms_Domain_Model_Forms $parentToRemove) {
+	public function removeParent(\Slub\SlubForms\Domain\Model\Forms $parentToRemove) {
 		$this->parent->detach($parentToRemove);
 	}
 
 	/**
 	 * Returns the parent
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_SlubForms_Domain_Model_Forms> $parent
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Forms> $parent
 	 */
 	public function getParent() {
 		return $this->parent;
@@ -225,12 +226,11 @@ class Tx_SlubForms_Domain_Model_Forms extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * Sets the parent
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_SlubForms_Domain_Model_Forms> $parent
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Forms> $parent
 	 * @return void
 	 */
-	public function setParent(Tx_Extbase_Persistence_ObjectStorage $parent) {
+	public function setParent(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $parent) {
 		$this->parent = $parent;
 	}
 
 }
-?>

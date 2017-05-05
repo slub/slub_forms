@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -31,7 +32,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Domain_Model_Email extends Tx_Extbase_DomainObject_AbstractEntity {
+class Email extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * senderName
@@ -57,7 +58,7 @@ class Tx_SlubForms_Domain_Model_Email extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * form
 	 *
-	 * @var Tx_SlubForms_Domain_Model_Forms
+	 * @var \Slub\SlubForms\Domain\Model\Forms
 	 */
 	protected $form;
 
@@ -71,7 +72,7 @@ class Tx_SlubForms_Domain_Model_Email extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * Returns the form
 	 *
-	 * @return Tx_SlubForms_Domain_Model_Forms $form
+	 * @return \Slub\SlubForms\Domain\Model\Forms $form
 	 */
 	public function getForm() {
 		return $this->form;
@@ -80,10 +81,10 @@ class Tx_SlubForms_Domain_Model_Email extends Tx_Extbase_DomainObject_AbstractEn
 	/**
 	 * Sets the form
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Forms $form
+	 * @param \Slub\SlubForms\Domain\Model\Forms $form
 	 * @return void
 	 */
-	public function setForm(Tx_SlubForms_Domain_Model_Forms $form) {
+	public function setForm(\Slub\SlubForms\Domain\Model\Forms $form) {
 		$this->form = $form;
 	}
 
@@ -164,4 +165,3 @@ class Tx_SlubForms_Domain_Model_Email extends Tx_Extbase_DomainObject_AbstractEn
 	}
 
 }
-?>

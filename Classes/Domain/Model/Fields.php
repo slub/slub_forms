@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -31,7 +32,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractValueObject {
+class Fields extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 
 	/**
 	 * title
@@ -271,5 +272,3 @@ class Tx_SlubForms_Domain_Model_Fields extends Tx_Extbase_DomainObject_AbstractV
 	}
 
 }
-
-?>

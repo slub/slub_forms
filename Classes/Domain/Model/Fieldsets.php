@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -31,7 +32,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Domain_Model_Fieldsets extends Tx_Extbase_DomainObject_AbstractEntity {
+class Fieldsets extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * title
@@ -58,7 +59,7 @@ class Tx_SlubForms_Domain_Model_Fieldsets extends Tx_Extbase_DomainObject_Abstra
 	/**
 	 * fields
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_SlubForms_Domain_Model_Fields>
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Fields>
 	 */
 	protected $fields;
 
@@ -73,7 +74,7 @@ class Tx_SlubForms_Domain_Model_Fieldsets extends Tx_Extbase_DomainObject_Abstra
 	}
 
 	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage properties.
+	 * Initializes all \TYPO3\CMS\Extbase\Persistence\ObjectStorage properties.
 	 *
 	 * @return void
 	 */
@@ -83,33 +84,33 @@ class Tx_SlubForms_Domain_Model_Fieldsets extends Tx_Extbase_DomainObject_Abstra
 		 * It will be rewritten on each save in the extension builder
 		 * You may modify the constructor of this class instead
 		 */
-		$this->fields = new Tx_Extbase_Persistence_ObjectStorage();
+		$this->fields = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 	}
 
 	/**
 	 * Adds a Fields
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fields $field
+	 * @param \Slub\SlubForms\Domain\Model\Fields $field
 	 * @return void
 	 */
-	public function addField(Tx_SlubForms_Domain_Model_Fields $field) {
+	public function addField(\Slub\SlubForms\Domain\Model\Fields $field) {
 		$this->fields->attach($field);
 	}
 
 	/**
 	 * Removes a Fields
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fields $fieldToRemove The Fields to be removed
+	 * @param \Slub\SlubForms\Domain\Model\Fields $fieldToRemove The Fields to be removed
 	 * @return void
 	 */
-	public function removeField(Tx_SlubForms_Domain_Model_Fields $fieldToRemove) {
+	public function removeField(\Slub\SlubForms\Domain\Model\Fields $fieldToRemove) {
 		$this->fields->detach($fieldToRemove);
 	}
 
 	/**
 	 * Returns the fields
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_SlubForms_Domain_Model_Fields> $fields
+	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Fields> $fields
 	 */
 	public function getFields() {
 		return $this->fields;
@@ -118,10 +119,10 @@ class Tx_SlubForms_Domain_Model_Fieldsets extends Tx_Extbase_DomainObject_Abstra
 	/**
 	 * Sets the fields
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_SlubForms_Domain_Model_Fields> $fields
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Fields> $fields
 	 * @return void
 	 */
-	public function setFields(Tx_Extbase_Persistence_ObjectStorage $fields) {
+	public function setFields(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $fields) {
 		$this->fields = $fields;
 	}
 
@@ -183,4 +184,3 @@ class Tx_SlubForms_Domain_Model_Fieldsets extends Tx_Extbase_DomainObject_Abstra
 	}
 
 }
-?>
