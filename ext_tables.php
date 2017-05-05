@@ -3,21 +3,21 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-Tx_Extbase_Utility_Extension::registerPlugin(
-	$_EXTKEY,
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+	'Slub.' . $_EXTKEY,
 	'Sf',
 	'SLUB: Forms'
 );
 
 $pluginSignature = str_replace('_','',$_EXTKEY) . '_sf';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-t3lib_extMgm::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_sf.xml');
-t3lib_extMgm::addLLrefForTCAdescr('tt_content.pi_flexform.'.$pluginSignature.'.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_be.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_sf.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tt_content.pi_flexform.'.$pluginSignature.'.list', 'EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_csh_be.xlf');
 
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'SLUB Forms');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'SLUB Forms');
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_slubforms_domain_model_fieldsets', 'EXT:slub_forms/Resources/Private/Language/locallang_csh_tx_slubforms_domain_model_fieldsets.xlf');
-t3lib_extMgm::allowTableOnStandardPages('tx_slubforms_domain_model_fieldsets');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_slubforms_domain_model_fieldsets', 'EXT:slub_forms/Resources/Private/Language/locallang_csh_tx_slubforms_domain_model_fieldsets.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_slubforms_domain_model_fieldsets');
 $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fieldsets',
@@ -43,13 +43,13 @@ $TCA['tx_slubforms_domain_model_fieldsets'] = array(
 		),
 		'requestUpdate' => 'sys_language_uid',
 		'searchFields' => 'title,fields,',
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Fieldsets.php',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_fieldsets.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Fieldsets.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_fieldsets.gif'
 	),
 );
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_slubforms_domain_model_forms', 'EXT:slub_forms/Resources/Private/Language/locallang_csh_tx_slubforms_domain_model_forms.xlf');
-t3lib_extMgm::allowTableOnStandardPages('tx_slubforms_domain_model_forms');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_slubforms_domain_model_forms', 'EXT:slub_forms/Resources/Private/Language/locallang_csh_tx_slubforms_domain_model_forms.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_slubforms_domain_model_forms');
 $TCA['tx_slubforms_domain_model_forms'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_forms',
@@ -73,13 +73,13 @@ $TCA['tx_slubforms_domain_model_forms'] = array(
 		),
 		'requestUpdate' => 'sys_language_uid',
 		'searchFields' => 'title,recipient,fieldsets,parent,',
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Forms.php',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_forms.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Forms.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_forms.gif'
 	),
 );
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_slubforms_domain_model_fields', 'EXT:slub_forms/Resources/Private/Language/locallang_csh_tx_slubforms_domain_model_fields.xlf');
-t3lib_extMgm::allowTableOnStandardPages('tx_slubforms_domain_model_fields');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_slubforms_domain_model_fields', 'EXT:slub_forms/Resources/Private/Language/locallang_csh_tx_slubforms_domain_model_fields.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_slubforms_domain_model_fields');
 $TCA['tx_slubforms_domain_model_fields'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields',
@@ -105,13 +105,13 @@ $TCA['tx_slubforms_domain_model_fields'] = array(
 		),
 		'requestUpdate' => 'sys_language_uid,type',
 		'searchFields' => 'title,type,configuration,required,validation,',
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Fields.php',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_fields.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Fields.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_fields.gif'
 	),
 );
 
-t3lib_extMgm::addLLrefForTCAdescr('tx_slubforms_domain_model_email', 'EXT:slub_forms/Resources/Private/Language/locallang_csh_tx_slubforms_domain_model_email.xlf');
-t3lib_extMgm::allowTableOnStandardPages('tx_slubforms_domain_model_email');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_slubforms_domain_model_email', 'EXT:slub_forms/Resources/Private/Language/locallang_csh_tx_slubforms_domain_model_email.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_slubforms_domain_model_email');
 $TCA['tx_slubforms_domain_model_email'] = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_email',
@@ -134,8 +134,8 @@ $TCA['tx_slubforms_domain_model_email'] = array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'sender_name,sender_email,content,form,',
-		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/Email.php',
-		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_email.gif'
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Email.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_slubforms_domain_model_email.gif'
 	),
 );
 

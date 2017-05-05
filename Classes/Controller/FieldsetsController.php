@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -31,7 +32,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Controller_FieldsetsController extends Tx_SlubForms_Controller_AbstractController {
+class FieldsetsController extends AbstractController {
 
 
 }

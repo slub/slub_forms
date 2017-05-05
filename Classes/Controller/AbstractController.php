@@ -1,4 +1,8 @@
 <?php
+namespace Slub\SlubForms\Controller;
+
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 /***************************************************************
  *  Copyright notice
  *
@@ -30,7 +34,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Controller_AbstractController extends Tx_Extbase_MVC_Controller_ActionController {
+class AbstractController extends ActionController {
 
 	/**
 	 * emailRepository
@@ -86,4 +90,3 @@ class Tx_SlubForms_Controller_AbstractController extends Tx_Extbase_MVC_Controll
 
 
 }
-?>

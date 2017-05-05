@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\Controller;
 
 /***************************************************************
  *  Copyright notice
@@ -31,7 +32,7 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Controller_FormsController extends Tx_SlubForms_Controller_AbstractController {
+class FormsController extends AbstractController {
 
 	/**
 	 * action list
@@ -46,13 +47,11 @@ class Tx_SlubForms_Controller_FormsController extends Tx_SlubForms_Controller_Ab
 	/**
 	 * action show
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Forms $forms
+	 * @param \Slub\SlubForms\Domain\Model\Forms $forms
 	 * @return void
 	 */
-	public function showAction(Tx_SlubForms_Domain_Model_Forms $forms) {
+	public function showAction(\Slub\SlubForms\Domain\Model\Forms $forms) {
 		$this->view->assign('forms', $forms);
 	}
 
 }
-
-?>

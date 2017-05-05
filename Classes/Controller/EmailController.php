@@ -1,4 +1,9 @@
 <?php
+namespace Slub\SlubForms\Controller;
+
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /***************************************************************
  *  Copyright notice
@@ -31,19 +36,18 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_AbstractController {
+class EmailController extends AbstractController {
 
 	/**
-	 * @var Tx_Extbase_SignalSlot_Dispatcher
-	 * @inject
-	 */
-	protected $signalSlotDispatcher;
-
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface
-	 * @inject
-	 */
-	protected $persistenceManager;
+		 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
+		 * @inject
+		 */
+		protected $signalSlotDispatcher;
+		/**
+		 * @var \TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface
+		 * @inject
+		 */
+		protected $persistenceManager;
 
 	/**
 	 * action list
@@ -58,21 +62,21 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	/**
 	 * action show
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Email $email
+	 * @param \Slub\SlubForms\Domain\Model\Email $email
 	 * @return void
 	 */
-	public function showAction(Tx_SlubForms_Domain_Model_Email $email) {
+	public function showAction(\Slub\SlubForms\Domain\Model\Email $email) {
 		$this->view->assign('email', $email);
 	}
 
 	/**
 	 * action new
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Email $newEmail
+	 * @param \Slub\SlubForms\Domain\Model\Email $newEmail
 	 * @ignorevalidation $newEmail
 	 * @return void
 	 */
-	public function newAction(Tx_SlubForms_Domain_Model_Email $newEmail = NULL) {
+	public function newAction(\Slub\SlubForms\Domain\Model\Email $newEmail = NULL) {
 
 		$singleFormShortname = $this->getParametersSafely('form');
 
@@ -86,7 +90,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			 * "tx_slubforms_sf[form]=userform" --> userform
 			 *
 			 */
-			if (t3lib_utility_Math::canBeInterpretedAsInteger($singleFormShortname)) {
+			if (TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($singleFormShortname)) {
 				$singleForm = $this->formsRepository->findAllById($singleFormShortname);
 			} else {
 				$singleForm = $this->formsRepository->findByShortname($singleFormShortname);
@@ -98,10 +102,10 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 		if (!empty($this->settings['formsSelection'])) {
 			// show only forms selected in flexform
-			$forms = $this->formsRepository->findAllByUidsTree(t3lib_div::intExplode(',', $this->settings['formsSelection'], TRUE));
+			$forms = $this->formsRepository->findAllByUidsTree(GeneralUtility::intExplode(',', $this->settings['formsSelection'], TRUE));
 
 			if (count($forms) == 1) {
-				$this->view->assign('singleForm', $this->formsRepository->findAllByUids(t3lib_div::intExplode(',', $this->settings['formsSelection'], TRUE))->getFirst());
+				$this->view->assign('singleForm', $this->formsRepository->findAllByUids(GeneralUtility::intExplode(',', $this->settings['formsSelection'], TRUE))->getFirst());
 			}
 
 		} else {
@@ -148,12 +152,12 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	/**
 	 * action create
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Email $newEmail
+	 * @param \Slub\SlubForms\Domain\Model\Email $newEmail
 	 * @param array $field Field Values
-	 * @validate $field Tx_SlubForms_Domain_Validator_FieldValidator
+	 * @validate $field \Slub\SlubForms\Domain\Validator\FieldValidator
 	 * @return void
 	 */
-	public function createAction(Tx_SlubForms_Domain_Model_Email $newEmail, array $field = array()) {
+	public function createAction(\Slub\SlubForms\Domain\Model\Email $newEmail, array $field = array()) {
 
 		$fieldParameter = $this->getParametersSafely('field');
 
@@ -172,7 +176,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 					// the value (1/0) may be converted in a configured string (value = TRUE : FALSE)
 					if ($field->getType() == 'Checkbox') {
 
-						$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+						$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
 							// take true value
@@ -184,7 +188,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 						}
 					} else if ($field->getType() == 'Radio') {
 
-						$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+						$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 						// radioOption = text of the value to choose : integer value
 						if (!empty($config['radioOption'])) {
 
@@ -208,15 +212,15 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 							$content[$field->getTitle()] = $_FILES['tx_slubforms_sf']['name']['field'][$getfieldset][$field->getUid()];
 
-							$basicFileFunctions = t3lib_div::makeInstance('t3lib_basicFileFunctions');
+							$basicFileFunctions = GeneralUtility::makeInstance('t3lib_basicFileFunctions');
 							// get filename
 							$fileName = $basicFileFunctions->getUniqueName(
 								$_FILES['tx_slubforms_sf']['name']['field'][$getfieldset][$field->getUid()],
-								t3lib_div::getFileAbsFileName('uploads/tx_slubforms/')
+								GeneralUtility::getFileAbsFileName('uploads/tx_slubforms/')
 							);
 
 							// copy temp file to uploads
-							t3lib_div::upload_copy_move (
+							GeneralUtility::upload_copy_move (
 								$_FILES['tx_slubforms_sf']['tmp_name']['field'][$getfieldset][$field->getUid()],
 								$fileName
 							);
@@ -245,7 +249,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 
 				} else if ($field->getType() == 'Checkbox') {
 
-						$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+						$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 
 						if (!empty($config['value'])) {
 							$settingPair = explode(":", $config['value']);
@@ -328,8 +332,8 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			if ($this->settings['sendConfirmationEmailToCustomer'] && $newEmail->getSenderEmail() != $this->settings['anonymEmails']['defaultEmailAddress']) {
 				$this->sendTemplateEmail(
 					array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
-					array($this->settings['senderEmailAddress'] => Tx_Extbase_Utility_Localization::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
-					Tx_Extbase_Utility_Localization::translate('slub-forms.senderSubject', 'slub_forms') . ' ' . $form->getTitle(),
+					array($this->settings['senderEmailAddress'] => LocalizationUtility::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
+					LocalizationUtility::translate('slub-forms.senderSubject', 'slub_forms') . ' ' . $form->getTitle(),
 					'ConfirmEmail',
 					array(	'email' => $newEmail,
 						'form' => $form,
@@ -343,7 +347,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 			$this->sendTemplateEmail(
 				array($form->getRecipient() => ''),
 				array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
-				Tx_Extbase_Utility_Localization::translate('tx_slubforms_domain_model_email.form', 'slub_forms') . ': ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
+				LocalizationUtility::translate('\Slub\SlubForms\Domain\Model\Email.form', 'slub_forms') . ': ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
 				'FormEmail',
 				array(	'email' => $newEmail,
 					'form' => $form,
@@ -391,10 +395,10 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	/**
 	 * action delete
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Email $email
+	 * @param \Slub\SlubForms\Domain\Model\Email $email
 	 * @return void
 	 */
-	public function deleteAction(Tx_SlubForms_Domain_Model_Email $email) {
+	public function deleteAction(\Slub\SlubForms\Domain\Model\Email $email) {
 		$this->emailRepository->remove($email);
 		$this->redirect('list');
 	}
@@ -443,9 +447,9 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$emailViewHTML->setFormat('html');
 		$emailViewHTML->assignMultiple($variables);
 
-		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-		$templateRootPath = t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
-		$partialRootPath = t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['partialRootPath']);
+		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+		$templateRootPath = GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
+		$partialRootPath = GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['partialRootPath']);
 
 		$emailViewHTML->setTemplatePathAndFilename($templateRootPath . 'Email/' . $templateName . '.html');
 		$emailViewHTML->setPartialRootPath($partialRootPath);
@@ -466,7 +470,7 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 		$message->addPart($emailTextHTML, 'text/html');
 
 		if (!empty($variables['filename']))
-			$message->attach(Swift_Attachment::fromPath($variables['filename']));
+			$message->attach(\Swift_Attachment::fromPath($variables['filename']));
 
 		$message->send();
 
@@ -512,5 +516,3 @@ class Tx_SlubForms_Controller_EmailController extends Tx_SlubForms_Controller_Ab
 	}
 
 }
-
-?>
