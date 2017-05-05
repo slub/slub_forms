@@ -1,4 +1,6 @@
 <?php
+namespace Slub\SlubForms\ViewHelpers\Format;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -31,7 +33,7 @@
  * @api
  */
 
-class EditCodeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class EditCodeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Set session data

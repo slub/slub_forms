@@ -1,3 +1,4 @@
+{namespace sf=Slub\SlubForms\ViewHelpers}
 <f:layout name="Default" />
 
 <f:section name="categoryTree">
@@ -99,7 +100,6 @@
 </f:section>
 
 <f:section name="main">
-{namespace sf=Tx_SlubForms_ViewHelpers}
 <f:if condition="{forms}">
 	<f:then>
 		<f:if condition="{settings.pageTarget} > 0">

@@ -1,4 +1,4 @@
-{namespace sf=Tx_SlubForms_ViewHelpers}
+{namespace sf=Slub\SlubForms\ViewHelpers}
 <label for="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}">{field.title}</label>
 <f:form.upload id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
                class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}"
@@ -7,4 +7,3 @@
                name="field[{fieldset.uid}][{field.uid}]" />
 <button type="button" class="btn btn-default btn-sm hide" title='remove file' id="delete-file-slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}" onclick="deleteFile($('#slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}'))">X</button>
 <sf:form.fileValidationFooterJs form='{form}' field='{field}' fieldset='{fieldset}' />
-
