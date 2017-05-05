@@ -1,4 +1,6 @@
 <?php
+namespace Slub\SlubForms\Domain\Validator;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -30,12 +32,12 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Domain_Validator_EmailValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
+class EmailValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
 
 	/**
 	 * emailRepository
 	 *
-	 * @var Tx_SlubForms_Domain_Repository_EmailRepository
+	 * @var \Slub\SlubForms\Domain\Repository\EmailRepository
 	 * @inject
 	 */
 	protected $emailRepository;
@@ -43,7 +45,7 @@ class Tx_SlubForms_Domain_Validator_EmailValidator extends Tx_Extbase_Validation
 	/**
 	 * Object Manager
 	 *
-	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
 	 * @inject
 	 */
 	protected $objectManager;
@@ -70,7 +72,7 @@ class Tx_SlubForms_Domain_Validator_EmailValidator extends Tx_Extbase_Validation
 	/**
 	 * Validation of given Params
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Email $newEmail
+	 * @param \Slub\SlubForms\Domain\Model\Email $newEmail
 	 * @return bool
 	 */
 	public function isValid($newEmail) {
@@ -84,4 +86,3 @@ class Tx_SlubForms_Domain_Validator_EmailValidator extends Tx_Extbase_Validation
 		return $this->isValid;
   	}
 }
-?>

@@ -1,4 +1,6 @@
 <?php
+namespace Slub\SlubForms\Domain\Validator;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -30,12 +32,12 @@
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
+class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator {
 
 	/**
 	 * emailRepository
 	 *
-	 * @var Tx_SlubForms_Domain_Repository_FieldsetsRepository
+	 * @var \Slub\SlubForms\Domain\Repository\FieldsetsRepository
 	 * @inject
 	 */
 	protected $fieldsetsRepository;
@@ -43,7 +45,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 	/**
 	 * Object Manager
 	 *
-	 * @var Tx_Extbase_Object_ObjectManagerInterface
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
 	 * @inject
 	 */
 	protected $objectManager;
@@ -75,8 +77,6 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 	 */
 	public function isValid($field) {
 
-//		t3lib_utility_Debug::debug($field, 'isValid: field... ');
-
 		$fieldGroupOk = 0;
 
 		// should be usually only one fieldset
@@ -90,8 +90,6 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 
 			// step through all possible fields and compare with submitted values
 			foreach($allfields as $id => $singleField) {
-				//~ t3lib_utility_Debug::debug($singleField->getTitle().' '.$singleField->getUid(), 'isValid: ... ');
-
 				// check for senderEmail
 				if ($singleField->getIsSenderEmail()) {
 					if (!empty($getfields[$singleField->getUid()]) && !t3lib_div::validEmail($getfields[$singleField->getUid()])) {
@@ -118,9 +116,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 					if (isset($_FILES['tx_slubforms_sf']) && $_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()] > 0) {
 
 						// get field configuration
-						$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($singleField->getConfiguration());
-						//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf']['size'], 'isValid: size... ');
-						//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()], 'isValid: ... ');
+						$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($singleField->getConfiguration());
 						if ($config['file-accept-size'] < $_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()]) {
 							// seems to be no valid email address
 							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_size', 1300);
@@ -192,7 +188,7 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
 								}
 							break;
 						case 'number': if ($singleField->getRequired()) {
-											if (!empty($getfields[$singleField->getUid()]) && !t3lib_utility_Math::canBeInterpretedAsInteger($getfields[$singleField->getUid()])) {
+											if (!empty($getfields[$singleField->getUid()]) && !\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($getfields[$singleField->getUid()])) {
 												// seems to be no valid number
 												$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_number', 1700);
 												$this->result->forProperty('content')->addError($error);
@@ -281,4 +277,3 @@ class Tx_SlubForms_Domain_Validator_FieldValidator extends Tx_Extbase_Validation
   	}
 
 }
-?>

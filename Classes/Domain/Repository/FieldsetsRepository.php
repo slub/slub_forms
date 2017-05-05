@@ -1,5 +1,5 @@
 <?php
-namespace Slub\SlubForms\Domain\Model;
+namespace Slub\SlubForms\Domain\Repository;
 
 /***************************************************************
  *  Copyright notice
