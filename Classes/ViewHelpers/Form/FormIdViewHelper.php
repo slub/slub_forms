@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\ViewHelpers\Form;
 
 /*                                                                        *
  * This script is backported from the FLOW3 package "TYPO3.Fluid".        *
@@ -30,7 +31,7 @@
  * @api
  * @scope prototype
  */
-class Tx_SlubForms_ViewHelpers_Form_FormIdViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class FormIdViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Return variable
@@ -42,7 +43,7 @@ class Tx_SlubForms_ViewHelpers_Form_FormIdViewHelper extends Tx_Fluid_Core_ViewH
 	/**
 	 * Looks for already checked form from last request
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Form $form
+	 * @param \Slub\SlubForms\Domain\Model\Form $form
 	 * @return string Rendered string
 	 * @api
 	 */
@@ -54,7 +55,6 @@ class Tx_SlubForms_ViewHelpers_Form_FormIdViewHelper extends Tx_Fluid_Core_ViewH
 		// check for GET parameter "form" which may be "shortname" OR an "uid"
 		if ($this->controllerContext->getRequest()->hasArgument('form')) {
 			$shortname = $this->controllerContext->getRequest()->getArgument('form');
-			//~ t3lib_utility_Debug::debug($shortname, 'shortname: ... ');
 			if (strlen($form->getShortname()) > 0) {
 				// is it an integer - so maybe an uid?
 				if (t3lib_utility_Math::canBeInterpretedAsInteger($shortname)) {
@@ -70,12 +70,10 @@ class Tx_SlubForms_ViewHelpers_Form_FormIdViewHelper extends Tx_Fluid_Core_ViewH
 		// form has been posted already and some error occured
 		if ($this->controllerContext->getRequest()->getOriginalRequest()) {
 			$formargs = $this->controllerContext->getRequest()->getOriginalRequest()->getArgument('newEmail');
-			//~ t3lib_utility_Debug::debug($formargs, 'formIdViewHelper: ... ' . $formargs['form']['__identity'] .' ' .$form->getUid() );
 				if ($formargs['form']['__identity'] == $form->getUid())
 					$this->isChecked = $form->getUid();
 		}
 
-		//~ t3lib_utility_Debug::debug($this->isChecked, 'isChecked: ... ');
 		return $this->isChecked;
 
 	}

@@ -31,7 +31,7 @@
  * @api
  */
 
-class Tx_SlubForms_ViewHelpers_Format_EditCodeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class EditCodeViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
 	 * Set session data
@@ -66,4 +66,3 @@ class Tx_SlubForms_ViewHelpers_Format_EditCodeViewHelper extends Tx_Fluid_Core_V
 
 	}
 }
-?>

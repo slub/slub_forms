@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\ViewHelpers\Condition;
 
 /***************************************************************
  *  Copyright notice
@@ -41,20 +42,20 @@
  * @api
  */
 
-class Tx_SlubForms_ViewHelpers_Condition_IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
+class IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
 
 
 	/**
 	 * renders <f:then> child if $condition is true, otherwise renders <f:else> child.
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fields $field
+	 * @param \Slub\SlubForms\Domain\Model\Fields $field
 	 * @return string the rendered string
 	 * @api
 	 */
 	public function render($field) {
 
 		// get field configuration
-		$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+		$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 
 		if (!empty($config['prefill'])) {
 			// values may be comma separated:
@@ -121,5 +122,3 @@ class Tx_SlubForms_ViewHelpers_Condition_IsReadonlyFieldViewHelper extends \TYPO
 	}
 
 }
-?>
-

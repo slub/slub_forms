@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\ViewHelpers\Condition;
 
 /***************************************************************
  *  Copyright notice
@@ -41,13 +42,13 @@
  * @api
  */
 
-class Tx_SlubForms_ViewHelpers_Condition_IsSenderEmailViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class IsSenderEmailViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 
 	/**
 	 * Check if field is senderEmail
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fields $field
+	 * @param \Slub\SlubForms\Domain\Model\Fields $field
 	 * @return boolean
 	 * @author Alexander Bigga <alexander.bigga@slub-dresden.de>
 	 * @api
@@ -60,4 +61,3 @@ class Tx_SlubForms_ViewHelpers_Condition_IsSenderEmailViewHelper extends Tx_Flui
 
 	}
 }
-?>

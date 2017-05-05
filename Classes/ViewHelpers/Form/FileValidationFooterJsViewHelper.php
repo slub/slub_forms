@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\ViewHelpers\Form;
 /***************************************************************
  *  Copyright notice
  *
@@ -33,14 +34,14 @@
  * @api
  * @scope prototype
  */
-class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class FileValidationFooterJsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Adds JS code for form validation to footer
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Form $form
-	 * @param Tx_SlubForms_Domain_Model_Fields $field
-	 * @param Tx_SlubForms_Domain_Model_Fieldsets $fieldset
+	 * @param \Slub\SlubForms\Domain\Model\Form $form
+	 * @param \Slub\SlubForms\Domain\Model\Fields $field
+	 * @param \Slub\SlubForms\Domain\Model\Fieldsets $fieldset
 	 * @return void
 	 * @api
 	 */
@@ -50,7 +51,7 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 			// used in File.html template
 
 			// get field configuration
-			$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+			$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 			if (!empty($config['file-accept-mimetypes'])) {
 				// e.g. file-mimetypes = audio/*, image/*, application/
 				$javascriptFooter = '$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
@@ -87,5 +88,3 @@ class Tx_SlubForms_ViewHelpers_Form_FileValidationFooterJsViewHelper extends Tx_
 	}
 
 }
-
-?>

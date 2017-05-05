@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\ViewHelpers\Form;
 	/***************************************************************
 	 *  Copyright notice
 	 *
@@ -33,14 +34,14 @@
 	 * @api
 	 * @scope prototype
 	 */
-	class Tx_SlubForms_ViewHelpers_Form_RadioValidationFooterJsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+	class RadioValidationFooterJsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 		/**
 		 * Adds Javascript for jquery-validation to the footer
 		 *
-		 * @param Tx_SlubForms_Domain_Model_Form $form
-		 * @param Tx_SlubForms_Domain_Model_Fields $field
-		 * @param Tx_SlubForms_Domain_Model_Fieldsets $fieldset
+		 * @param \Slub\SlubForms\Domain\Model\Form $form
+		 * @param \Slub\SlubForms\Domain\Model\Fields $field
+		 * @param \Slub\SlubForms\Domain\Model\Fieldsets $fieldset
 		 * @return void
 		 * @api
 		 */
@@ -48,7 +49,7 @@
 
 			if ($field !== NULL) {
 
-				$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+				$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 
 				// set all radio input fields to required
 				if (!empty($config['radioOption'])) {

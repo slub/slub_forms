@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\ViewHelpers\Form;
 /***************************************************************
  *  Copyright notice
  *
@@ -33,12 +34,12 @@
  * @api
  * @scope prototype
  */
-class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class FieldHasValueViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Check for Prefill/Post values and set it manually
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fields $field
+	 * @param \Slub\SlubForms\Domain\Model\Fields $field
 	 * @param string $show
 	 *
 	 * @return string Rendered string
@@ -63,7 +64,7 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 		}
 
 		// get field configuration
-		$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+		$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 		if (!empty($config['prefill'])) {
 			// values may be comma separated:
 			// e.g. prefill = fe_users:username, fe_users:email, news:news
@@ -83,7 +84,7 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasValueViewHelper extends Tx_Fluid_Cor
 						break;
 					case 'news':
 						// e.g. news:news
-						$newsArgs = t3lib_div::_GET('tx_news_pi1');
+						$newsArgs = GeneralUtility::_GET('tx_news_pi1');
 						$returnValue[] = $newsArgs[$settingPair[1]];
 						break;
 					case 'value':

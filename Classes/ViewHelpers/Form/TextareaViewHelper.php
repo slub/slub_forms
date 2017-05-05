@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\ViewHelpers\Form;
 
 /*                                                                        *
  * This script is backported from the FLOW3 package "TYPO3.Fluid".        *
@@ -26,7 +27,7 @@
  *
  * @api
  */
-class Tx_SlubForms_ViewHelpers_Form_TextareaViewHelper extends Tx_Fluid_ViewHelpers_Form_AbstractFormFieldViewHelper {
+class TextareaViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * @var string
@@ -52,7 +53,7 @@ class Tx_SlubForms_ViewHelpers_Form_TextareaViewHelper extends Tx_Fluid_ViewHelp
 	/**
 	 * Renders the textarea.
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fields $field
+	 * @param \Slub\SlubForms\Domain\Model\Fields $field
 	 * @param boolean $required If the field is required or not
 	 * @return string
 	 * @api
@@ -69,7 +70,7 @@ class Tx_SlubForms_ViewHelpers_Form_TextareaViewHelper extends Tx_Fluid_ViewHelp
 		// maxlength = 30000
 		// rows = 5
 		// cols = 60
-		$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+		$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 		if (!empty($config)) {
 
 			foreach($config as $key => $value) {

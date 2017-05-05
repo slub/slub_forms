@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\ViewHelpers\Form;
 /***************************************************************
  *  Copyright notice
  *
@@ -33,19 +34,19 @@
  * @api
  * @scope prototype
  */
-class Tx_SlubForms_ViewHelpers_Form_FileValidationAcceptInfoViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class FileValidationAcceptInfoViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Looks for already checked form from last request
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fields $field
+	 * @param \Slub\SlubForms\Domain\Model\Fields $field
 	 * @return string
 	 * @api
 	 */
 	public function render($field) {
 
 		// get field configuration
-		$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+		$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 		if (!empty($config['file-accept-info'])) {
 			$info = $config['file-accept-info'];
 			if (!empty($config['file-accept-size']))

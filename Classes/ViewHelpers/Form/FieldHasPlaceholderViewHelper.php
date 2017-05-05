@@ -1,4 +1,5 @@
 <?php
+namespace Slub\SlubForms\ViewHelpers\Form;
 /***************************************************************
  *  Copyright notice
  *
@@ -33,12 +34,12 @@
  * @api
  * @scope prototype
  */
-class Tx_SlubForms_ViewHelpers_Form_FieldHasPlaceholderViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_SlubForms_ViewHelpers_Form_FieldHasPlaceholderViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Check for Prefill/Post values and set it manually
 	 *
-	 * @param Tx_SlubForms_Domain_Model_Fields $field
+	 * @param \Slub\SlubForms\Domain\Model\Fields $field
 	 * @param string $show
 	 *
 	 * @return string Rendered string
@@ -46,7 +47,7 @@ class Tx_SlubForms_ViewHelpers_Form_FieldHasPlaceholderViewHelper extends Tx_Flu
 	public function render($field) {
 
 		// get field configuration
-		$config = Tx_SlubForms_Helper_ArrayHelper::configToArray($field->getConfiguration());
+		$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 
 		if (!empty($config['placeholder'])) {
 
