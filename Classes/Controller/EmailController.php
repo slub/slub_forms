@@ -347,7 +347,7 @@ class EmailController extends AbstractController {
 			$this->sendTemplateEmail(
 				array($form->getRecipient() => ''),
 				array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
-				LocalizationUtility::translate('\Slub\SlubForms\Domain\Model\Email.form', 'slub_forms') . ': ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
+				LocalizationUtility::translate('tx_slubforms_domain_model_email.form', 'slub_forms') . ': ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
 				'FormEmail',
 				array(	'email' => $newEmail,
 					'form' => $form,
