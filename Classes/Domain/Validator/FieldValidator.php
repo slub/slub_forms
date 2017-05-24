@@ -95,7 +95,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 				if ($singleField->getIsSenderEmail()) {
 					if (!empty($getfields[$singleField->getUid()]) && !GeneralUtility::validEmail($getfields[$singleField->getUid()])) {
 						// seems to be no valid email address
-						$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1100);
+						$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_email', 1100);
 						$this->result->forProperty('senderEmail')->addError($error);
 						$this->isValid = false;
 					}
@@ -105,7 +105,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 				if ($singleField->getIsSenderName()) {
 					if (empty($getfields[$singleField->getUid()])) {
 						// seems to be empty
-						$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_name', 1200);
+						$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_name', 1200);
 						$this->result->forProperty('senderName')->addError($error);
 						$this->isValid = false;
 					}
@@ -120,7 +120,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 						$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($singleField->getConfiguration());
 						if ($config['file-accept-size'] < $_FILES['tx_slubforms_sf']['size']['field'][$getfieldset][$singleField->getUid()]) {
 							// seems to be no valid email address
-							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_size', 1300);
+							$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_file_size', 1300);
 							$this->result->forProperty('content')->addError($error);
 							$this->isValid = false;
 						}
@@ -143,7 +143,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 
 						if (!is_array($allowedtypes[$found_mimetype[0]]) || (in_array($found_mimetype[1], $allowedtypes[$found_mimetype[0]], TRUE) === FALSE &&
 								in_array('*', $allowedtypes[$found_mimetype[0]], TRUE) === FALSE)) {
-							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_file_mimetype', 1400);
+							$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_file_mimetype', 1400);
 							$this->result->forProperty('content')->addError($error);
 							$this->isValid = false;
 						} else	if ($fieldset->getRequired()) {
@@ -161,7 +161,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 
 						case 'text': if ($singleField->getRequired()) {
 										if (empty($getfields[$singleField->getUid()])) {
-											$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_text', 1500);
+											$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_text', 1500);
 											$this->result->forProperty('content')->addError($error);
 											$this->isValid = false;
 										}
@@ -177,7 +177,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 //								t3lib_utility_Debug::debug($singleField, '$singleField.. ');
 									if ( !GeneralUtility::validEmail($getfields[$singleField->getUid()]) ) {
 										// seems to be no valid email address
-										$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_email', 1600);
+										$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_email', 1600);
 										$this->result->forProperty('senderEmail')->addError($error);
 										$this->isValid = false;
 									}
@@ -191,7 +191,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 						case 'number': if ($singleField->getRequired()) {
 											if (!empty($getfields[$singleField->getUid()]) && !\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($getfields[$singleField->getUid()])) {
 												// seems to be no valid number
-												$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_number', 1700);
+												$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_number', 1700);
 												$this->result->forProperty('content')->addError($error);
 												$this->isValid = false;
 											}
@@ -204,7 +204,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 							break;
 						case 'tel': if ($singleField->getRequired()) {
 										if (empty($getfields[$singleField->getUid()])) {
-											$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_tel', 1800);
+											$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_tel', 1800);
 											$this->result->forProperty('content')->addError($error);
 											$this->isValid = false;
 										}
@@ -217,7 +217,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 							break;
 						case 'url': if ($singleField->getRequired()) {
 										if (empty($getfields[$singleField->getUid()])) {
-											$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_url', 1900);
+											$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_url', 1900);
 											$this->result->forProperty('content')->addError($error);
 											$this->isValid = false;
 										}
@@ -230,7 +230,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 							break;
 						default: if ($singleField->getRequired()) {
 										if (empty($getfields[$singleField->getUid()])) {
-											$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_default', 2000);
+											$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_default', 2000);
 											$this->result->forProperty('content')->addError($error);
 											$this->isValid = false;
 										}
@@ -250,7 +250,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 				if ($singleField->getType() == 'Radio' || $singleField->getType() == 'Checkbox') {
 					if ($singleField->getRequired()) {
 						if (empty($getfields[$singleField->getUid()])) {
-							$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_radio', 2100);
+							$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_radio', 2100);
 							$this->result->forProperty('content')->addError($error);
 							$this->isValid = false;
 						}
@@ -266,7 +266,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 			// if fieldset is required, check fields once more...
 			if ($fieldset->getRequired() && $fieldGroupOk == 0) {
 
-				$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_group', 2200);
+				$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_group', 2200);
 				$this->result->forProperty('content')->addError($error);
 				$this->isValid = false;
 

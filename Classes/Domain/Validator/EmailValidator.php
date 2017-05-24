@@ -78,7 +78,7 @@ class EmailValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 	public function isValid($newEmail) {
 
 		if ($newEmail->getEditcode() != $this->getSessionData('editcode')) {
-			$error = $this->objectManager->get('Tx_Extbase_Error_Error', 'val_editcode', 1140);
+			$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_editcode', 1140);
 			$this->result->forProperty('editcode')->addError($error);
 			$this->isValid = false;
 		}
