@@ -1,5 +1,8 @@
 <?php
 namespace Slub\SlubForms\ViewHelpers\Form;
+
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /***************************************************************
  *  Copyright notice
  *
