@@ -52,7 +52,7 @@ class FileValidationFooterJsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\
 
 			// get field configuration
 			$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
-			if (!empty($config['file-accept-mimetypes'])) {
+			if (!empty($config['file-accept-mimetypes']) && (empty($config['file-extension-check']) || !$config['file-extension-check'])) {
 				// e.g. file-mimetypes = audio/*, image/*, application/
 				$javascriptFooter = '$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
 						required: '.($field->getRequired() ? 'true' : 'false').',
@@ -62,7 +62,30 @@ class FileValidationFooterJsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\
 								filesize: '.$config['file-accept-size'];
 				$javascriptFooter .= '});
 				';
+			}
 
+			if(!empty($config['file-extension-check']) && $config['file-extension-check']) {
+				// e.g. file-mimetypes = audio/*, image/*, application/
+				$javascriptFooter = '$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
+						required: '.($field->getRequired() ? 'true' : 'false').',
+						extension: "'.str_replace(array('.',' ',','),array('','','|'),$config['file-accept-info']).'"';
+						if (!empty($config['file-accept-size']))
+							$javascriptFooter .= ',
+								filesize: '.$config['file-accept-size'];
+				$javascriptFooter .= '});
+				';
+			}
+
+			if(!empty($config['file-extension-check']) && $config['file-extension-check']) {
+				// e.g. file-mimetypes = audio/*, image/*, application/
+				$javascriptFooter = '$("#slub-forms-field-'.$form->getUid().'-'.$fieldset->getUid().'-'.$field->getUid().'").rules("add", {
+						required: '.($field->getRequired() ? 'true' : 'false').',
+						extension: "'.str_replace(array('.',' ',','),array('','','|'),$config['file-accept-info']).'"';
+						if (!empty($config['file-accept-size']))
+							$javascriptFooter .= ',
+								filesize: '.$config['file-accept-size'];
+				$javascriptFooter .= '});
+				';
 			}
 		}
 		else {
