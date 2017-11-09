@@ -26,35 +26,13 @@ plugin.tx_slubforms {
 	}
 }
 
-plugin.tx_slubforms._CSS_DEFAULT_STYLE (
-	textarea.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	input.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	.tx-slub-forms table {
-		border-collapse:separate;
-		border-spacing:10px;
-	}
-
-	.tx-slub-forms table th {
-		font-weight:bold;
-	}
-
-	.tx-slub-forms table td {
-		vertical-align:top;
-	}
-)
-
 page.includeCSS.slub_forms = EXT:slub_forms/Resources/Public/Css/SlubForms.css
 page.includeCSS.jquery-ui-theme = EXT:slub_forms/Resources/Public/Css/Contrib/JQueryUiTheme/jquery-ui.css
 
+page.includeJSFooter.jquerydatepicker = EXT:slub_forms/Resources/Public/Js/datepicker.js
+[globalVar = GP:L=0]
+page.includeJSFooter.jquerydatepicker-de = EXT:slub_forms/Resources/Public/Js/datepicker-de.js
+[global]
 page.includeJSFooter.jqueryvalidation = EXT:slub_forms/Resources/Public/Js/jquery.validate.min.js
 page.includeJSFooter.jqueryvalidation_additional = EXT:slub_forms/Resources/Public/Js/additional-methods.min.js
 page.includeJSFooter.slub_forms = EXT:slub_forms/Resources/Public/Js/FormValidation.js
-
