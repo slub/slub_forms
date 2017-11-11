@@ -34,4 +34,40 @@ namespace Slub\SlubForms\Domain\Repository;
  */
 class EmailRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
+  /**
+	 * Find all emails older than given days
+	 *
+	 * @param integer $days
+	 * @return objects found old emails
+	 */
+	public function findOlderThan($days) {
+
+    $query = $this->createQuery();
+
+    $constraints = [];
+
+    $constraints[] = $query->lessThanOrEqual('crdate', strtotime(' - ' . $days . ' days'));
+
+    if (count($constraints)) {
+        $query->matching($query->logicalAnd($constraints));
+    }
+
+    return $query->execute();
+
+	}
+
+  /**
+	 * Delete all emails older than given days
+	 *
+	 * @param integer $days
+	 * @return objects found old emails
+	 */
+	public function deleteOlderThan($days) {
+
+    $GLOBALS['TYPO3_DB']->exec_DELETEquery('tx_slubforms_domain_model_email', 'crdate < ' . strtotime(' - ' . $days . ' days'));
+
+    return true;
+
+	}
+
 }

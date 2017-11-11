@@ -12,6 +12,24 @@
 			<source>Page showing all Forms</source>
 		</trans-unit>
 
+		<trans-unit id="tasks.cleanup.name">
+			<source>Email Cleanup</source>
+		</trans-unit>
+		<trans-unit id="tasks.cleanup.description">
+			<source>Delete old Emails regularly</source>
+		</trans-unit>
+		<trans-unit id="tasks.cleanup.storagePid">
+			<source>Limit to StoragePid</source>
+		</trans-unit>
+		<trans-unit id="tasks.cleanup.invalidStoragePid">
+			<source>Invalid Storage Pid given!</source>
+		</trans-unit>
+		<trans-unit id="tasks.cleanup.cleanupDays">
+			<source>Delete all emails older than the given amount of days</source>
+		</trans-unit>
+		<trans-unit id="tasks.cleanup.invalidCleanupDays">
+			<source>Invalid day periode given!</source>
+		</trans-unit>
 
 		</body>
 	</file>
