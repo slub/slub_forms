@@ -1,10 +1,32 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
-	die ('Access denied.');
-}
 
-$TCA['tx_slubforms_domain_model_fieldsets'] = array(
-	'ctrl' => $TCA['tx_slubforms_domain_model_fieldsets']['ctrl'],
+return array(
+	'ctrl' => array(
+		'title'	=> 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fieldsets',
+		'label' => 'title',
+		'label_alt' => 'required, shortname',
+		'label_alt_force' => TRUE,
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+		'sortby' => 'sorting',
+		'versioningWS' => 2,
+		'versioning_followPages' => TRUE,
+		'origUid' => 't3_origuid',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+		),
+		'requestUpdate' => 'sys_language_uid',
+		'searchFields' => 'title,fields,',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('slub_forms') . 'Resources/Public/Icons/tx_slubforms_domain_model_fieldsets.gif'
+	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, required, fields',
 	),
