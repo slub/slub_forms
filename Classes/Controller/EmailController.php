@@ -119,17 +119,6 @@ class EmailController extends AbstractController {
 	}
 
 	/**
-	 * action initializeNew
-	 *
-	 *
-	 * @return void
-	 */
-	//~ public function initializeNewAction() {
-		//~ $formId = $this->getParametersSafely('field');
-		//~ t3lib_utility_Debug::debug($field, 'initializeNewAction: ... ');
-		//~ $this->view->assign('formid', $formid);
-	//~ }
-	/**
 	 * action initializeCreate
 	 *
 	 *
@@ -208,13 +197,11 @@ class EmailController extends AbstractController {
 
 						if (isset($_FILES['tx_slubforms_sf']) && ($_FILES['tx_slubforms_sf']['error']['field'][$getfieldset][$field->getUid()] == UPLOAD_ERR_OK)) {
 
-							//~ t3lib_utility_Debug::debug($_FILES['tx_slubforms_sf'], '$createAction 2 $$_FILES:... ');
-
 							$content[$field->getTitle()] = $_FILES['tx_slubforms_sf']['name']['field'][$getfieldset][$field->getUid()];
 
-							$basicFileFunctions = GeneralUtility::makeInstance('t3lib_basicFileFunctions');
+							$fileResource = $this->objectManager->get(TYPO3\CMS\Core\Resource::class);
 							// get filename
-							$fileName = $basicFileFunctions->getUniqueName(
+							$fileName = $fileResource->getUniqueName(
 								$_FILES['tx_slubforms_sf']['name']['field'][$getfieldset][$field->getUid()],
 								GeneralUtility::getFileAbsFileName('uploads/tx_slubforms/')
 							);
@@ -274,8 +261,9 @@ class EmailController extends AbstractController {
 		}
 
 		$contentText = '<ul>';
-		foreach ($content as $fieldName => $value)
+		foreach ($content as $fieldName => $value) {
 			$contentText .= '<li><b>'.$fieldName . '</b>: '. nl2br($value).'</li>';
+		}
 		$contentText .= '</ul>';
 
 		$newEmail->setContent(trim($contentText));
@@ -304,13 +292,12 @@ class EmailController extends AbstractController {
 		}
 
 		// check for senderName (once more)
-		if (!empty($senderName))
+		if (!empty($senderName)) {
 			$newEmail->setSenderName($senderName);
-		else
+		} else {
 			// if nothing helps, we can send without the senderName but we have to set something.
 			$newEmail->setSenderName('-');
-
-		//~ t3lib_utility_Debug::debug($content, 'createAction: content... ');
+		}
 
 		$settings = array();
 		// add signal before sending Email
@@ -370,8 +357,6 @@ class EmailController extends AbstractController {
 		if (! empty($this->settings['pageShowForm'])) {
 
 			$this->uriBuilder->setTargetPageUid($this->settings['pageShowForm']);
-	//		$this->uriBuilder->setNoCache(TRUE);
-//			$this->uriBuilder->setUseCacheHash(FALSE);
 
 			$newsUri = $this->uriBuilder->uriFor(
 				'detail',
@@ -441,7 +426,7 @@ class EmailController extends AbstractController {
 	protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array()) {
 
 		/** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailViewHTML */
-		$emailViewHTML = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
+		$emailViewHTML = $this->objectManager->get(TYPO3\CMS\Fluid\View\StandaloneView::class);
 
 		$emailViewHTML->getRequest()->setControllerExtensionName($this->extensionName);
 		$emailViewHTML->setFormat('html');
@@ -455,7 +440,7 @@ class EmailController extends AbstractController {
 		$emailViewHTML->setPartialRootPath($partialRootPath);
 
 		/** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
-		$message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
+		$message = $this->objectManager->get(TYPO3\CMS\Core\Mail\MailMessage::class);
 
 		$message->setTo($recipient)
 				->setFrom($sender)
