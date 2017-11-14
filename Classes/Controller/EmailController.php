@@ -426,7 +426,7 @@ class EmailController extends AbstractController {
 	protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array()) {
 
 		/** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailViewHTML */
-		$emailViewHTML = $this->objectManager->get(TYPO3\CMS\Fluid\View\StandaloneView::class);
+		$emailViewHTML = $this->objectManager->get(\TYPO3\CMS\Fluid\View\StandaloneView::class);
 
 		$emailViewHTML->getRequest()->setControllerExtensionName($this->extensionName);
 		$emailViewHTML->setFormat('html');
@@ -440,7 +440,7 @@ class EmailController extends AbstractController {
 		$emailViewHTML->setPartialRootPath($partialRootPath);
 
 		/** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
-		$message = $this->objectManager->get(TYPO3\CMS\Core\Mail\MailMessage::class);
+		$message = $this->objectManager->get(\TYPO3\CMS\Core\Mail\MailMessage::class);
 
 		$message->setTo($recipient)
 				->setFrom($sender)
