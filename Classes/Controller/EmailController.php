@@ -199,7 +199,7 @@ class EmailController extends AbstractController {
 
 							$content[$field->getTitle()] = $_FILES['tx_slubforms_sf']['name']['field'][$getfieldset][$field->getUid()];
 
-							$fileResource = $this->objectManager->get(TYPO3\CMS\Core\Resource::class);
+							$fileResource = $this->objectManager->get(\TYPO3\CMS\Core\Resource::class);
 							// get filename
 							$fileName = $fileResource->getUniqueName(
 								$_FILES['tx_slubforms_sf']['name']['field'][$getfieldset][$field->getUid()],
