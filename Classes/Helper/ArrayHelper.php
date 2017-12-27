@@ -57,6 +57,17 @@ class ArrayHelper {
 					$configArray[trim($settingPair[0])][] = array(0 => trim($optionPair[0]), 1 => trim($optionPair[1]));
 
 					break;
+				case 'selectOption':
+					if (stripos(':', $settingPair[1])) {
+						// selectOption = valueString:value
+						$optionPair = explode(":", trim($settingPair[1]));
+						$configArray[trim($settingPair[0])][trim($optionPair[1])] = trim($optionPair[0]);
+					} else {
+						// selectOption = valueString
+						$configArray[trim($settingPair[0])][trim($settingPair[1])] = trim($settingPair[1]);
+					}
+
+					break;
 				case 'value':
 				default: $configArray[trim($settingPair[0])] = trim($settingPair[1]);
 					break;

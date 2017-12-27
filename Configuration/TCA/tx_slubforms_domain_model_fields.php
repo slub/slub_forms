@@ -155,6 +155,7 @@ return array(
 					array('', ''),
 					array('Textfield', 'Textfield'),
 					array('Textarea', 'Textarea'),
+					array('Select', 'Select'),
 					array('Checkbox', 'Checkbox'),
 					array('Radio', 'Radio'),
 					array('Hidden', 'Hidden'),
