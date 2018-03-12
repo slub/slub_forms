@@ -63,7 +63,7 @@ jQuery(document).ready(function() {
 
 	disableAllHiddenForms();
 
-	if ($('.slub-forms-form').size() == 1 || $('.tx-slub-forms .confirmation').size()>0) {
+	if ($('.slub-forms-form').length == 1 || $('.tx-slub-forms .confirmation').length>0) {
 		$('.slub-form-intro').hide();
 	}
 });
@@ -243,4 +243,3 @@ $.validator.addMethod('filesize', function(value, element, param) {
 	// param = size (en bytes)
 	return this.optional(element) || (element.files[0].size <= param)
 });
-
