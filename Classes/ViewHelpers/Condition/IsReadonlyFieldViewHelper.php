@@ -25,6 +25,8 @@ namespace Slub\SlubForms\ViewHelpers\Condition;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+ use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * Check if given link is local or not
  *
@@ -76,7 +78,7 @@ class IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 						break;
 					case 'news':
 						// e.g. news:news
-						$newsArgs = t3lib_div::_GET('tx_news_pi1');
+						$newsArgs = GeneralUtility::_GET('tx_news_pi1');
 						if ($newsArgs) {
 							$condition = true;
 						}

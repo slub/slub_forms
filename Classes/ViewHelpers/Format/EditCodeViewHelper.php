@@ -61,7 +61,6 @@ class EditCodeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
 		// set editcode-dummy for Spam/Form-double-sent protection
 		$editCodeDummy = hash('sha256', rand().'formEditCode'.time().'dummy');
 
-		//~ t3lib_utility_Debug::debug($editCodeDummy, 'editCodeDummy:!... ');
 		$this->setSessionData('editcode', $editCodeDummy);
 
 	    return $editCodeDummy;

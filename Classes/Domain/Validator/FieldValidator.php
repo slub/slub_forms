@@ -174,7 +174,6 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 							break;
 						case 'email':
 								if ($singleField->getRequired()) {
-//								t3lib_utility_Debug::debug($singleField, '$singleField.. ');
 									if ( !GeneralUtility::validEmail($getfields[$singleField->getUid()]) ) {
 										// seems to be no valid email address
 										$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_email', 1600);

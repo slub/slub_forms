@@ -21,6 +21,8 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use TYPO3\CMS\Core\Utility\MathUtility;
+
 /**
  * Validation results view helper
  *
@@ -57,7 +59,7 @@ class FormIdViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
 			$shortname = $this->controllerContext->getRequest()->getArgument('form');
 			if (strlen($form->getShortname()) > 0) {
 				// is it an integer - so maybe an uid?
-				if (t3lib_utility_Math::canBeInterpretedAsInteger($shortname)) {
+				if (MathUtility::canBeInterpretedAsInteger($shortname)) {
 					if ($form->getUid() == $shortname)
 						$this->isChecked = $form->getUid();
 				} else
