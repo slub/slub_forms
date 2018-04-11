@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'SLUB Forms',
-	'description' => '',
+	'description' => 'TYPO3 extension to render forms.',
 	'category' => 'plugin',
 	'author' => 'Alexander Bigga',
 	'author_email' => 'alexander.bigga@slub-dresden.de',
@@ -40,5 +40,3 @@ $EM_CONF[$_EXTKEY] = array(
 		),
 	),
 );
-
-?>

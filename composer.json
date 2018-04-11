@@ -1,0 +1,27 @@
+{
+  "name": "slub/slub-forms",
+  "type": "typo3-cms-extension",
+  "description": "TYPO3 extension to render forms.",
+  "homepage": "https://github.com/slub/slub_forms",
+  "keywords": [
+    "TYPO3",
+    "extension",
+    "slub_forms"
+  ],
+  "authors": [
+    {
+      "name": "Alexander Bigga",
+      "email": "alexander.bigga@slub-dresden.de",
+      "role": "Developer"
+    }
+  ],
+  "license": "GPL-3.0-or-later",
+  "require": {
+    "typo3/cms-core": "~6.2.30|~7.6.23"
+  },
+  "autoload": {
+    "psr-4": {
+      "Slub\\SlubForms\\": "Classes/"
+    }
+  }
+}
