@@ -155,7 +155,7 @@ return array(
 				'type' => 'select',
 				'renderType' => 'selectMultipleSideBySide',
 				'foreign_table' => 'tx_slubforms_domain_model_fields',
-				'foreign_table_where' => ' AND (tx_slubforms_domain_model_fields.sys_language_uid = 0 OR tx_slubforms_domain_model_fields.l10n_parent = 0) AND tx_slubforms_domain_model_fields.pid = ###CURRENT_PID### ORDER BY tx_slubforms_domain_model_fields.sorting',
+				'foreign_table_where' => ' AND (tx_slubforms_domain_model_fields.sys_language_uid IN (-1,0) OR tx_slubforms_domain_model_fields.l10n_parent = 0) AND tx_slubforms_domain_model_fields.pid = ###CURRENT_PID### ORDER BY tx_slubforms_domain_model_fields.sorting',
 				'MM' => 'tx_slubforms_fieldsets_fields_mm',
 				'size' => 10,
 				'autoSizeMax' => 30,
