@@ -44,8 +44,8 @@ namespace Slub\SlubForms\ViewHelpers\Condition;
  * @api
  */
 
-class IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractConditionViewHelper {
-
+class IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+{
 
 	/**
 	 * renders <f:then> child if $condition is true, otherwise renders <f:else> child.
@@ -80,7 +80,7 @@ class IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 						// e.g. news:news
 						$newsArgs = GeneralUtility::_GET('tx_news_pi1');
 						if ($newsArgs) {
-							$condition = true;
+							$condition = TRUE;
 						}
 						break;
 					case 'value':
@@ -114,11 +114,11 @@ class IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 
 		if ($condition) {
 
-			return $this->renderThenChild();
+			return 'readonly';
 
 		} else {
 
-			return $this->renderElseChild();
+			return '';
 
 		}
 	}
