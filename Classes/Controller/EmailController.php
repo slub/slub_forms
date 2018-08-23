@@ -93,7 +93,7 @@ class EmailController extends AbstractController {
 			if (\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($singleFormShortname)) {
 				$singleForm = $this->formsRepository->findAllById($singleFormShortname);
 			} else {
-				$singleForm = $this->formsRepository->findByShortname($singleFormShortname);
+				$singleForm = $this->formsRepository->findAllByShortname($singleFormShortname);
 			}
 			// if no form is found getFirst() will return false and that's what we want
 			$this->view->assign('singleForm', $singleForm->getFirst());

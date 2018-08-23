@@ -45,7 +45,7 @@ class FormsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query = $this->createQuery();
 
 		// we ignore the sys language setting as we get formids of default language from flexform settings:
-		$query->getQuerySettings()->setRespectSysLanguage(false);
+		$query->getQuerySettings()->setRespectSysLanguage(FALSE);
 
 		$constraints = array();
 		$constraints[] = $query->in('uid', $formIds);
@@ -130,6 +130,8 @@ class FormsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	public function findAllByShortname($shortname) {
 
 		$query = $this->createQuery();
+
+    $query->getQuerySettings()->setRespectSysLanguage(FALSE);
 
 		$constraints = array();
 		$constraints[] = $query->equals('shortname', $shortname);
