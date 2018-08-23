@@ -25,7 +25,7 @@ return array(
 		),
 		'requestUpdate' => 'sys_language_uid',
 		'searchFields' => 'title,fields,',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('slub_forms') . 'Resources/Public/Icons/tx_slubforms_domain_model_fieldsets.gif'
+		'iconfile' => 'EXT:slub_forms/Resources/Public/Icons/tx_slubforms_domain_model_fieldsets.gif'
 	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, required, fields',

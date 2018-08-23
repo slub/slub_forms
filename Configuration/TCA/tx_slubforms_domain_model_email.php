@@ -22,7 +22,7 @@ return array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'sender_name,sender_email,content,form,',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('slub_forms') . 'Resources/Public/Icons/tx_slubforms_domain_model_email.gif'
+		'iconfile' => 'EXT:slub_forms/Resources/Public/Icons/tx_slubforms_domain_model_email.gif'
 	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, sender_name, sender_email, content, form',

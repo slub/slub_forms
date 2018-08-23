@@ -23,7 +23,7 @@ return array(
 		),
 		'requestUpdate' => 'sys_language_uid',
 		'searchFields' => 'title,recipient,fieldsets,parent,',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('slub_forms') . 'Resources/Public/Icons/tx_slubforms_domain_model_forms.gif'
+		'iconfile' => 'EXT:slub_forms/Resources/Public/Icons/tx_slubforms_domain_model_forms.gif'
 	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, recipient, fieldsets, parent',
@@ -131,7 +131,7 @@ return array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim,lower'
+				'eval' => 'nospace,lower,unique,trim'
 			),
 		),
 		'recipient' => array(

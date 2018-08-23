@@ -25,7 +25,7 @@ return array(
 		),
 		'requestUpdate' => 'sys_language_uid,type',
 		'searchFields' => 'title,type,configuration,required,validation,',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('slub_forms') . 'Resources/Public/Icons/tx_slubforms_domain_model_fields.gif'
+		'iconfile' => 'EXT:slub_forms/Resources/Public/Icons/tx_slubforms_domain_model_fields.gif'
 	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, type, is_sender_email, is_sender_name, description, configuration, required, validation',

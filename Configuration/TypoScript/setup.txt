@@ -8,8 +8,6 @@ plugin.tx_slubforms {
 		storagePid = {$plugin.tx_slubforms.persistence.storagePid}
 	}
 	features {
-		# uncomment the following line to enable the new Property Mapper.
-		rewrittenPropertyMapper = 1
 		skipDefaultArguments = 1
 	}
 	settings {
