@@ -505,3 +505,17 @@ input::-webkit-inner-spin-button {
 #leftcol .tx-slub-forms label.error {
 	display: none;
 }
+
+#leftcol .tx-slub-forms select {
+    padding: 6px;
+    border: 1px solid #9bb;
+    border-color: #9bb transparent transparent #9bb;
+    display: block;
+    width: 60%;
+    max-width: 63%;
+    margin: 2px 0;
+    font-size: 13px;
+    float: left;
+    text-align: left;
+    background: #fff;
+}
