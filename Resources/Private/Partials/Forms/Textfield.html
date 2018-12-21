@@ -1,34 +1,34 @@
 {namespace sf=Slub\SlubForms\ViewHelpers}
 <label for="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}">{field.title}
-	<f:if condition="{field.required}">
-		<f:then><span class="required">*</span></f:then>
-	</f:if>
+  <f:if condition="{field.required}">
+    <f:then><span class="required">*</span></f:then>
+  </f:if>
 </label>
 
 <f:if condition="{field.required}">
-	<f:then>
-		<f:form.textfield id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
-		class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')} {f:if(condition: field.isSenderName, then: 'sender-name')} {f:if(condition: field.isSenderEmail, then: 'sender-email')} {field.shortname}"
-		name="field[{fieldset.uid}][{field.uid}]"
-		type="{field.validation}"
-		readonly="{sf:condition.isReadonlyField(field: '{field}')}"
-		title="<f:translate key='validationerror_val_{field.validation}' />"
-		value="<sf:form.fieldHasValue field='{field}' />"
-		placeholder="<sf:form.fieldHasPlaceholder field='{field}' />"
-		required="required"
-		/>
-	</f:then>
-	<f:else>
-		<f:form.textfield id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
-		class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')} {f:if(condition: field.isSenderName, then: 'sender-name')} {f:if(condition: field.isSenderEmail, then: 'sender-email')} {field.shortname}"
-		name="field[{fieldset.uid}][{field.uid}]"
-	  	type="{field.validation}"
-		readonly="{sf:condition.isReadonlyField(field: '{field}')}"
-		title="<f:translate key='validationerror_val_{field.validation}' />"
-		value="<sf:form.fieldHasValue field='{field}' />"
-		placeholder="<sf:form.fieldHasPlaceholder field='{field}' />"
-		/>
-	</f:else>
+  <f:then>
+    <f:form.textfield id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
+    class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')} {f:if(condition: field.isSenderName, then: 'sender-name')} {f:if(condition: field.isSenderEmail, then: 'sender-email')} {field.shortname}"
+    name="field[{fieldset.uid}][{field.uid}]"
+    type="{field.validation}"
+    readonly="{sf:condition.isReadonlyField(field: '{field}')}"
+    title="<f:translate key='validationerror_val_{field.validation}' />"
+    value="<sf:form.fieldHasValue field='{field}' />"
+    placeholder="<sf:form.fieldHasPlaceholder field='{field}' />"
+    required="required"
+    />
+  </f:then>
+  <f:else>
+    <f:form.textfield id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
+    class="{f:if(condition: fieldset.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')} {f:if(condition: field.isSenderName, then: 'sender-name')} {f:if(condition: field.isSenderEmail, then: 'sender-email')} {field.shortname}"
+    name="field[{fieldset.uid}][{field.uid}]"
+      type="{field.validation}"
+    readonly="{sf:condition.isReadonlyField(field: '{field}')}"
+    title="<f:translate key='validationerror_val_{field.validation}' />"
+    value="<sf:form.fieldHasValue field='{field}' />"
+    placeholder="<sf:form.fieldHasPlaceholder field='{field}' />"
+    />
+  </f:else>
 </f:if>
 
 <sf:form.addDatePicker form='{form}' field='{field}' fieldset='{fieldset}' />

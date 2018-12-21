@@ -2,122 +2,122 @@
 <f:layout name="Default" />
 
 <f:section name="categoryTree">
-	<ul>
-		<f:for each="{categories}" key="id" as="category">
-			<li class="slub-form-select-{id}">
-				<f:if condition="{isNotFirstLevel} == 1">
-						<f:then>
-							<f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" checked="<sf:form.formId form='{category.item}' /> == {category.item.uid}" />
-							<button type="button" id="{id}" aria-controls="slub-form-select-{id}" role="tab" aria-selected="false">{category.item.title}</button>
-						</f:then>
-						<f:else>
-							<button type="button" id="{id}">{category.item.title}</button>
-						</f:else>
-					</f:if>
-				<f:if condition="{category.children}">
-						<f:render section="categoryTree" arguments="{categories: category.children, categoriesSelected: categoriesSelected, isNotFirstLevel: '1'}" />
-					</f:if>
-			    </li>
-		</f:for>
-	</ul>
+  <ul>
+    <f:for each="{categories}" key="id" as="category">
+      <li class="slub-form-select-{id}">
+        <f:if condition="{isNotFirstLevel} == 1">
+            <f:then>
+              <f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" checked="<sf:form.formId form='{category.item}' /> == {category.item.uid}" />
+              <button type="button" id="{id}" aria-controls="slub-form-select-{id}" role="tab" aria-selected="false">{category.item.title}</button>
+            </f:then>
+            <f:else>
+              <button type="button" id="{id}">{category.item.title}</button>
+            </f:else>
+          </f:if>
+        <f:if condition="{category.children}">
+            <f:render section="categoryTree" arguments="{categories: category.children, categoriesSelected: categoriesSelected, isNotFirstLevel: '1'}" />
+          </f:if>
+          </li>
+    </f:for>
+  </ul>
 </f:section>
 
 <f:section name="subForms">
 
-	<f:for each="{forms}" key="formid" as="form">
-		<f:if condition="<sf:form.formId form='{form.item}' /> == {formid}">
-			<f:then>
-				<div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname}" role="tabpanel" aria-labelledby="slub-forms-formheader-{formid}">
-			</f:then>
-			<f:else>
-				<div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname} hide" role="tabpanel" aria-labelledby="slub-forms-formheader-{formid}">
-			</f:else>
-		</f:if>
-		<button type="button" class="slub-forms-back2select" title="<f:translate key='slub-forms.back_to_forms' />">&larr; <f:translate key="slub-forms.back" /></button>
-		<h3 class="formtitle" id="slub-forms-formheader-{formid}">
-			{form.item.title}
-		</h3>
-		<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
-			<fieldset id="slub-forms-fieldset-{formid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
-				<legend>{fieldset.title}</legend>
-				<f:for each="{fieldset.fields}" key="idfield" as="field">
-					<f:render partial="Forms/{field.type}" arguments="{form: form.item, fieldset: fieldset, field: field}" />
-				</f:for>
-				<f:if condition="{fieldset.required}">
-					<sf:form.fileValidationFooterJs form='{form.item}' fieldset='{fieldset}' />
-				</f:if>
-			</fieldset>
-		</f:for>
-		</div>
+  <f:for each="{forms}" key="formid" as="form">
+    <f:if condition="<sf:form.formId form='{form.item}' /> == {formid}">
+      <f:then>
+        <div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname}" role="tabpanel" aria-labelledby="slub-forms-formheader-{formid}">
+      </f:then>
+      <f:else>
+        <div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname} hide" role="tabpanel" aria-labelledby="slub-forms-formheader-{formid}">
+      </f:else>
+    </f:if>
+    <button type="button" class="slub-forms-back2select" title="<f:translate key='slub-forms.back_to_forms' />">&larr; <f:translate key="slub-forms.back" /></button>
+    <h3 class="formtitle" id="slub-forms-formheader-{formid}">
+      {form.item.title}
+    </h3>
+    <f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
+      <fieldset id="slub-forms-fieldset-{formid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
+        <legend>{fieldset.title}</legend>
+        <f:for each="{fieldset.fields}" key="idfield" as="field">
+          <f:render partial="Forms/{field.type}" arguments="{form: form.item, fieldset: fieldset, field: field}" />
+        </f:for>
+        <f:if condition="{fieldset.required}">
+          <sf:form.fileValidationFooterJs form='{form.item}' fieldset='{fieldset}' />
+        </f:if>
+      </fieldset>
+    </f:for>
+    </div>
 
-		<f:if condition="{form.children}">
-			<f:render section="subForms" arguments="{forms: form.children}" />
-		</f:if>
-	</f:for>
+    <f:if condition="{form.children}">
+      <f:render section="subForms" arguments="{forms: form.children}" />
+    </f:if>
+  </f:for>
 
 </f:section>
 
 <f:section name="singleForm">
 
-	<f:form.radio class="hide" id="slub-form-select-{form.uid}" property="form" value="{form.uid}" checked="checked" />
+  <f:form.radio class="hide" id="slub-form-select-{form.uid}" property="form" value="{form.uid}" checked="checked" />
 
-	<div id="slub-forms-form-{form.uid}" class="slub-forms-form {form.shortname}">
+  <div id="slub-forms-form-{form.uid}" class="slub-forms-form {form.shortname}">
 
-		<h3 class="formtitle">{form.title}</h3>
+    <h3 class="formtitle">{form.title}</h3>
 
-		<f:for each="{form.fieldsets}" key="idfieldset" as="fieldset">
-			<fieldset id="slub-forms-fieldset-{form.uid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
-				<legend>{fieldset.title}</legend>
-				<f:for each="{fieldset.fields}" key="idfield" as="field">
-					<f:render partial="Forms/{field.type}" arguments="{form: form, fieldset: fieldset, field: field}" />
-				</f:for>
-				<f:if condition="{fieldset.required}">
-					<sf:form.fileValidationFooterJs form='{form}' fieldset='{fieldset}' />
-				</f:if>
-			</fieldset>
-		</f:for>
+    <f:for each="{form.fieldsets}" key="idfieldset" as="fieldset">
+      <fieldset id="slub-forms-fieldset-{form.uid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
+        <legend>{fieldset.title}</legend>
+        <f:for each="{fieldset.fields}" key="idfield" as="field">
+          <f:render partial="Forms/{field.type}" arguments="{form: form, fieldset: fieldset, field: field}" />
+        </f:for>
+        <f:if condition="{fieldset.required}">
+          <sf:form.fileValidationFooterJs form='{form}' fieldset='{fieldset}' />
+        </f:if>
+      </fieldset>
+    </f:for>
 
-	</div>
+  </div>
 
 </f:section>
 
 <f:section name="targetSwitch">
-	<f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
-	<f:render partial="FormErrors" arguments="{obj: 'field'}" />
+  <f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
+  <f:render partial="FormErrors" arguments="{obj: 'field'}" />
 
-	<f:if condition="{singleForm}">
-		<f:then>
-			<f:render section="singleForm" arguments="{form: singleForm}" />
-		</f:then>
-		<f:else>
-			<div class="slub-form-tree" role="tablist">
-				<fieldset class="cats">
-					<legend class="form-cats">Formular Kategorien</legend>
-					<f:render section="categoryTree" arguments="{categories: forms}" />
-				</fieldset>
-			</div>
-			<f:render section="subForms" arguments="{forms: forms}" />
-		</f:else>
-	</f:if>
-	<f:form.hidden property="editcode" value="<sf:format.editCode />"/>
+  <f:if condition="{singleForm}">
+    <f:then>
+      <f:render section="singleForm" arguments="{form: singleForm}" />
+    </f:then>
+    <f:else>
+      <div class="slub-form-tree" role="tablist">
+        <fieldset class="cats">
+          <legend class="form-cats">Formular Kategorien</legend>
+          <f:render section="categoryTree" arguments="{categories: forms}" />
+        </fieldset>
+      </div>
+      <f:render section="subForms" arguments="{forms: forms}" />
+    </f:else>
+  </f:if>
+  <f:form.hidden property="editcode" value="<sf:format.editCode />"/>
 </f:section>
 
 <f:section name="main">
 <f:if condition="{forms}">
-	<f:then>
-		<f:if condition="{settings.pageTarget} > 0">
-			<f:then>
-				<f:form enctype="multipart/form-data" pageUid="{settings.pageTarget}" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
-					<f:render section="targetSwitch" arguments="{_all}" />
-				</f:form>
-			</f:then>
-			<f:else>
-				<f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
-					<f:render section="targetSwitch" arguments="{_all}" />
-				</f:form>
-			</f:else>
-		</f:if>
-	</f:then>
+  <f:then>
+    <f:if condition="{settings.pageTarget} > 0">
+      <f:then>
+        <f:form enctype="multipart/form-data" pageUid="{settings.pageTarget}" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
+          <f:render section="targetSwitch" arguments="{_all}" />
+        </f:form>
+      </f:then>
+      <f:else>
+        <f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
+          <f:render section="targetSwitch" arguments="{_all}" />
+        </f:form>
+      </f:else>
+    </f:if>
+  </f:then>
 </f:if>
 
 

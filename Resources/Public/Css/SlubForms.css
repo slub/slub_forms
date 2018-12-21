@@ -227,8 +227,8 @@
   color: #87b4bc;
 }
 #leftcol .tx-slub-forms fieldset legend.form-cats {
-	color: #fff;
-	line-height: 0%;
+  color: #fff;
+  line-height: 0%;
 }
 #leftcol .tx-slub-forms fieldset.submit legend,
 #leftcol .tx-slub-forms fieldset.intro legend,
@@ -285,7 +285,7 @@
 }
 
 input[type="number"] {
-	-moz-appearance:textfield;
+  -moz-appearance:textfield;
 }
 
 #leftcol .tx-slub-forms input[type="text"].error,
@@ -417,7 +417,7 @@ input[type="number"] {
     color: #fff;
 
     float:left;
-	clear:left;
+  clear:left;
 
     cursor: pointer;
     -webkit-border-radius: 5px;
@@ -429,8 +429,8 @@ input[type="number"] {
 
     width: 100%;
     @media (min-width: 430px) {
-	    width: 50%;
-	}
+      width: 50%;
+  }
 }
 #leftcol .anonymize-form:hover { background: #9acad2; }
 #leftcol .anonymize-form.active { background:  #9acad2; }
@@ -453,45 +453,45 @@ input[type="number"] {
 }
 
 #leftcol .tx-slub-forms .radiogroup {
-	display: block;
-	width: 60%;
-	margin: 2px 0;
-	font-size: 11px;
-	float: left;
+  display: block;
+  width: 60%;
+  margin: 2px 0;
+  font-size: 11px;
+  float: left;
 }
 #leftcol .tx-slub-forms .radiogroup input[type="radio"] {
-	z-index: 1000;
-	margin: 7px 3px 3px 3px;
-	position: relative;
+  z-index: 1000;
+  margin: 7px 3px 3px 3px;
+  position: relative;
 }
 #leftcol .tx-slub-forms .radiogroup label {
-	display: inline;
-	float: none;
-	clear: none;
-	vertical-align: middle;
+  display: inline;
+  float: none;
+  clear: none;
+  vertical-align: middle;
 }
 #leftcol .tx-slub-forms .radiogroup .altCheckElement {
     float: left;
-	margin-top: 0;
-	border-color: #9bb transparent transparent #9bb;
-	position: relative;
-	border-radius: 20px;
+  margin-top: 0;
+  border-color: #9bb transparent transparent #9bb;
+  position: relative;
+  border-radius: 20px;
 }
 #leftcol .tx-slub-forms .radiogroup input[type="radio"]:checked + .altCheckElement {
     float: left;
-	background: #fff;
+  background: #fff;
 }
 #leftcol .tx-slub-forms .radiogroup input[type="radio"]:checked + label + .altCheckElement:after,
 #leftcol .tx-slub-forms .radiogroup input[type="radio"]:checked + .altCheckElement:after {
     float: left;
-	position: absolute;
-	top: 5px;
-	left: 5px;
-	width: 11px;
-	height: 11px;
-	border-radius: 15px;
-	background: #87b4bc;
-	content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 11px;
+  height: 11px;
+  border-radius: 15px;
+  background: #87b4bc;
+  content: "";
 }
 
 input::-webkit-outer-spin-button,
@@ -503,7 +503,7 @@ input::-webkit-inner-spin-button {
 #leftcol .tx-slub-forms .field_description ol { list-style-type: decimal; }
 
 #leftcol .tx-slub-forms label.error {
-	display: none;
+  display: none;
 }
 
 #leftcol .tx-slub-forms select {
