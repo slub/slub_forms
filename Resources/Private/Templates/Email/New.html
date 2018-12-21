@@ -4,14 +4,17 @@
 <f:section name="categoryTree">
 	<ul>
 		<f:for each="{categories}" key="id" as="category">
-				<li class="slub-form-select-{id}">
-					<f:if condition="{isNotFirstLevel} == 1">
+			<li class="slub-form-select-{id}">
+				<f:if condition="{isNotFirstLevel} == 1">
 						<f:then>
 							<f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" checked="<sf:form.formId form='{category.item}' /> == {category.item.uid}" />
+							<button type="button" id="{id}" aria-controls="slub-form-select-{id}" role="tab" aria-selected="false">{category.item.title}</button>
 						</f:then>
+						<f:else>
+							<button type="button" id="{id}">{category.item.title}</button>
+						</f:else>
 					</f:if>
-					<label for="slub-form-select-{id}">{category.item.title}</label>
-					<f:if condition="{category.children}">
+				<f:if condition="{category.children}">
 						<f:render section="categoryTree" arguments="{categories: category.children, categoriesSelected: categoriesSelected, isNotFirstLevel: '1'}" />
 					</f:if>
 			    </li>
@@ -24,13 +27,14 @@
 	<f:for each="{forms}" key="formid" as="form">
 		<f:if condition="<sf:form.formId form='{form.item}' /> == {formid}">
 			<f:then>
-				<div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname}">
+				<div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname}" role="tabpanel" aria-labelledby="slub-forms-formheader-{formid}">
 			</f:then>
 			<f:else>
-				<div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname} hide">
+				<div id="slub-forms-form-{formid}" class="slub-forms-form {form.item.shortname} hide" role="tabpanel" aria-labelledby="slub-forms-formheader-{formid}">
 			</f:else>
 		</f:if>
-		<h3 class="formtitle"><span class="slub-forms-back2select" title="<f:translate key='slub-forms.back_to_forms' />">&larr; <f:translate key="slub-forms.back" /></span><br>
+		<button type="button" class="slub-forms-back2select" title="<f:translate key='slub-forms.back_to_forms' />">&larr; <f:translate key="slub-forms.back" /></button>
+		<h3 class="formtitle" id="slub-forms-formheader-{formid}">
 			{form.item.title}
 		</h3>
 		<f:for each="{form.item.fieldsets}" key="idfieldset" as="fieldset">
@@ -44,7 +48,6 @@
 				</f:if>
 			</fieldset>
 		</f:for>
-
 		</div>
 
 		<f:if condition="{form.children}">
@@ -87,7 +90,7 @@
 			<f:render section="singleForm" arguments="{form: singleForm}" />
 		</f:then>
 		<f:else>
-			<div class="slub-form-tree">
+			<div class="slub-form-tree" role="tablist">
 				<fieldset class="cats">
 					<legend class="form-cats">Formular Kategorien</legend>
 					<f:render section="categoryTree" arguments="{categories: forms}" />
