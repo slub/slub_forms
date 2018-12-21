@@ -1,19 +1,20 @@
 {namespace sf=Slub\SlubForms\ViewHelpers}
-<label for="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}">{field.title}
+<h4 class="label" id="slub-forms-header-{form.uid}-{fieldset.uid}-{field.uid}">{field.title}
     <f:if condition="{field.required}">
        <f:then><span class="required">*</span></f:then>
     </f:if>
-</label>
-<div class="radiogroup <f:if condition='{field.required}'>required</f:if>" id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}">
+</h4>
+<div role="radiogroup" aria-labelledby="slub-forms-header-{form.uid}-{fieldset.uid}-{field.uid}" class="radiogroup <f:if condition='{field.required}'>required</f:if>" id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
+<f:if condition="{field.required}">
+    <f:then>aria-required="true"</f:then>
+</f:if>
+>
     <f:for each="<sf:form.fieldRadioValue field='{field}' />" key="oId" as="radioOption">
         <f:form.radio id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}-{oId}" class="{f:if(condition: field.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}" name="field[{fieldset.uid}][{field.uid}]" title="<f:translate key='validationerror_val_{field.validation}' />" value="{radioOption.1}" checked="<sf:form.fieldHasValue field='{field}' /> == {radioOption.1}"  />
         <div class="altCheckElement"></div>
         <label for="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}-{oId}">{radioOption.0}</label>
         <br />
     </f:for>
-    <f:if condition="{field.required}">
-        <sf:form.RadioValidationFooterJs form='{form}' field='{field}' fieldset='{fieldset}' />
-    </f:if>
 </div>
 
 <br />
