@@ -21,7 +21,7 @@ if (!defined('TYPO3_MODE')) {
 
 if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration'][$_EXTKEY] =
-		'EXT:' . $_EXTKEY . '/Classes/Hooks/RealUrlAutoConfiguration.php:RealUrlAutoConfiguration->addFormsConfig';
+		\Slub\SlubForms\Hooks\RealUrlAutoConfiguration::class . '->addFormsConfig';
 }
 
 /**
