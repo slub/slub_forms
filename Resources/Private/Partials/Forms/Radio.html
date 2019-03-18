@@ -4,17 +4,39 @@
        <f:then><span class="required">*</span></f:then>
     </f:if>
 </h4>
-<div role="radiogroup" aria-labelledby="slub-forms-header-{form.uid}-{fieldset.uid}-{field.uid}" class="radiogroup <f:if condition='{field.required}'>required</f:if>" id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
-<f:if condition="{field.required}">
-    <f:then>aria-required="true"</f:then>
-</f:if>
+<div
+  role="radiogroup"
+  aria-labelledby="slub-forms-header-{form.uid}-{fieldset.uid}-{field.uid}"
+  class="radiogroup <f:if condition='{field.required}'>required</f:if>"
+  id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}"
+  {f:if(condition: field.required, then: 'aria-required="true"')}
 >
-    <f:for each="<sf:form.fieldRadioValue field='{field}' />" key="oId" as="radioOption">
-        <f:form.radio id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}-{oId}" class="{f:if(condition: field.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}" name="field[{fieldset.uid}][{field.uid}]" title="<f:translate key='validationerror_val_{field.validation}' />" value="{radioOption.1}" checked="<sf:form.fieldHasValue field='{field}' /> == {radioOption.1}"  />
-        <div class="altCheckElement"></div>
-        <label for="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}-{oId}">{radioOption.0}</label>
-        <br />
-    </f:for>
+<f:for each="<sf:form.fieldRadioValue field='{field}' />" key="oId" as="radioOption">
+    <f:if condition="{field.required}">
+      <f:then>
+          <f:form.radio
+          id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}-{oId}"
+          class="{f:if(condition: field.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}"
+          additionalAttributes="{required:required}"
+          name="field[{fieldset.uid}][{field.uid}]"
+          title="<f:translate key='validationerror_val_{field.validation}' />"
+          value="{radioOption.1}"
+          checked="<sf:form.fieldHasValue field='{field}' /> == {radioOption.1}" />
+          </f:then>
+      <f:else>
+          <f:form.radio
+          id="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}-{oId}"
+          class="{f:if(condition: field.required, then: 'requiregroup-{form.uid}-{fieldset.uid}')}"
+          name="field[{fieldset.uid}][{field.uid}]"
+          title="<f:translate key='validationerror_val_{field.validation}' />"
+          value="{radioOption.1}"
+          checked="<sf:form.fieldHasValue field='{field}' /> == {radioOption.1}" />
+      </f:else>
+    </f:if>
+    <div class="altCheckElement"></div>
+    <label for="slub-forms-field-{form.uid}-{fieldset.uid}-{field.uid}-{oId}">{radioOption.0}</label>
+    <br />
+</f:for>
 </div>
 
 <br />
