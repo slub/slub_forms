@@ -44,6 +44,7 @@ class TextareaViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormF
 		parent::initializeArguments();
 		$this->registerTagAttribute('rows', 'int', 'The number of rows of a text area', TRUE);
 		$this->registerTagAttribute('maxlength', 'int', 'The maximum number of characters', FALSE);
+    $this->registerTagAttribute('minlength', 'int', 'The maximum number of characters', FALSE);
 		$this->registerTagAttribute('cols', 'int', 'The number of columns of a text area', TRUE);
 		$this->registerTagAttribute('disabled', 'string', 'Specifies that the input element should be disabled when the page loads');
 		$this->registerArgument('errorClass', 'string', 'CSS class to set if there are errors for this view helper', FALSE, 'f3-form-error');
@@ -68,6 +69,7 @@ class TextareaViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormF
 
 		// e.g.
 		// maxlength = 30000
+    // minlength = 30
 		// rows = 5
 		// cols = 60
 		$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
@@ -77,6 +79,9 @@ class TextareaViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormF
 				switch ($key) {
 					case 'maxlength':
 						$this->tag->addAttribute('maxlength', (int)$value);
+						break;
+          case 'minlength':
+					  $this->tag->addAttribute('minlength', (int)$value);
 						break;
 					case 'rows':
 						$this->tag->addAttribute('rows', (int)$value);
