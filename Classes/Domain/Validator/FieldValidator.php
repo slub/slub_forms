@@ -155,7 +155,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 				}
 
 				// in case the javascript validation didn't work, we have to check it again here:
-				if ($singleField->getType() == 'Textfield') {
+				if ($singleField->getType() == 'Textfield' || $singleField->getType() == 'Textarea') {
 
 					switch($singleField->getValidation()) {
 
@@ -165,6 +165,18 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 											$this->result->forProperty('content')->addError($error);
 											$this->isValid = false;
 										}
+                    else {
+          						$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($singleField->getConfiguration());
+          						if (!empty($config['minlength']) && $config['minlength'] > strlen($getfields[$singleField->getUid()])) {
+                          $error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_text_minlength', 1510);
+    											$this->result->forProperty('content')->addError($error);
+    											$this->isValid = false;
+                      } else if (!empty($config['maxlength']) && $config['maxlength'] < strlen($getfields[$singleField->getUid()])) {
+                          $error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_text_maxlength', 1520);
+                          $this->result->forProperty('content')->addError($error);
+                          $this->isValid = false;
+                      }
+                    }
 									}
 									if ($fieldset->getRequired()) {
 										if (!empty($getfields[$singleField->getUid()])) {

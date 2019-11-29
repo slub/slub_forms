@@ -140,6 +140,12 @@
 		<trans-unit id="validationerror_val_text" xml:space="preserve">
 			<source>Please fill out the field.</source>
 		</trans-unit>
+    <trans-unit id="validationerror_val_text_minlength" xml:space="preserve">
+			<source>The text is too short.</source>
+		</trans-unit>
+    <trans-unit id="validationerror_val_text_maxlength" xml:space="preserve">
+			<source>The text is too long.</source>
+		</trans-unit>
 		<trans-unit id="validationerror_val_url" xml:space="preserve">
 			<source>Please enter a valid URL.</source>
 		</trans-unit>

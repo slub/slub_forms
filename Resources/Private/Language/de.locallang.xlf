@@ -1,214 +1,222 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2014-02-27T14:52:30Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-11-29T14:40:59Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
 		<body>
-		<trans-unit id="slub-forms.back" approved="yes" xml:space="preserve">
-			<source>back</source>
-			<target>zurück</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.back_to_forms" approved="yes" xml:space="preserve">
-			<source>back to form overview</source>
-			<target>zurück zur Formularübersicht</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_default" approved="yes" xml:space="preserve">
-			<source></source>
-			<target>Bitte überprüfen Sie Ihre Angaben.</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_email" approved="yes" xml:space="preserve">
-			<source></source>
-			<target>Bitte geben Sie eine gültige Email-Adresse an.</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_number" approved="yes" xml:space="preserve">
-			<source></source>
-			<target>Bitte geben Sie eine Zahl ein.</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_tel" approved="yes" xml:space="preserve">
-			<source></source>
-			<target>Bitte geben Sie eine gültige Telefonnummer ein.</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_text" approved="yes" xml:space="preserve">
-			<source></source>
-			<target>Bitte füllen Sie dieses Feld aus.</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.error_url" approved="yes" xml:space="preserve">
-			<source></source>
-			<target>Bitte geben Sie eine gültige URL ein.</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.file-accept-info" approved="yes" xml:space="preserve">
-			<source>We accept files with the following format: </source>
-			<target>Folgende Formate werden akzeptiert:</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.file-accept-size" approved="yes" xml:space="preserve">
-			<source>MB</source>
-			<target>MB</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.senderEmailName" approved="yes" xml:space="preserve">
-			<source>SLUB Forms</source>
-			<target>SLUB Formulare</target>
-		</trans-unit>
-		<trans-unit id="slub-forms.senderSubject" approved="yes" xml:space="preserve">
-			<source>Your message:</source>
-			<target>Ihre Nachricht:</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email" approved="yes" xml:space="preserve">
-			<source>Email</source>
-			<target>Email</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.closing" approved="yes" xml:space="preserve">
-			<source>Best regards</source>
-			<target>Mit freundlichen Grüßen</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.content" approved="yes" xml:space="preserve">
-			<source>content</source>
-			<target>Inhalt</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.data_received" approved="yes" xml:space="preserve">
-			<source>We received the following data from you:</source>
-			<target>Folgende Daten haben wir von Ihnen erhalten:</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.form" approved="yes" xml:space="preserve">
-			<source>Form</source>
-			<target>Formular</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.salutation" approved="yes" xml:space="preserve">
-			<source>Dear</source>
-			<target>Sehr geehrte(r)</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.sender_email" approved="yes" xml:space="preserve">
-			<source>senderEmail</source>
-			<target>Absender Email-Adresse</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.sender_name" approved="yes" xml:space="preserve">
-			<source>senderName</source>
-			<target>Absender Name</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.thank_you_message" approved="yes" xml:space="preserve">
-			<source>Thank you for your message.</source>
-			<target>Vielen Dank für Ihre Mitteilung.</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields" approved="yes" xml:space="preserve">
-			<source>Fields</source>
-			<target>Felder</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.configuration" approved="yes" xml:space="preserve">
-			<source>configuration</source>
-			<target>Konfiguration</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.required" approved="yes" xml:space="preserve">
-			<source>required</source>
-			<target>Pflichtfeld</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.shortname" approved="yes" xml:space="preserve">
-			<source>title</source>
-			<target>Titel</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.title" approved="yes" xml:space="preserve">
-			<source>title</source>
-			<target>Titel</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.type" approved="yes" xml:space="preserve">
-			<source>type</source>
-			<target>Feldtyp</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.validation" approved="yes" xml:space="preserve">
-			<source>validation</source>
-			<target>Validierung</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fieldsets.fields" approved="yes" xml:space="preserve">
-			<source>fields</source>
-			<target>Feld</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fieldsets.title" approved="yes" xml:space="preserve">
-			<source>title</source>
-			<target>Titel</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms" approved="yes" xml:space="preserve">
-			<source>Forms</source>
-			<target>Formular</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms.fieldsets" approved="yes" xml:space="preserve">
-			<source>fieldsets</source>
-			<target>Feldgruppe</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms.parent" approved="yes" xml:space="preserve">
-			<source>parent form</source>
-			<target>Eltern-Element</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms.recipient" approved="yes" xml:space="preserve">
-			<source>Email of Recipient</source>
-			<target>Empfänger Email-Adresse</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms.shortname" approved="yes" xml:space="preserve">
-			<source>title</source>
-			<target>Kurzname</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms.title" approved="yes" xml:space="preserve">
-			<source>title</source>
-			<target>Titel</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_checkbox" approved="yes" xml:space="preserve">
-			<source>Please check the checkbox.</source>
-			<target>Bitte wählen Sie die Option aus.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_customerid" approved="yes" xml:space="preserve">
-			<source>The given customer id is not valid.</source>
-			<target>Die Benutzernummer ist nicht gültig</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_default" approved="yes" xml:space="preserve">
-			<source>Please enter valid data.</source>
-			<target>Bitte geben Sie einen gültigen Wert ein.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_editcode" approved="yes" xml:space="preserve">
-			<source>Please start the registration from the beginning.</source>
-			<target>Bitte starten Sie die Formulareingabe erneut.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_email" approved="yes" xml:space="preserve">
-			<source>Please enter a valid email-address.</source>
-			<target>Bitte geben Sie eine gültige Email-Adresse ein.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_file_mimetype" approved="yes" xml:space="preserve">
-			<source>Unsupported file type.</source>
-			<target>Dieses Dateiformat wird nicht unterstützt.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_file_size" approved="yes" xml:space="preserve">
-			<source>File is too big.</source>
-			<target>Die Datei ist zu groß.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_group" approved="yes" xml:space="preserve">
-			<source>Please enter at least one valid field.</source>
-			<target>Bitte füllen Sie mindestens eins der Felder aus.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_name" approved="yes" xml:space="preserve">
-			<source>Please enter your name.</source>
-			<target>Bitte geben Sie Ihren Namen ein.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_number" approved="yes" xml:space="preserve">
-			<source>Please enter a valid number.</source>
-			<target>Bitte geben Sie eine gültige Zahl ein.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_radio" approved="yes" xml:space="preserve">
-			<source>Please select one of the options.</source>
-			<target>Bitte wählen Sie eine der Optionen aus.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_radiobutton" approved="yes" xml:space="preserve">
-			<source>Please check one of the radio buttons.</source>
-			<target>Bitte wählen Sie eine der Optionen.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_tel" approved="yes" xml:space="preserve">
-			<source>Please enter a valid telephone number.</source>
-			<target>Bitte geben Sie eine gültige Telefonnummer ein.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_text" approved="yes" xml:space="preserve">
-			<source>Please fill out the field.</source>
-			<target>Bitte füllen Sie dieses Feld aus.</target>
-		</trans-unit>
-		<trans-unit id="validationerror_val_url" approved="yes" xml:space="preserve">
-			<source>Please enter a valid URL.</source>
-			<target>Bitte geben Sie eine gültige URL (inklusive http://) ein. </target>
-		</trans-unit>
+			<trans-unit id="slub-forms.back" approved="yes">
+				<source><![CDATA[back]]></source>
+				<target><![CDATA[zurück]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.back_to_forms" approved="yes">
+				<source><![CDATA[back to form overview]]></source>
+				<target><![CDATA[zurück zur Formularübersicht]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.error_default" approved="yes">
+				<source><![CDATA[]]></source>
+				<target><![CDATA[Bitte überprüfen Sie Ihre Angaben.]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.error_email" approved="yes">
+				<source><![CDATA[]]></source>
+				<target><![CDATA[Bitte geben Sie eine gültige Email-Adresse an.]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.error_number" approved="yes">
+				<source><![CDATA[]]></source>
+				<target><![CDATA[Bitte geben Sie eine Zahl ein.]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.error_tel" approved="yes">
+				<source><![CDATA[]]></source>
+				<target><![CDATA[Bitte geben Sie eine gültige Telefonnummer ein.]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.error_text" approved="yes">
+				<source><![CDATA[]]></source>
+				<target><![CDATA[Bitte füllen Sie dieses Feld aus.]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.error_url" approved="yes">
+				<source><![CDATA[]]></source>
+				<target><![CDATA[Bitte geben Sie eine gültige URL ein.]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.file-accept-info" approved="yes">
+				<source><![CDATA[We accept files with the following format: ]]></source>
+				<target><![CDATA[Folgende Formate werden akzeptiert:]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.file-accept-size" approved="yes">
+				<source><![CDATA[MB]]></source>
+				<target><![CDATA[MB]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.senderEmailName" approved="yes">
+				<source><![CDATA[SLUB Forms]]></source>
+				<target><![CDATA[SLUB Formulare]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.senderSubject" approved="yes">
+				<source><![CDATA[Your message:]]></source>
+				<target><![CDATA[Ihre Nachricht:]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email" approved="yes">
+				<source><![CDATA[Email]]></source>
+				<target><![CDATA[Email]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.closing" approved="yes">
+				<source><![CDATA[Best regards]]></source>
+				<target><![CDATA[Mit freundlichen Grüßen]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.content" approved="yes">
+				<source><![CDATA[content]]></source>
+				<target><![CDATA[Inhalt]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.data_received" approved="yes">
+				<source><![CDATA[We received the following data from you:]]></source>
+				<target><![CDATA[Folgende Daten haben wir von Ihnen erhalten:]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.form" approved="yes">
+				<source><![CDATA[Form]]></source>
+				<target><![CDATA[Formular]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.salutation" approved="yes">
+				<source><![CDATA[Dear]]></source>
+				<target><![CDATA[Sehr geehrte(r)]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.sender_email" approved="yes">
+				<source><![CDATA[senderEmail]]></source>
+				<target><![CDATA[Absender Email-Adresse]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.sender_name" approved="yes">
+				<source><![CDATA[senderName]]></source>
+				<target><![CDATA[Absender Name]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.thank_you_message" approved="yes">
+				<source><![CDATA[Thank you for your message.]]></source>
+				<target><![CDATA[Vielen Dank für Ihre Mitteilung.]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields" approved="yes">
+				<source><![CDATA[Fields]]></source>
+				<target><![CDATA[Felder]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.configuration" approved="yes">
+				<source><![CDATA[configuration]]></source>
+				<target><![CDATA[Konfiguration]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.required" approved="yes">
+				<source><![CDATA[required]]></source>
+				<target><![CDATA[Pflichtfeld]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.shortname" approved="yes">
+				<source><![CDATA[title]]></source>
+				<target><![CDATA[Titel]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.title" approved="yes">
+				<source><![CDATA[title]]></source>
+				<target><![CDATA[Titel]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.type" approved="yes">
+				<source><![CDATA[type]]></source>
+				<target><![CDATA[Feldtyp]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.validation" approved="yes">
+				<source><![CDATA[validation]]></source>
+				<target><![CDATA[Validierung]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fieldsets.fields" approved="yes">
+				<source><![CDATA[fields]]></source>
+				<target><![CDATA[Feld]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fieldsets.title" approved="yes">
+				<source><![CDATA[title]]></source>
+				<target><![CDATA[Titel]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms" approved="yes">
+				<source><![CDATA[Forms]]></source>
+				<target><![CDATA[Formular]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.fieldsets" approved="yes">
+				<source><![CDATA[fieldsets]]></source>
+				<target><![CDATA[Feldgruppe]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.parent" approved="yes">
+				<source><![CDATA[parent form]]></source>
+				<target><![CDATA[Eltern-Element]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.recipient" approved="yes">
+				<source><![CDATA[Email of Recipient]]></source>
+				<target><![CDATA[Empfänger Email-Adresse]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.shortname" approved="yes">
+				<source><![CDATA[title]]></source>
+				<target><![CDATA[Kurzname]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.title" approved="yes">
+				<source><![CDATA[title]]></source>
+				<target><![CDATA[Titel]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_checkbox" approved="yes">
+				<source><![CDATA[Please check the checkbox.]]></source>
+				<target><![CDATA[Bitte wählen Sie die Option aus.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_customerid" approved="yes">
+				<source><![CDATA[The given customer id is not valid.]]></source>
+				<target><![CDATA[Die Benutzernummer ist nicht gültig]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_default" approved="yes">
+				<source><![CDATA[Please enter valid data.]]></source>
+				<target><![CDATA[Bitte geben Sie einen gültigen Wert ein.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_editcode" approved="yes">
+				<source><![CDATA[Please start the registration from the beginning.]]></source>
+				<target><![CDATA[Bitte starten Sie die Formulareingabe erneut.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_email" approved="yes">
+				<source><![CDATA[Please enter a valid email-address.]]></source>
+				<target><![CDATA[Bitte geben Sie eine gültige Email-Adresse ein.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_file_mimetype" approved="yes">
+				<source><![CDATA[Unsupported file type.]]></source>
+				<target><![CDATA[Dieses Dateiformat wird nicht unterstützt.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_file_size" approved="yes">
+				<source><![CDATA[File is too big.]]></source>
+				<target><![CDATA[Die Datei ist zu groß.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_group" approved="yes">
+				<source><![CDATA[Please enter at least one valid field.]]></source>
+				<target><![CDATA[Bitte füllen Sie mindestens eins der Felder aus.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_name" approved="yes">
+				<source><![CDATA[Please enter your name.]]></source>
+				<target><![CDATA[Bitte geben Sie Ihren Namen ein.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_number" approved="yes">
+				<source><![CDATA[Please enter a valid number.]]></source>
+				<target><![CDATA[Bitte geben Sie eine gültige Zahl ein.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_radio" approved="yes">
+				<source><![CDATA[Please select one of the options.]]></source>
+				<target><![CDATA[Bitte wählen Sie eine der Optionen aus.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_radiobutton" approved="yes">
+				<source><![CDATA[Please check one of the radio buttons.]]></source>
+				<target><![CDATA[Bitte wählen Sie eine der Optionen.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_tel" approved="yes">
+				<source><![CDATA[Please enter a valid telephone number.]]></source>
+				<target><![CDATA[Bitte geben Sie eine gültige Telefonnummer ein.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_text" approved="yes">
+				<source><![CDATA[Please fill out the field.]]></source>
+				<target><![CDATA[Bitte füllen Sie dieses Feld aus.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_text_maxlength" approved="yes">
+				<source><![CDATA[The text is too long.]]></source>
+				<target><![CDATA[Der Text ist zu lang.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_text_minlength" approved="yes">
+				<source><![CDATA[The text is too short.]]></source>
+				<target><![CDATA[Der Text ist zu kurz.]]></target>
+			</trans-unit>
+			<trans-unit id="validationerror_val_url" approved="yes">
+				<source><![CDATA[Please enter a valid URL.]]></source>
+				<target><![CDATA[Bitte geben Sie eine gültige URL (inklusive http://) ein. ]]></target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
