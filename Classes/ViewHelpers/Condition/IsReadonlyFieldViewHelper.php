@@ -26,6 +26,7 @@ namespace Slub\SlubForms\ViewHelpers\Condition;
  ***************************************************************/
 
  use TYPO3\CMS\Core\Utility\GeneralUtility;
+ use Slub\SlubForms\Domain\Model\Fields;
 
 /**
  * Check if given link is local or not
@@ -47,14 +48,24 @@ namespace Slub\SlubForms\ViewHelpers\Condition;
 class IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
+	 /**
+	 * Initialize arguments.
+	 */
+	public function initializeArguments()
+	{
+		parent::initializeArguments();
+		$this->registerArgument('field', Fields::class, '@param \Slub\SlubForms\Domain\Model\Fields $field', false, null);
+	}
+
 	/**
 	 * renders <f:then> child if $condition is true, otherwise renders <f:else> child.
 	 *
-	 * @param \Slub\SlubForms\Domain\Model\Fields $field
 	 * @return string the rendered string
 	 * @api
 	 */
-	public function render($field) {
+	public function render() {
+
+		$field = $this->arguments['field'];
 
 		// get field configuration
 		$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
@@ -94,9 +105,9 @@ class IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstrac
 		}
 
 		// check for prefill by GET parameter
-		if ($this->controllerContext->getRequest()->hasArgument('prefill')) {
+		if ($this->renderingContext->getControllerContext()->getRequest()->hasArgument('prefill')) {
 
-			$prefilljson = $this->controllerContext->getRequest()->getArgument('prefill');
+			$prefilljson = $this->renderingContext->getControllerContext()->getRequest()->getArgument('prefill');
 
 			$prefilljson = stripslashes($prefilljson);
 
