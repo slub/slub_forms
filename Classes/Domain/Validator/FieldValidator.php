@@ -200,7 +200,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 								}
 							break;
 						case 'number': if ($singleField->getRequired()) {
-											if (!empty($getfields[$singleField->getUid()]) && !\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsInteger($getfields[$singleField->getUid()])) {
+											if (!empty($getfields[$singleField->getUid()]) && !\TYPO3\CMS\Core\Utility\MathUtility::canBeInterpretedAsFloat($getfields[$singleField->getUid()])) {
 												// seems to be no valid number
 												$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_number', 1700);
 												$this->result->forProperty('content')->addError($error);

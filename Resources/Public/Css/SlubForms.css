@@ -519,3 +519,9 @@ input::-webkit-inner-spin-button {
     text-align: left;
     background: #fff;
 }
+
+.slub-form-error {
+  background-color: rgba(253, 0, 0, 0.1);
+  border: 2px solid #c00;
+  padding:  10px;
+}
