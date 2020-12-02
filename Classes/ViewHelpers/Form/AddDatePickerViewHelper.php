@@ -39,7 +39,7 @@ use Slub\SlubForms\Domain\Model\Fieldsets;
  * @api
  * @scope prototype
  */
-class AddDatePickerViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class AddDatePickerViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Initialize arguments.

@@ -36,7 +36,7 @@ use Slub\SlubForms\Domain\Model\Fields;
  * @api
  * @scope prototype
  */
-class FileValidationAcceptInfoViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FileValidationAcceptInfoViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Initialize arguments.

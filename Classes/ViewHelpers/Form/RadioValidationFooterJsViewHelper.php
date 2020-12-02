@@ -38,7 +38,7 @@ namespace Slub\SlubForms\ViewHelpers\Form;
 	 * @api
 	 * @scope prototype
 	 */
-	class RadioValidationFooterJsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+	class RadioValidationFooterJsViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 		/**
 		 * Initialize arguments.

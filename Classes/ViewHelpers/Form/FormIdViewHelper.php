@@ -34,7 +34,7 @@ use TYPO3\CMS\Core\Utility\MathUtility;
  * @api
  * @scope prototype
  */
-class FormIdViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FormIdViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Return variable

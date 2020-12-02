@@ -45,7 +45,7 @@ namespace Slub\SlubForms\ViewHelpers\Condition;
  * @api
  */
 
-class IsReadonlyFieldViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class IsReadonlyFieldViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper
 {
 
 	 /**

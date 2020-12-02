@@ -36,7 +36,7 @@ use Slub\SlubForms\Domain\Model\Fields;
  * @api
  * @scope prototype
  */
-class FieldHasPlaceholderViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FieldHasPlaceholderViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	 /**
 	 * Initialize arguments.

@@ -38,7 +38,7 @@ use Slub\SlubForms\Domain\Model\Fieldsets;
  * @api
  * @scope prototype
  */
-class FileValidationFooterJsViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FileValidationFooterJsViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Initialize arguments.

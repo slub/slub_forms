@@ -26,7 +26,7 @@ namespace Slub\SlubForms\ViewHelpers\Form;
 
 use Slub\SlubForms\Domain\Model\Fields;
 
-class FieldSelectValueViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FieldSelectValueViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Initialize arguments.
