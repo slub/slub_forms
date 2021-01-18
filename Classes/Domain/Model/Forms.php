@@ -69,7 +69,7 @@ class Forms extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * parent form
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Forms>
-	 * @lazy
+	 * @Extbase\ORM\Lazy
 	 */
 	protected $parent;
 
