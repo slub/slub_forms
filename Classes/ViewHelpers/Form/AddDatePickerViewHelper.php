@@ -25,6 +25,10 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Slub\SlubForms\Domain\Model\Forms;
+use Slub\SlubForms\Domain\Model\Fields;
+use Slub\SlubForms\Domain\Model\Fieldsets;
+
 /**
  * Add DatePicker in Footer Js
  *
@@ -35,20 +39,32 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  * @api
  * @scope prototype
  */
-class AddDatePickerViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class AddDatePickerViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
+
+	/**
+	 * Initialize arguments.
+	 */
+	public function initializeArguments()
+	{
+		parent::initializeArguments();
+		$this->registerArgument('form', Forms::class, '@param \Slub\SlubForms\Domain\Model\Forms $form', true, null);
+		$this->registerArgument('field', Fields::class, '@param \Slub\SlubForms\Domain\Model\Fields $field', false, null);
+		$this->registerArgument('fieldset', Fieldsets::class, '@param \Slub\SlubForms\Domain\Model\Fieldsets $fieldset', true, null);
+	}
 
 	/**
 	 * Adds Javascript for jquery-validation to the footer
 	 *
-	 * @param \Slub\SlubForms\Domain\Model\Form $form
-	 * @param \Slub\SlubForms\Domain\Model\Fields $field
-	 * @param \Slub\SlubForms\Domain\Model\Fieldsets $fieldset
 	 * @return void
 	 * @api
 	 */
-	public function render($form = NULL, $field = NULL, $fieldset = NULL) {
+	public function render() {
 
-		if ($field !== NULL) {
+		$form = $this->arguments['form'];
+		$field = $this->arguments['field'];
+		$fieldset = $this->arguments['fieldset'];
+
+		if ($field !== null) {
 
 			$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 

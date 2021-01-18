@@ -24,6 +24,8 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Slub\SlubForms\Domain\Model\Fields;
+
 /**
  * Validation results view helper
  *
@@ -34,18 +36,26 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  * @api
  * @scope prototype
  */
-class FieldRadioValueViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FieldRadioValueViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
+
+	/**
+	 * Initialize arguments.
+	 */
+	public function initializeArguments()
+	{
+		parent::initializeArguments();
+		$this->registerArgument('field', Fields::class, '@param \Slub\SlubForms\Domain\Model\Fields $field', false, null);
+	}
 
 	/**
 	 * Check for Prefill/Post values and set it manually
 	 *
-	 * @param \Slub\SlubForms\Domain\Model\Fields $field
-	 *
 	 * @return string Rendered string
 	 * @api
 	 */
-	public function render($field) {
-
+	public function render() 
+	{
+		$field = $this->arguments['field'];
 		// get field configuration
 		$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 		if (!empty($config['radioOption'])) {

@@ -437,7 +437,6 @@ class EmailController extends AbstractController {
 		$partialRootPath = GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['partialRootPath']);
 
 		$emailViewHTML->setTemplatePathAndFilename($templateRootPath . 'Email/' . $templateName . '.html');
-		$emailViewHTML->setPartialRootPath($partialRootPath);
 
 		/** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
 		$message = $this->objectManager->get(\TYPO3\CMS\Core\Mail\MailMessage::class);

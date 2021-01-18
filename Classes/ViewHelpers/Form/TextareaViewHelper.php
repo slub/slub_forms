@@ -11,6 +11,7 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
+use Slub\SlubForms\Domain\Model\Fields;
 
 /**
  * Textarea view helper.
@@ -42,30 +43,34 @@ class TextareaViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormF
 	 */
 	public function initializeArguments() {
 		parent::initializeArguments();
-		$this->registerTagAttribute('rows', 'int', 'The number of rows of a text area', TRUE);
-		$this->registerTagAttribute('maxlength', 'int', 'The maximum number of characters', FALSE);
-    $this->registerTagAttribute('minlength', 'int', 'The maximum number of characters', FALSE);
-		$this->registerTagAttribute('cols', 'int', 'The number of columns of a text area', TRUE);
+		$this->registerTagAttribute('rows', 'int', 'The number of rows of a text area', true);
+		$this->registerTagAttribute('maxlength', 'int', 'The maximum number of characters', false);
+		$this->registerTagAttribute('minlength', 'int', 'The maximum number of characters', false);
+		$this->registerTagAttribute('cols', 'int', 'The number of columns of a text area', true);
 		$this->registerTagAttribute('disabled', 'string', 'Specifies that the input element should be disabled when the page loads');
-		$this->registerArgument('errorClass', 'string', 'CSS class to set if there are errors for this view helper', FALSE, 'f3-form-error');
+		$this->registerArgument('errorClass', 'string', 'CSS class to set if there are errors for this view helper', false, 'f3-form-error');
+		$this->registerArgument('field', Fields::class, '@param \Slub\SlubForms\Domain\Model\Fields $field', false, null);
+		$this->registerTagAttribute('required', 'bool', 'If the field is required or not', false, null);
 		$this->registerUniversalTagAttributes();
 	}
 
 	/**
 	 * Renders the textarea.
 	 *
-	 * @param \Slub\SlubForms\Domain\Model\Fields $field
-	 * @param boolean $required If the field is required or not
 	 * @return string
 	 * @api
 	 */
-	public function render($field, $required = NULL) {
+	public function render() {
+
+		$field = $this->arguments['field'];
+		$required = $this->arguments['required'];
+
 		$name = $this->getName();
 		$this->registerFieldNameForFormTokenGeneration($name);
 
-		$this->tag->forceClosingTag(TRUE);
+		$this->tag->forceClosingTag(true);
 		$this->tag->addAttribute('name', $name);
-		$this->tag->setContent(htmlspecialchars($this->getValue()));
+		$this->tag->setContent($this->getValueAttribute());
 
 		// e.g.
 		// maxlength = 30000
@@ -95,7 +100,7 @@ class TextareaViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Form\AbstractFormF
 
 		}
 
-		if ($required !== NULL) {
+		if ($required !== null) {
 				$this->tag->addAttribute('required', 'required');
 		}
 

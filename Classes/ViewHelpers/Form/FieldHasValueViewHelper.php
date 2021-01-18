@@ -27,6 +27,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Slub\SlubForms\Domain\Model\Fields;
+
 /**
  * Validation results view helper
  *
@@ -37,22 +39,30 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @api
  * @scope prototype
  */
-class FieldHasValueViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FieldHasValueViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
+
+	 /**
+	 * Initialize arguments.
+	 */
+	public function initializeArguments()
+	{
+		parent::initializeArguments();
+		$this->registerArgument('field', Fields::class, '@param \Slub\SlubForms\Domain\Model\Fields $field', false, null);
+	}
 
 	/**
 	 * Check for Prefill/Post values and set it manually
 	 *
-	 * @param \Slub\SlubForms\Domain\Model\Fields $field
-	 * @param string $show
-	 *
 	 * @return string Rendered string
 	 */
-	public function render($field, $show = NULL) {
+	public function render() {
+
+		$field = $this->arguments['field'];
 
 		// return already posted values e.g. in case of validation errors
-		if ($this->controllerContext->getRequest()->getOriginalRequest()) {
+		if ($this->renderingContext->getControllerContext()->getRequest()->getOriginalRequest()) {
 
-			$postedArguments = $this->controllerContext->getRequest()->getOriginalRequest()->getArguments();
+			$postedArguments = $this->renderingContext->getControllerContext()->getRequest()->getOriginalRequest()->getArguments();
 
 			// should be usually only one fieldset
 			foreach($postedArguments['field'] as $fieldsetid => $postedFields) {
@@ -101,9 +111,9 @@ class FieldHasValueViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractV
 		}
 
 		// check for prefill by GET parameter
-		if ($this->controllerContext->getRequest()->hasArgument('prefill')) {
+		if ($this->renderingContext->getControllerContext()->getRequest()->hasArgument('prefill')) {
 
-			$prefilljson = $this->controllerContext->getRequest()->getArgument('prefill');
+			$prefilljson = $this->renderingContext->getControllerContext()->getRequest()->getArgument('prefill');
 
 			$prefilljson = stripslashes($prefilljson);
 

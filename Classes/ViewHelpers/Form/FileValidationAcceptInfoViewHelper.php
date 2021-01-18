@@ -24,6 +24,8 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Slub\SlubForms\Domain\Model\Fields;
+
 /**
  * Validation results view helper
  *
@@ -34,17 +36,26 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  * @api
  * @scope prototype
  */
-class FileValidationAcceptInfoViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class FileValidationAcceptInfoViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
+
+	/**
+	 * Initialize arguments.
+	 */
+	public function initializeArguments()
+	{
+		parent::initializeArguments();
+		$this->registerArgument('field', Fields::class, '@param \Slub\SlubForms\Domain\Model\Fields $field', false, null);
+	}
 
 	/**
 	 * Looks for already checked form from last request
 	 *
-	 * @param \Slub\SlubForms\Domain\Model\Fields $field
 	 * @return string
 	 * @api
 	 */
-	public function render($field) {
-
+	public function render() 
+	{
+		$field = $this->arguments['field'];
 		// get field configuration
 		$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 		if (!empty($config['file-accept-info'])) {

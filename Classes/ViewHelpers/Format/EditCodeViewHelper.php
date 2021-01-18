@@ -33,7 +33,7 @@ namespace Slub\SlubForms\ViewHelpers\Format;
  * @api
  */
 
-class EditCodeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+class EditCodeViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
 
 	/**
 	 * Set session data

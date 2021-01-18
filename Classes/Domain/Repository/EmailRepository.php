@@ -25,6 +25,9 @@ namespace Slub\SlubForms\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+
 /**
  *
  *
@@ -64,7 +67,10 @@ class EmailRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function deleteOlderThan($days) {
 
-    $GLOBALS['TYPO3_DB']->exec_DELETEquery('tx_slubforms_domain_model_email', 'crdate < ' . strtotime(' - ' . $days . ' days'));
+	$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_slubforms_domain_model_email');
+	$affectedRows = $queryBuilder->delete('tx_slubforms_domain_model_email')->where(
+		$queryBuilder->expr()->lt('crdate', $queryBuilder->createNamedParameter(strtotime(' - ' . $days . ' days'), \PDO::PARAM_INT))
+	)->execute();
 
     return true;
 
