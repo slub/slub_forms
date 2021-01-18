@@ -51,6 +51,21 @@ class EmailValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
         $this->emailRepository = $emailRepository;
     }
 
+    /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     */
+    protected $objectManager;
+
+	/**
+     * Inject the object manager
+     *
+     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+     */
+    public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
+
 	/**
 	 * Return variable
 	 *

@@ -78,10 +78,10 @@ class EmailController extends AbstractController
 	 * action new
 	 *
 	 * @param \Slub\SlubForms\Domain\Model\Email $newEmail
-	 * @ignorevalidation $newEmail
+	 * @Extbase\IgnoreValidation("newEmail")
 	 * @return void
 	 */
-	public function newAction(\Slub\SlubForms\Domain\Model\Email $newEmail = NULL) {
+	public function newAction(\Slub\SlubForms\Domain\Model\Email $newEmail = null) {
 
 		$singleFormShortname = $this->getParametersSafely('form');
 
@@ -124,31 +124,11 @@ class EmailController extends AbstractController
 	}
 
 	/**
-	 * action initializeCreate
-	 *
-	 *
-	 * @return void
-	 */
-	 public function initializeCreateAction() {
-
-		 /* Avoid exception in TYPO3 4.7 because newEmail is not set. This is checked before createAction in
-		  * the validator. Maybe this is gone in 6.2?
-		  * --> if "field" is empty there is no reason to call the createAction
-		  */
-
-		 $field = $this->getParametersSafely('field');
-
-		 if (empty($field)) {
-			 $this->forward('new', 'Email', 'SlubForms', $requestArguments);
-		 }
-	 }
-
-	/**
 	 * action create
 	 *
 	 * @param \Slub\SlubForms\Domain\Model\Email $newEmail
 	 * @param array $field Field Values
-     * @Extbase\Validate("\Slub\SlubForms\Domain\Validator\FieldValidator", param="evfieldent")
+     * @Extbase\Validate("\Slub\SlubForms\Domain\Validator\FieldValidator", param="field")
 	 * @return void
 	 */
 	public function createAction(\Slub\SlubForms\Domain\Model\Email $newEmail, array $field = array()) {
@@ -318,7 +298,7 @@ class EmailController extends AbstractController
 			// persist the email first, to access the uid later on in the email
 			$this->emailRepository->add($newEmail);
 
-			$persistenceManager = $objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class);
+			$persistenceManager = $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class);
 			$persistenceManager->persistAll();
 
 			// email to customer
