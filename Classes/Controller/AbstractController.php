@@ -34,7 +34,8 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class AbstractController extends ActionController {
+class AbstractController extends ActionController
+{
 
 	/**
 	 * emailRepository
@@ -73,7 +74,6 @@ class AbstractController extends ActionController {
 		$this->settings = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
 	}
 
-
 	/**
 	 * Safely gets Parameters from request
 	 * if they exist
@@ -87,6 +87,5 @@ class AbstractController extends ActionController {
 		}
 		return NULL;
 	}
-
 
 }

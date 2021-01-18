@@ -1,10 +1,6 @@
 <?php
 namespace Slub\SlubForms\Controller;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-
 /***************************************************************
  *  Copyright notice
  *
@@ -28,6 +24,10 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /**
  *
@@ -36,7 +36,8 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class EmailController extends AbstractController {
+class EmailController extends AbstractController
+{
 
 	/**
 		 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
@@ -143,7 +144,7 @@ class EmailController extends AbstractController {
 	 *
 	 * @param \Slub\SlubForms\Domain\Model\Email $newEmail
 	 * @param array $field Field Values
-	 * @validate $field \Slub\SlubForms\Domain\Validator\FieldValidator
+     * @Extbase\Validate("\Slub\SlubForms\Domain\Validator\FieldValidator", param="evfieldent")
 	 * @return void
 	 */
 	public function createAction(\Slub\SlubForms\Domain\Model\Email $newEmail, array $field = array()) {
