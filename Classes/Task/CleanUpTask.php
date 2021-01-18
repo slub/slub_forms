@@ -33,6 +33,7 @@ namespace Slub\SlubForms\Task;
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
+use Slub\SlubForms\Domain\Repository\EmailRepository;
 
 class CleanUpTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask
 {
@@ -65,9 +66,17 @@ class CleanUpTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask
      * emailRepository
      *
      * @var \Slub\SlubForms\Domain\Repository\EmailRepository
-     * @inject
      */
     protected $emailRepository;
+
+	/**
+     * @param \Slub\SlubForms\Domain\Repository\EmailRepository $emailRepository
+     */
+    public function injectEmailRepository(EmailRepository $emailRepository)
+    {
+        $this->emailRepository = $emailRepository;
+    }
+
 
     /**
      * injectConfigurationManager

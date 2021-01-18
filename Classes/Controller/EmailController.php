@@ -40,15 +40,19 @@ class EmailController extends AbstractController
 {
 
 	/**
-		 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
-		 * @inject
-		 */
-		protected $signalSlotDispatcher;
-		/**
-		 * @var \TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface
-		 * @inject
-		 */
-		protected $persistenceManager;
+	 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
+	 */
+	protected $signalSlotDispatcher;
+
+    /**
+     * Inject SignalSlotDispatcher
+     *
+     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
+     */
+    public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
+    {
+        $this->signalSlotDispatcher = $signalSlotDispatcher;
+    }
 
 	/**
 	 * action list
@@ -313,7 +317,9 @@ class EmailController extends AbstractController
 
 			// persist the email first, to access the uid later on in the email
 			$this->emailRepository->add($newEmail);
-			$this->persistenceManager->persistAll();
+
+			$persistenceManager = $objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class);
+			$persistenceManager->persistAll();
 
 			// email to customer
 			// send only if "sendConfirmationEmailToCustomer" TS setting is true

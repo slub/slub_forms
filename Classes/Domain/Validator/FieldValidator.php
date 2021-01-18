@@ -39,18 +39,16 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 	 * emailRepository
 	 *
 	 * @var \Slub\SlubForms\Domain\Repository\FieldsetsRepository
-	 * @inject
 	 */
 	protected $fieldsetsRepository;
 
 	/**
-	 * Object Manager
-	 *
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-	 * @inject
-	 */
-	protected $objectManager;
-
+     * @param \Slub\SlubForms\Domain\Repository\FieldsetsRepository $fieldsetsRepository
+     */
+    public function injectFieldsetsRepository(FieldsetsRepository $fieldsetsRepository)
+    {
+        $this->fieldsetsRepository = $fieldsetsRepository;
+    }
 
 	/**
 	 * Return variable

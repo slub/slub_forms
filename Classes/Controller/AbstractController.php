@@ -27,6 +27,10 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+ use Slub\SlubForms\Domain\Repository\EmailRepository;
+ use Slub\SlubForms\Domain\Repository\FormsRepository;
+ use Slub\SlubForms\Domain\Repository\FieldsetsRepository;
+
 /**
  *
  *
@@ -41,25 +45,46 @@ class AbstractController extends ActionController
 	 * emailRepository
 	 *
 	 * @var \Slub\SlubForms\Domain\Repository\EmailRepository
-	 * @inject
 	 */
 	protected $emailRepository;
+
+	/**
+     * @param \Slub\SlubForms\Domain\Repository\EmailRepository $emailRepository
+     */
+    public function injectEmailRepository(EmailRepository $emailRepository)
+    {
+        $this->emailRepository = $emailRepository;
+    }
 
 	/**
 	 * formsRepository
 	 *
 	 * @var \Slub\SlubForms\Domain\Repository\FormsRepository
-	 * @inject
 	 */
 	protected $formsRepository;
+
+	/**
+     * @param \Slub\SlubForms\Domain\Repository\FormsRepository $formsRepository
+     */
+    public function injectFormsRepository(FormsRepository $formsRepository)
+    {
+        $this->formsRepository = $formsRepository;
+    }
 
 	/**
 	 * fieldsetsRepository
 	 *
 	 * @var \Slub\SlubForms\Domain\Repository\FieldsetsRepository
-	 * @inject
 	 */
 	protected $fieldsetsRepository;
+
+	/**
+     * @param \Slub\SlubForms\Domain\Repository\FieldsetsRepository $fieldsetsRepository
+     */
+    public function injectFieldsetsRepository(FieldsetsRepository $fieldsetsRepository)
+    {
+        $this->fieldsetsRepository = $fieldsetsRepository;
+    }
 
 	/**
 	 * injectConfigurationManager
