@@ -61,6 +61,7 @@ return [
                 ],
                 'foreign_table' => 'tx_slubforms_domain_model_email',
                 'foreign_table_where' => 'AND tx_slubforms_domain_model_email.pid=###CURRENT_PID### AND tx_slubforms_domain_model_email.sys_language_uid IN (-1,0)',
+                'default' => 0,
             ],
         ],
         'l10n_diffsource' => [

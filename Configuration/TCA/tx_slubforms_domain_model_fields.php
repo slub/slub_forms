@@ -70,6 +70,7 @@ return [
                 ],
                 'foreign_table' => 'tx_slubforms_domain_model_fields',
                 'foreign_table_where' => 'AND tx_slubforms_domain_model_fields.pid=###CURRENT_PID### AND tx_slubforms_domain_model_fields.sys_language_uid IN (-1,0)',
+                'default' => 0,
             ],
         ],
         'l10n_diffsource' => [
@@ -200,7 +201,7 @@ return [
         'description' => [
             'displayCond' => 'FIELD:type:=:Description',
             'exclude' => 0,
-            'label' => 'LLL:EXT:slub_events/Resources/Private/Language/locallang_db.xlf:tx_slubevents_domain_model_event.description',
+            'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_fields.description',
             'config' => [
                 'type' => 'text',
                 'cols' => 40,
@@ -219,6 +220,7 @@ return [
                 'behaviour' => [
                     'allowLanguageSynchronization' => true
                 ],
+                'default' => '',
             ],
         ],
         'is_sender_email' => [

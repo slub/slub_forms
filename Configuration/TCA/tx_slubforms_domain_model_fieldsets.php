@@ -65,6 +65,7 @@ return [
                 ],
                 'foreign_table' => 'tx_slubforms_domain_model_fieldsets',
                 'foreign_table_where' => 'AND tx_slubforms_domain_model_fieldsets.pid=###CURRENT_PID### AND tx_slubforms_domain_model_fieldsets.sys_language_uid IN (-1,0) ORDER BY tx_slubforms_domain_model_fieldsets.title',
+                'default' => 0,
             ],
         ],
         'l10n_diffsource' => [
