@@ -25,6 +25,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use Slub\SlubForms\Domain\Repository\FieldsetsRepository;
 
 /**
  *
@@ -39,18 +40,31 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 	 * emailRepository
 	 *
 	 * @var \Slub\SlubForms\Domain\Repository\FieldsetsRepository
-	 * @inject
 	 */
 	protected $fieldsetsRepository;
 
 	/**
-	 * Object Manager
-	 *
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-	 * @inject
-	 */
-	protected $objectManager;
+     * @param \Slub\SlubForms\Domain\Repository\FieldsetsRepository $fieldsetsRepository
+     */
+    public function injectFieldsetsRepository(FieldsetsRepository $fieldsetsRepository)
+    {
+        $this->fieldsetsRepository = $fieldsetsRepository;
+    }
 
+    /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     */
+    protected $objectManager;
+
+	/**
+     * Inject the object manager
+     *
+     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+     */
+    public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
 
 	/**
 	 * Return variable

@@ -7,7 +7,6 @@ return [
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
-        'dividers2tabs' => true,
         'sortby' => 'sorting',
         'versioningWS' => true,
         'origUid' => 't3_origuid',
@@ -34,19 +33,21 @@ return [
     ],
     'columns' => [
         'sys_language_uid' => [
-            'exclude' => 1,
-            'onChange' => 'reload',
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'foreign_table' => 'sys_language',
-                'foreign_table_where' => 'ORDER BY sys_language.title',
+                'special' => 'languages',
                 'items' => [
-                    ['LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1],
-                    ['LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0]
+                    [
+                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
+                        -1,
+                        'flags-multiple'
+                    ],
                 ],
-            ],
+                'default' => 0,
+            ]
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
@@ -60,6 +61,7 @@ return [
                 ],
                 'foreign_table' => 'tx_slubforms_domain_model_forms',
                 'foreign_table_where' => 'AND tx_slubforms_domain_model_forms.pid=###CURRENT_PID### AND tx_slubforms_domain_model_forms.sys_language_uid IN (-1,0) ORDER BY tx_slubforms_domain_model_forms.title',
+                'default' => 0,
             ],
         ],
         'l10n_diffsource' => [
@@ -76,11 +78,20 @@ return [
             ],
         ],
         'hidden' => [
-            'exclude' => 1,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.enabled',
             'config' => [
                 'type' => 'check',
-            ],
+                'renderType' => 'checkboxToggle',
+                'default' => 0,
+                'items' => [
+                    [
+                        0 => '',
+                        1 => '',
+                        'invertStateDisplay' => true
+                    ]
+                ],
+            ]
         ],
         'starttime' => [
             'exclude' => 1,
@@ -191,7 +202,7 @@ return [
         'parent' => [
             'exclude' => 0,
             'l10n_mode' => 'exclude',
-            'label' => 'LLL:EXT:slub_events/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_forms.parent',
+            'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_forms.parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectTree',
@@ -209,6 +220,7 @@ return [
                 ],
                 'size' => 10,
                 'maxitems'     => 2,
+                'default' => 0,
             ],
         ],
         'forms' => [

@@ -27,6 +27,10 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+ use Slub\SlubForms\Domain\Repository\EmailRepository;
+ use Slub\SlubForms\Domain\Repository\FormsRepository;
+ use Slub\SlubForms\Domain\Repository\FieldsetsRepository;
+
 /**
  *
  *
@@ -34,31 +38,53 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class AbstractController extends ActionController {
+class AbstractController extends ActionController
+{
 
 	/**
 	 * emailRepository
 	 *
 	 * @var \Slub\SlubForms\Domain\Repository\EmailRepository
-	 * @inject
 	 */
 	protected $emailRepository;
+
+	/**
+     * @param \Slub\SlubForms\Domain\Repository\EmailRepository $emailRepository
+     */
+    public function injectEmailRepository(EmailRepository $emailRepository)
+    {
+        $this->emailRepository = $emailRepository;
+    }
 
 	/**
 	 * formsRepository
 	 *
 	 * @var \Slub\SlubForms\Domain\Repository\FormsRepository
-	 * @inject
 	 */
 	protected $formsRepository;
+
+	/**
+     * @param \Slub\SlubForms\Domain\Repository\FormsRepository $formsRepository
+     */
+    public function injectFormsRepository(FormsRepository $formsRepository)
+    {
+        $this->formsRepository = $formsRepository;
+    }
 
 	/**
 	 * fieldsetsRepository
 	 *
 	 * @var \Slub\SlubForms\Domain\Repository\FieldsetsRepository
-	 * @inject
 	 */
 	protected $fieldsetsRepository;
+
+	/**
+     * @param \Slub\SlubForms\Domain\Repository\FieldsetsRepository $fieldsetsRepository
+     */
+    public function injectFieldsetsRepository(FieldsetsRepository $fieldsetsRepository)
+    {
+        $this->fieldsetsRepository = $fieldsetsRepository;
+    }
 
 	/**
 	 * injectConfigurationManager
@@ -73,7 +99,6 @@ class AbstractController extends ActionController {
 		$this->settings = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
 	}
 
-
 	/**
 	 * Safely gets Parameters from request
 	 * if they exist
@@ -82,11 +107,10 @@ class AbstractController extends ActionController {
 	 * @return *
 	 */
 	protected function getParametersSafely($parameterName) {
-		if($this->request->hasArgument( $parameterName )){
-			return $this->request->getArgument( $parameterName );
+		if ($this->request->hasArgument($parameterName)){
+			return $this->request->getArgument($parameterName);
 		}
-		return NULL;
+		return null;
 	}
-
 
 }

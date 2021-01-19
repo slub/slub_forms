@@ -1,10 +1,6 @@
 <?php
 namespace Slub\SlubForms\Controller;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-
 /***************************************************************
  *  Copyright notice
  *
@@ -28,6 +24,10 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /**
  *
@@ -36,18 +36,23 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class EmailController extends AbstractController {
+class EmailController extends AbstractController
+{
 
 	/**
-		 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
-		 * @inject
-		 */
-		protected $signalSlotDispatcher;
-		/**
-		 * @var \TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface
-		 * @inject
-		 */
-		protected $persistenceManager;
+	 * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher
+	 */
+	protected $signalSlotDispatcher;
+
+    /**
+     * Inject SignalSlotDispatcher
+     *
+     * @var \TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher
+     */
+    public function injectSignalSlotDispatcher(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher $signalSlotDispatcher)
+    {
+        $this->signalSlotDispatcher = $signalSlotDispatcher;
+    }
 
 	/**
 	 * action list
@@ -73,10 +78,10 @@ class EmailController extends AbstractController {
 	 * action new
 	 *
 	 * @param \Slub\SlubForms\Domain\Model\Email $newEmail
-	 * @ignorevalidation $newEmail
+	 * @Extbase\IgnoreValidation("newEmail")
 	 * @return void
 	 */
-	public function newAction(\Slub\SlubForms\Domain\Model\Email $newEmail = NULL) {
+	public function newAction(\Slub\SlubForms\Domain\Model\Email $newEmail = null) {
 
 		$singleFormShortname = $this->getParametersSafely('form');
 
@@ -119,31 +124,11 @@ class EmailController extends AbstractController {
 	}
 
 	/**
-	 * action initializeCreate
-	 *
-	 *
-	 * @return void
-	 */
-	 public function initializeCreateAction() {
-
-		 /* Avoid exception in TYPO3 4.7 because newEmail is not set. This is checked before createAction in
-		  * the validator. Maybe this is gone in 6.2?
-		  * --> if "field" is empty there is no reason to call the createAction
-		  */
-
-		 $field = $this->getParametersSafely('field');
-
-		 if (empty($field)) {
-			 $this->forward('new', 'Email', 'SlubForms', $requestArguments);
-		 }
-	 }
-
-	/**
 	 * action create
 	 *
 	 * @param \Slub\SlubForms\Domain\Model\Email $newEmail
 	 * @param array $field Field Values
-	 * @validate $field \Slub\SlubForms\Domain\Validator\FieldValidator
+     * @Extbase\Validate("\Slub\SlubForms\Domain\Validator\FieldValidator", param="field")
 	 * @return void
 	 */
 	public function createAction(\Slub\SlubForms\Domain\Model\Email $newEmail, array $field = array()) {
@@ -312,7 +297,9 @@ class EmailController extends AbstractController {
 
 			// persist the email first, to access the uid later on in the email
 			$this->emailRepository->add($newEmail);
-			$this->persistenceManager->persistAll();
+
+			$persistenceManager = $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class);
+			$persistenceManager->persistAll();
 
 			// email to customer
 			// send only if "sendConfirmationEmailToCustomer" TS setting is true

@@ -24,6 +24,7 @@ namespace Slub\SlubForms\Domain\Model;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /**
  *
@@ -38,7 +39,7 @@ class Forms extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * title
 	 *
 	 * @var string
-	 * @validate NotEmpty
+	 * @Extbase\Validate("NotEmpty")
 	 */
 	protected $title;
 
@@ -53,7 +54,7 @@ class Forms extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Email of Recipient
 	 *
 	 * @var string
-	 * @validate NotEmpty
+	 * @Extbase\Validate("NotEmpty")
 	 */
 	protected $recipient;
 
@@ -68,7 +69,7 @@ class Forms extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * parent form
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Slub\SlubForms\Domain\Model\Forms>
-	 * @lazy
+	 * @Extbase\ORM\Lazy
 	 */
 	protected $parent;
 

@@ -25,6 +25,8 @@ namespace Slub\SlubForms\Domain\Validator;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+ use Slub\SlubForms\Domain\Repository\EmailRepository;
+
 /**
  *
  *
@@ -38,18 +40,31 @@ class EmailValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 	 * emailRepository
 	 *
 	 * @var \Slub\SlubForms\Domain\Repository\EmailRepository
-	 * @inject
 	 */
 	protected $emailRepository;
 
 	/**
-	 * Object Manager
-	 *
-	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-	 * @inject
-	 */
-	protected $objectManager;
+     * @param \Slub\SlubForms\Domain\Repository\EmailRepository $emailRepository
+     */
+    public function injectEmailRepository(EmailRepository $emailRepository)
+    {
+        $this->emailRepository = $emailRepository;
+    }
 
+    /**
+     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
+     */
+    protected $objectManager;
+
+	/**
+     * Inject the object manager
+     *
+     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
+     */
+    public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
+    {
+        $this->objectManager = $objectManager;
+    }
 
 	/**
 	 * Return variable
