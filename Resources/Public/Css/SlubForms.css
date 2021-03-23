@@ -209,7 +209,7 @@
 .tx-slub-forms fieldset.slub-forms-fieldset {
     background: #d8e9ec;
     padding: 10px;
-    margin: 12px 0;
+    margin: 30px 0;
     border: solid #9bb;
     border-width: 0 1px 1px 0;
 }
@@ -259,8 +259,7 @@
     display: block;
     float: left;
     width: 32%;
-    color: #666;
-    font-size: 11px;
+    font-size: 13px;
     clear: both;
     margin: 5px 10px 0 0;
 }
@@ -418,7 +417,6 @@ input[type="number"] {
     border-radius: 5px;
     text-shadow: none;
     text-align: center;
-    width: 100%;
 }
 
 .anonymize-form:hover {
