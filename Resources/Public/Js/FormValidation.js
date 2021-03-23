@@ -100,7 +100,7 @@ function disableAllHiddenForms() {
 function showForm(uid) {
 
 	// make sure the given uid exists
-	if ($('#slub-form-select-' + uid).size() != 1) {
+	if (!$('#slub-form-select-' + uid)[0]) {
 		setCookie('sf_form', '');
 		return;
 	}
