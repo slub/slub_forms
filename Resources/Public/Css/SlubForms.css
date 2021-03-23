@@ -203,6 +203,7 @@
   color: #f00;
 }
 
+<<<<<<< HEAD
 #leftcol .tx-slub-forms fieldset.slub-forms-fieldset {
   border: 0 none;
   background: #d8e9ec;
@@ -210,6 +211,14 @@
   margin: 12px 0;
   border: 1px solid #9bb;
   border-width: 0 1px 1px 0;
+=======
+.tx-slub-forms fieldset.slub-forms-fieldset {
+    background: #d8e9ec;
+    padding: 10px;
+    margin: 30px 0;
+    border: solid #9bb;
+    border-width: 0 1px 1px 0;
+>>>>>>> 8539b36 (UI adaptions to fieldsets and forms)
 }
 
 #leftcol .tx-slub-forms fieldset.intro {
@@ -251,6 +260,7 @@
 }
 
 
+<<<<<<< HEAD
 #leftcol .tx-slub-forms .slub-forms-form label {
   display: block;
   float: left;
@@ -259,6 +269,15 @@
   font-size: 11px;
   clear: both;
   margin: 5px 10px 0px 0px;
+=======
+.tx-slub-forms .slub-forms-form label {
+    display: block;
+    float: left;
+    width: 32%;
+    font-size: 13px;
+    clear: both;
+    margin: 5px 10px 0 0;
+>>>>>>> 8539b36 (UI adaptions to fieldsets and forms)
 }
 
 #leftcol .tx-slub-forms .slub-forms-form label[for], #leftcol .tx-slub-forms .slub-forms-form label[HTMLfor] {
@@ -426,6 +445,14 @@ input[type="number"] {
     border-radius: 5px;
     text-shadow: none;
     text-align: center;
+<<<<<<< HEAD
+=======
+}
+
+.anonymize-form:hover {
+    background: #9acad2;
+}
+>>>>>>> 8539b36 (UI adaptions to fieldsets and forms)
 
     width: 100%;
     @media (min-width: 430px) {
