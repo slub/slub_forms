@@ -25,45 +25,74 @@ namespace Slub\SlubForms\ViewHelpers\Format;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
+
 /**
  * Adds the Editcode to the form and to the user session
  *
-
  * @license http://www.gnu.org/licenses/lgpl.html GNU Lesser General Public License, version 3 or later
  * @api
  */
+class EditCodeViewHelper extends AbstractViewHelper
+{
+    use CompileWithRenderStatic;
 
-class EditCodeViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper {
+    /**
+     * Initialize arguments.
+     */
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
+    }
 
-	/**
-	 * Set session data
-	 *
-	 * @param $key
-	 * @param $data
-	 * @return
-	 */
-	public function setSessionData($key, $data) {
+    /**
+     * Get session data
+     *
+     * @param string $key
+     * @return string
+     */
+    protected static function getSessionData($key)
+    {
+        return $GLOBALS['TSFE']->fe_user->getKey('ses', $key);
+    }
 
-	    $GLOBALS["TSFE"]->fe_user->setKey("ses", $key, $data);
+    /**
+     * Set session data
+     *
+     * @param string $key
+     * @param string $data
+     */
+    protected static function setSessionData($key, $data)
+    {
+        $userGlobals = $GLOBALS['TSFE']->fe_user;
+        $userGlobals->setAndSaveSessionData($key, $data);
+        return;
+    }
 
-	    return;
-	}
+    /**
+     * Render the supplied DateTime object as a formatted date.
+     *
+     * @param array $arguments
+     * @param \Closure $renderChildrenClosure
+     * @param RenderingContextInterface $renderingContext
+     */
+    public static function renderStatic(
+        array $arguments,
+        \Closure $renderChildrenClosure,
+        RenderingContextInterface $renderingContext
+    ) {
+        $editCodeDummy = self::getSessionData('editcode');
 
-	/**
-	 * Render the supplied DateTime object as a formatted date.
-	 *
-	 * @return int
- 	 * @author Alexander Bigga <alexander.bigga@slub-dresden.de>
-	 * @api
-	 */
-	public function render() {
+        // create new editcode-dummy code
+        if (empty($editCodeDummy)) {
+			$editCodeDummy = hash('sha256', rand().'formEditCode'.time().'dummy');
+        }
 
-		// set editcode-dummy for Spam/Form-double-sent protection
-		$editCodeDummy = hash('sha256', rand().'formEditCode'.time().'dummy');
+        // set editcode-dummy for Spam/Form-double-sent protection
+        self::setSessionData('editcode', $editCodeDummy);
 
-		$this->setSessionData('editcode', $editCodeDummy);
-
-	    return $editCodeDummy;
-
-	}
+        return $editCodeDummy;
+    }
 }

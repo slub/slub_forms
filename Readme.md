@@ -31,3 +31,7 @@ form 4, shortname="wissenschaftliches-arbeiten"
   |-- from 40
   |-- from 41
 ```
+
+## Known Issues
+
+To validate file mime-types server-side the tool file must be installed.
