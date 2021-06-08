@@ -75,7 +75,8 @@ class AddDatePickerViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstract
 					});
 					';
 
-				$GLOBALS['TSFE']->getPageRenderer()->addJsFooterInlineCode('slub-forms-field-' . $form->getUid() . '-' . $fieldset->getUid() . '-' . $field->getUid(), $javascriptFooter);
+				$pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+				$pageRenderer->addJsFooterInlineCode('slub-forms-field-' . $form->getUid() . '-' . $fieldset->getUid() . '-' . $field->getUid(), $javascriptFooter);
 
 			}
 

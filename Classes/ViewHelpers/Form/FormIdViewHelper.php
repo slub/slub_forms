@@ -21,7 +21,7 @@ namespace Slub\SlubForms\ViewHelpers\Form;
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
 
-use Slub\SlubForms\Domain\Model\Form;
+use Slub\SlubForms\Domain\Model\Forms;
 use TYPO3\CMS\Core\Utility\MathUtility;
 
 /**
@@ -49,13 +49,13 @@ class FormIdViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHel
 	public function initializeArguments()
 	{
 		parent::initializeArguments();
-		$this->registerArgument('form', Form::class, '@param \Slub\SlubForms\Domain\Model\Form $form', true, null);
+		$this->registerArgument('form', Forms::class, '@param \Slub\SlubForms\Domain\Model\Forms $form', true, null);
 	}
 
 	/**
 	 * Looks for already checked form from last request
 	 *
-	 * 
+	 *
 	 * @return string Rendered string
 	 * @api
 	 */
@@ -65,6 +65,8 @@ class FormIdViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHel
 
 		if ($form == null)
 			return $this->isChecked;
+
+		$this->controllerContext = $this->renderingContext->getControllerContext();
 
 		// check for GET parameter "form" which may be "shortname" OR an "uid"
 		if ($this->controllerContext->getRequest()->hasArgument('form')) {
