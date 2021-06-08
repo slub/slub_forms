@@ -30,9 +30,9 @@ page.includeCSS.jquery-ui-theme = EXT:slub_forms/Resources/Public/Css/Contrib/JQ
 page.includeJSFooter.jquerydatepicker = EXT:slub_forms/Resources/Public/Js/datepicker.js
 // assume L=0: default == German; L=1: English
 page.includeJSFooter.jquerydatepicker-l18n = EXT:slub_forms/Resources/Public/Js/datepicker-de.js
-[globalVar = GP:L=1]
+[siteLanguage("languageId") == "1"]
 page.includeJSFooter.jquerydatepicker-l18n = EXT:slub_forms/Resources/Public/Js/datepicker-en-GB.js
-[global]
+[END]
 page.includeJSFooter.jqueryvalidation = EXT:slub_forms/Resources/Public/Js/jquery.validate.min.js
 page.includeJSFooter.jqueryvalidation_additional = EXT:slub_forms/Resources/Public/Js/additional-methods.min.js
 page.includeJSFooter.slub_forms = EXT:slub_forms/Resources/Public/Js/FormValidation.js
