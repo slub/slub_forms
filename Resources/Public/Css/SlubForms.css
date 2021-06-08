@@ -61,54 +61,69 @@
     content: " ";
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-6 {
+/* top left form with shortcode="sammlungen-bestaende" */
+#form-select-sammlungen-bestaende {
     top: 95px;
     left: 120px;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-6:before {
+#form-select-sammlungen-bestaende:before {
     left: -75px;
     background-position: 0 0;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-2 {
+#form-select-sammlungen-bestaende > ul {
+    top: -27px;
+    left: 190px;
+}
+
+/* top right form with shortcode="service" */
+#form-select-service {
     top: 80px;
     right: 140px;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-2:before {
+#form-select-service:before {
     right: -75px;
     background-position: -80px 0;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-14 {
+#form-select-service > ul {
+    top: -28px;
+    left: 70px;
+}
+
+/* bottom left form with shortcode="wissenschaftliches-arbeiten" */
+#form-select-wissenschaftliches-arbeiten {
     top: 210px;
     left: 155px;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-14:before {
+#form-select-wissenschaftliches-arbeiten:before {
     left: -75px;
     background-position: -160px 0;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-18 {
-    top: 190px;
-    right: 110px;
+#form-select-wissenschaftliches-arbeiten > ul {
+    top: -28px;
+    left: 220px;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-18:before {
-    left: -75px;
-    background-position: -240px 0;
-}
-
-.slub-form-tree fieldset.cats ul .slub-form-select-21 {
+/* bottom right form with shortcode="anregung-kritik" */
+#form-select-anregung-kritik
+{
     top: 260px;
     right: 70px;
 }
 
-.slub-form-tree fieldset.cats ul .slub-form-select-21:before {
+#form-select-anregung-kritik:before {
     right: -75px;
     background-position: -320px 0;
+}
+
+#form-select-anregung-kritik > ul {
+    top: -30px;
+    left: 145px;
 }
 
 .slub-form-tree fieldset.cats > ul > li > ul {
@@ -149,26 +164,6 @@
 .slub-form-tree fieldset.cats > ul > li:active > ul {
     visibility: visible;
     opacity: 1;
-}
-
-.slub-form-tree fieldset.cats ul .slub-form-select-2 > ul {
-    top: -28px;
-    left: 70px;
-}
-
-.slub-form-tree fieldset.cats ul .slub-form-select-6 > ul {
-    top: -27px;
-    left: 190px;
-}
-
-.slub-form-tree fieldset.cats ul .slub-form-select-14 > ul {
-    top: -28px;
-    left: 220px;
-}
-
-.slub-form-tree fieldset.cats ul .slub-form-select-21 > ul {
-    top: -30px;
-    left: 145px;
 }
 
 @media only screen and (min-width: 1224px) {
