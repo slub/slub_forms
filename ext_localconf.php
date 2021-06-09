@@ -2,7 +2,7 @@
 defined('TYPO3_MODE') or die();
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'Slub.' . $_EXTKEY,
+	'Slub.SlubForms',
 	'Sf',
 	array(
 		'Email' => 'new, create',
@@ -12,15 +12,6 @@ defined('TYPO3_MODE') or die();
 		'Email' => 'new, create',
 	)
 );
-
-/**
- * realurl Hook
- */
-
-if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('realurl')) {
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/realurl/class.tx_realurl_autoconfgen.php']['extensionConfiguration'][$_EXTKEY] =
-		\Slub\SlubForms\Hooks\RealUrlAutoConfiguration::class . '->addFormsConfig';
-}
 
 /**
  * provide Slots
