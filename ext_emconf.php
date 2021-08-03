@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'TYPO3 extension to render forms.',
 	'category' => 'plugin',
 	'author' => 'Alexander Bigga',
-	'author_email' => 'alexander.bigga@slub-dresden.de',
+	'author_email' => 'typo3@slub-dresden.de',
 	'author_company' => 'SLUB Dresden',
 	'shy' => '',
 	'priority' => '',
@@ -27,10 +27,10 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'version' => '1.0.0',
+	'version' => '1.0.1',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '9.5.0-9.5.99',
+			'typo3' => '9.5.28-9.5.99',
 		),
 		'conflicts' => array(
 		),
