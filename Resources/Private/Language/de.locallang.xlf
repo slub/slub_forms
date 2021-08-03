@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-11-29T14:40:59Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2021-08-03T19:30:51Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
@@ -44,6 +44,10 @@
 			<trans-unit id="slub-forms.file-accept-size" approved="yes">
 				<source><![CDATA[MB]]></source>
 				<target><![CDATA[MB]]></target>
+			</trans-unit>
+			<trans-unit id="slub-forms.form_not_available" approved="yes">
+				<source><![CDATA[The form "%s" is currently not available.]]></source>
+				<target><![CDATA[Das Formular "%s" steht momentan nicht zur Verfügung.]]></target>
 			</trans-unit>
 			<trans-unit id="slub-forms.senderEmailName" approved="yes">
 				<source><![CDATA[SLUB Forms]]></source>
@@ -116,6 +120,10 @@
 			<trans-unit id="tx_slubforms_domain_model_fields.validation" approved="yes">
 				<source><![CDATA[validation]]></source>
 				<target><![CDATA[Validierung]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fieldsets" approved="yes">
+				<source><![CDATA[Fieldsets]]></source>
+				<target><![CDATA[Feldgruppe]]></target>
 			</trans-unit>
 			<trans-unit id="tx_slubforms_domain_model_fieldsets.fields" approved="yes">
 				<source><![CDATA[fields]]></source>

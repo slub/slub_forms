@@ -45,17 +45,17 @@ class EmailRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function findOlderThan($days) {
 
-    $query = $this->createQuery();
+        $query = $this->createQuery();
 
-    $constraints = [];
+        $constraints = [];
 
-    $constraints[] = $query->lessThanOrEqual('crdate', strtotime(' - ' . $days . ' days'));
+        $constraints[] = $query->lessThanOrEqual('crdate', strtotime(' - ' . $days . ' days'));
 
-    if (count($constraints)) {
-        $query->matching($query->logicalAnd($constraints));
-    }
+        if (count($constraints)) {
+            $query->matching($query->logicalAnd($constraints));
+        }
 
-    return $query->execute();
+        return $query->execute();
 
 	}
 
@@ -67,10 +67,10 @@ class EmailRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 */
 	public function deleteOlderThan($days) {
 
-	$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_slubforms_domain_model_email');
-	$affectedRows = $queryBuilder->delete('tx_slubforms_domain_model_email')->where(
-		$queryBuilder->expr()->lt('crdate', $queryBuilder->createNamedParameter(strtotime(' - ' . $days . ' days'), \PDO::PARAM_INT))
-	)->execute();
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_slubforms_domain_model_email');
+        $affectedRows = $queryBuilder->delete('tx_slubforms_domain_model_email')->where(
+            $queryBuilder->expr()->lt('crdate', $queryBuilder->createNamedParameter(strtotime(' - ' . $days . ' days'), \PDO::PARAM_INT))
+        )->execute();
 
     return true;
 

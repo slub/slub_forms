@@ -2,7 +2,7 @@
 <f:layout name="Default" />
 
 <f:section name="categoryTree">
-  <ul>
+    <ul>
     <f:for each="{categories}" key="id" as="category">
 
       <li class="slub-form-select-{id}" id="{f:if(condition: '{category.item.shortname}', then: 'form-select-{category.item.shortname}')}">
@@ -60,66 +60,68 @@
 
 <f:section name="singleForm">
 
-  <f:form.radio class="hide" id="slub-form-select-{form.uid}" property="form" value="{form.uid}" checked="checked" />
+    <f:form.radio class="hide" id="slub-form-select-{form.uid}" property="form" value="{form.uid}" checked="checked" />
 
-  <div id="slub-forms-form-{form.uid}" class="slub-forms-form {form.shortname}">
-
-    <h3 class="formtitle">{form.title}</h3>
-
-    <f:for each="{form.fieldsets}" key="idfieldset" as="fieldset">
-      <fieldset id="slub-forms-fieldset-{form.uid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
-        <legend>{fieldset.title}</legend>
-        <f:for each="{fieldset.fields}" key="idfield" as="field">
-          <f:render partial="Forms/{field.type}" arguments="{form: form, fieldset: fieldset, field: field}" />
+    <div id="slub-forms-form-{form.uid}" class="slub-forms-form {form.shortname}">
+        <h3 class="formtitle">{form.title}</h3>
+        <f:for each="{form.fieldsets}" key="idfieldset" as="fieldset">
+            <fieldset id="slub-forms-fieldset-{form.uid}-{fieldset.uid}" class="slub-forms-fieldset {fieldset.shortname}">
+                <legend>{fieldset.title}</legend>
+                <f:for each="{fieldset.fields}" key="idfield" as="field">
+                    <f:render partial="Forms/{field.type}" arguments="{form: form, fieldset: fieldset, field: field}" />
+                </f:for>
+                <f:if condition="{fieldset.required}">
+                    <sf:form.fileValidationFooterJs form='{form}' fieldset='{fieldset}' />
+                </f:if>
+            </fieldset>
         </f:for>
-        <f:if condition="{fieldset.required}">
-          <sf:form.fileValidationFooterJs form='{form}' fieldset='{fieldset}' />
-        </f:if>
-      </fieldset>
-    </f:for>
-
-  </div>
+    </div>
 
 </f:section>
 
 <f:section name="targetSwitch">
-  <f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
-  <f:render partial="FormErrors" arguments="{obj: 'field'}" />
+    <f:render partial="FormErrors" arguments="{obj: 'newEmail'}" />
+    <f:render partial="FormErrors" arguments="{obj: 'field'}" />
 
-  <f:if condition="{singleForm}">
-    <f:then>
-      <f:render section="singleForm" arguments="{form: singleForm}" />
-    </f:then>
-    <f:else>
-      <div class="slub-form-tree" role="tablist">
-        <fieldset class="cats">
-          <legend class="form-cats">Formular Kategorien</legend>
-          <f:render section="categoryTree" arguments="{categories: forms}" />
-        </fieldset>
-      </div>
-      <f:render section="subForms" arguments="{forms: forms}" />
-    </f:else>
-  </f:if>
-  <f:form.hidden property="editcode" value="<sf:format.editCode />"/>
+    <f:if condition="{singleForm}">
+        <f:then>
+            <f:if condition="{formDisabled}">
+                <f:then>
+                    <strong>
+                        <f:translate key="slub-forms.form_not_available" arguments="{0: singleForm.title}" />
+                    </strong>
+                </f:then>
+                <f:else>
+                    <f:render section="singleForm" arguments="{form: singleForm}" />
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <div class="slub-form-tree" role="tablist">
+                <fieldset class="cats">
+                <legend class="form-cats">Formular Kategorien</legend>
+                <f:render section="categoryTree" arguments="{categories: forms}" />
+                </fieldset>
+            </div>
+            <f:render section="subForms" arguments="{forms: forms}" />
+        </f:else>
+    </f:if>
+    <f:form.hidden property="editcode" value="<sf:format.editCode />"/>
 </f:section>
 
 <f:section name="main">
-<f:if condition="{forms}">
-  <f:then>
-    <f:if condition="{settings.pageTarget} > 0">
-      <f:then>
-        <f:form enctype="multipart/form-data" pageUid="{settings.pageTarget}" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
-          <f:render section="targetSwitch" arguments="{_all}" />
-        </f:form>
-      </f:then>
-      <f:else>
-        <f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
-          <f:render section="targetSwitch" arguments="{_all}" />
-        </f:form>
-      </f:else>
+    <f:if condition="{forms}">
+        <f:if condition="{settings.pageTarget} > 0">
+            <f:then>
+                <f:form enctype="multipart/form-data" pageUid="{settings.pageTarget}" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
+                    <f:render section="targetSwitch" arguments="{_all}" />
+                </f:form>
+            </f:then>
+            <f:else>
+                <f:form enctype="multipart/form-data" action="create" id="slubForm" name="newEmail" object="{newEmail}" additionalAttributes="{autocomplete: 'off'}" noCache="TRUE">
+                    <f:render section="targetSwitch" arguments="{_all}" />
+                </f:form>
+            </f:else>
+        </f:if>
     </f:if>
-  </f:then>
-</f:if>
-
-
 </f:section>

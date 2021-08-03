@@ -1,98 +1,110 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-08-00T09:41:00Z">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2021-08-03T19:30:13Z">
 		<header>
 			<generator>LFEditor</generator>
 		</header>
 		<body>
-		<trans-unit id="tx_slubforms_domain_model_email" approved="yes" xml:space="preserve">
-			<source>Email</source>
-			<target>Email</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.content" approved="yes" xml:space="preserve">
-			<source>Content</source>
-			<target>Inhalt</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.form" approved="yes" xml:space="preserve">
-			<source>Form</source>
-			<target>Formular</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.sender_email" approved="yes" xml:space="preserve">
-			<source>Sender Email</source>
-			<target>Email-Adresse des Absenders</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_email.sender_name" approved="yes" xml:space="preserve">
-			<source>Sender Name</source>
-			<target>Name des Absenders</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields" approved="yes" xml:space="preserve">
-			<source>Fields</source>
-			<target>Felder</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.configuration" approved="yes" xml:space="preserve">
-			<source>Configuration</source>
-			<target>Konfiguration</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.description" approved="yes" xml:space="preserve">
-			<source>Description</source>
-			<target>Beschreibung</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.required" approved="yes" xml:space="preserve">
-			<source>Required</source>
-			<target>Pflichtfeld</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.shortname" approved="yes" xml:space="preserve">
-			<source>Short Name</source>
-			<target>Kurzname</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.title" approved="yes" xml:space="preserve">
-			<source>Title</source>
-			<target>Titel</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.type" approved="yes" xml:space="preserve">
-			<source>Type</source>
-			<target>Typ</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fields.validation" approved="yes" xml:space="preserve">
-			<source>Validation</source>
-			<target>Validierung</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fieldsets" approved="yes" xml:space="preserve">
-			<source>Fieldsets</source>
-			<target>Feld-Gruppe</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fieldsets.fields" approved="yes" xml:space="preserve">
-			<source>Fields</source>
-			<target>Felder</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fieldsets.shortname" approved="yes" xml:space="preserve">
-			<source>Short Name</source>
-			<target>Kurzname</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_fieldsets.title" approved="yes" xml:space="preserve">
-			<source>Title</source>
-			<target>Titel</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms" approved="yes" xml:space="preserve">
-			<source>Forms</source>
-			<target>Formulare</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms.parent" approved="yes" xml:space="preserve">
-			<source>Parent Form</source>
-			<target>Übergeordnetes Formular</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms.recipient" approved="yes" xml:space="preserve">
-			<source>Recipient</source>
-			<target>Empfänger</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms.shortname" approved="yes" xml:space="preserve">
-			<source>Short Name</source>
-			<target>Kurzname</target>
-		</trans-unit>
-		<trans-unit id="tx_slubforms_domain_model_forms.title" approved="yes" xml:space="preserve">
-			<source>Title</source>
-			<target>Titel</target>
-		</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email" approved="yes">
+				<source><![CDATA[Email]]></source>
+				<target><![CDATA[Email]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.content" approved="yes">
+				<source><![CDATA[Content]]></source>
+				<target><![CDATA[Inhalt]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.form" approved="yes">
+				<source><![CDATA[Form]]></source>
+				<target><![CDATA[Formular]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.sender_email" approved="yes">
+				<source><![CDATA[Sender Email]]></source>
+				<target><![CDATA[Email-Adresse des Absenders]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_email.sender_name" approved="yes">
+				<source><![CDATA[Sender Name]]></source>
+				<target><![CDATA[Name des Absenders]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields" approved="yes">
+				<source><![CDATA[Fields]]></source>
+				<target><![CDATA[Felder]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.configuration" approved="yes">
+				<source><![CDATA[Configuration]]></source>
+				<target><![CDATA[Konfiguration]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.description" approved="yes">
+				<source><![CDATA[Description]]></source>
+				<target><![CDATA[Beschreibung]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.is_sender_email" approved="yes">
+				<source><![CDATA[Field is Sender Email]]></source>
+				<target><![CDATA[Feld enthält Absender Email-Adresse]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.is_sender_name" approved="yes">
+				<source><![CDATA[Field is Sender Name]]></source>
+				<target><![CDATA[Feld enthält Absender Name]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.required" approved="yes">
+				<source><![CDATA[Required]]></source>
+				<target><![CDATA[Pflichtfeld]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.shortname" approved="yes">
+				<source><![CDATA[Short Name]]></source>
+				<target><![CDATA[Kurzname]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.title" approved="yes">
+				<source><![CDATA[Title]]></source>
+				<target><![CDATA[Titel]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.type" approved="yes">
+				<source><![CDATA[Type]]></source>
+				<target><![CDATA[Typ]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fields.validation" approved="yes">
+				<source><![CDATA[Validation]]></source>
+				<target><![CDATA[Validierung]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fieldsets" approved="yes">
+				<source><![CDATA[Fieldsets]]></source>
+				<target><![CDATA[Feld-Gruppe]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fieldsets.fields" approved="yes">
+				<source><![CDATA[Fields]]></source>
+				<target><![CDATA[Felder]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fieldsets.shortname" approved="yes">
+				<source><![CDATA[Short Name]]></source>
+				<target><![CDATA[Kurzname]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_fieldsets.title" approved="yes">
+				<source><![CDATA[Title]]></source>
+				<target><![CDATA[Titel]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms" approved="yes">
+				<source><![CDATA[Forms]]></source>
+				<target><![CDATA[Formulare]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.fieldsets" approved="yes">
+				<source><![CDATA[Fieldsets]]></source>
+				<target><![CDATA[Feldgruppe]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.parent" approved="yes">
+				<source><![CDATA[Parent Form]]></source>
+				<target><![CDATA[Übergeordnetes Formular]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.recipient" approved="yes">
+				<source><![CDATA[Recipient]]></source>
+				<target><![CDATA[Empfänger]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.shortname" approved="yes">
+				<source><![CDATA[Short Name]]></source>
+				<target><![CDATA[Kurzname]]></target>
+			</trans-unit>
+			<trans-unit id="tx_slubforms_domain_model_forms.title" approved="yes">
+				<source><![CDATA[Title]]></source>
+				<target><![CDATA[Titel]]></target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

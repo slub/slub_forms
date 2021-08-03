@@ -11,6 +11,9 @@
 		<trans-unit id="slub-forms.back_to_forms" xml:space="preserve">
 			<source>back to form overview</source>
 		</trans-unit>
+		<trans-unit id="slub-forms.form_not_available" xml:space="preserve">
+			<source>The form "%s" is currently not available.</source>
+		</trans-unit>
 		<trans-unit id="slub-forms.file-accept-info" xml:space="preserve">
 			<source>We accept files with the following format: </source>
 		</trans-unit>

@@ -85,6 +85,20 @@ class EmailController extends AbstractController
 
         $singleFormShortname = $this->getParametersSafely('form');
 
+        // form is shown by default
+        $formDisabled = false;
+        $params = [];
+        // check if form should be disabled
+        $this->signalSlotDispatcher->dispatch(
+            __CLASS__,
+            'checkFormAvailability',
+            [&$params]
+        );
+
+        if (isset($params['formDisabled'])) {
+            $formDisabled = $params['formDisabled'];
+        }
+
         if (!empty($singleFormShortname)) {
 
             /**
@@ -100,6 +114,7 @@ class EmailController extends AbstractController
             } else {
                 $singleForm = $this->formsRepository->findAllByShortname($singleFormShortname);
             }
+
             // if no form is found getFirst() will return false and that's what we want
             $this->view->assign('singleForm', $singleForm->getFirst());
 
@@ -120,7 +135,7 @@ class EmailController extends AbstractController
 
         $this->view->assign('newEmail', $newEmail);
         $this->view->assign('forms', $forms);
-
+        $this->view->assign('formDisabled', $formDisabled);
     }
 
     /**
