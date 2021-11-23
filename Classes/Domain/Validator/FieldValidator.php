@@ -139,6 +139,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
                             $this->isValid = false;
                         }
 
+                        $found_mimetype = [];
                         // do it on the command line because there is no clean way to do it with PHP...
                         exec("file --mime-type " . $_FILES['tx_slubforms_sf']['tmp_name']['field'][$getfieldset][$singleField->getUid()] . " | cut -f 2 -d ':'", $found_mimetype);
                         $found_mimetype = explode("/", trim($found_mimetype[0]));
