@@ -152,6 +152,8 @@ class EmailController extends AbstractController
 
         $form = $this->formsRepository->findAllById($newEmail->getForm())->getFirst();
 
+        $fileNames = [];
+
         // walk through all fieldsets
         foreach($fieldParameter as $getfieldset => $getfields) {
 
@@ -211,6 +213,7 @@ class EmailController extends AbstractController
                                 $_FILES['tx_slubforms_sf']['tmp_name']['field'][$getfieldset][$field->getUid()],
                                 $fileName
                             );
+                            $fileNames[] = $fileName;
                         } else {
 
                             $content[$field->getTitle()] = '-';
@@ -341,14 +344,16 @@ class EmailController extends AbstractController
                 array(	'email' => $newEmail,
                     'form' => $form,
                     'content' => $content,
-                    'filename' => $fileName,
+                    'filenames' => $fileNames,
                     'settings' => $this->settings,
                 )
             );
 
-            // remove $filename from uploads-directory
-            if (!empty($fileName)) {
-                unlink($fileName);
+            // remove $fileNames from uploads-directory
+            if (!empty($fileNames)) {
+                foreach ($fileNames as $fileName) {
+                    unlink($fileName);
+                }
             }
 
         }
@@ -455,8 +460,11 @@ class EmailController extends AbstractController
         // HTML Email
         $message->addPart($emailTextHTML, 'text/html');
 
-        if (!empty($variables['filename']))
-            $message->attach(\Swift_Attachment::fromPath($variables['filename']));
+        if (!empty($variables['filenames'])){
+            foreach ($variables['filenames'] as $fileName) {
+                $message->attach(\Swift_Attachment::fromPath($fileName));
+            }
+        }
 
         $message->send();
 
