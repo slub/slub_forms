@@ -6,7 +6,7 @@ jQuery(document).ready(function() {
 		showForm(formid);
 	}
 
-	$('.slub-form-tree .cats ul ul li').click(function() {
+	$('.slub-category-list ul ul li').click(function() {
 
 		$(this).find('input:radio').click(function() {
 			formid = $(this).val();
