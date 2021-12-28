@@ -74,13 +74,13 @@ jQuery(document).ready(function() {
  * @return void
  */
 function hideAllForms() {
-	$('.slub-forms-form').addClass('hide'); // show all fields and fieldsets
-	$('.slub-forms-fieldset').find('input').prop('disabled', true);
-	$('.slub-forms-fieldset').find('textarea').prop('disabled', true);
+	$('.slub-forms-form').addClass('hide'); // hide all forms
+
+    disableAllHiddenForms();
 }
 
 /**
- * Hide all forms
+ * Disable all hidden forms
  *
  * @return void
  */
@@ -88,6 +88,7 @@ function disableAllHiddenForms() {
 
 	$('.slub-forms-form.hide .slub-forms-fieldset').find('input').prop('disabled', true);
 	$('.slub-forms-form.hide .slub-forms-fieldset').find('textarea').prop('disabled', true);
+	$('.slub-forms-form.hide .slub-forms-fieldset').find('select').prop('disabled', true);
 
 }
 
@@ -105,11 +106,16 @@ function showForm(uid) {
 		return;
 	}
 
+    // initially hide all forms
 	hideAllForms();
 
-	$('#slub-forms-form-' + uid).removeClass('hide'); // hide current field
+    // show only form with given uid
+	$('#slub-forms-form-' + uid).removeClass('hide');
+
+    // enable all fields of this form
 	$('#slub-forms-form-' + uid).find('input').prop('disabled', false);
 	$('#slub-forms-form-' + uid).find('textarea').prop('disabled', false);
+	$('#slub-forms-form-' + uid).find('select').prop('disabled', false);
 
 	setCookie('sf_form', uid);
 
@@ -127,15 +133,15 @@ function showForm(uid) {
 }
 
 /**
- * Show a form
+ * Hides a form
  *
  * @param	integer	uid: uid of the element
  * @return	void
  */
 function hideForm(uid) {
 	$('#slub-forms-form-' + uid).addClass('hide'); // hide current field
-	$('#slub-forms-form-' + uid).find('input').prop('disabled', true);
-	$('#slub-forms-form-' + uid).find('textarea').prop('disabled', true);
+
+    disableAllHiddenForms();
 	setCookie('sf_form', '');
 }
 
