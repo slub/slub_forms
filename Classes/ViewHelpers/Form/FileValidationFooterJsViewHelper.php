@@ -3,7 +3,7 @@ namespace Slub\SlubForms\ViewHelpers\Form;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
+ *  (c) 2013 Alexander Bigga <typo3@slub-dresden.de>, SLUB Dresden
  *
  *  All rights reserved
  *

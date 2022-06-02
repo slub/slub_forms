@@ -3,7 +3,7 @@ namespace Slub\SlubForms\ViewHelpers\Form;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2017 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
+ *  (c) 2017 Alexander Bigga <typo3@slub-dresden.de>, SLUB Dresden
  *
  *  All rights reserved
  *
@@ -43,7 +43,7 @@ class FieldSelectValueViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstr
 	 * @return array options
 	 * @api
 	 */
-	public function render() 
+	public function render()
 	{
 		$field = $this->arguments['field'];
 		// get field configuration

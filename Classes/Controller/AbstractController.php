@@ -6,7 +6,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
+ *  (c) 2013 Alexander Bigga <typo3@slub-dresden.de>, SLUB Dresden
  *
  *  All rights reserved
  *

@@ -3,7 +3,7 @@ namespace Slub\SlubForms\ViewHelpers\Form;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2014 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
+ *  (c) 2014 Alexander Bigga <typo3@slub-dresden.de>, SLUB Dresden
  *
  *  All rights reserved
  *
@@ -53,7 +53,7 @@ class FieldRadioValueViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstra
 	 * @return string Rendered string
 	 * @api
 	 */
-	public function render() 
+	public function render()
 	{
 		$field = $this->arguments['field'];
 		// get field configuration

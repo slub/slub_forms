@@ -4,7 +4,7 @@ namespace Slub\SlubForms\ViewHelpers\Condition;
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Alexander Bigga <alexander.bigga@slub-dresden.de>, SLUB Dresden
+ *  (c) 2013 Alexander Bigga <typo3@slub-dresden.de>, SLUB Dresden
  *
  *  All rights reserved
  *
@@ -50,7 +50,7 @@ class IsSenderEmailViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstract
 	 *
 	 * @param \Slub\SlubForms\Domain\Model\Fields $field
 	 * @return boolean
-	 * @author Alexander Bigga <alexander.bigga@slub-dresden.de>
+	 * @author Alexander Bigga <typo3@slub-dresden.de>
 	 * @api
 	 */
 	public function render($field) {
