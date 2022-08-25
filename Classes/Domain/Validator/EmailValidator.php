@@ -26,6 +26,8 @@ namespace Slub\SlubForms\Domain\Validator;
  ***************************************************************/
 
  use Slub\SlubForms\Domain\Repository\EmailRepository;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Error\Error;
 
 /**
  *
@@ -49,21 +51,6 @@ class EmailValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
     public function injectEmailRepository(EmailRepository $emailRepository)
     {
         $this->emailRepository = $emailRepository;
-    }
-
-    /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManager
-     */
-    protected $objectManager;
-
-	/**
-     * Inject the object manager
-     *
-     * @param \TYPO3\CMS\Extbase\Object\ObjectManager $objectManager
-     */
-    public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManager $objectManager)
-    {
-        $this->objectManager = $objectManager;
     }
 
 	/**
@@ -93,7 +80,7 @@ class EmailValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
 	public function isValid($newEmail) {
 
 		if ($newEmail->getEditcode() != $this->getSessionData('editcode')) {
-			$error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_editcode', 1140);
+			$error = GeneralUtility::makeInstance(Error::class, 'val_editcode', 1140);
 			$this->result->forProperty('editcode')->addError($error);
 			$this->isValid = false;
 		}
