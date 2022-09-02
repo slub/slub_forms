@@ -53,6 +53,14 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
         $this->fieldsetsRepository = $fieldsetsRepository;
     }
 
+    public function setOptions(array $options): void
+    {
+        // This method is upwards compatible with TYPO3 v12, it will be implemented
+        // by AbstractValidator in v12 directly and is part of v12 ValidatorInterface.
+        // @todo: Remove this method when v11 compatibility is dropped.
+        $this->initializeDefaultOptions($options);
+    }
+
     /**
      * Return variable
      *
@@ -131,7 +139,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
                         exec("file --mime-type " . $_FILES['tx_slubforms_sf']['tmp_name']['field'][$getfieldset][$singleField->getUid()] . " | cut -f 2 -d ':'", $found_mimetype);
                         $found_mimetype = explode("/", trim($found_mimetype[0]));
                         $configmimetypes =  explode(",", $config['file-accept-mimetypes'] );
-                        foreach ($configmimetypes as $id => $type) {
+                        foreach ($configmimetypes as $typeId => $type) {
                             $splittype = explode("/", trim($type));
                             $allowedtypes[$splittype[0]][] = $splittype[1];
                         }
