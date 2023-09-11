@@ -24,9 +24,6 @@ return [
         'searchFields' => 'title,fields,',
         'iconfile' => 'EXT:slub_forms/Resources/Public/Icons/tx_slubforms_domain_model_fieldsets.gif'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, required, fields',
-    ],
     'types' => [
         '1' => ['showitem' => 'sys_language_uid,
         l10n_parent, l10n_diffsource, hidden,--palette--;;1, title, shortname, required,
@@ -40,22 +37,11 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'special' => 'languages',
-                'items' => [
-                    [
-                        'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
-                        -1,
-                        'flags-multiple'
-                    ],
-                ],
-                'default' => 0,
+                'type' => 'language'
             ]
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => 1,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
