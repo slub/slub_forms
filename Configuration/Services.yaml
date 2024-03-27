@@ -1,0 +1,17 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Slub\SlubForms\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  Slub\SlubForms\Domain\Validator\FieldValidator:
+    public: true
+    shared: false
+
+  Slub\SlubForms\Domain\Validator\EmailValidator:
+    public: true
+    shared: false
