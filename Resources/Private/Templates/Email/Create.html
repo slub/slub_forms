@@ -17,7 +17,9 @@
 
 <ul>
 <f:for each="{content}" key="fieldname" as="line">
-  <li><b>{fieldname}</b>: <f:format.nl2br>{line}</f:format.nl2br></li>
+  <f:if condition="{fieldname} != 'Captcha'">
+    <li><b>{fieldname}</b>: <f:format.nl2br>{line}</f:format.nl2br></li>
+  </f:if>
 </f:for>
 </ul>
 
