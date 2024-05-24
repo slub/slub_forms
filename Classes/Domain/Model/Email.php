@@ -50,6 +50,13 @@ class Email extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $senderEmail;
 
 	/**
+	 * senderIp
+	 *
+	 * @var string
+	 */
+	protected $senderIp;
+
+	/**
 	 * content
 	 *
 	 * @var string
@@ -163,6 +170,25 @@ class Email extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setEditcode($editcode) {
 		$this->editcode = $editcode;
+	}
+
+	/**
+	 * Returns the senderIp
+	 *
+	 * @return string $senderIp
+	 */
+	public function getSenderIp() {
+		return $this->senderIp;
+	}
+
+	/**
+	 * Sets the senderIp
+	 *
+	 * @param string $senderIp
+	 * @return void
+	 */
+	public function setSenderIp($senderIp) {
+		$this->senderIp = $senderIp;
 	}
 
 }

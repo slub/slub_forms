@@ -302,6 +302,11 @@ class EmailController extends AbstractController
             $newEmail->setSenderName('-');
         }
 
+        // set sender IP when config is set
+        if ($this->settings['storeSenderIP']) {
+            $newEmail->setSenderIp(GeneralUtility::getIndpEnv('REMOTE_ADDR'));
+        }
+
         $settings = array();
         // add signal before sending Email
         $this->signalSlotDispatcher->dispatch(
