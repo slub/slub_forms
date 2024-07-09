@@ -220,6 +220,10 @@ class EmailController extends AbstractController
 
                         }
 
+                    } else if ($field->getType() == 'Captcha') {
+
+                        $content[$field->getTitle()] = '-';
+
                     } else {
 
                         $content[$field->getTitle()] = empty($getfields[$field->getUid()]) ? '-' : $getfields[$field->getUid()];
@@ -341,9 +345,15 @@ class EmailController extends AbstractController
             }
 
             // email to form owner
+
+            $senderEmail = $newEmail->getSenderEmail();
+            if($this->settings['overwriteFromEmailAdressToOwner'] && strlen($this->settings['overwriteFromEmailAdressToOwner']) > 0) {
+                $senderEmail = $this->settings['overwriteFromEmailAdressToOwner'];
+            }
+
             $this->sendTemplateEmail(
                 array($form->getRecipient() => ''),
-                array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
+                array($senderEmail => $newEmail->getSenderName()),
                 LocalizationUtility::translate('tx_slubforms_domain_model_email.form', 'slub_forms') . ': ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
                 'FormEmail',
                 array(	'email' => $newEmail,
