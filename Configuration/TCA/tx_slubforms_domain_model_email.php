@@ -133,6 +133,15 @@ return [
                 'eval' => 'trim'
             ],
         ],
+        'sender_ip' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_email.sender_ip',
+            'config' => [
+                'type' => 'input',
+                'size' => 255,
+                'eval' => 'trim'
+            ],
+        ],
         'content' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:slub_forms/Resources/Private/Language/locallang_db.xlf:tx_slubforms_domain_model_email.content',
