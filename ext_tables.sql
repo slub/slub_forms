@@ -148,6 +148,7 @@ CREATE TABLE tx_slubforms_domain_model_email (
 
 	sender_name varchar(255) DEFAULT '' NOT NULL,
 	sender_email varchar(255) DEFAULT '' NOT NULL,
+	sender_ip varchar(255) DEFAULT '' NOT NULL,
 	content text NOT NULL,
 	editcode varchar(255) DEFAULT '' NOT NULL,
 	form int(11) unsigned DEFAULT '0',

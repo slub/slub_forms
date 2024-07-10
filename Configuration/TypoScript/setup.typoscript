@@ -11,7 +11,9 @@ plugin.tx_slubforms {
 		skipDefaultArguments = 1
 	}
 	settings {
-		senderEmailAddress = webmaster@slub-dresden.de
+		senderEmailAddress = noreply@slub-dresden.de
+
+		overwriteFromEmailAdressToOwner = noreply@slub-dresden.de
 
 		// allow sending anonymous mails
 		#anonymEmails {
@@ -21,6 +23,8 @@ plugin.tx_slubforms {
 
 		// send email to customer as confirmation
 		sendConfirmationEmailToCustomer = 1
+
+		storeSenderIP = 0
 	}
 }
 
