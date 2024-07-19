@@ -220,6 +220,10 @@ class EmailController extends AbstractController
 
                         }
 
+                    } else if ($field->getType() == 'Captcha') {
+
+                        $content[$field->getTitle()] = '-';
+
                     } else {
 
                         $content[$field->getTitle()] = empty($getfields[$field->getUid()]) ? '-' : $getfields[$field->getUid()];
@@ -302,6 +306,11 @@ class EmailController extends AbstractController
             $newEmail->setSenderName('-');
         }
 
+        // set sender IP when config is set
+        if ($this->settings['storeSenderIP']) {
+            $newEmail->setSenderIp(GeneralUtility::getIndpEnv('REMOTE_ADDR'));
+        }
+
         $settings = array();
         // add signal before sending Email
         $this->signalSlotDispatcher->dispatch(
@@ -325,6 +334,7 @@ class EmailController extends AbstractController
                 $this->sendTemplateEmail(
                     array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
                     array($this->settings['senderEmailAddress'] => LocalizationUtility::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
+                    array()
                     LocalizationUtility::translate('slub-forms.senderSubject', 'slub_forms') . ' ' . $form->getTitle(),
                     'ConfirmEmail',
                     array(	'email' => $newEmail,
@@ -336,9 +346,21 @@ class EmailController extends AbstractController
             }
 
             // email to form owner
+
+            $senderEmail = $newEmail->getSenderEmail();
+            if($this->settings['overwriteFromEmailAdressToOwner'] && strlen($this->settings['overwriteFromEmailAdressToOwner']) > 0) {
+                $senderEmail = $this->settings['overwriteFromEmailAdressToOwner'];
+            }
+            $replyto = array();
+            if($this->settings['setReplyTo'] && intval($this->settings['setReplyTo']) === 1) {
+                $replyto = array($newEmail->getSenderEmail() => '');
+            }
+
+
             $this->sendTemplateEmail(
                 array($form->getRecipient() => ''),
-                array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
+                array($senderEmail => $newEmail->getSenderName()),
+                $replyto,
                 LocalizationUtility::translate('tx_slubforms_domain_model_email.form', 'slub_forms') . ': ' . $form->getTitle() . ': '. $newEmail->getSenderName(). ', '. $newEmail->getSenderEmail() ,
                 'FormEmail',
                 array(	'email' => $newEmail,
@@ -425,12 +447,13 @@ class EmailController extends AbstractController
      *
      * @param array $recipient recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
      * @param array $sender sender of the email in the format array('sender@domain.tld' => 'Sender Name')
+     * @param array $replyto replyto of the email in the format array('sender@domain.tld' => 'Sender Name')
      * @param string $subject subject of the email
      * @param string $templateName template name (UpperCamelCase)
      * @param array $variables variables to be passed to the Fluid view
      * @return boolean TRUE on success, otherwise false
      */
-    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array()) {
+    protected function sendTemplateEmail(array $recipient, array $sender, array $replyto, $subject, $templateName, array $variables = array()) {
 
         /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailViewHTML */
         $emailViewHTML = $this->objectManager->get(\TYPO3\CMS\Fluid\View\StandaloneView::class);
@@ -450,6 +473,7 @@ class EmailController extends AbstractController
 
         $message->setTo($recipient)
                 ->setFrom($sender)
+                ->setReplyTo($replyto)
                 ->setCharset('utf-8')
                 ->setSubject($subject);
 
