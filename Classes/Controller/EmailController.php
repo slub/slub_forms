@@ -457,7 +457,7 @@ class EmailController extends AbstractController
         /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailViewHTML */
         $emailViewHTML = $this->objectManager->get(\TYPO3\CMS\Fluid\View\StandaloneView::class);
 
-        $emailViewHTML->getRequest()->setControllerExtensionName($this->extensionName);
+        $emailViewHTML->getRequest()->setControllerExtensionName('SlubForms');
         $emailViewHTML->setFormat('html');
         $emailViewHTML->assignMultiple($variables);
 
@@ -478,14 +478,14 @@ class EmailController extends AbstractController
 
         // Plain text example
         $emailTextHTML = $emailViewHTML->render();
-        $message->setBody($this->html2rest($emailTextHTML), 'text/plain');
+        $message->text($this->html2rest($emailTextHTML));
 
         // HTML Email
-        $message->addPart($emailTextHTML, 'text/html');
+        $message->html($emailTextHTML);
 
         if (!empty($variables['filenames'])){
             foreach ($variables['filenames'] as $fileName) {
-                $message->attach(\Swift_Attachment::fromPath($fileName));
+                $message->attachFromPath($fileName);
             }
         }
 

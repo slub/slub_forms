@@ -1,6 +1,8 @@
 <?php
 namespace Slub\SlubForms\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -38,7 +40,7 @@ class FormsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all datasets by MM relation categories
 	 *
 	 * @param string formIds separated by comma
-	 * @return array The found Forms Objects
+	 * @return QueryResultInterface The found Forms Objects
 	 */
 	public function findAllByUids($formIds) {
 
@@ -66,7 +68,7 @@ class FormsRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * Finds all datasets by MM relation categories
 	 *
 	 * @param string formIds separated by comma
-	 * @return array The found Forms Objects
+	 * @return QueryResultInterface The found Forms Objects
 	 */
 	public function findAllById($formId) {
 
