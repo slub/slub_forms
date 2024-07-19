@@ -356,7 +356,6 @@ class EmailController extends AbstractController
                 $replyto = array($newEmail->getSenderEmail() => '');
             }
 
-
             $this->sendTemplateEmail(
                 array($form->getRecipient() => ''),
                 array($senderEmail => $newEmail->getSenderName()),

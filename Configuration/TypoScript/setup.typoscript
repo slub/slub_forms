@@ -15,7 +15,7 @@ plugin.tx_slubforms {
 
 		overwriteFromEmailAdressToOwner = noreply@slub-dresden.de
 
-		setReplyTo = 1
+    setReplyTo = 1
 
 		// allow sending anonymous mails
 		#anonymEmails {

@@ -1,0 +1,18 @@
+{namespace sf=Slub\SlubForms\ViewHelpers}
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.14/widget.module.min.js"
+  async
+  defer
+></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.14/widget.min.js" async defer></script>
+
+
+<div class="field_description">
+  <f:form.hidden name="field[{fieldset.uid}][{field.uid}]" class="{field.shortname}" />
+  <f:format.raw><sf:form.parseConfiguration configurationString="{field.configuration}">
+    <div class="frc-captcha" data-sitekey="{configuration.sitekey}" data-lang="de" data-start="auto" data-solution-field-name="tx_slubforms_sf[field][{fieldset.uid}][{field.uid}]"></div>
+  </sf:form.parseConfiguration></f:format.raw>
+
+  <label class="error" for="tx_slubforms_sf[field][{fieldset.uid}][{field.uid}]"></label>
+</div>
