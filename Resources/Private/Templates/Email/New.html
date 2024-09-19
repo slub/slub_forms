@@ -5,7 +5,7 @@
     <ul>
     <f:for each="{categories}" key="id" as="category">
 
-      <li class="slub-form-select-{id}" id="{f:if(condition: '{category.item.shortname}', then: 'form-select-{category.item.shortname}')}">
+      <li class="slub-form-select slub-form-select-{id}" id="{f:if(condition: '{category.item.shortname}', then: 'form-select-{category.item.shortname}')}">
         <f:if condition="{isNotFirstLevel} == 1">
             <f:then>
               <f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" checked="<sf:form.formId form='{category.item}' /> == {category.item.uid}" />
