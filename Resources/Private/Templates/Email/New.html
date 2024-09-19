@@ -9,7 +9,7 @@
         <f:if condition="{isNotFirstLevel} == 1">
             <f:then>
               <f:form.radio id="slub-form-select-{id}" property="form" value="{category.item}" checked="<sf:form.formId form='{category.item}' /> == {category.item.uid}" />
-              <button type="button" id="{id}" aria-controls="slub-form-select-{id}" role="tab" aria-selected="false">{category.item.title}</button>
+              <button type="button" id="{id}" aria-controls="slub-form-select-{id}">{category.item.title}</button>
             </f:then>
             <f:else>
               <button type="button" id="{id}">{category.item.title}</button>
@@ -97,7 +97,7 @@
             </f:if>
         </f:then>
         <f:else>
-            <div class="slub-form-tree" role="tablist">
+            <div class="slub-form-tree">
                 <fieldset class="slub-category-list">
                 <legend>Formular Kategorien</legend>
                 <f:render section="categoryTree" arguments="{categories: forms}" />
