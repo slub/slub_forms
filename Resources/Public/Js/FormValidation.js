@@ -216,7 +216,16 @@ function fileSelect(e){
 //~ });
 
 $( "#slubForm" ).validate({
-
+    errorElement: "span",
+    errorClass: "error",
+    messages: {
+        "tx_slubforms_sf[field][41][86]" : "Bitte den Betreff ausfüllen",
+        "tx_slubforms_sf[field][90][1]" : "Bitte den Vor- und Nachnamen eintagen",
+        "tx_slubforms_sf[field][90][2]" : "Bitte eine E-Mail-Adresse eintragen",
+        "tx_slubforms_sf[field][90][29]" : "Bitte die Benutzernummer eintragen",
+        "tx_slubforms_sf[field][46][91]" : "Bitte ein Anliegen auswählen",
+        "tx_slubforms_sf[field][7][25]" : "Bitte ihre Mitteilung eintragen",
+    },
 	 //submitHandler: function (form) { // for demo
 	 //
 		//alert('valid form submitted'); // for demo
