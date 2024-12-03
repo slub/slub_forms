@@ -257,7 +257,7 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
                                 }
                             }
                             break;
-                        default:
+                                                 default:
                             if ($singleField->getRequired()) {
                                 if (empty($getfields[$singleField->getUid()])) {
                                     $error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_default', 2000);
@@ -290,6 +290,28 @@ class FieldValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractVal
                         }
                     }
                 }
+
+                if ($singleField->getType() == 'Captcha') {
+
+                    $config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($singleField->getConfiguration());
+                    $captchaService = GeneralUtility::makeInstance(\Slub\SlubForms\Service\Captcha\FriendlyCaptcha::class);
+                    $validCaptcha = $captchaService->verify($getfields[$singleField->getUid()], $config);
+
+                    if ($singleField->getRequired()) {
+                        if (!$validCaptcha) {
+                            $error = $this->objectManager->get(\TYPO3\CMS\Extbase\Error\Error::class, 'val_captcha', 2100);
+                            $this->result->forProperty('content')->addError($error);
+                            $this->isValid = false;
+                        }
+                    }
+                    if ($fieldset->getRequired()) {
+                        if ($validCaptcha) {
+                            $fieldGroupOk++;
+                        }
+                    }
+
+                }
+
             }
 
             // if fieldset is required, check fields once more...

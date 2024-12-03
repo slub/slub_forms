@@ -334,7 +334,7 @@ class EmailController extends AbstractController
                 $this->sendTemplateEmail(
                     array($newEmail->getSenderEmail() => $newEmail->getSenderName()),
                     array($this->settings['senderEmailAddress'] => LocalizationUtility::translate('slub-forms.senderEmailName', 'slub_forms') . ' - noreply'),
-                    array()
+                    array(),
                     LocalizationUtility::translate('slub-forms.senderSubject', 'slub_forms') . ' ' . $form->getTitle(),
                     'ConfirmEmail',
                     array(	'email' => $newEmail,
@@ -355,7 +355,6 @@ class EmailController extends AbstractController
             if($this->settings['setReplyTo'] && intval($this->settings['setReplyTo']) === 1) {
                 $replyto = array($newEmail->getSenderEmail() => '');
             }
-
 
             $this->sendTemplateEmail(
                 array($form->getRecipient() => ''),
