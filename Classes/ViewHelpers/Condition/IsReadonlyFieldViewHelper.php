@@ -70,6 +70,12 @@ class IsReadonlyFieldViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstra
 		// get field configuration
 		$config = \Slub\SlubForms\Helper\ArrayHelper::configToArray($field->getConfiguration());
 
+		if (!empty($config['readonly'])) {
+			if((trim($config['readonly']) === 'TRUE')||(trim($config['readonly']) === 'true') || (trim($config['readonly']) === '1')) {
+				return 'readonly';
+			} 
+		}
+
 		if (!empty($config['prefill'])) {
 			// values may be comma separated:
 			// e.g. prefill = fe_users:username, fe_users:email, news:news
