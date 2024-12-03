@@ -87,7 +87,6 @@ class IsReadonlyFieldViewHelper extends \TYPO3Fluid\Fluid\Core\ViewHelper\Abstra
 				//  or  value:1
 				// first value is database "value" or "fe_users"
 				$settingPair = explode(":", $singleArgument);
-				var_dump($config);
 				switch (trim($settingPair[0])) {
 					case 'fe_users':
 						if (!empty($GLOBALS['TSFE']->fe_user->user[ trim($settingPair[1]) ])) {
