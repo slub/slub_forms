@@ -473,15 +473,12 @@ class EmailController extends AbstractController
         $message->setTo($recipient)
                 ->setFrom($sender)
                 ->setReplyTo($replyto)
-                ->setCharset('utf-8')
                 ->setSubject($subject);
 
-        // Plain text example
         $emailTextHTML = $emailViewHTML->render();
-        $message->text($this->html2rest($emailTextHTML));
 
-        // HTML Email
-        $message->html($emailTextHTML);
+        $message->setBody()->text($this->html2rest($emailTextHTML));
+        $message->setBody()->html($emailTextHTML);
 
         if (!empty($variables['filenames'])){
             foreach ($variables['filenames'] as $fileName) {
